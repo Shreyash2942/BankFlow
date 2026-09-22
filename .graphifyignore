@@ -1,0 +1,5 @@
+.git/
+.venv/
+*.egg-info/
+graphify-out/
+**/graphify-out/

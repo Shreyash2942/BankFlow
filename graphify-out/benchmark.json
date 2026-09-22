@@ -1,0 +1,36 @@
+{
+  "corpus_tokens": 40530,
+  "corpus_words": 30398,
+  "nodes": 377,
+  "edges": 491,
+  "avg_query_tokens": 3144,
+  "reduction_ratio": 12.9,
+  "per_question": [
+    {
+      "question": "What Day 1 foundation is implemented and which services remain planned?",
+      "query_tokens": 4440,
+      "reduction": 9.1
+    },
+    {
+      "question": "What PostgreSQL checks must Day 2 complete?",
+      "query_tokens": 3377,
+      "reduction": 12.0
+    },
+    {
+      "question": "How do temporary and persistent card lockouts conflict?",
+      "query_tokens": 1816,
+      "reduction": 22.3
+    },
+    {
+      "question": "How do legacy withdrawal bugs affect Decimal precision?",
+      "query_tokens": 3337,
+      "reduction": 12.1
+    },
+    {
+      "question": "How will Kafka events reach Iceberg Bronze Silver Gold analytics?",
+      "query_tokens": 2752,
+      "reduction": 14.7
+    }
+  ],
+  "limitations": "Approximate words-to-tokens and retrieved subgraph text-size comparison only; not measured answer accuracy, completeness, actual model tokens, latency, or financial cost."
+}
