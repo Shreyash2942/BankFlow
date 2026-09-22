@@ -1,0 +1,95 @@
+{
+  "description": "Unmodified academic source assets imported on 2026-09-22",
+  "files": [
+    {
+      "path": "atm_simulation.py",
+      "sha256": "4a729498f4c49b5c3957c6ad1034ad550b67b1d40cd7d6941262196d3c0925f1",
+      "bytes": 3655
+    },
+    {
+      "path": "CSC505_ATM_Final_Project_Report_APA7.docx",
+      "sha256": "7fa7007257206c16a2ea7ff286e73033f0e39eed11189ddb6bdcdb08f43a2818",
+      "bytes": 2442436
+    },
+    {
+      "path": "CSC505_Lessons_Learned_Principles_of_Software_Engineering.docx",
+      "sha256": "ca8df85a3447b0c8b7055ddb039ff021b1e71fb7c542defc4af1529335c46914",
+      "bytes": 35172
+    },
+    {
+      "path": "ATM System - UML Activity Diagram.vsdx",
+      "sha256": "689cbd14182bc20a6825fdd82204cd6649d3d88e898be67a95868e676b38cc3e",
+      "bytes": 73074
+    },
+    {
+      "path": "ATM System - UML State Machine Diagram.vsdx",
+      "sha256": "67b8871f5a272b427ad56dbfe84450e592aa0e5ee8ba6e084455ef0b401d7135",
+      "bytes": 35792
+    },
+    {
+      "path": "SEQUENCE DIAGRAM.vsdx",
+      "sha256": "c4ec6c55005fed1bc485329a8f504335523b47b1198c4662a00249381c9ab98c",
+      "bytes": 52698
+    },
+    {
+      "path": "ATM System - UML Activity Diagram.jpg",
+      "sha256": "b0963648650c31441e2c696e58f0a8ddc9816038183b9a378843cfe0cb9d44f2",
+      "bytes": 652189
+    },
+    {
+      "path": "ATM System - UML State Machine Diagram.jpg",
+      "sha256": "ed40b8cd1cecdc3297a7e180caaf058ea4085e7d6217941aacd6bcc6ab5d9850",
+      "bytes": 441911
+    },
+    {
+      "path": "UML SEQUENCE DIAGRAM.jpg",
+      "sha256": "28b6b262410c5dc311d38535ea084c2fa912466da324bd801153bb7e8350a66c",
+      "bytes": 208518
+    },
+    {
+      "path": "ATM System State machine Diagram.png",
+      "sha256": "0126457a63040435bf816416961b33550b9ea79bb4da2b3ed5259b2bf1079376",
+      "bytes": 1232020
+    },
+    {
+      "path": "ChatGPT Image Aug 31, 2026, 07_45_29 PM.png",
+      "sha256": "9760de46e38f424975d332d7c9626552a01ec5d326e945e15606b7fcdd694eff",
+      "bytes": 1182659
+    },
+    {
+      "path": "ChatGPT Image Aug 31, 2026, 07_47_23 PM.png",
+      "sha256": "9760de46e38f424975d332d7c9626552a01ec5d326e945e15606b7fcdd694eff",
+      "bytes": 1182659
+    },
+    {
+      "path": "ChatGPT Image Aug 31, 2026, 07_47_42 PM.png",
+      "sha256": "079d08e8ef907acf5c8c78feb86466e6f7480106c0845dd6adc58c9b78d7be12",
+      "bytes": 1329375
+    },
+    {
+      "path": "ChatGPT Image Aug 31, 2026, 07_56_47 PM.png",
+      "sha256": "e3cba2bad298e70156d6e0b419219dbf0c92ca39fe21893deb71189b5b39523b",
+      "bytes": 1454639
+    },
+    {
+      "path": "ATM_Execution_Screenshots/customer_rejected.png",
+      "sha256": "38d1dd6be0060f1237a7f8ae10f0f31d76502cc5d76df9a622fc33ba9b1373cf",
+      "bytes": 182965
+    },
+    {
+      "path": "ATM_Execution_Screenshots/incorrect_then_correct_pin.png",
+      "sha256": "c8ea18221ad6813534c07e007b99f6caec198bda0fd32b4b4b8647d4f3a5e216",
+      "bytes": 265136
+    },
+    {
+      "path": "ATM_Execution_Screenshots/successful_withdrawal.png",
+      "sha256": "bc6b9e77f7309825e0a8fcbce1f72bfb8bb67f11109957eb58549c8f4492b6e5",
+      "bytes": 190170
+    },
+    {
+      "path": "ATM_Execution_Screenshots/zero_balance_account_closed.png",
+      "sha256": "5aa56890f8ecaf616361ddcc87b9750fe74858b310d22c53bedc2125aa436e5d",
+      "bytes": 167451
+    }
+  ]
+}

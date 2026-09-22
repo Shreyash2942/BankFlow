@@ -1,0 +1,43 @@
+# Local environments and secrets
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+*.pem
+*.key
+
+# Python and tooling output
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+coverage.xml
+
+# Runtime state
+*.log
+*.sqlite3
+data/
+checkpoints/
+spark-warehouse/
+dbt/target/
+dbt/logs/
+dbt/dbt_packages/
+
+# Local editor and OS state
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Rebuildable graph caches (keep the published graph and reports)
+graphify-out/cache/
+graphify-out/.graphify_*
+graphify-out/converted/

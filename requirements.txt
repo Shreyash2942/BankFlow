@@ -1,0 +1,10 @@
+# Direct application dependencies verified on Python 3.14 / Windows x64.
+# Airflow, dbt, and Spark use separate lab runtimes in later milestones.
+streamlit==1.64.0
+pydantic==2.13.5
+pydantic-settings==2.15.0
+SQLAlchemy==2.0.54
+alembic==1.20.0
+psycopg[binary]==3.3.6
+redis==7.4.1
+confluent-kafka==2.15.1

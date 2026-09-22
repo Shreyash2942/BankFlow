@@ -1,0 +1,17 @@
+* text=auto eol=lf
+*.py text eol=lf
+*.md text eol=lf
+*.md whitespace=-blank-at-eol
+*.toml text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.json text eol=lf
+*.txt text eol=lf
+*.png binary
+*.jpg binary
+*.docx binary
+*.vsdx binary
+# Preserve the academic baseline byte-for-byte, including the Python script.
+docs/original-college-project/** -text
+docs/original-college-project/README.md text eol=lf
+docs/original-college-project/manifest.json text eol=lf
