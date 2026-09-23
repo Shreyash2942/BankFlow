@@ -9,3 +9,9 @@
 - Documented the existing Data-Lab connection strategy and pending live checks.
 
 No application release has been tagged. Domain services and the Streamlit UI remain planned.
+
+### Dedicated container follow-up
+
+- Adopted the user-created `bankflow` container and dedicated runtime volume.
+- Updated host connection ports and documented all supplied service endpoints without passwords or tokens.
+- Distinguished internal HDFS/Spark RPC from host mappings and recorded copied storage-path defaults.

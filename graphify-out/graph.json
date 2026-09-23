@@ -72,7 +72,7 @@
       "source_location": "L1",
       "status": "implemented_foundation",
       "id": "scripts_check_environment_py_py_0",
-      "community": 17,
+      "community": 18,
       "norm_label": "check_environment.py"
     },
     {
@@ -82,7 +82,7 @@
       "source_location": "L19",
       "status": "implemented_foundation",
       "id": "scripts_check_environment_py_main_1",
-      "community": 17,
+      "community": 18,
       "norm_label": "main()"
     },
     {
@@ -92,7 +92,7 @@
       "source_location": "L1",
       "status": "implemented_foundation",
       "id": "scripts_check_environment_py_1_2",
-      "community": 17,
+      "community": 18,
       "norm_label": "check day 1 imports without opening network connections or loading secrets."
     },
     {
@@ -102,7 +102,7 @@
       "source_location": "L20",
       "status": "implemented_foundation",
       "id": "scripts_check_environment_py_20_3",
-      "community": 17,
+      "community": 18,
       "norm_label": "return nonzero if the selected interpreter or an application import fails."
     },
     {
@@ -112,7 +112,7 @@
       "source_location": null,
       "status": "implemented_foundation",
       "id": "scripts_check_environment_py_importlib_4",
-      "community": 17,
+      "community": 18,
       "norm_label": "importlib"
     },
     {
@@ -122,7 +122,7 @@
       "source_location": null,
       "status": "implemented_foundation",
       "id": "scripts_check_environment_py_metadata_5",
-      "community": 17,
+      "community": 18,
       "norm_label": "importlib_metadata"
     },
     {
@@ -132,7 +132,7 @@
       "source_location": null,
       "status": "implemented_foundation",
       "id": "scripts_check_environment_py_sys_6",
-      "community": 17,
+      "community": 18,
       "norm_label": "sys"
     },
     {
@@ -342,7 +342,7 @@
       "source_location": "L1",
       "status": "archived_academic_evidence",
       "id": "atm_simulation_py",
-      "community": 1,
+      "community": 3,
       "norm_label": "atm_simulation.py"
     },
     {
@@ -352,7 +352,7 @@
       "source_location": "L15",
       "status": "archived_academic_evidence",
       "id": "atm_simulation_print_step",
-      "community": 1,
+      "community": 3,
       "norm_label": "print_step()"
     },
     {
@@ -362,7 +362,7 @@
       "source_location": "L20",
       "status": "archived_academic_evidence",
       "id": "atm_simulation_authenticate_customer",
-      "community": 1,
+      "community": 3,
       "norm_label": "authenticate_customer()"
     },
     {
@@ -372,7 +372,7 @@
       "source_location": "L52",
       "status": "archived_academic_evidence",
       "id": "atm_simulation_request_withdrawal",
-      "community": 1,
+      "community": 3,
       "norm_label": "request_withdrawal()"
     },
     {
@@ -382,7 +382,7 @@
       "source_location": "L79",
       "status": "archived_academic_evidence",
       "id": "atm_simulation_run_atm",
-      "community": 1,
+      "community": 3,
       "norm_label": "run_atm()"
     },
     {
@@ -392,7 +392,7 @@
       "source_location": "L1",
       "status": "archived_academic_evidence",
       "id": "atm_simulation_rationale_1",
-      "community": 1,
+      "community": 3,
       "norm_label": "atm simulation csc505 - principles of software engineering  this program follows"
     },
     {
@@ -402,7 +402,7 @@
       "source_location": "L16",
       "status": "archived_academic_evidence",
       "id": "atm_simulation_rationale_16",
-      "community": 1,
+      "community": 3,
       "norm_label": "print a numbered activity that matches the uml activity diagram."
     },
     {
@@ -412,7 +412,7 @@
       "source_location": "L21",
       "status": "archived_academic_evidence",
       "id": "atm_simulation_rationale_21",
-      "community": 1,
+      "community": 3,
       "norm_label": "authenticate the customer using a pin with a maximum of three attempts."
     },
     {
@@ -422,7 +422,7 @@
       "source_location": "L53",
       "status": "archived_academic_evidence",
       "id": "atm_simulation_rationale_53",
-      "community": 1,
+      "community": 3,
       "norm_label": "request and validate a withdrawal amount."
     },
     {
@@ -432,7 +432,7 @@
       "source_location": "L80",
       "status": "archived_academic_evidence",
       "id": "atm_simulation_rationale_80",
-      "community": 1,
+      "community": 3,
       "norm_label": "run one complete atm session."
     },
     {
@@ -446,7 +446,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "prototype",
-      "community": 1,
+      "community": 11,
       "norm_label": "academic python withdrawal prototype (documented existing)"
     },
     {
@@ -460,7 +460,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "academic_trace",
-      "community": 1,
+      "community": 11,
       "norm_label": "numbered uml activities traced to executable output"
     },
     {
@@ -474,7 +474,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "uml_state",
-      "community": 1,
+      "community": 11,
       "norm_label": "academic uml state machine with guards/actions"
     },
     {
@@ -488,7 +488,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "uml_activity",
-      "community": 1,
+      "community": 11,
       "norm_label": "academic sixteen-step activity diagram"
     },
     {
@@ -502,7 +502,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "uml_sequence",
-      "community": 1,
+      "community": 11,
       "norm_label": "academic customer/atm/bank system/database interaction model"
     },
     {
@@ -516,7 +516,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "academic_auth",
-      "community": 13,
+      "community": 14,
       "norm_label": "academic pin check and three-failure session rejection"
     },
     {
@@ -530,7 +530,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "academic_zero",
-      "community": 1,
+      "community": 3,
       "norm_label": "academic zero-balance closure behavior"
     },
     {
@@ -544,7 +544,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "manual_scenarios",
-      "community": 1,
+      "community": 11,
       "norm_label": "four reported manual execution scenarios"
     },
     {
@@ -558,7 +558,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "academic_boundary",
-      "community": 1,
+      "community": 11,
       "norm_label": "academic simulation is not production banking security"
     },
     {
@@ -572,7 +572,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "uml_spec",
-      "community": 1,
+      "community": 11,
       "norm_label": "omg uml 2.5.1 cited reference"
     },
     {
@@ -586,7 +586,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "pressman",
-      "community": 1,
+      "community": 11,
       "norm_label": "pressman and maxim software engineering cited reference"
     },
     {
@@ -600,7 +600,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "nist_ssdf",
-      "community": 1,
+      "community": 11,
       "norm_label": "nist ssdf sp 800-218 cited reference"
     },
     {
@@ -614,7 +614,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "nist_auth",
-      "community": 1,
+      "community": 11,
       "norm_label": "nist sp 800-63b-4 cited reference"
     },
     {
@@ -628,7 +628,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "lessons",
-      "community": 1,
+      "community": 11,
       "norm_label": "software engineering lessons from eight course modules"
     },
     {
@@ -642,7 +642,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "requirements_first",
-      "community": 1,
+      "community": 11,
       "norm_label": "validate requirements, stakeholders and exceptions before coding"
     },
     {
@@ -656,7 +656,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "iterative_feedback",
-      "community": 1,
+      "community": 11,
       "norm_label": "prototypes and short cycles reduce uncertainty"
     },
     {
@@ -670,7 +670,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "secure_lifecycle",
-      "community": 1,
+      "community": 11,
       "norm_label": "security and abnormal-path testing throughout development"
     },
     {
@@ -684,7 +684,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "scrum_guide",
-      "community": 1,
+      "community": 11,
       "norm_label": "schwaber and sutherland scrum guide cited reference"
     },
     {
@@ -698,7 +698,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "activity_customer",
-      "community": 2,
+      "community": 1,
       "norm_label": "customer"
     },
     {
@@ -712,7 +712,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "activity_atm",
-      "community": 2,
+      "community": 1,
       "norm_label": "atm system"
     },
     {
@@ -726,7 +726,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "activity_bank",
-      "community": 2,
+      "community": 1,
       "norm_label": "bank / account system"
     },
     {
@@ -740,7 +740,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "activity_start",
-      "community": 2,
+      "community": 1,
       "norm_label": "start atm session"
     },
     {
@@ -754,7 +754,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "activity_insert",
-      "community": 2,
+      "community": 1,
       "norm_label": "insert card"
     },
     {
@@ -768,7 +768,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "activity_request_pin",
-      "community": 2,
+      "community": 1,
       "norm_label": "request pin"
     },
     {
@@ -782,7 +782,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "activity_enter_pin",
-      "community": 2,
+      "community": 1,
       "norm_label": "enter pin using keypad"
     },
     {
@@ -796,7 +796,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "activity_validate_pin",
-      "community": 2,
+      "community": 1,
       "norm_label": "validate pin"
     },
     {
@@ -810,7 +810,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "activity_verify_pin",
-      "community": 2,
+      "community": 1,
       "norm_label": "verify pin against account record"
     },
     {
@@ -824,7 +824,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "activity_pin_correct",
-      "community": 2,
+      "community": 1,
       "norm_label": "pin correct?"
     },
     {
@@ -838,7 +838,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "activity_increment",
-      "community": 2,
+      "community": 1,
       "norm_label": "increment failed attempt counter"
     },
     {
@@ -852,7 +852,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "activity_attempts",
-      "community": 2,
+      "community": 1,
       "norm_label": "attempts >= 3?"
     },
     {
@@ -866,7 +866,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "activity_reject",
-      "community": 2,
+      "community": 1,
       "norm_label": "reject customer: card retained"
     },
     {
@@ -880,7 +880,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "activity_authenticate",
-      "community": 2,
+      "community": 1,
       "norm_label": "authenticate customer: access granted"
     },
     {
@@ -894,7 +894,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "activity_request_amount",
-      "community": 2,
+      "community": 1,
       "norm_label": "request withdrawal amount"
     },
     {
@@ -908,7 +908,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "activity_enter_amount",
-      "community": 2,
+      "community": 1,
       "norm_label": "enter withdrawal amount"
     },
     {
@@ -922,7 +922,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "activity_validate_amount",
-      "community": 2,
+      "community": 1,
       "norm_label": "validate withdrawal amount"
     },
     {
@@ -936,7 +936,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "activity_enough",
-      "community": 2,
+      "community": 1,
       "norm_label": "amount <= balance?"
     },
     {
@@ -950,7 +950,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "activity_insufficient",
-      "community": 2,
+      "community": 1,
       "norm_label": "display insufficient funds message"
     },
     {
@@ -964,7 +964,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "activity_dispense",
-      "community": 2,
+      "community": 1,
       "norm_label": "dispense cash"
     },
     {
@@ -978,7 +978,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "activity_take_cash",
-      "community": 2,
+      "community": 1,
       "norm_label": "take cash and receipt"
     },
     {
@@ -992,7 +992,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "activity_update",
-      "community": 2,
+      "community": 1,
       "norm_label": "update account balance"
     },
     {
@@ -1006,7 +1006,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "activity_bank_debit",
-      "community": 2,
+      "community": 1,
       "norm_label": "debit amount from account"
     },
     {
@@ -1020,7 +1020,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "activity_check",
-      "community": 2,
+      "community": 1,
       "norm_label": "check account balance"
     },
     {
@@ -1034,7 +1034,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "activity_bank_check",
-      "community": 2,
+      "community": 1,
       "norm_label": "bank checks sufficient funds"
     },
     {
@@ -1048,7 +1048,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "activity_zero",
-      "community": 2,
+      "community": 1,
       "norm_label": "balance = 0?"
     },
     {
@@ -1062,7 +1062,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "activity_close",
-      "community": 2,
+      "community": 1,
       "norm_label": "close account at zero balance"
     },
     {
@@ -1076,7 +1076,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "activity_complete",
-      "community": 2,
+      "community": 1,
       "norm_label": "display transaction complete / updated balance"
     },
     {
@@ -1090,7 +1090,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "activity_view",
-      "community": 2,
+      "community": 1,
       "norm_label": "view message / updated balance"
     },
     {
@@ -1104,7 +1104,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "activity_end",
-      "community": 2,
+      "community": 1,
       "norm_label": "end atm session: remove card"
     },
     {
@@ -1118,7 +1118,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "activity_final",
-      "community": 2,
+      "community": 1,
       "norm_label": "activity final"
     },
     {
@@ -1132,7 +1132,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "activity_separation",
-      "community": 2,
+      "community": 1,
       "norm_label": "separate customer, atm, and bank responsibilities"
     },
     {
@@ -1146,7 +1146,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "state_revised_initial",
-      "community": 12,
+      "community": 13,
       "norm_label": "initial state"
     },
     {
@@ -1160,7 +1160,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "state_revised_idle",
-      "community": 12,
+      "community": 13,
       "norm_label": "idle: waiting for card; display welcome"
     },
     {
@@ -1174,7 +1174,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "state_revised_pin_entry",
-      "community": 12,
+      "community": 13,
       "norm_label": "pin entry: prompt for pin"
     },
     {
@@ -1188,7 +1188,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "state_revised_validate",
-      "community": 12,
+      "community": 13,
       "norm_label": "validate pin"
     },
     {
@@ -1202,7 +1202,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "state_revised_increment",
-      "community": 12,
+      "community": 13,
       "norm_label": "increment attempts: increase failed attempt counter"
     },
     {
@@ -1216,7 +1216,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "state_revised_rejected",
-      "community": 12,
+      "community": 13,
       "norm_label": "customer rejected: display card retained message and eject card"
     },
     {
@@ -1230,7 +1230,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "state_revised_auth",
-      "community": 12,
+      "community": 13,
       "norm_label": "authenticated: showmenu"
     },
     {
@@ -1244,7 +1244,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "state_revised_request",
-      "community": 12,
+      "community": 13,
       "norm_label": "request withdrawal: request amount"
     },
     {
@@ -1258,7 +1258,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "state_revised_withdrawal",
-      "community": 12,
+      "community": 13,
       "norm_label": "withdrawal: dispense cash and update balance"
     },
     {
@@ -1272,7 +1272,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "state_revised_check",
-      "community": 12,
+      "community": 13,
       "norm_label": "check balance after withdrawal"
     },
     {
@@ -1286,7 +1286,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "state_revised_active",
-      "community": 12,
+      "community": 13,
       "norm_label": "account active: transaction complete; display new balance"
     },
     {
@@ -1300,7 +1300,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "state_revised_closed",
-      "community": 12,
+      "community": 13,
       "norm_label": "account closed: display closed message"
     },
     {
@@ -1314,7 +1314,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "state_revised_final",
-      "community": 12,
+      "community": 13,
       "norm_label": "final state: end of session"
     },
     {
@@ -1328,7 +1328,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "state_revised_retry_label",
-      "community": 12,
+      "community": 13,
       "norm_label": "retry (attempts < 3) label without connected retry arrow"
     },
     {
@@ -1594,7 +1594,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "sequence_customer",
-      "community": 3,
+      "community": 2,
       "norm_label": "customer"
     },
     {
@@ -1608,7 +1608,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "sequence_atm",
-      "community": 3,
+      "community": 2,
       "norm_label": "atm"
     },
     {
@@ -1622,7 +1622,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "sequence_bank",
-      "community": 3,
+      "community": 2,
       "norm_label": "bank system"
     },
     {
@@ -1636,7 +1636,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "sequence_account",
-      "community": 3,
+      "community": 2,
       "norm_label": "account"
     },
     {
@@ -1650,7 +1650,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "sequence_insert",
-      "community": 3,
+      "community": 2,
       "norm_label": "1 insert card"
     },
     {
@@ -1664,7 +1664,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "sequence_request_pin",
-      "community": 3,
+      "community": 2,
       "norm_label": "2 request pin"
     },
     {
@@ -1678,7 +1678,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "sequence_enter_pin",
-      "community": 3,
+      "community": 2,
       "norm_label": "3 enter pin"
     },
     {
@@ -1692,7 +1692,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "sequence_verify",
-      "community": 13,
+      "community": 14,
       "norm_label": "4 verify pin(pin)"
     },
     {
@@ -1706,7 +1706,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "sequence_check_pin",
-      "community": 3,
+      "community": 2,
       "norm_label": "5 check pin"
     },
     {
@@ -1720,7 +1720,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "sequence_pin_result",
-      "community": 3,
+      "community": 2,
       "norm_label": "6 pin valid / invalid"
     },
     {
@@ -1734,7 +1734,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "sequence_valid",
-      "community": 3,
+      "community": 2,
       "norm_label": "7 pin valid"
     },
     {
@@ -1748,7 +1748,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "sequence_invalid",
-      "community": 3,
+      "community": 2,
       "norm_label": "pin invalid"
     },
     {
@@ -1762,7 +1762,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "sequence_menu",
-      "community": 3,
+      "community": 2,
       "norm_label": "8 display menu"
     },
     {
@@ -1776,7 +1776,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "sequence_select",
-      "community": 3,
+      "community": 2,
       "norm_label": "9 select withdrawal"
     },
     {
@@ -1790,7 +1790,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "sequence_request_amount",
-      "community": 3,
+      "community": 2,
       "norm_label": "10 request amount"
     },
     {
@@ -1804,7 +1804,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "sequence_enter_amount",
-      "community": 3,
+      "community": 2,
       "norm_label": "11 enter amount"
     },
     {
@@ -1818,7 +1818,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "sequence_check_balance",
-      "community": 3,
+      "community": 2,
       "norm_label": "12 check balance(amount)"
     },
     {
@@ -1832,7 +1832,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "sequence_get_balance",
-      "community": 3,
+      "community": 2,
       "norm_label": "13 get balance"
     },
     {
@@ -1846,7 +1846,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "sequence_return_balance",
-      "community": 3,
+      "community": 2,
       "norm_label": "14 return balance"
     },
     {
@@ -1860,7 +1860,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "sequence_balance",
-      "community": 3,
+      "community": 2,
       "norm_label": "15 balance"
     },
     {
@@ -1874,7 +1874,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "sequence_sufficient",
-      "community": 3,
+      "community": 2,
       "norm_label": "balance >= amount"
     },
     {
@@ -1888,7 +1888,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "sequence_debit",
-      "community": 3,
+      "community": 2,
       "norm_label": "16 debit account(amount)"
     },
     {
@@ -1916,7 +1916,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "sequence_success",
-      "community": 3,
+      "community": 2,
       "norm_label": "18 success"
     },
     {
@@ -1930,7 +1930,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "sequence_debit_success",
-      "community": 3,
+      "community": 2,
       "norm_label": "19 debit success"
     },
     {
@@ -1944,7 +1944,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "sequence_dispense",
-      "community": 3,
+      "community": 2,
       "norm_label": "20 dispense cash"
     },
     {
@@ -1958,7 +1958,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "sequence_show_balance",
-      "community": 3,
+      "community": 2,
       "norm_label": "21 show updated balance"
     },
     {
@@ -1972,7 +1972,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "sequence_insufficient",
-      "community": 3,
+      "community": 2,
       "norm_label": "balance < amount"
     },
     {
@@ -1986,7 +1986,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "sequence_insuff_response",
-      "community": 3,
+      "community": 2,
       "norm_label": "20a insufficient funds"
     },
     {
@@ -2000,7 +2000,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "sequence_insuff_message",
-      "community": 3,
+      "community": 2,
       "norm_label": "21a show insufficient funds message"
     },
     {
@@ -2014,7 +2014,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "sequence_separation",
-      "community": 3,
+      "community": 2,
       "norm_label": "atm delegates account verification and debit to bank"
     },
     {
@@ -2098,7 +2098,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img06_insert",
-      "community": 5,
+      "community": 6,
       "norm_label": "insert card"
     },
     {
@@ -2112,7 +2112,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img06_request_pin",
-      "community": 5,
+      "community": 6,
       "norm_label": "request pin"
     },
     {
@@ -2126,7 +2126,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img06_enter_pin",
-      "community": 5,
+      "community": 6,
       "norm_label": "enter pin"
     },
     {
@@ -2140,7 +2140,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img06_validate_pin",
-      "community": 5,
+      "community": 6,
       "norm_label": "validate pin"
     },
     {
@@ -2154,7 +2154,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img06_verify_pin",
-      "community": 5,
+      "community": 6,
       "norm_label": "verify pin against account record"
     },
     {
@@ -2168,7 +2168,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img06_correct",
-      "community": 5,
+      "community": 6,
       "norm_label": "pin correct decision"
     },
     {
@@ -2182,7 +2182,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img06_attempt",
-      "community": 5,
+      "community": 6,
       "norm_label": "increment failed attempt counter"
     },
     {
@@ -2196,7 +2196,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img06_limit",
-      "community": 5,
+      "community": 6,
       "norm_label": "three failed pin attempts"
     },
     {
@@ -2210,7 +2210,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img06_reject",
-      "community": 5,
+      "community": 6,
       "norm_label": "reject customer and retain card"
     },
     {
@@ -2224,7 +2224,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img06_auth",
-      "community": 5,
+      "community": 6,
       "norm_label": "authenticate customer"
     },
     {
@@ -2238,7 +2238,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img06_request_amount",
-      "community": 5,
+      "community": 6,
       "norm_label": "request withdrawal amount"
     },
     {
@@ -2252,7 +2252,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img06_validate_amount",
-      "community": 5,
+      "community": 6,
       "norm_label": "validate withdrawal amount"
     },
     {
@@ -2266,7 +2266,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img06_funds",
-      "community": 5,
+      "community": 6,
       "norm_label": "amount <= balance decision"
     },
     {
@@ -2280,7 +2280,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img06_bank_balance",
-      "community": 5,
+      "community": 6,
       "norm_label": "bank check balance"
     },
     {
@@ -2294,7 +2294,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img06_insufficient",
-      "community": 5,
+      "community": 6,
       "norm_label": "display insufficient funds message"
     },
     {
@@ -2308,7 +2308,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img06_dispense",
-      "community": 5,
+      "community": 6,
       "norm_label": "dispense cash"
     },
     {
@@ -2322,7 +2322,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img06_update",
-      "community": 5,
+      "community": 6,
       "norm_label": "update account balance"
     },
     {
@@ -2336,7 +2336,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img06_bank_update",
-      "community": 5,
+      "community": 6,
       "norm_label": "bank debit amount from account"
     },
     {
@@ -2350,7 +2350,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img06_check",
-      "community": 5,
+      "community": 6,
       "norm_label": "check account balance"
     },
     {
@@ -2364,7 +2364,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img06_zero",
-      "community": 5,
+      "community": 6,
       "norm_label": "balance = 0 decision"
     },
     {
@@ -2378,7 +2378,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img06_closed",
-      "community": 5,
+      "community": 6,
       "norm_label": "close account automatically at zero balance"
     },
     {
@@ -2392,7 +2392,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img06_complete",
-      "community": 5,
+      "community": 6,
       "norm_label": "display transaction complete / updated balance"
     },
     {
@@ -2420,7 +2420,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img06_anomaly",
-      "community": 5,
+      "community": 6,
       "norm_label": "activity arrow routing disagrees with numbered pin and bank balance flow"
     },
     {
@@ -2504,7 +2504,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img07_insert",
-      "community": 6,
+      "community": 5,
       "norm_label": "insert card"
     },
     {
@@ -2518,7 +2518,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img07_request_pin",
-      "community": 6,
+      "community": 5,
       "norm_label": "request pin"
     },
     {
@@ -2532,7 +2532,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img07_enter_pin",
-      "community": 6,
+      "community": 5,
       "norm_label": "enter pin"
     },
     {
@@ -2546,7 +2546,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img07_validate_pin",
-      "community": 6,
+      "community": 5,
       "norm_label": "validate pin"
     },
     {
@@ -2560,7 +2560,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img07_verify_pin",
-      "community": 6,
+      "community": 5,
       "norm_label": "verify pin against account record"
     },
     {
@@ -2574,7 +2574,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img07_correct",
-      "community": 6,
+      "community": 5,
       "norm_label": "pin correct decision"
     },
     {
@@ -2588,7 +2588,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img07_attempt",
-      "community": 6,
+      "community": 5,
       "norm_label": "increment failed attempt counter"
     },
     {
@@ -2602,7 +2602,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img07_limit",
-      "community": 6,
+      "community": 5,
       "norm_label": "three failed pin attempts"
     },
     {
@@ -2616,7 +2616,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img07_reject",
-      "community": 6,
+      "community": 5,
       "norm_label": "reject customer and retain card"
     },
     {
@@ -2630,7 +2630,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img07_auth",
-      "community": 6,
+      "community": 5,
       "norm_label": "authenticate customer"
     },
     {
@@ -2644,7 +2644,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img07_request_amount",
-      "community": 6,
+      "community": 5,
       "norm_label": "request withdrawal amount"
     },
     {
@@ -2658,7 +2658,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img07_validate_amount",
-      "community": 6,
+      "community": 5,
       "norm_label": "validate withdrawal amount"
     },
     {
@@ -2672,7 +2672,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img07_funds",
-      "community": 6,
+      "community": 5,
       "norm_label": "amount <= balance decision"
     },
     {
@@ -2686,7 +2686,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img07_bank_balance",
-      "community": 6,
+      "community": 5,
       "norm_label": "bank check balance"
     },
     {
@@ -2700,7 +2700,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img07_insufficient",
-      "community": 6,
+      "community": 5,
       "norm_label": "display insufficient funds message"
     },
     {
@@ -2714,7 +2714,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img07_dispense",
-      "community": 6,
+      "community": 5,
       "norm_label": "dispense cash"
     },
     {
@@ -2728,7 +2728,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img07_update",
-      "community": 6,
+      "community": 5,
       "norm_label": "update account balance"
     },
     {
@@ -2742,7 +2742,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img07_bank_update",
-      "community": 6,
+      "community": 5,
       "norm_label": "bank debit amount from account"
     },
     {
@@ -2756,7 +2756,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img07_check",
-      "community": 6,
+      "community": 5,
       "norm_label": "check account balance"
     },
     {
@@ -2770,7 +2770,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img07_zero",
-      "community": 6,
+      "community": 5,
       "norm_label": "balance = 0 decision"
     },
     {
@@ -2784,7 +2784,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img07_closed",
-      "community": 6,
+      "community": 5,
       "norm_label": "close account automatically at zero balance"
     },
     {
@@ -2798,7 +2798,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img07_complete",
-      "community": 6,
+      "community": 5,
       "norm_label": "display transaction complete / updated balance"
     },
     {
@@ -2826,7 +2826,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img07_anomaly",
-      "community": 6,
+      "community": 5,
       "norm_label": "activity arrow routing disagrees with numbered pin and bank balance flow"
     },
     {
@@ -3162,7 +3162,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img09_validate",
-      "community": 13,
+      "community": 14,
       "norm_label": "validate pin"
     },
     {
@@ -3176,7 +3176,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img09_auth",
-      "community": 13,
+      "community": 14,
       "norm_label": "authenticated / show menu"
     },
     {
@@ -3190,7 +3190,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img09_rejected",
-      "community": 13,
+      "community": 14,
       "norm_label": "customer rejected / retain card"
     },
     {
@@ -3204,7 +3204,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img09_withdraw",
-      "community": 13,
+      "community": 14,
       "norm_label": "withdrawal / enter amount"
     },
     {
@@ -3218,7 +3218,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img09_check",
-      "community": 13,
+      "community": 14,
       "norm_label": "check balance"
     },
     {
@@ -3232,7 +3232,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img09_update",
-      "community": 13,
+      "community": 14,
       "norm_label": "update balance by subtracting amount"
     },
     {
@@ -3246,7 +3246,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img09_status",
-      "community": 13,
+      "community": 14,
       "norm_label": "account status"
     },
     {
@@ -3260,7 +3260,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img09_complete",
-      "community": 13,
+      "community": 14,
       "norm_label": "transaction complete for positive balance"
     },
     {
@@ -3274,7 +3274,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img09_closed",
-      "community": 13,
+      "community": 14,
       "norm_label": "account closed for zero balance"
     },
     {
@@ -3470,7 +3470,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img10_scenario",
-      "community": 18,
+      "community": 3,
       "norm_label": "scenario 3: customer rejected after three incorrect pin attempts"
     },
     {
@@ -3484,7 +3484,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img10_session",
-      "community": 18,
+      "community": 3,
       "norm_label": "start atm session and insert card"
     },
     {
@@ -3498,7 +3498,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img10_first",
-      "community": 18,
+      "community": 3,
       "norm_label": "incorrect pin 1111: failed attempts 1/3"
     },
     {
@@ -3512,7 +3512,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img10_second",
-      "community": 18,
+      "community": 3,
       "norm_label": "incorrect pin 2222: failed attempts 2/3"
     },
     {
@@ -3526,7 +3526,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img10_third",
-      "community": 18,
+      "community": 3,
       "norm_label": "incorrect pin 3333: failed attempts 3/3"
     },
     {
@@ -3540,7 +3540,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img10_reject",
-      "community": 18,
+      "community": 3,
       "norm_label": "reject customer: card retained and access denied"
     },
     {
@@ -3554,7 +3554,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img10_end",
-      "community": 18,
+      "community": 3,
       "norm_label": "end atm session without withdrawal"
     },
     {
@@ -3568,7 +3568,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img11_scenario",
-      "community": 14,
+      "community": 15,
       "norm_label": "scenario 2: incorrect pin then successful authentication"
     },
     {
@@ -3582,7 +3582,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img11_first",
-      "community": 14,
+      "community": 15,
       "norm_label": "incorrect pin 1111: failed attempts 1/3"
     },
     {
@@ -3596,7 +3596,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img11_second",
-      "community": 14,
+      "community": 15,
       "norm_label": "incorrect pin 2222: failed attempts 2/3"
     },
     {
@@ -3610,7 +3610,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img11_correct",
-      "community": 14,
+      "community": 15,
       "norm_label": "correct pin 2468 on third input"
     },
     {
@@ -3624,7 +3624,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img11_auth",
-      "community": 14,
+      "community": 15,
       "norm_label": "authenticate customer: access granted"
     },
     {
@@ -3638,7 +3638,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img11_balance",
-      "community": 14,
+      "community": 15,
       "norm_label": "starting balance $500.00"
     },
     {
@@ -3652,7 +3652,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img11_withdraw",
-      "community": 14,
+      "community": 15,
       "norm_label": "withdrawal amount $100.00"
     },
     {
@@ -3666,7 +3666,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img11_cash",
-      "community": 14,
+      "community": 15,
       "norm_label": "cash dispensed $100.00"
     },
     {
@@ -3680,7 +3680,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img11_remaining",
-      "community": 14,
+      "community": 15,
       "norm_label": "updated balance $400.00"
     },
     {
@@ -3694,7 +3694,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img11_active",
-      "community": 14,
+      "community": 15,
       "norm_label": "account status active"
     },
     {
@@ -3708,7 +3708,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img11_end",
-      "community": 14,
+      "community": 15,
       "norm_label": "end atm session and remove card"
     },
     {
@@ -3722,7 +3722,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img12_scenario",
-      "community": 15,
+      "community": 16,
       "norm_label": "scenario 1: successful withdrawal"
     },
     {
@@ -3736,7 +3736,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img12_correct",
-      "community": 15,
+      "community": 16,
       "norm_label": "correct pin 2468 on first input"
     },
     {
@@ -3750,7 +3750,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img12_auth",
-      "community": 15,
+      "community": 16,
       "norm_label": "authenticate customer: access granted"
     },
     {
@@ -3764,7 +3764,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img12_balance",
-      "community": 15,
+      "community": 16,
       "norm_label": "starting balance $500.00"
     },
     {
@@ -3778,7 +3778,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img12_withdraw",
-      "community": 15,
+      "community": 16,
       "norm_label": "withdrawal amount $100.00"
     },
     {
@@ -3792,7 +3792,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img12_cash",
-      "community": 15,
+      "community": 16,
       "norm_label": "cash dispensed $100.00"
     },
     {
@@ -3806,7 +3806,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img12_remaining",
-      "community": 15,
+      "community": 16,
       "norm_label": "updated balance $400.00"
     },
     {
@@ -3820,7 +3820,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img12_active",
-      "community": 15,
+      "community": 16,
       "norm_label": "account status active"
     },
     {
@@ -3834,7 +3834,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img12_end",
-      "community": 15,
+      "community": 16,
       "norm_label": "end atm session and remove card"
     },
     {
@@ -3848,7 +3848,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img13_scenario",
-      "community": 16,
+      "community": 17,
       "norm_label": "scenario 4: zero balance and account closed"
     },
     {
@@ -3862,7 +3862,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img13_correct",
-      "community": 16,
+      "community": 17,
       "norm_label": "correct pin 2468"
     },
     {
@@ -3876,7 +3876,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img13_auth",
-      "community": 16,
+      "community": 17,
       "norm_label": "authenticate customer: access granted"
     },
     {
@@ -3890,7 +3890,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img13_balance",
-      "community": 16,
+      "community": 17,
       "norm_label": "starting balance $500.00"
     },
     {
@@ -3904,7 +3904,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img13_withdraw",
-      "community": 16,
+      "community": 17,
       "norm_label": "withdrawal amount $500.00"
     },
     {
@@ -3918,7 +3918,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img13_cash",
-      "community": 16,
+      "community": 17,
       "norm_label": "cash dispensed $500.00"
     },
     {
@@ -3932,7 +3932,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img13_zero",
-      "community": 16,
+      "community": 17,
       "norm_label": "updated balance $0.00"
     },
     {
@@ -3946,7 +3946,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img13_closed",
-      "community": 16,
+      "community": 17,
       "norm_label": "close account: account status closed"
     },
     {
@@ -3960,7 +3960,7 @@
       "contributor": null,
       "status": "archived_academic_evidence",
       "id": "img13_end",
-      "community": 16,
+      "community": 17,
       "norm_label": "end atm session and remove card"
     },
     {
@@ -3970,7 +3970,7 @@
       "source_location": null,
       "status": "foundation_only",
       "id": "bankflow",
-      "community": 0,
+      "community": 3,
       "norm_label": "bankflow: implemented foundation, planned platform"
     },
     {
@@ -4014,14 +4014,16 @@
       "norm_label": "editable install avoids manual pythonpath"
     },
     {
-      "label": "Python 3.14 Windows x64 runtime",
+      "label": "Python 3.14.4 Windows x64 application runtime",
       "file_type": "document",
       "source_file": "docs/ENVIRONMENT.md",
-      "source_location": null,
+      "source_location": "Inspected configuration",
       "status": "validated_foundation",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
       "id": "python314",
       "community": 0,
-      "norm_label": "python 3.14 windows x64 runtime"
+      "norm_label": "python 3.14.4 windows x64 application runtime"
     },
     {
       "label": "Direct application dependency pins",
@@ -4070,7 +4072,7 @@
       "source_location": null,
       "status": "implemented_foundation",
       "id": "archive",
-      "community": 1,
+      "community": 3,
       "norm_label": "18 byte-preserved academic assets"
     },
     {
@@ -4080,7 +4082,7 @@
       "source_location": null,
       "status": "historical_snapshot",
       "id": "historical",
-      "community": 0,
+      "community": 3,
       "norm_label": "baseline analysis is a dated snapshot"
     },
     {
@@ -4110,7 +4112,7 @@
       "source_location": null,
       "status": "current_status",
       "id": "unreleased",
-      "community": 0,
+      "community": 3,
       "norm_label": "unreleased foundation; no application tag"
     },
     {
@@ -4134,24 +4136,28 @@
       "norm_label": "four mermaid diagrams rendered locally"
     },
     {
-      "label": "Windows host application strategy",
+      "label": "Windows host application uses dedicated container published ports",
       "file_type": "document",
       "source_file": "docs/ENVIRONMENT.md",
-      "source_location": null,
+      "source_location": "Windows application endpoints",
       "status": "accepted_strategy",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
       "id": "host",
       "community": 0,
-      "norm_label": "windows host application strategy"
+      "norm_label": "windows host application uses dedicated container published ports"
     },
     {
-      "label": "Existing datalab container: stopped",
+      "label": "Dedicated bankflow container: running",
       "file_type": "document",
       "source_file": "docs/ENVIRONMENT.md",
-      "source_location": null,
+      "source_location": "Inspected configuration",
       "status": "observed_2026_09_22",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
       "id": "datalab",
       "community": 0,
-      "norm_label": "existing datalab container: stopped"
+      "norm_label": "dedicated bankflow container: running"
     },
     {
       "label": "Docker engine reachable",
@@ -4164,24 +4170,28 @@
       "norm_label": "docker engine reachable"
     },
     {
-      "label": "Published service mappings: 5432 / 6379 / 9092",
+      "label": "Published service mappings: 5433 / 6380 / 9093",
       "file_type": "document",
       "source_file": "docs/ENVIRONMENT.md",
-      "source_location": null,
+      "source_location": "Windows application endpoints",
       "status": "observed_2026_09_22",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
       "id": "ports",
       "community": 0,
-      "norm_label": "published service mappings: 5432 / 6379 / 9092"
+      "norm_label": "published service mappings: 5433 / 6380 / 9093"
     },
     {
-      "label": "Live authentication and service health pending",
+      "label": "Authenticated database access and provisioning pending",
       "file_type": "document",
       "source_file": "docs/ENVIRONMENT.md",
-      "source_location": null,
+      "source_location": "Day 2 preflight",
       "status": "pending",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
       "id": "preflight",
       "community": 0,
-      "norm_label": "live authentication and service health pending"
+      "norm_label": "authenticated database access and provisioning pending"
     },
     {
       "label": "Dedicated bankflow database/user proposed",
@@ -4194,14 +4204,16 @@
       "norm_label": "dedicated bankflow database/user proposed"
     },
     {
-      "label": "Reuse shared lab without duplicate containers",
+      "label": "Dedicated user-provided lab container replaces shared lab",
       "file_type": "document",
-      "source_file": "docs/architecture/ADR-001-foundation.md",
-      "source_location": null,
+      "source_file": "docs/architecture/ADR-002-dedicated-container.md",
+      "source_location": "Accepted deployment target",
       "status": "accepted_rationale",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
       "id": "reuse_lab",
       "community": 0,
-      "norm_label": "reuse shared lab without duplicate containers"
+      "norm_label": "dedicated user-provided lab container replaces shared lab"
     },
     {
       "label": "Airflow dbt Spark Graphify use separate runtimes",
@@ -4280,7 +4292,7 @@
       "source_location": null,
       "status": "planned",
       "id": "v2",
-      "community": 11,
+      "community": 12,
       "norm_label": "planned v2 streaming lakehouse"
     },
     {
@@ -4290,7 +4302,7 @@
       "source_location": null,
       "status": "scope_constraint",
       "id": "fictional",
-      "community": 0,
+      "community": 3,
       "norm_label": "educational fictional data only"
     },
     {
@@ -4380,7 +4392,7 @@
       "source_location": null,
       "status": "planned",
       "id": "kafka",
-      "community": 11,
+      "community": 12,
       "norm_label": "planned kafka event streaming"
     },
     {
@@ -4400,7 +4412,7 @@
       "source_location": null,
       "status": "planned",
       "id": "consumer",
-      "community": 11,
+      "community": 12,
       "norm_label": "planned python kafka consumer"
     },
     {
@@ -4410,7 +4422,7 @@
       "source_location": null,
       "status": "planned",
       "id": "topic",
-      "community": 11,
+      "community": 12,
       "norm_label": "planned bankflow.transaction.events topic"
     },
     {
@@ -4420,7 +4432,7 @@
       "source_location": null,
       "status": "planned",
       "id": "eventstore",
-      "community": 11,
+      "community": 12,
       "norm_label": "planned operational event store"
     },
     {
@@ -4460,7 +4472,7 @@
       "source_location": null,
       "status": "planned",
       "id": "spark",
-      "community": 11,
+      "community": 12,
       "norm_label": "planned spark structured streaming"
     },
     {
@@ -4470,7 +4482,7 @@
       "source_location": null,
       "status": "planned",
       "id": "bronze",
-      "community": 11,
+      "community": 12,
       "norm_label": "planned immutable iceberg bronze events"
     },
     {
@@ -4480,7 +4492,7 @@
       "source_location": null,
       "status": "planned",
       "id": "silver",
-      "community": 11,
+      "community": 12,
       "norm_label": "planned standardized silver datasets"
     },
     {
@@ -4490,7 +4502,7 @@
       "source_location": null,
       "status": "planned",
       "id": "gold",
-      "community": 11,
+      "community": 12,
       "norm_label": "planned gold business metrics"
     },
     {
@@ -4500,7 +4512,7 @@
       "source_location": null,
       "status": "planned",
       "id": "hdfs",
-      "community": 11,
+      "community": 12,
       "norm_label": "planned hdfs lakehouse storage"
     },
     {
@@ -4510,7 +4522,7 @@
       "source_location": null,
       "status": "planned",
       "id": "hive",
-      "community": 11,
+      "community": 12,
       "norm_label": "planned hive metastore catalog"
     },
     {
@@ -4520,7 +4532,7 @@
       "source_location": null,
       "status": "planned",
       "id": "synthetic",
-      "community": 11,
+      "community": 12,
       "norm_label": "planned synthetic event generator"
     },
     {
@@ -4530,7 +4542,7 @@
       "source_location": null,
       "status": "planned",
       "id": "serving",
-      "community": 11,
+      "community": 12,
       "norm_label": "planned postgresql analytics serving tables"
     },
     {
@@ -4540,7 +4552,7 @@
       "source_location": null,
       "status": "planned",
       "id": "money",
-      "community": 1,
+      "community": 3,
       "norm_label": "planned decimal and exact numeric money"
     },
     {
@@ -4610,7 +4622,7 @@
       "source_location": null,
       "status": "open_legacy_bug",
       "id": "legacy_nan",
-      "community": 1,
+      "community": 3,
       "norm_label": "legacy bug: nan corrupts balance"
     },
     {
@@ -4620,7 +4632,7 @@
       "source_location": null,
       "status": "open_legacy_bug",
       "id": "legacy_cents",
-      "community": 1,
+      "community": 3,
       "norm_label": "legacy bug: fractional cents accepted"
     },
     {
@@ -4630,7 +4642,7 @@
       "source_location": null,
       "status": "open_decision",
       "id": "precision",
-      "community": 1,
+      "community": 3,
       "norm_label": "finite decimal and precision policy pending"
     },
     {
@@ -4640,7 +4652,7 @@
       "source_location": null,
       "status": "open_documentation_issue",
       "id": "uml_conflicts",
-      "community": 1,
+      "community": 3,
       "norm_label": "legacy uml retry retain/eject ordering conflicts"
     },
     {
@@ -4690,7 +4702,7 @@
       "source_location": null,
       "status": "design_rationale",
       "id": "decoupling",
-      "community": 11,
+      "community": 12,
       "norm_label": "events decouple transactions from analytics"
     },
     {
@@ -4730,7 +4742,7 @@
       "source_location": null,
       "status": "scope_constraint",
       "id": "plainpins",
-      "community": 11,
+      "community": 12,
       "norm_label": "pins and hashes excluded from events"
     },
     {
@@ -4760,7 +4772,7 @@
       "source_location": null,
       "status": "planned",
       "id": "withdrawal",
-      "community": 1,
+      "community": 3,
       "norm_label": "planned validated withdrawal workflow"
     },
     {
@@ -4842,6 +4854,102 @@
       "id": "dependency_confluent_kafka",
       "community": 0,
       "norm_label": "confluent kafka client dependency installed"
+    },
+    {
+      "label": "Dedicated runtime volume datalab-runtime-bankflow at /home/datalab/runtime",
+      "file_type": "document",
+      "source_file": "docs/ENVIRONMENT.md",
+      "source_location": "Inspected configuration",
+      "status": "observed_2026_09_22",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "id": "bankflow_runtime_volume",
+      "community": 0,
+      "norm_label": "dedicated runtime volume datalab-runtime-bankflow at /home/datalab/runtime"
+    },
+    {
+      "label": "Repository bind mount at /home/datalab/bankflow changes host files",
+      "file_type": "document",
+      "source_file": "docs/SERVICES.md",
+      "source_location": "Storage and runtime boundaries",
+      "status": "observed_2026_09_22",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "id": "bankflow_repository_mount",
+      "community": 0,
+      "norm_label": "repository bind mount at /home/datalab/bankflow changes host files"
+    },
+    {
+      "label": "Container default Python 3.10.12; Windows virtual environment is not portable",
+      "file_type": "document",
+      "source_file": "docs/ENVIRONMENT.md",
+      "source_location": "Inspected configuration",
+      "status": "observed_2026_09_22",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "id": "container_python310",
+      "community": 0,
+      "norm_label": "container default python 3.10.12; windows virtual environment is not portable"
+    },
+    {
+      "label": "Inside-container PostgreSQL 5432 / Redis 6379 / Kafka 9092",
+      "file_type": "document",
+      "source_file": "docs/SERVICES.md",
+      "source_location": "Service endpoints",
+      "status": "observed_2026_09_22",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "id": "internal_service_ports",
+      "community": 0,
+      "norm_label": "inside-container postgresql 5432 / redis 6379 / kafka 9092"
+    },
+    {
+      "label": "HDFS 9000 and Spark RPC 7077 are not published to Windows",
+      "file_type": "document",
+      "source_file": "docs/SERVICES.md",
+      "source_location": "Service endpoints",
+      "status": "observed_2026_09_22",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "id": "rpc_unpublished",
+      "community": 0,
+      "norm_label": "hdfs 9000 and spark rpc 7077 are not published to windows"
+    },
+    {
+      "label": "PostgreSQL and Redis responses require authentication; Kafka metadata unavailable during startup",
+      "file_type": "document",
+      "source_file": "docs/ENVIRONMENT.md",
+      "source_location": "Windows application endpoints",
+      "status": "observed_2026_09_22",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "id": "readiness_auth_boundary",
+      "community": 0,
+      "norm_label": "postgresql and redis responses require authentication; kafka metadata unavailable during startup"
+    },
+    {
+      "label": "Copied helper defaults /medilake/bronze and /medilake/silver",
+      "file_type": "document",
+      "source_file": "docs/SERVICES.md",
+      "source_location": "Storage and runtime boundaries",
+      "status": "reported_defaults",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "id": "copied_medilake_paths",
+      "community": 0,
+      "norm_label": "copied helper defaults /medilake/bronze and /medilake/silver"
+    },
+    {
+      "label": "Proposed /bankflow/bronze and /bankflow/silver paths not created",
+      "file_type": "document",
+      "source_file": "docs/SERVICES.md",
+      "source_location": "Storage and runtime boundaries",
+      "status": "not_provisioned",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "id": "bankflow_storage_paths",
+      "community": 0,
+      "norm_label": "proposed /bankflow/bronze and /bankflow/silver paths not created"
     }
   ],
   "links": [
@@ -9396,6 +9504,30 @@
       "target": "lock"
     },
     {
+      "relation": "runs_application_with",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "docs/ENVIRONMENT.md",
+      "source_location": "Inspected configuration",
+      "weight": 1,
+      "_src": "host",
+      "_tgt": "python314",
+      "source": "python314",
+      "target": "host"
+    },
+    {
+      "relation": "differs_from_application_runtime",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "docs/ENVIRONMENT.md",
+      "source_location": "Inspected configuration",
+      "weight": 1,
+      "_src": "container_python310",
+      "_tgt": "python314",
+      "source": "python314",
+      "target": "container_python310"
+    },
+    {
       "relation": "pins",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
@@ -9672,11 +9804,11 @@
       "target": "datalab"
     },
     {
-      "relation": "rationale_for",
+      "relation": "retains_windows_application_strategy",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "docs/architecture/ADR-001-foundation.md",
-      "source_location": null,
+      "source_file": "docs/architecture/ADR-002-dedicated-container.md",
+      "source_location": "Keep the verified Python 3.14.4 Windows environment",
       "weight": 1.0,
       "_src": "reuse_lab",
       "_tgt": "host",
@@ -9732,6 +9864,102 @@
       "target": "preflight"
     },
     {
+      "relation": "mounts_dedicated_runtime_volume",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "docs/ENVIRONMENT.md",
+      "source_location": "Inspected configuration",
+      "weight": 1,
+      "_src": "datalab",
+      "_tgt": "bankflow_runtime_volume",
+      "source": "datalab",
+      "target": "bankflow_runtime_volume"
+    },
+    {
+      "relation": "bind_mounts_repository",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "docs/ENVIRONMENT.md",
+      "source_location": "Inspected configuration",
+      "weight": 1,
+      "_src": "datalab",
+      "_tgt": "bankflow_repository_mount",
+      "source": "datalab",
+      "target": "bankflow_repository_mount"
+    },
+    {
+      "relation": "has_default_runtime",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "docs/ENVIRONMENT.md",
+      "source_location": "Inspected configuration",
+      "weight": 1,
+      "_src": "datalab",
+      "_tgt": "container_python310",
+      "source": "datalab",
+      "target": "container_python310"
+    },
+    {
+      "relation": "does_not_publish_rpc_ports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "docs/SERVICES.md",
+      "source_location": "Service endpoints",
+      "weight": 1,
+      "_src": "datalab",
+      "_tgt": "rpc_unpublished",
+      "source": "datalab",
+      "target": "rpc_unpublished"
+    },
+    {
+      "relation": "has_observed_readiness_limits",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "docs/ENVIRONMENT.md",
+      "source_location": "Windows application endpoints",
+      "weight": 1,
+      "_src": "datalab",
+      "_tgt": "readiness_auth_boundary",
+      "source": "datalab",
+      "target": "readiness_auth_boundary"
+    },
+    {
+      "relation": "retains_copied_helper_defaults",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "docs/SERVICES.md",
+      "source_location": "Storage and runtime boundaries",
+      "weight": 1,
+      "_src": "datalab",
+      "_tgt": "copied_medilake_paths",
+      "source": "datalab",
+      "target": "copied_medilake_paths"
+    },
+    {
+      "relation": "selects_user_created_dedicated_container",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "docs/architecture/ADR-002-dedicated-container.md",
+      "source_location": "Accepted deployment target",
+      "weight": 1,
+      "_src": "reuse_lab",
+      "_tgt": "datalab",
+      "source": "datalab",
+      "target": "reuse_lab"
+    },
+    {
+      "relation": "maps_host_ports_to_internal_ports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "docs/SERVICES.md",
+      "source_location": "Service endpoints",
+      "weight": 1,
+      "_src": "ports",
+      "_tgt": "internal_service_ports",
+      "source": "ports",
+      "target": "internal_service_ports"
+    },
+    {
       "relation": "requires",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
@@ -9754,6 +9982,18 @@
       "_tgt": "dedicated_db",
       "source": "preflight",
       "target": "dedicated_db"
+    },
+    {
+      "relation": "must_establish_authenticated_access_beyond_readiness_responses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "docs/ENVIRONMENT.md",
+      "source_location": "Day 2 preflight",
+      "weight": 1,
+      "_src": "preflight",
+      "_tgt": "readiness_auth_boundary",
+      "source": "preflight",
+      "target": "readiness_auth_boundary"
     },
     {
       "relation": "plans",
@@ -10744,6 +10984,18 @@
       "_tgt": "screens",
       "source": "design",
       "target": "screens"
+    },
+    {
+      "relation": "must_remain_separate_from_proposed_paths",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "docs/SERVICES.md",
+      "source_location": "Storage and runtime boundaries",
+      "weight": 1,
+      "_src": "copied_medilake_paths",
+      "_tgt": "bankflow_storage_paths",
+      "source": "copied_medilake_paths",
+      "target": "bankflow_storage_paths"
     }
   ],
   "hyperedges": [

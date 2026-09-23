@@ -34,9 +34,9 @@ No Streamlit entry point exists yet; it is scheduled for Day 7. Installed depend
 
 ## Configuration and infrastructure
 
-Copy `.env.example` to `.env` only if `.env` does not already exist, then fill it locally. The example selects a Windows-host application connecting to the existing `datalab` container's published ports. Settings loading and connections arrive on Day 2.
+Copy `.env.example` to `.env` only if `.env` does not already exist, then fill it locally. The example selects a Windows-host application connecting to the dedicated `bankflow` container: PostgreSQL 5433, Redis 6380, and Kafka 9093. Settings loading and connections arrive on Day 2.
 
-The lab container already exists and was stopped when inspected. BankFlow has no duplicate database, Redis, or Kafka containers. The proposed BankFlow database/user have not been created. Read the [environment guide](docs/ENVIRONMENT.md) before using the template.
+The user-created `bankflow` container is running with its own runtime volume. PostgreSQL and Redis respond, but authenticated application access is pending. Kafka metadata was unavailable during startup. The proposed BankFlow database/user have not been created. Read the [environment guide](docs/ENVIRONMENT.md) and [service endpoint reference](docs/SERVICES.md) before using the template.
 
 ## Project map
 

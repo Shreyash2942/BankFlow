@@ -209,9 +209,9 @@ stacks/scala
 stacks/terraform
 ```
 
-BankFlow should reuse the existing infrastructure where practical.
+BankFlow uses the user-created dedicated `bankflow` container built from the existing lab image; see ADR-002 and docs/SERVICES.md.
 
-Do not create duplicate PostgreSQL, Redis, Kafka, Spark, Hive, Hadoop, or Iceberg services until the existing Docker configuration has been inspected.
+Use the services inside `bankflow`; its volume and host mappings have been inspected. Do not change other project containers.
 
 ---
 
@@ -550,7 +550,7 @@ Current planning issue:
 
 The project plans to reuse PostgreSQL, Redis, Kafka, Airflow, dbt, Spark, Hadoop, Hive, and Iceberg from an existing Docker-based data lab.
 
-The existing `datalab` container and published ports were inspected on Day 1. Docker is now reachable. The container is stopped; service authentication, internal versions, and health checks remain unverified.
+The user subsequently created the running `bankflow` container with a dedicated runtime volume. PostgreSQL and Redis respond; authenticated application access remains pending. Kafka metadata was unavailable during the startup check.
 
 **Impact**
 
@@ -752,7 +752,7 @@ Hudi and Delta are intentionally excluded from the current scope.
 
 **Decision**
 
-Reuse existing infrastructure services instead of duplicating them where practical.
+Original Day 1 decision: reuse the shared lab. Superseded by the user-approved dedicated `bankflow` copy; see `docs/architecture/ADR-002-dedicated-container.md`.
 
 ---
 
@@ -764,8 +764,8 @@ Day 1 repository foundation is complete. The next implementation slice is Day 2 
 
 # 22. Next Actions
 
-1. Read `docs/ENVIRONMENT.md` and recheck the existing `datalab` container.
-2. Bring up the required existing lab services and confirm credentials privately.
+1. Read `docs/ENVIRONMENT.md` and recheck the dedicated `bankflow` container.
+2. Confirm readiness of the services the user started and confirm database credentials privately.
 3. Create settings validation in `src/bankflow/config/settings.py`.
 4. Implement SQLAlchemy engine/session/base and a PostgreSQL health check.
 5. Initialize Alembic and validate the first migration against dedicated BankFlow resources.
@@ -781,10 +781,15 @@ Verified 2026-09-22:
 
 - Python 3.14.4, Windows x64; isolated `.venv` with pinned dependencies.
 - Docker engine 29.8.0; Docker Compose 5.5.1.
-- Existing container `datalab`, image `shreyash42/data-lab:latest`, stopped; network attachment recorded as `bridge`.
-- Published PostgreSQL 5432, Redis 6379, Kafka 9092.
+- Dedicated container `bankflow`, image `shreyash42/data-lab:latest`, running on `bridge`.
+- Runtime volume `datalab-runtime-bankflow` -> `/home/datalab/runtime`; no other container currently mounts it.
+- Repository bind mount -> `/home/datalab/bankflow`; container default Python is 3.10.12. The application remains on Windows Python 3.14.4.
+- Published host ports: PostgreSQL 5433, Redis 6380, Kafka 9093. Internal ports remain 5432, 6379, and 9092.
+- PostgreSQL readiness succeeds; PostgreSQL and Redis host clients receive authentication-required responses. Kafka metadata was unavailable during startup.
+- HDFS 9000 and Spark RPC 7077 are internal-only in the inspected mappings.
+- Copied `/medilake` storage paths are not adopted; future `/bankflow/bronze` and `/bankflow/silver` paths are proposed, not created.
 - Selected connection strategy: application on Windows -> `127.0.0.1` published ports.
-- No duplicate infrastructure created or existing services modified.
+- User created and started the dedicated container/services. The assistant inspected configuration without resetting data or modifying services.
 - Database `bankflow` and user `bankflow_user` are proposed, not provisioned.
 - Runtime authentication, internal service versions, health, Kafka advertised listeners, and V2 resource limits remain unverified.
 
@@ -798,7 +803,7 @@ Baseline characterization: five intended CLI scenarios behaved as expected; NaN 
 
 Day 1: Python environment and editable package installation succeeded; dependency consistency, import smoke checks, formatting, original-file hashes, and a legacy withdrawal scenario were checked. Evidence and exact commands: `docs/DAY1_VALIDATION.md`.
 
-There is no automated business-logic suite yet. Runtime service connections are not validated by Day 1 checks.
+There is no automated business-logic suite yet. Follow-up inspection confirmed PostgreSQL readiness and Redis authentication-required responses in the dedicated container, with Kafka metadata unavailable during startup. This does not validate authenticated application connections.
 
 ---
 
@@ -833,7 +838,7 @@ None.
 Questions requiring future decisions:
 
 ```text
-Q-001: Are the inspected datalab host mappings live and healthy after starting its services?
+Q-001: Can dedicated BankFlow database credentials authenticate, and can Kafka return usable broker metadata?
 Q-002: What Kafka deployment mode/version is currently used?
 Q-003: Which PostgreSQL database/schema should BankFlow reuse or create?
 Q-004: What Hive/Iceberg catalog configuration already exists?
@@ -847,6 +852,8 @@ When resolved, move the answer into the appropriate permanent section and remove
 # 27. Session Handoff
 
 ## Last Session Summary
+
+Adopted the user-created dedicated `bankflow` container, recorded host/internal endpoints and storage boundaries, and updated the environment template. No credentials were committed; application database provisioning remains pending. See `docs/SERVICES.md`.
 
 Populated `BankFlow` using `docs/` as the canonical documentation root and `src/bankflow/` as the application package. Preserved 18 academic assets unchanged, normalized the architecture filename, and retained dated baseline reviews. Added environment template, pinned dependencies, Windows dependency snapshot, Python setup guide, import checker, and package/linter configuration.
 
@@ -864,7 +871,7 @@ Day 2: configuration, PostgreSQL engine/session/base, health checks, and Alembic
 
 ## Blockers
 
-No repository-foundation blockers. The existing lab container is stopped; live service setup and authentication must be checked before database-dependent Day 2 validation.
+No repository-foundation blockers. The dedicated container is running; authenticated database access and app resource provisioning remain prerequisites for Day 2.
 
 ---
 
@@ -957,4 +964,4 @@ Before committing this file, verify:
 
 If only one section can be read before starting work, read this:
 
-> BankFlow is a fictional ATM portfolio project. Day 1 foundation is complete in the existing `BankFlow` repository: canonical docs, preserved academic assets, installable `src/bankflow` package, pinned Python 3.14 environment, and configuration template. The new application is not implemented yet. Begin Day 2 by checking the stopped `datalab` container and implementing configuration/PostgreSQL connectivity. Use `docs/ENVIRONMENT.md` and `docs/DAY1_VALIDATION.md`; current status lives here, while `docs/analysis/` records the pre-Day-1 review. Planned V1 uses Streamlit, PostgreSQL, Redis, Kafka, Airflow, and dbt; V2 adds Spark/Iceberg/HDFS/Hive.
+> BankFlow is a fictional ATM portfolio project. Day 1 foundation is complete in the existing `BankFlow` repository: canonical docs, preserved academic assets, installable `src/bankflow` package, pinned Python 3.14 environment, and configuration template. The new application is not implemented yet. The user-created `bankflow` container is running (PostgreSQL 5433, Redis 6380, Kafka 9093 from Windows). Begin Day 2 with authenticated application resources and configuration/PostgreSQL connectivity. Use `docs/ENVIRONMENT.md` and `docs/DAY1_VALIDATION.md`; current status lives here, while `docs/analysis/` records the pre-Day-1 review. Planned V1 uses Streamlit, PostgreSQL, Redis, Kafka, Airflow, and dbt; V2 adds Spark/Iceberg/HDFS/Hive.

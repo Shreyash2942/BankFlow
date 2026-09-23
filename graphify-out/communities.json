@@ -1,24 +1,24 @@
 {
   "labels": {
-    "0": "Foundation and local environment",
-    "1": "Academic prototype and correctness",
-    "2": "Numbered activity transaction flow",
-    "3": "ATM sequence interactions",
+    "0": "Foundation and dedicated container",
+    "1": "Numbered activity transaction flow",
+    "2": "ATM sequence interactions",
+    "3": "Academic prototype and correctness",
     "4": "Planned V1 application",
-    "5": "Generated activity flow one",
-    "6": "Generated activity flow two",
+    "5": "Generated activity flow two",
+    "6": "Generated activity flow one",
     "7": "Python package placeholders",
     "8": "Composite UML flow",
     "9": "Detailed state machine",
     "10": "State machine transitions",
-    "11": "Planned Kafka lakehouse",
-    "12": "Alternate state machine",
-    "13": "PIN validation across diagrams",
-    "14": "PIN retry success screenshot",
-    "15": "Successful withdrawal screenshot",
-    "16": "Zero balance closure screenshot",
-    "17": "Environment import checker",
-    "18": "PIN rejection screenshot",
+    "11": "Academic prototype and correctness",
+    "12": "Planned Kafka lakehouse",
+    "13": "Alternate state machine",
+    "14": "PIN validation across diagrams",
+    "15": "PIN retry success screenshot",
+    "16": "Successful withdrawal screenshot",
+    "17": "Zero balance closure screenshot",
+    "18": "Environment import checker",
     "19": "Activity diagram swimlanes",
     "20": "Alternate activity swimlanes",
     "21": "Unconnected session end one",
@@ -26,8 +26,12 @@
   },
   "communities": {
     "0": [
-      "bankflow",
+      "bankflow_repository_mount",
+      "bankflow_runtime_volume",
+      "bankflow_storage_paths",
       "canonical",
+      "container_python310",
+      "copied_medilake_paths",
       "datalab",
       "day1",
       "day1checks",
@@ -45,10 +49,9 @@
       "docker",
       "editable",
       "engine",
-      "fictional",
       "health",
-      "historical",
       "host",
+      "internal_service_ports",
       "lock",
       "mermaid",
       "migration",
@@ -58,50 +61,15 @@
       "ports",
       "preflight",
       "python314",
+      "readiness_auth_boundary",
       "reuse_lab",
+      "rpc_unpublished",
       "runtime_boundary",
       "settings",
       "src_layout",
-      "theme",
-      "unreleased"
+      "theme"
     ],
     "1": [
-      "academic_boundary",
-      "academic_trace",
-      "academic_zero",
-      "archive",
-      "atm_simulation_authenticate_customer",
-      "atm_simulation_print_step",
-      "atm_simulation_py",
-      "atm_simulation_rationale_1",
-      "atm_simulation_rationale_16",
-      "atm_simulation_rationale_21",
-      "atm_simulation_rationale_53",
-      "atm_simulation_rationale_80",
-      "atm_simulation_request_withdrawal",
-      "atm_simulation_run_atm",
-      "iterative_feedback",
-      "legacy_cents",
-      "legacy_nan",
-      "lessons",
-      "manual_scenarios",
-      "money",
-      "nist_auth",
-      "nist_ssdf",
-      "precision",
-      "pressman",
-      "prototype",
-      "requirements_first",
-      "scrum_guide",
-      "secure_lifecycle",
-      "uml_activity",
-      "uml_conflicts",
-      "uml_sequence",
-      "uml_spec",
-      "uml_state",
-      "withdrawal"
-    ],
-    "2": [
       "activity_atm",
       "activity_attempts",
       "activity_authenticate",
@@ -133,10 +101,9 @@
       "activity_validate_pin",
       "activity_verify_pin",
       "activity_view",
-      "activity_zero",
-      "sequence_update"
+      "activity_zero"
     ],
-    "3": [
+    "2": [
       "sequence_account",
       "sequence_atm",
       "sequence_balance",
@@ -165,7 +132,39 @@
       "sequence_show_balance",
       "sequence_success",
       "sequence_sufficient",
+      "sequence_update",
       "sequence_valid"
+    ],
+    "3": [
+      "academic_zero",
+      "archive",
+      "atm_simulation_authenticate_customer",
+      "atm_simulation_print_step",
+      "atm_simulation_py",
+      "atm_simulation_rationale_1",
+      "atm_simulation_rationale_16",
+      "atm_simulation_rationale_21",
+      "atm_simulation_rationale_53",
+      "atm_simulation_rationale_80",
+      "atm_simulation_request_withdrawal",
+      "atm_simulation_run_atm",
+      "bankflow",
+      "fictional",
+      "historical",
+      "img10_end",
+      "img10_first",
+      "img10_reject",
+      "img10_scenario",
+      "img10_second",
+      "img10_session",
+      "img10_third",
+      "legacy_cents",
+      "legacy_nan",
+      "money",
+      "precision",
+      "uml_conflicts",
+      "unreleased",
+      "withdrawal"
     ],
     "4": [
       "account",
@@ -197,33 +196,7 @@
       "v1"
     ],
     "5": [
-      "img06_anomaly",
-      "img06_attempt",
-      "img06_auth",
-      "img06_bank_balance",
-      "img06_bank_update",
-      "img06_check",
-      "img06_closed",
-      "img06_complete",
-      "img06_correct",
-      "img06_dispense",
-      "img06_enter_pin",
-      "img06_funds",
-      "img06_insert",
-      "img06_insufficient",
-      "img06_limit",
-      "img06_reject",
-      "img06_request_amount",
-      "img06_request_pin",
       "img06_start",
-      "img06_update",
-      "img06_validate_amount",
-      "img06_validate_pin",
-      "img06_verify_pin",
-      "img06_zero",
-      "img07_start"
-    ],
-    "6": [
       "img07_anomaly",
       "img07_attempt",
       "img07_auth",
@@ -242,11 +215,37 @@
       "img07_reject",
       "img07_request_amount",
       "img07_request_pin",
+      "img07_start",
       "img07_update",
       "img07_validate_amount",
       "img07_validate_pin",
       "img07_verify_pin",
       "img07_zero"
+    ],
+    "6": [
+      "img06_anomaly",
+      "img06_attempt",
+      "img06_auth",
+      "img06_bank_balance",
+      "img06_bank_update",
+      "img06_check",
+      "img06_closed",
+      "img06_complete",
+      "img06_correct",
+      "img06_dispense",
+      "img06_enter_pin",
+      "img06_funds",
+      "img06_insert",
+      "img06_insufficient",
+      "img06_limit",
+      "img06_reject",
+      "img06_request_amount",
+      "img06_request_pin",
+      "img06_update",
+      "img06_validate_amount",
+      "img06_validate_pin",
+      "img06_verify_pin",
+      "img06_zero"
     ],
     "7": [
       "package",
@@ -332,6 +331,24 @@
       "img08_withdrawal"
     ],
     "11": [
+      "academic_boundary",
+      "academic_trace",
+      "iterative_feedback",
+      "lessons",
+      "manual_scenarios",
+      "nist_auth",
+      "nist_ssdf",
+      "pressman",
+      "prototype",
+      "requirements_first",
+      "scrum_guide",
+      "secure_lifecycle",
+      "uml_activity",
+      "uml_sequence",
+      "uml_spec",
+      "uml_state"
+    ],
+    "12": [
       "bronze",
       "consumer",
       "decoupling",
@@ -348,7 +365,7 @@
       "topic",
       "v2"
     ],
-    "12": [
+    "13": [
       "state_revised_active",
       "state_revised_auth",
       "state_revised_check",
@@ -364,7 +381,7 @@
       "state_revised_validate",
       "state_revised_withdrawal"
     ],
-    "13": [
+    "14": [
       "academic_auth",
       "img09_auth",
       "img09_check",
@@ -377,7 +394,7 @@
       "img09_withdraw",
       "sequence_verify"
     ],
-    "14": [
+    "15": [
       "img11_active",
       "img11_auth",
       "img11_balance",
@@ -390,7 +407,7 @@
       "img11_second",
       "img11_withdraw"
     ],
-    "15": [
+    "16": [
       "img12_active",
       "img12_auth",
       "img12_balance",
@@ -401,7 +418,7 @@
       "img12_scenario",
       "img12_withdraw"
     ],
-    "16": [
+    "17": [
       "img13_auth",
       "img13_balance",
       "img13_cash",
@@ -412,7 +429,7 @@
       "img13_withdraw",
       "img13_zero"
     ],
-    "17": [
+    "18": [
       "scripts_check_environment_py_1_2",
       "scripts_check_environment_py_20_3",
       "scripts_check_environment_py_importlib_4",
@@ -420,15 +437,6 @@
       "scripts_check_environment_py_metadata_5",
       "scripts_check_environment_py_py_0",
       "scripts_check_environment_py_sys_6"
-    ],
-    "18": [
-      "img10_end",
-      "img10_first",
-      "img10_reject",
-      "img10_scenario",
-      "img10_second",
-      "img10_session",
-      "img10_third"
     ],
     "19": [
       "img06_atm",
@@ -452,8 +460,8 @@
   "cohesion": {
     "0": 0.07,
     "1": 0.08,
-    "2": 0.07,
-    "3": 0.12,
+    "2": 0.11,
+    "3": 0.09,
     "4": 0.11,
     "5": 0.09,
     "6": 0.1,
@@ -461,13 +469,13 @@
     "8": 0.13,
     "9": 0.15,
     "10": 0.15,
-    "11": 0.24,
-    "12": 0.19,
-    "13": 0.2,
-    "14": 0.18,
-    "15": 0.22,
+    "11": 0.15,
+    "12": 0.24,
+    "13": 0.19,
+    "14": 0.2,
+    "15": 0.18,
     "16": 0.22,
-    "17": 0.29,
+    "17": 0.22,
     "18": 0.29,
     "19": 0.5,
     "20": 0.5,
@@ -506,6 +514,11 @@
       "degree": 12
     },
     {
+      "id": "datalab",
+      "label": "Dedicated bankflow container: running",
+      "degree": 11
+    },
+    {
       "id": "sequence_customer",
       "label": "Customer",
       "degree": 10
@@ -519,11 +532,6 @@
       "id": "atm_simulation_run_atm",
       "label": "run_atm()",
       "degree": 9
-    },
-    {
-      "id": "prototype",
-      "label": "Academic Python withdrawal prototype (documented existing)",
-      "degree": 9
     }
   ],
   "surprises": [
@@ -536,8 +544,7 @@
       ],
       "confidence": "INFERRED",
       "relation": "semantically_similar_to",
-      "why": "inferred connection - not explicitly stated in source; crosses file types (code ↔ doc); semantically similar concepts with no structural link; peripheral node `Planned validated withdrawal workflow` unexpectedly reaches hub `request_withdrawal()`",
-      "confidence_score": 0.85
+      "why": "inferred connection - not explicitly stated in source; crosses file types (code ↔ doc); semantically similar concepts with no structural link; peripheral node `Planned validated withdrawal workflow` unexpectedly reaches hub `request_withdrawal()`"
     },
     {
       "source": "bankflow-atm distribution / bankflow import",
@@ -548,8 +555,7 @@
       ],
       "confidence": "EXTRACTED",
       "relation": "contains_placeholder",
-      "why": "crosses file types (code ↔ doc); connects across different repos/directories; peripheral node `bankflow package placeholder` unexpectedly reaches hub `bankflow-atm distribution / bankflow import`",
-      "confidence_score": 1.0
+      "why": "crosses file types (code ↔ doc); connects across different repos/directories; peripheral node `bankflow package placeholder` unexpectedly reaches hub `bankflow-atm distribution / bankflow import`"
     },
     {
       "source": "bankflow-atm distribution / bankflow import",
@@ -560,8 +566,7 @@
       ],
       "confidence": "EXTRACTED",
       "relation": "contains_placeholder",
-      "why": "crosses file types (code ↔ doc); connects across different repos/directories; peripheral node `bankflow/cache package placeholder` unexpectedly reaches hub `bankflow-atm distribution / bankflow import`",
-      "confidence_score": 1.0
+      "why": "crosses file types (code ↔ doc); connects across different repos/directories; peripheral node `bankflow/cache package placeholder` unexpectedly reaches hub `bankflow-atm distribution / bankflow import`"
     },
     {
       "source": "bankflow-atm distribution / bankflow import",
@@ -572,8 +577,7 @@
       ],
       "confidence": "EXTRACTED",
       "relation": "contains_placeholder",
-      "why": "crosses file types (code ↔ doc); connects across different repos/directories; peripheral node `bankflow/config package placeholder` unexpectedly reaches hub `bankflow-atm distribution / bankflow import`",
-      "confidence_score": 1.0
+      "why": "crosses file types (code ↔ doc); connects across different repos/directories; peripheral node `bankflow/config package placeholder` unexpectedly reaches hub `bankflow-atm distribution / bankflow import`"
     },
     {
       "source": "bankflow-atm distribution / bankflow import",
@@ -584,26 +588,44 @@
       ],
       "confidence": "EXTRACTED",
       "relation": "contains_placeholder",
-      "why": "crosses file types (code ↔ doc); connects across different repos/directories; peripheral node `bankflow/database package placeholder` unexpectedly reaches hub `bankflow-atm distribution / bankflow import`",
-      "confidence_score": 1.0
+      "why": "crosses file types (code ↔ doc); connects across different repos/directories; peripheral node `bankflow/database package placeholder` unexpectedly reaches hub `bankflow-atm distribution / bankflow import`"
     }
   ],
   "questions": [
     {
-      "question": "Which PostgreSQL preflight checks separate the completed foundation from Day 2?",
-      "why": "Connects accepted host topology, pending service authentication, configuration, and migrations."
+      "type": "ambiguous_edge",
+      "question": "What is the exact relationship between `PIN Entry: prompt for PIN` and `Retry (attempts < 3) label without connected retry arrow`?",
+      "why": "Edge tagged AMBIGUOUS (relation: intended_retry_destination) - confidence is low."
     },
     {
-      "question": "Should a card lock expire automatically or require an explicit reset?",
-      "why": "Connects the design document, Day 5 persistence tasks, Redis state, and authentication service."
+      "type": "ambiguous_edge",
+      "question": "What is the exact relationship between `Validate PIN` and `Activity arrow routing disagrees with numbered PIN and bank balance flow`?",
+      "why": "Edge tagged AMBIGUOUS (relation: flags_routing_ambiguity) - confidence is low."
     },
     {
-      "question": "How should the new Decimal transaction core handle the archived NaN and fractional-cent failures?",
-      "why": "Connects executable academic evidence to exact money requirements and atomic writes."
+      "type": "ambiguous_edge",
+      "question": "What is the exact relationship between `Bank Check Balance` and `Activity arrow routing disagrees with numbered PIN and bank balance flow`?",
+      "why": "Edge tagged AMBIGUOUS (relation: flags_routing_ambiguity) - confidence is low."
     },
     {
-      "question": "How will committed transactions remain consistent with Kafka events and downstream lakehouse data?",
-      "why": "Connects transaction consistency risk, optional outbox mitigation, Kafka, and V2 analytics."
+      "type": "ambiguous_edge",
+      "question": "What is the exact relationship between `Validate PIN` and `Activity arrow routing disagrees with numbered PIN and bank balance flow`?",
+      "why": "Edge tagged AMBIGUOUS (relation: flags_routing_ambiguity) - confidence is low."
+    },
+    {
+      "type": "ambiguous_edge",
+      "question": "What is the exact relationship between `Bank Check Balance` and `Activity arrow routing disagrees with numbered PIN and bank balance flow`?",
+      "why": "Edge tagged AMBIGUOUS (relation: flags_routing_ambiguity) - confidence is low."
+    },
+    {
+      "type": "ambiguous_edge",
+      "question": "What is the exact relationship between `Increment Attempts` and `Retry label and increment-to-final routing appear inconsistent`?",
+      "why": "Edge tagged AMBIGUOUS (relation: flags_routing_ambiguity) - confidence is low."
+    },
+    {
+      "type": "ambiguous_edge",
+      "question": "What is the exact relationship between `Numbered activity panel` and `Activity PIN failure branch reaches final node and retry guards are misrouted`?",
+      "why": "Edge tagged AMBIGUOUS (relation: flags_routing_ambiguity) - confidence is low."
     }
   ]
 }

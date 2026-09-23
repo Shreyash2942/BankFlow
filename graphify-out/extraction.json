@@ -3362,11 +3362,13 @@
     },
     {
       "id": "python314",
-      "label": "Python 3.14 Windows x64 runtime",
+      "label": "Python 3.14.4 Windows x64 application runtime",
       "file_type": "document",
       "source_file": "docs/ENVIRONMENT.md",
-      "source_location": null,
-      "status": "validated_foundation"
+      "source_location": "Inspected configuration",
+      "status": "validated_foundation",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1
     },
     {
       "id": "pins",
@@ -3458,19 +3460,23 @@
     },
     {
       "id": "host",
-      "label": "Windows host application strategy",
+      "label": "Windows host application uses dedicated container published ports",
       "file_type": "document",
       "source_file": "docs/ENVIRONMENT.md",
-      "source_location": null,
-      "status": "accepted_strategy"
+      "source_location": "Windows application endpoints",
+      "status": "accepted_strategy",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1
     },
     {
       "id": "datalab",
-      "label": "Existing datalab container: stopped",
+      "label": "Dedicated bankflow container: running",
       "file_type": "document",
       "source_file": "docs/ENVIRONMENT.md",
-      "source_location": null,
-      "status": "observed_2026_09_22"
+      "source_location": "Inspected configuration",
+      "status": "observed_2026_09_22",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1
     },
     {
       "id": "docker",
@@ -3482,19 +3488,23 @@
     },
     {
       "id": "ports",
-      "label": "Published service mappings: 5432 / 6379 / 9092",
+      "label": "Published service mappings: 5433 / 6380 / 9093",
       "file_type": "document",
       "source_file": "docs/ENVIRONMENT.md",
-      "source_location": null,
-      "status": "observed_2026_09_22"
+      "source_location": "Windows application endpoints",
+      "status": "observed_2026_09_22",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1
     },
     {
       "id": "preflight",
-      "label": "Live authentication and service health pending",
+      "label": "Authenticated database access and provisioning pending",
       "file_type": "document",
       "source_file": "docs/ENVIRONMENT.md",
-      "source_location": null,
-      "status": "pending"
+      "source_location": "Day 2 preflight",
+      "status": "pending",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1
     },
     {
       "id": "dedicated_db",
@@ -3506,11 +3516,13 @@
     },
     {
       "id": "reuse_lab",
-      "label": "Reuse shared lab without duplicate containers",
+      "label": "Dedicated user-provided lab container replaces shared lab",
       "file_type": "document",
-      "source_file": "docs/architecture/ADR-001-foundation.md",
-      "source_location": null,
-      "status": "accepted_rationale"
+      "source_file": "docs/architecture/ADR-002-dedicated-container.md",
+      "source_location": "Accepted deployment target",
+      "status": "accepted_rationale",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1
     },
     {
       "id": "runtime_boundary",
@@ -4023,6 +4035,86 @@
       "source_file": "requirements.txt",
       "source_location": "L10",
       "status": "installed_only"
+    },
+    {
+      "id": "bankflow_runtime_volume",
+      "label": "Dedicated runtime volume datalab-runtime-bankflow at /home/datalab/runtime",
+      "file_type": "document",
+      "source_file": "docs/ENVIRONMENT.md",
+      "source_location": "Inspected configuration",
+      "status": "observed_2026_09_22",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1
+    },
+    {
+      "id": "bankflow_repository_mount",
+      "label": "Repository bind mount at /home/datalab/bankflow changes host files",
+      "file_type": "document",
+      "source_file": "docs/SERVICES.md",
+      "source_location": "Storage and runtime boundaries",
+      "status": "observed_2026_09_22",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1
+    },
+    {
+      "id": "container_python310",
+      "label": "Container default Python 3.10.12; Windows virtual environment is not portable",
+      "file_type": "document",
+      "source_file": "docs/ENVIRONMENT.md",
+      "source_location": "Inspected configuration",
+      "status": "observed_2026_09_22",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1
+    },
+    {
+      "id": "internal_service_ports",
+      "label": "Inside-container PostgreSQL 5432 / Redis 6379 / Kafka 9092",
+      "file_type": "document",
+      "source_file": "docs/SERVICES.md",
+      "source_location": "Service endpoints",
+      "status": "observed_2026_09_22",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1
+    },
+    {
+      "id": "rpc_unpublished",
+      "label": "HDFS 9000 and Spark RPC 7077 are not published to Windows",
+      "file_type": "document",
+      "source_file": "docs/SERVICES.md",
+      "source_location": "Service endpoints",
+      "status": "observed_2026_09_22",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1
+    },
+    {
+      "id": "readiness_auth_boundary",
+      "label": "PostgreSQL and Redis responses require authentication; Kafka metadata unavailable during startup",
+      "file_type": "document",
+      "source_file": "docs/ENVIRONMENT.md",
+      "source_location": "Windows application endpoints",
+      "status": "observed_2026_09_22",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1
+    },
+    {
+      "id": "copied_medilake_paths",
+      "label": "Copied helper defaults /medilake/bronze and /medilake/silver",
+      "file_type": "document",
+      "source_file": "docs/SERVICES.md",
+      "source_location": "Storage and runtime boundaries",
+      "status": "reported_defaults",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1
+    },
+    {
+      "id": "bankflow_storage_paths",
+      "label": "Proposed /bankflow/bronze and /bankflow/silver paths not created",
+      "file_type": "document",
+      "source_file": "docs/SERVICES.md",
+      "source_location": "Storage and runtime boundaries",
+      "status": "not_provisioned",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1
     }
   ],
   "edges": [
@@ -7809,11 +7901,11 @@
     {
       "source": "reuse_lab",
       "target": "host",
-      "relation": "rationale_for",
+      "relation": "retains_windows_application_strategy",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "docs/architecture/ADR-001-foundation.md",
-      "source_location": null,
+      "source_file": "docs/architecture/ADR-002-dedicated-container.md",
+      "source_location": "Keep the verified Python 3.14.4 Windows environment",
       "weight": 1.0
     },
     {
@@ -8963,6 +9055,126 @@
       "source_file": "src/bankflow/utils/__init__.py",
       "source_location": "L1",
       "weight": 1.0
+    },
+    {
+      "source": "datalab",
+      "target": "bankflow_runtime_volume",
+      "relation": "mounts_dedicated_runtime_volume",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "docs/ENVIRONMENT.md",
+      "source_location": "Inspected configuration",
+      "weight": 1
+    },
+    {
+      "source": "datalab",
+      "target": "bankflow_repository_mount",
+      "relation": "bind_mounts_repository",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "docs/ENVIRONMENT.md",
+      "source_location": "Inspected configuration",
+      "weight": 1
+    },
+    {
+      "source": "datalab",
+      "target": "container_python310",
+      "relation": "has_default_runtime",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "docs/ENVIRONMENT.md",
+      "source_location": "Inspected configuration",
+      "weight": 1
+    },
+    {
+      "source": "host",
+      "target": "python314",
+      "relation": "runs_application_with",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "docs/ENVIRONMENT.md",
+      "source_location": "Inspected configuration",
+      "weight": 1
+    },
+    {
+      "source": "ports",
+      "target": "internal_service_ports",
+      "relation": "maps_host_ports_to_internal_ports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "docs/SERVICES.md",
+      "source_location": "Service endpoints",
+      "weight": 1
+    },
+    {
+      "source": "datalab",
+      "target": "rpc_unpublished",
+      "relation": "does_not_publish_rpc_ports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "docs/SERVICES.md",
+      "source_location": "Service endpoints",
+      "weight": 1
+    },
+    {
+      "source": "preflight",
+      "target": "readiness_auth_boundary",
+      "relation": "must_establish_authenticated_access_beyond_readiness_responses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "docs/ENVIRONMENT.md",
+      "source_location": "Day 2 preflight",
+      "weight": 1
+    },
+    {
+      "source": "datalab",
+      "target": "readiness_auth_boundary",
+      "relation": "has_observed_readiness_limits",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "docs/ENVIRONMENT.md",
+      "source_location": "Windows application endpoints",
+      "weight": 1
+    },
+    {
+      "source": "datalab",
+      "target": "copied_medilake_paths",
+      "relation": "retains_copied_helper_defaults",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "docs/SERVICES.md",
+      "source_location": "Storage and runtime boundaries",
+      "weight": 1
+    },
+    {
+      "source": "copied_medilake_paths",
+      "target": "bankflow_storage_paths",
+      "relation": "must_remain_separate_from_proposed_paths",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "docs/SERVICES.md",
+      "source_location": "Storage and runtime boundaries",
+      "weight": 1
+    },
+    {
+      "source": "reuse_lab",
+      "target": "datalab",
+      "relation": "selects_user_created_dedicated_container",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "docs/architecture/ADR-002-dedicated-container.md",
+      "source_location": "Accepted deployment target",
+      "weight": 1
+    },
+    {
+      "source": "container_python310",
+      "target": "python314",
+      "relation": "differs_from_application_runtime",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "docs/ENVIRONMENT.md",
+      "source_location": "Inspected configuration",
+      "weight": 1
     }
   ],
   "hyperedges": [

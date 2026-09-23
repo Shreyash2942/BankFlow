@@ -2,6 +2,8 @@
 
 Date: 2026-09-22. Status: accepted implementation choices within Day 1 scope.
 
+The shared container target below is superseded by [ADR-002](ADR-002-dedicated-container.md). The repository and Windows Python choices remain in effect.
+
 - Keep the existing repository name `BankFlow` and Git remote. Use `bankflow-atm` as the Python distribution name and `bankflow` as its import name.
 - Store all five living project documents under `docs/`; normalize `ARCHITECTURE(1).md` to `ARCHITECTURE.md`. Original workspace copies remain untouched source snapshots; only the repository copies are maintained from now on.
 - Preserve the academic source, reports, editable diagrams, and screenshots unchanged under `docs/original-college-project/`, with SHA-256 checksums. Keep dated analysis separate from current status.

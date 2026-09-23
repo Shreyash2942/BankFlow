@@ -5,5 +5,14 @@
   "reason": "Agent execution does not expose actual usage or billing; unknown is not zero.",
   "estimated_readable_corpus_tokens": 40530,
   "semantic_nodes_new": 88,
-  "semantic_nodes_reused": 262
+  "semantic_nodes_reused": 262,
+  "updates": [
+    {
+      "date": "2026-09-23T00:02:40.230278+00:00",
+      "scope": "dedicated BankFlow container",
+      "actual_input_tokens": null,
+      "actual_output_tokens": null,
+      "actual_cost_usd": null
+    }
+  ]
 }

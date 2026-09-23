@@ -1,42 +1,39 @@
-# Local environment and shared Data-Lab
+# Local environment and dedicated BankFlow container
 
-Inspected 2026-09-22. Day 1 chooses **BankFlow on the Windows host**, with services supplied by the existing Data-Lab. No additional service containers are required for this stage.
+Updated 2026-09-22. The user-created **bankflow** container replaces the original Day 1 choice of the shared `datalab` container. See [ADR-002](architecture/ADR-002-dedicated-container.md).
 
-## Verified locally
+## Inspected configuration
 
-- Python 3.14, Windows x64; application dependencies installed inside `BankFlow/.venv`.
-- Docker engine 29.8.0 responds. No containers were running during inspection.
-- Existing container `datalab`, image `shreyash42/data-lab:latest`, is stopped.
-- Published mappings: PostgreSQL host 5432 → container 5432; Redis 6379 → 6379; Kafka 9092 → 9092.
-- Other stopped containers (`fraudlens`, `medilake`, and `takeo`) belong to other projects and are not BankFlow targets.
-- Existing Data-Lab source: `D:/GitHub/Data-Lab`. This is a developer-local path, not a required clone location.
+- Application: Python 3.14.4, Windows x64, isolated repository `.venv` and pinned dependencies.
+- Container: `bankflow`, image `shreyash42/data-lab:latest`, running on Docker's `bridge` network.
+- Runtime volume: `datalab-runtime-bankflow` -> `/home/datalab/runtime`; no other container mounted it during inspection.
+- Repository bind mount: `D:/GitHub/miniprojects/BankFlow` -> `/home/datalab/bankflow`.
+- Container default Python: 3.10.12. Continue running the application on Windows; its virtual environment is not portable into Linux.
 
-These observations supersede the earlier baseline finding that Docker's engine was unavailable. Port mappings do not prove that a service is listening, authenticating, or healthy.
+## Windows application endpoints
 
-## Connection contract
+| Service | Host endpoint | Internal port | Latest check |
+|---|---|---|---|
+| PostgreSQL | `127.0.0.1:5433` | 5432 | Accepting connections; host client receives password-required response |
+| Redis | `127.0.0.1:6380` | 6379 | Responds with authentication required |
+| Kafka | `127.0.0.1:9093` | 9092 | Mapping confirmed; host metadata unavailable during startup |
 
-| Service | Host application endpoint | Day 1 status |
-|---|---|---|
-| PostgreSQL | `127.0.0.1:5432` | Mapping inspected; connection and schema creation pending |
-| Redis | `127.0.0.1:6379` | Mapping inspected; authentication and PING pending |
-| Kafka | `127.0.0.1:9092` | Mapping inspected; broker metadata and advertised listeners pending |
+The reported lab PostgreSQL database/user are `datalab` / `admin`. The application template names proposed dedicated resources `bankflow` / `bankflow_user`; neither was provisioned during this inspection. Redis's reported ACL user is `default`. Database passwords must be confirmed separately from UI passwords and stay in ignored local configuration.
 
-`POSTGRES_DB=bankflow` and `POSTGRES_USER=bankflow_user` name proposed dedicated resources. They have not been provisioned. Never assume that a blank example password is a working credential. Redis credentials also belong in local configuration, with the actual authentication mode confirmed from the lab.
-
-When running inside the lab container, localhost refers to its internal services. A future separate BankFlow container will need a verified shared Docker network and reachable service addresses; `127.0.0.1` inside that new container will refer to itself. The earlier planning examples using separate `postgres`, `redis`, and `kafka` hostnames are illustrative, not this lab's verified topology.
+The supplied connection guide mixes host-mapped ports with internal HDFS/Spark addresses. HDFS port 9000 and Spark RPC port 7077 were not published. Those localhost URIs describe access inside the container, not Windows. See the complete [service reference](SERVICES.md).
 
 ## Day 2 preflight
 
-1. Recheck `docker ps -a` and `docker port datalab`; mappings can change.
-2. Start the intended existing lab container/services following its own documentation. Starting the container alone may not start PostgreSQL, Redis, or Kafka.
-3. Confirm credentials privately, create a dedicated BankFlow database/user without altering other projects, and fill the ignored `.env`.
-4. Implement settings validation, then verify database authentication and a health query before running migrations.
-5. Verify Redis when implementing authentication, and Kafka broker metadata/advertised listeners when implementing messaging.
+1. Recheck `docker ps` and `docker port bankflow`.
+2. Confirm database credentials privately and provision dedicated BankFlow database/user resources in this container.
+3. Fill the ignored `.env`; do not assume a UI password is also a database password.
+4. Implement settings validation, SQLAlchemy engine/session/base, and a database health query before running migrations.
+5. At their milestones, verify Redis authentication and Kafka broker-advertised endpoints from Windows. The startup metadata failure is not a diagnosis of its cause.
 
-No lab service was started or reconfigured during Day 1. Live connectivity remains a later prerequisite, not a completed validation.
+The user started the services. This inspection did not reset volumes, change service configuration, or create database objects. Readiness responses do not establish authenticated application access.
 
 ## Dependency boundaries
 
-The application environment contains Streamlit, Pydantic/settings, SQLAlchemy, Alembic, Psycopg, Redis, and the Kafka Python client. It does not install Airflow, dbt, Spark, or Graphify into the application runtime; those tools have separate environments.
+The application uses Streamlit, Pydantic/settings, SQLAlchemy, Alembic, Psycopg, Redis, and the Kafka Python client. Airflow, dbt, Spark, and Graphify remain separate runtimes. Other available lab tools do not expand the PRD.
 
-Dependencies were selected against current package documentation and then installed and imported locally. References: [Streamlit installation](https://docs.streamlit.io/get-started/installation), [Psycopg binary installation](https://www.psycopg.org/psycopg3/docs/basic/install.html), and [Confluent Python client installation](https://github.com/confluentinc/confluent-kafka-python/blob/master/INSTALL.md). Import success is not a database/broker compatibility test.
+Day 1 dependency references: [Streamlit installation](https://docs.streamlit.io/get-started/installation), [Psycopg binary installation](https://www.psycopg.org/psycopg3/docs/basic/install.html), and [Confluent Python client installation](https://github.com/confluentinc/confluent-kafka-python/blob/master/INSTALL.md).

@@ -256,7 +256,7 @@ The zero-balance account-closing behavior is retained from the original academic
 
 ## 4.3 Existing Development Lab Integration
 
-BankFlow will reuse services already available in the local Docker-based data lab.
+BankFlow uses services inside the user-created dedicated `bankflow` copy of the Docker-based data lab. Current topology and endpoints are in [ENVIRONMENT.md](ENVIRONMENT.md) and [SERVICES.md](SERVICES.md); see [ADR-002](architecture/ADR-002-dedicated-container.md).
 
 Relevant existing stacks:
 
@@ -272,7 +272,7 @@ stacks/hive
 stacks/lakehouse/iceberg
 ```
 
-BankFlow should connect to these services through Docker networking rather than duplicating infrastructure unnecessarily.
+The initial application runs on Windows and connects through the dedicated container's published ports. In-container processing uses internal addresses; do not substitute host ports for internal service ports.
 
 ---
 
@@ -876,7 +876,7 @@ data-engineering-lab/
     └── BankFlow/
 ```
 
-For a standalone GitHub portfolio repository, BankFlow will contain its own application code and documentation while environment variables point to the shared infrastructure services.
+For a standalone GitHub portfolio repository, BankFlow will contain its own application code and documentation while environment variables point to the dedicated `bankflow` container. The preceding generic folder layout is illustrative; the actual repository is bind-mounted at `/home/datalab/bankflow`.
 
 ---
 
@@ -889,16 +889,18 @@ Example `.env.example`:
 ```text
 APP_ENV=development
 
-POSTGRES_HOST=postgres
-POSTGRES_PORT=5432
+POSTGRES_HOST=127.0.0.1
+POSTGRES_PORT=5433
 POSTGRES_DB=bankflow
 POSTGRES_USER=bankflow_user
-POSTGRES_PASSWORD=change_me
+POSTGRES_PASSWORD=
 
-REDIS_HOST=redis
-REDIS_PORT=6379
+REDIS_HOST=127.0.0.1
+REDIS_PORT=6380
+REDIS_USERNAME=default
+REDIS_PASSWORD=
 
-KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+KAFKA_BOOTSTRAP_SERVERS=127.0.0.1:9093
 KAFKA_TRANSACTION_TOPIC=bankflow.transaction.events
 
 MAX_PIN_ATTEMPTS=3
