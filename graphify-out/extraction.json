@@ -3322,11 +3322,11 @@
     },
     {
       "id": "bankflow",
-      "label": "BankFlow: implemented foundation, planned platform",
+      "label": "BankFlow: implemented database foundation, planned ATM platform",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": null,
-      "status": "foundation_only"
+      "source_location": "Introduction",
+      "status": "database_foundation_complete"
     },
     {
       "id": "day1",
@@ -3428,18 +3428,18 @@
     },
     {
       "id": "no_app_tests",
-      "label": "Application service tests still pending",
+      "label": "Banking business-rule and service validation remains future work",
       "file_type": "document",
-      "source_file": "README.md",
-      "source_location": null,
-      "status": "pending"
+      "source_file": "docs/DAY2_VALIDATION.md",
+      "source_location": "Checks and results",
+      "status": "pending_business_implementation"
     },
     {
       "id": "unreleased",
-      "label": "Unreleased foundation; no application tag",
+      "label": "Unreleased Day 2 foundation; no application release tag",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": null,
+      "source_location": "Unreleased \u2014 Day 2 database foundation",
       "status": "current_status"
     },
     {
@@ -3498,21 +3498,19 @@
     },
     {
       "id": "preflight",
-      "label": "Authenticated database access and provisioning pending",
+      "label": "Authenticated PostgreSQL access and isolated provisioning verified",
       "file_type": "document",
       "source_file": "docs/ENVIRONMENT.md",
-      "source_location": "Day 2 preflight",
-      "status": "pending",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1
+      "source_location": "Day 2 database setup",
+      "status": "implemented_verified"
     },
     {
       "id": "dedicated_db",
-      "label": "Dedicated bankflow database/user proposed",
+      "label": "Provisioned application database bankflow and owner bankflow_user",
       "file_type": "document",
-      "source_file": "docs/ENVIRONMENT.md",
-      "source_location": null,
-      "status": "not_provisioned"
+      "source_file": "docs/DAY2_VALIDATION.md",
+      "source_location": "Implemented and verified",
+      "status": "provisioned_verified"
     },
     {
       "id": "reuse_lab",
@@ -3534,43 +3532,43 @@
     },
     {
       "id": "day2",
-      "label": "Day 2 configuration and PostgreSQL foundation",
+      "label": "Day 2 configuration and PostgreSQL foundation complete",
       "file_type": "document",
       "source_file": "docs/TASK.md",
-      "source_location": null,
-      "status": "planned"
+      "source_location": "Day 2 \u2014 Configuration and Database Foundation",
+      "status": "implemented_verified"
     },
     {
       "id": "settings",
-      "label": "Planned validated application settings",
+      "label": "Implemented validated Pydantic application settings",
       "file_type": "document",
-      "source_file": "docs/TASK.md",
-      "source_location": null,
-      "status": "planned"
+      "source_file": "docs/DAY2_VALIDATION.md",
+      "source_location": "Implemented and verified",
+      "status": "implemented_verified"
     },
     {
       "id": "engine",
-      "label": "Planned SQLAlchemy engine and sessions",
+      "label": "Implemented SQLAlchemy engine and transaction-scoped sessions",
       "file_type": "document",
-      "source_file": "docs/TASK.md",
-      "source_location": null,
-      "status": "planned"
+      "source_file": "docs/DAY2_VALIDATION.md",
+      "source_location": "Implemented and verified",
+      "status": "implemented_verified"
     },
     {
       "id": "migration",
-      "label": "Planned Alembic migrations",
+      "label": "Implemented Alembic schema revision 0001",
       "file_type": "document",
-      "source_file": "docs/TASK.md",
-      "source_location": null,
-      "status": "planned"
+      "source_file": "docs/DAY2_VALIDATION.md",
+      "source_location": "Implemented and verified",
+      "status": "implemented_verified"
     },
     {
       "id": "health",
-      "label": "Planned PostgreSQL health query",
+      "label": "Verified PostgreSQL SELECT 1 health command",
       "file_type": "document",
-      "source_file": "docs/TASK.md",
-      "source_location": null,
-      "status": "planned"
+      "source_file": "docs/DAY2_VALIDATION.md",
+      "source_location": "Implemented and verified",
+      "status": "implemented_verified"
     },
     {
       "id": "v1",
@@ -3646,11 +3644,11 @@
     },
     {
       "id": "postgres",
-      "label": "Planned PostgreSQL system of record",
+      "label": "PostgreSQL foundation verified; banking domain persistence planned",
       "file_type": "document",
-      "source_file": "docs/ARCHITECTURE.md",
-      "source_location": null,
-      "status": "planned"
+      "source_file": "docs/ENVIRONMENT.md",
+      "source_location": "Day 2 database setup",
+      "status": "foundation_verified_domain_pending"
     },
     {
       "id": "redis",
@@ -4088,13 +4086,11 @@
     },
     {
       "id": "readiness_auth_boundary",
-      "label": "PostgreSQL and Redis responses require authentication; Kafka metadata unavailable during startup",
+      "label": "PostgreSQL authentication verified; Redis authentication and Kafka metadata still pending",
       "file_type": "document",
       "source_file": "docs/ENVIRONMENT.md",
       "source_location": "Windows application endpoints",
-      "status": "observed_2026_09_22",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1
+      "status": "postgres_verified_other_services_pending"
     },
     {
       "id": "copied_medilake_paths",
@@ -4115,6 +4111,1176 @@
       "status": "not_provisioned",
       "confidence": "EXTRACTED",
       "confidence_score": 1
+    },
+    {
+      "id": "migrations_env_py",
+      "label": "env.py",
+      "file_type": "code",
+      "source_file": "migrations\\env.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "env_include_name",
+      "label": "include_name()",
+      "file_type": "code",
+      "source_file": "migrations\\env.py",
+      "source_location": "L18"
+    },
+    {
+      "id": "env_run_migrations_offline",
+      "label": "run_migrations_offline()",
+      "file_type": "code",
+      "source_file": "migrations\\env.py",
+      "source_location": "L23"
+    },
+    {
+      "id": "env_run_migrations_online",
+      "label": "run_migrations_online()",
+      "file_type": "code",
+      "source_file": "migrations\\env.py",
+      "source_location": "L35"
+    },
+    {
+      "id": "env_rationale_1",
+      "label": "Alembic environment using the same validated settings as the application.",
+      "file_type": "rationale",
+      "source_file": "migrations\\env.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "env_rationale_19",
+      "label": "Autogeneration must not propose changes to unrelated schemas.",
+      "file_type": "rationale",
+      "source_file": "migrations\\env.py",
+      "source_location": "L19"
+    },
+    {
+      "id": "migrations_versions_0001_application_schema_py",
+      "label": "0001_application_schema.py",
+      "file_type": "code",
+      "source_file": "migrations\\versions\\0001_application_schema.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "0001_application_schema_upgrade",
+      "label": "upgrade()",
+      "file_type": "code",
+      "source_file": "migrations\\versions\\0001_application_schema.py",
+      "source_location": "L16"
+    },
+    {
+      "id": "0001_application_schema_downgrade",
+      "label": "downgrade()",
+      "file_type": "code",
+      "source_file": "migrations\\versions\\0001_application_schema.py",
+      "source_location": "L20"
+    },
+    {
+      "id": "0001_application_schema_rationale_1",
+      "label": "Create the application schema; domain tables follow in Day 3.  Revision ID: 0001",
+      "file_type": "rationale",
+      "source_file": "migrations\\versions\\0001_application_schema.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_github_miniprojects_bankflow_scripts_check_environment_py",
+      "label": "check_environment.py",
+      "file_type": "code",
+      "source_file": "D:\\GitHub\\miniprojects\\BankFlow\\scripts\\check_environment.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "check_environment_main",
+      "label": "main()",
+      "file_type": "code",
+      "source_file": "D:\\GitHub\\miniprojects\\BankFlow\\scripts\\check_environment.py",
+      "source_location": "L19"
+    },
+    {
+      "id": "check_environment_rationale_1",
+      "label": "Check Day 1 imports without opening network connections or loading secrets.",
+      "file_type": "rationale",
+      "source_file": "D:\\GitHub\\miniprojects\\BankFlow\\scripts\\check_environment.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "check_environment_rationale_20",
+      "label": "Return nonzero if the selected interpreter or an application import fails.",
+      "file_type": "rationale",
+      "source_file": "D:\\GitHub\\miniprojects\\BankFlow\\scripts\\check_environment.py",
+      "source_location": "L20"
+    },
+    {
+      "id": "scripts_provision_local_database_py",
+      "label": "provision_local_database.py",
+      "file_type": "code",
+      "source_file": "scripts\\provision_local_database.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "provision_local_database_render_environment",
+      "label": "render_environment()",
+      "file_type": "code",
+      "source_file": "scripts\\provision_local_database.py",
+      "source_location": "L17"
+    },
+    {
+      "id": "provision_local_database_replace_environment_setting",
+      "label": "replace_environment_setting()",
+      "file_type": "code",
+      "source_file": "scripts\\provision_local_database.py",
+      "source_location": "L27"
+    },
+    {
+      "id": "provision_local_database_admin_sql",
+      "label": "admin_sql()",
+      "file_type": "code",
+      "source_file": "scripts\\provision_local_database.py",
+      "source_location": "L43"
+    },
+    {
+      "id": "provision_local_database_verify_local_superuser",
+      "label": "verify_local_superuser()",
+      "file_type": "code",
+      "source_file": "scripts\\provision_local_database.py",
+      "source_location": "L77"
+    },
+    {
+      "id": "provision_local_database_rotate_passwords",
+      "label": "rotate_passwords()",
+      "file_type": "code",
+      "source_file": "scripts\\provision_local_database.py",
+      "source_location": "L82"
+    },
+    {
+      "id": "provision_local_database_provision",
+      "label": "provision()",
+      "file_type": "code",
+      "source_file": "scripts\\provision_local_database.py",
+      "source_location": "L129"
+    },
+    {
+      "id": "provision_local_database_main",
+      "label": "main()",
+      "file_type": "code",
+      "source_file": "scripts\\provision_local_database.py",
+      "source_location": "L177"
+    },
+    {
+      "id": "provision_local_database_rationale_1",
+      "label": "Provision or rotate local Day 2 database access without resetting data.",
+      "file_type": "rationale",
+      "source_file": "scripts\\provision_local_database.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "provision_local_database_rationale_18",
+      "label": "Render one local environment file without exposing its password.",
+      "file_type": "rationale",
+      "source_file": "scripts\\provision_local_database.py",
+      "source_location": "L18"
+    },
+    {
+      "id": "provision_local_database_rationale_28",
+      "label": "Replace exactly one setting while preserving every other local choice.",
+      "file_type": "rationale",
+      "source_file": "scripts\\provision_local_database.py",
+      "source_location": "L28"
+    },
+    {
+      "id": "provision_local_database_rationale_83",
+      "label": "Rotate both owner passwords and atomically replace their ignored files.",
+      "file_type": "rationale",
+      "source_file": "scripts\\provision_local_database.py",
+      "source_location": "L83"
+    },
+    {
+      "id": "d_github_miniprojects_bankflow_src_bankflow_init_py",
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "D:\\GitHub\\miniprojects\\BankFlow\\src\\bankflow\\__init__.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "init_rationale_1",
+      "label": "BankFlow utils layer; implementation follows the task plan.",
+      "file_type": "rationale",
+      "source_file": "D:\\GitHub\\miniprojects\\BankFlow\\src\\bankflow\\utils\\__init__.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_github_miniprojects_bankflow_src_bankflow_cache_init_py",
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "D:\\GitHub\\miniprojects\\BankFlow\\src\\bankflow\\cache\\__init__.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_bankflow_config_settings_py",
+      "label": "settings.py",
+      "file_type": "code",
+      "source_file": "src\\bankflow\\config\\settings.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "settings_configurationerror",
+      "label": "ConfigurationError",
+      "file_type": "code",
+      "source_file": "src\\bankflow\\config\\settings.py",
+      "source_location": "L14"
+    },
+    {
+      "id": "valueerror",
+      "label": "ValueError",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "settings_settings",
+      "label": "Settings",
+      "file_type": "code",
+      "source_file": "src\\bankflow\\config\\settings.py",
+      "source_location": "L18"
+    },
+    {
+      "id": "basesettings",
+      "label": "BaseSettings",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "settings_require_password",
+      "label": "require_password()",
+      "file_type": "code",
+      "source_file": "src\\bankflow\\config\\settings.py",
+      "source_location": "L54"
+    },
+    {
+      "id": "settings_database_url",
+      "label": "database_url()",
+      "file_type": "code",
+      "source_file": "src\\bankflow\\config\\settings.py",
+      "source_location": "L60"
+    },
+    {
+      "id": "settings_load_settings",
+      "label": "load_settings()",
+      "file_type": "code",
+      "source_file": "src\\bankflow\\config\\settings.py",
+      "source_location": "L72"
+    },
+    {
+      "id": "settings_rationale_1",
+      "label": "Validated environment configuration; importing this module performs no I/O.",
+      "file_type": "rationale",
+      "source_file": "src\\bankflow\\config\\settings.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "settings_rationale_15",
+      "label": "Invalid configuration, with input values omitted from its message.",
+      "file_type": "rationale",
+      "source_file": "src\\bankflow\\config\\settings.py",
+      "source_location": "L15"
+    },
+    {
+      "id": "settings_rationale_19",
+      "label": "Explicit arguments override environment variables, which override dotenv.",
+      "file_type": "rationale",
+      "source_file": "src\\bankflow\\config\\settings.py",
+      "source_location": "L19"
+    },
+    {
+      "id": "settings_rationale_61",
+      "label": "Build a URL without interpolating or manually escaping credentials.",
+      "file_type": "rationale",
+      "source_file": "src\\bankflow\\config\\settings.py",
+      "source_location": "L61"
+    },
+    {
+      "id": "settings_rationale_73",
+      "label": "Load explicitly, reporting field names but never submitted values.",
+      "file_type": "rationale",
+      "source_file": "src\\bankflow\\config\\settings.py",
+      "source_location": "L73"
+    },
+    {
+      "id": "d_github_miniprojects_bankflow_src_bankflow_config_init_py",
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "D:\\GitHub\\miniprojects\\BankFlow\\src\\bankflow\\config\\__init__.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_bankflow_database_base_py",
+      "label": "base.py",
+      "file_type": "code",
+      "source_file": "src\\bankflow\\database\\base.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "base_base",
+      "label": "Base",
+      "file_type": "code",
+      "source_file": "src\\bankflow\\database\\base.py",
+      "source_location": "L7"
+    },
+    {
+      "id": "declarativebase",
+      "label": "DeclarativeBase",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "base_rationale_1",
+      "label": "Shared ORM metadata. Domain models are introduced on Day 3.",
+      "file_type": "rationale",
+      "source_file": "src\\bankflow\\database\\base.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_bankflow_database_connection_py",
+      "label": "connection.py",
+      "file_type": "code",
+      "source_file": "src\\bankflow\\database\\connection.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "connection_create_database_engine",
+      "label": "create_database_engine()",
+      "file_type": "code",
+      "source_file": "src\\bankflow\\database\\connection.py",
+      "source_location": "L8"
+    },
+    {
+      "id": "connection_rationale_1",
+      "label": "Lazy SQLAlchemy engine construction; the caller owns engine disposal.",
+      "file_type": "rationale",
+      "source_file": "src\\bankflow\\database\\connection.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "connection_rationale_9",
+      "label": "Create a pool without opening a connection until first use.",
+      "file_type": "rationale",
+      "source_file": "src\\bankflow\\database\\connection.py",
+      "source_location": "L9"
+    },
+    {
+      "id": "src_bankflow_database_health_py",
+      "label": "health.py",
+      "file_type": "code",
+      "source_file": "src\\bankflow\\database\\health.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "health_databasehealth",
+      "label": "DatabaseHealth",
+      "file_type": "code",
+      "source_file": "src\\bankflow\\database\\health.py",
+      "source_location": "L14"
+    },
+    {
+      "id": "health_check_database_health",
+      "label": "check_database_health()",
+      "file_type": "code",
+      "source_file": "src\\bankflow\\database\\health.py",
+      "source_location": "L19"
+    },
+    {
+      "id": "health_main",
+      "label": "main()",
+      "file_type": "code",
+      "source_file": "src\\bankflow\\database\\health.py",
+      "source_location": "L33"
+    },
+    {
+      "id": "health_rationale_1",
+      "label": "Run with python -m bankflow.database.health from the repository root.",
+      "file_type": "rationale",
+      "source_file": "src\\bankflow\\database\\health.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "health_rationale_20",
+      "label": "Probe a real connection without returning raw driver errors or credentials.",
+      "file_type": "rationale",
+      "source_file": "src\\bankflow\\database\\health.py",
+      "source_location": "L20"
+    },
+    {
+      "id": "src_bankflow_database_session_py",
+      "label": "session.py",
+      "file_type": "code",
+      "source_file": "src\\bankflow\\database\\session.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "session_create_session_factory",
+      "label": "create_session_factory()",
+      "file_type": "code",
+      "source_file": "src\\bankflow\\database\\session.py",
+      "source_location": "L10"
+    },
+    {
+      "id": "session_session_scope",
+      "label": "session_scope()",
+      "file_type": "code",
+      "source_file": "src\\bankflow\\database\\session.py",
+      "source_location": "L15"
+    },
+    {
+      "id": "session_rationale_1",
+      "label": "A session per unit of work; successful work commits and failed work rolls back.",
+      "file_type": "rationale",
+      "source_file": "src\\bankflow\\database\\session.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "session_rationale_16",
+      "label": "Own the commit/rollback and close; repositories must not commit independently.",
+      "file_type": "rationale",
+      "source_file": "src\\bankflow\\database\\session.py",
+      "source_location": "L16"
+    },
+    {
+      "id": "d_github_miniprojects_bankflow_src_bankflow_database_init_py",
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "D:\\GitHub\\miniprojects\\BankFlow\\src\\bankflow\\database\\__init__.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_github_miniprojects_bankflow_src_bankflow_messaging_init_py",
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "D:\\GitHub\\miniprojects\\BankFlow\\src\\bankflow\\messaging\\__init__.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_github_miniprojects_bankflow_src_bankflow_models_init_py",
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "D:\\GitHub\\miniprojects\\BankFlow\\src\\bankflow\\models\\__init__.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_github_miniprojects_bankflow_src_bankflow_repositories_init_py",
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "D:\\GitHub\\miniprojects\\BankFlow\\src\\bankflow\\repositories\\__init__.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_github_miniprojects_bankflow_src_bankflow_schemas_init_py",
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "D:\\GitHub\\miniprojects\\BankFlow\\src\\bankflow\\schemas\\__init__.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_github_miniprojects_bankflow_src_bankflow_services_init_py",
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "D:\\GitHub\\miniprojects\\BankFlow\\src\\bankflow\\services\\__init__.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_github_miniprojects_bankflow_src_bankflow_utils_init_py",
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "D:\\GitHub\\miniprojects\\BankFlow\\src\\bankflow\\utils\\__init__.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "tests_conftest_py",
+      "label": "conftest.py",
+      "file_type": "code",
+      "source_file": "tests\\conftest.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "conftest_isolate_settings_environment",
+      "label": "isolate_settings_environment()",
+      "file_type": "code",
+      "source_file": "tests\\conftest.py",
+      "source_location": "L9"
+    },
+    {
+      "id": "conftest_rationale_1",
+      "label": "Keep external environment overrides from changing test database selection.",
+      "file_type": "rationale",
+      "source_file": "tests\\conftest.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "tests_integration_test_database_py",
+      "label": "test_database.py",
+      "file_type": "code",
+      "source_file": "tests\\integration\\test_database.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "test_database_settings",
+      "label": "settings()",
+      "file_type": "code",
+      "source_file": "tests\\integration\\test_database.py",
+      "source_location": "L28"
+    },
+    {
+      "id": "test_database_engine",
+      "label": "engine()",
+      "file_type": "code",
+      "source_file": "tests\\integration\\test_database.py",
+      "source_location": "L40"
+    },
+    {
+      "id": "test_database_test_real_postgres_health_and_role_privileges",
+      "label": "test_real_postgres_health_and_role_privileges()",
+      "file_type": "code",
+      "source_file": "tests\\integration\\test_database.py",
+      "source_location": "L46"
+    },
+    {
+      "id": "test_database_test_bad_credentials_are_reported_without_driver_details",
+      "label": "test_bad_credentials_are_reported_without_driver_details()",
+      "file_type": "code",
+      "source_file": "tests\\integration\\test_database.py",
+      "source_location": "L57"
+    },
+    {
+      "id": "test_database_test_session_commits_success_and_rolls_back_failed_work",
+      "label": "test_session_commits_success_and_rolls_back_failed_work()",
+      "file_type": "code",
+      "source_file": "tests\\integration\\test_database.py",
+      "source_location": "L69"
+    },
+    {
+      "id": "test_database_test_migration_upgrade_downgrade_and_reupgrade",
+      "label": "test_migration_upgrade_downgrade_and_reupgrade()",
+      "file_type": "code",
+      "source_file": "tests\\integration\\test_database.py",
+      "source_location": "L90"
+    },
+    {
+      "id": "test_database_test_test_role_cannot_connect_to_application_database",
+      "label": "test_test_role_cannot_connect_to_application_database()",
+      "file_type": "code",
+      "source_file": "tests\\integration\\test_database.py",
+      "source_location": "L110"
+    },
+    {
+      "id": "test_database_rationale_1",
+      "label": "Opt in with BANKFLOW_RUN_DB_TESTS=1; never run migrations against the app databa",
+      "file_type": "rationale",
+      "source_file": "tests\\integration\\test_database.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "tests_unit_test_database_health_py",
+      "label": "test_database_health.py",
+      "file_type": "code",
+      "source_file": "tests\\unit\\test_database_health.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "test_database_health_test_health_failure_does_not_expose_driver_message",
+      "label": "test_health_failure_does_not_expose_driver_message()",
+      "file_type": "code",
+      "source_file": "tests\\unit\\test_database_health.py",
+      "source_location": "L8"
+    },
+    {
+      "id": "tests_unit_test_provision_local_database_py",
+      "label": "test_provision_local_database.py",
+      "file_type": "code",
+      "source_file": "tests\\unit\\test_provision_local_database.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "test_provision_local_database_test_password_rotation_preserves_other_local_settings_and_line_endings",
+      "label": "test_password_rotation_preserves_other_local_settings_and_line_endings()",
+      "file_type": "code",
+      "source_file": "tests\\unit\\test_provision_local_database.py",
+      "source_location": "L4"
+    },
+    {
+      "id": "tests_unit_test_settings_py",
+      "label": "test_settings.py",
+      "file_type": "code",
+      "source_file": "tests\\unit\\test_settings.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "test_settings_test_environment_overrides_file_and_arguments_override_environment",
+      "label": "test_environment_overrides_file_and_arguments_override_environment()",
+      "file_type": "code",
+      "source_file": "tests\\unit\\test_settings.py",
+      "source_location": "L7"
+    },
+    {
+      "id": "test_settings_test_blank_password_is_rejected",
+      "label": "test_blank_password_is_rejected()",
+      "file_type": "code",
+      "source_file": "tests\\unit\\test_settings.py",
+      "source_location": "L16"
+    },
+    {
+      "id": "test_settings_test_bad_port_is_rejected",
+      "label": "test_bad_port_is_rejected()",
+      "file_type": "code",
+      "source_file": "tests\\unit\\test_settings.py",
+      "source_location": "L22"
+    },
+    {
+      "id": "test_settings_test_missing_password_has_safe_actionable_message",
+      "label": "test_missing_password_has_safe_actionable_message()",
+      "file_type": "code",
+      "source_file": "tests\\unit\\test_settings.py",
+      "source_location": "L27"
+    },
+    {
+      "id": "test_settings_test_unknown_dotenv_setting_and_bad_secret_type_do_not_leak_values",
+      "label": "test_unknown_dotenv_setting_and_bad_secret_type_do_not_leak_values()",
+      "file_type": "code",
+      "source_file": "tests\\unit\\test_settings.py",
+      "source_location": "L32"
+    },
+    {
+      "id": "test_settings_test_url_preserves_special_characters_without_exposing_password",
+      "label": "test_url_preserves_special_characters_without_exposing_password()",
+      "file_type": "code",
+      "source_file": "tests\\unit\\test_settings.py",
+      "source_location": "L42"
+    },
+    {
+      "id": "test_settings_test_invalid_secret_input_is_hidden_in_validation_message",
+      "label": "test_invalid_secret_input_is_hidden_in_validation_message()",
+      "file_type": "code",
+      "source_file": "tests\\unit\\test_settings.py",
+      "source_location": "L51"
+    },
+    {
+      "id": "day2_test_database",
+      "label": "Separate bankflow_test database and bankflow_test_user owner",
+      "file_type": "document",
+      "source_file": "docs/DAY2_VALIDATION.md",
+      "source_location": "Implemented and verified",
+      "status": "provisioned_verified"
+    },
+    {
+      "id": "day2_role_isolation",
+      "label": "Separate non-superuser owners and revoked PUBLIC database access",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-003-database-foundation.md",
+      "source_location": "Decisions",
+      "status": "accepted_implemented"
+    },
+    {
+      "id": "day2_local_owner_limit",
+      "label": "Local application and migrations share owner roles; production privilege separation remains future",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-003-database-foundation.md",
+      "source_location": "Decisions",
+      "status": "development_scope_constraint"
+    },
+    {
+      "id": "day2_test_guard",
+      "label": "Live migration tests require opt-in and test environment/database/username checks",
+      "file_type": "document",
+      "source_file": "docs/DAY2_VALIDATION.md",
+      "source_location": "Checks and results",
+      "status": "implemented_verified"
+    },
+    {
+      "id": "day2_app_protection",
+      "label": "Migration downgrade must never run against application database",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-003-database-foundation.md",
+      "source_location": "Decisions",
+      "status": "accepted_constraint"
+    },
+    {
+      "id": "day2_provision_guard",
+      "label": "Provisioning refuses existing files or database resources",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-003-database-foundation.md",
+      "source_location": "Decisions",
+      "status": "implemented_verified"
+    },
+    {
+      "id": "day2_preserve_credentials",
+      "label": "Partial provisioning failure retains generated local credentials for deliberate recovery",
+      "file_type": "document",
+      "source_file": "docs/ENVIRONMENT.md",
+      "source_location": "Day 2 database setup",
+      "status": "accepted_recovery_strategy"
+    },
+    {
+      "id": "day2_socket_admin",
+      "label": "Local datalab superuser used only for setup through Unix socket",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-003-database-foundation.md",
+      "source_location": "Decisions",
+      "status": "implemented_setup_boundary"
+    },
+    {
+      "id": "day2_setup_privilege_check",
+      "label": "Provisioning checks superuser privilege before writing credentials",
+      "file_type": "document",
+      "source_file": "docs/DAY2_VALIDATION.md",
+      "source_location": "Implemented and verified",
+      "status": "implemented_verified"
+    },
+    {
+      "id": "day2_admin_attempt",
+      "label": "Initial admin-role setup attempt could not create roles; no database resources created",
+      "file_type": "document",
+      "source_file": "docs/DAY2_VALIDATION.md",
+      "source_location": "Implemented and verified",
+      "status": "historical_day2_attempt"
+    },
+    {
+      "id": "day2_settings_precedence",
+      "label": "Explicit arguments > process environment > dotenv > defaults",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-003-database-foundation.md",
+      "source_location": "Decisions",
+      "status": "implemented_configuration"
+    },
+    {
+      "id": "day2_url_object",
+      "label": "SQLAlchemy URL object preserves password special characters",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-003-database-foundation.md",
+      "source_location": "Decisions",
+      "status": "accepted_implemented"
+    },
+    {
+      "id": "day2_secret_storage",
+      "label": "Generated database credentials exist only in ignored local environment files",
+      "file_type": "document",
+      "source_file": "docs/DAY2_VALIDATION.md",
+      "source_location": "Implemented and verified",
+      "status": "implemented_constraint"
+    },
+    {
+      "id": "day2_error_redaction",
+      "label": "Settings and health/migration errors hide credentials and raw driver details",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-003-database-foundation.md",
+      "source_location": "Consequences",
+      "status": "implemented_verified"
+    },
+    {
+      "id": "day2_engine_lifecycle",
+      "label": "Explicit engine creation/disposal and no connections during imports",
+      "file_type": "document",
+      "source_file": "docs/DAY2_VALIDATION.md",
+      "source_location": "Implemented and verified",
+      "status": "implemented_boundary"
+    },
+    {
+      "id": "day2_connection_controls",
+      "label": "Bounded connection pool, timeout, pre-ping and hidden SQL parameters",
+      "file_type": "document",
+      "source_file": "docs/DAY2_VALIDATION.md",
+      "source_location": "Implemented and verified",
+      "status": "implemented_configuration"
+    },
+    {
+      "id": "day2_transaction_scope",
+      "label": "session_scope commits success, rolls back exceptions and closes sessions",
+      "file_type": "document",
+      "source_file": "docs/DAY2_VALIDATION.md",
+      "source_location": "Implemented and verified",
+      "status": "implemented_verified"
+    },
+    {
+      "id": "day2_service_boundary",
+      "label": "Future services own the transaction; repositories never commit independently",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-003-database-foundation.md",
+      "source_location": "Decisions",
+      "status": "accepted_architecture"
+    },
+    {
+      "id": "day2_schema",
+      "label": "Revision 0001 creates bankflow schema; no domain tables yet",
+      "file_type": "document",
+      "source_file": "docs/DAY2_VALIDATION.md",
+      "source_location": "Implemented and verified",
+      "status": "implemented_verified"
+    },
+    {
+      "id": "day2_base_metadata",
+      "label": "Base metadata targets bankflow with stable constraint names",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-003-database-foundation.md",
+      "source_location": "Decisions",
+      "status": "implemented_foundation"
+    },
+    {
+      "id": "day2_public_version",
+      "label": "Alembic bookkeeping table lives in public",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-003-database-foundation.md",
+      "source_location": "Decisions",
+      "status": "implemented_verified"
+    },
+    {
+      "id": "day2_bootstrap_rationale",
+      "label": "Migration bookkeeping must survive application-schema bootstrap and downgrade",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-003-database-foundation.md",
+      "source_location": "Decisions",
+      "status": "accepted_rationale"
+    },
+    {
+      "id": "day2_autogenerate",
+      "label": "Autogeneration inspects bankflow schema; future models require metadata registration",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-003-database-foundation.md",
+      "source_location": "Decisions",
+      "status": "implemented_boundary"
+    },
+    {
+      "id": "day2_no_cascade",
+      "label": "Downgrade drops schema without CASCADE",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-003-database-foundation.md",
+      "source_location": "Decisions",
+      "status": "implemented_guard"
+    },
+    {
+      "id": "day2_unknown_objects",
+      "label": "Unexpected remaining objects must stop downgrade instead of being silently deleted",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-003-database-foundation.md",
+      "source_location": "Decisions",
+      "status": "accepted_rationale"
+    },
+    {
+      "id": "day2_validation",
+      "label": "12 unit cases and five live PostgreSQL tests passed on 2026-09-24",
+      "file_type": "document",
+      "source_file": "docs/DAY2_VALIDATION.md",
+      "source_location": "Checks and results",
+      "status": "reported_validation"
+    },
+    {
+      "id": "day2_migration_validation",
+      "label": "Test database upgrade/no-op/downgrade/re-upgrade passed; both databases finish at 0001",
+      "file_type": "document",
+      "source_file": "docs/DAY2_VALIDATION.md",
+      "source_location": "Checks and results",
+      "status": "reported_validation"
+    },
+    {
+      "id": "day2_health_exit_codes",
+      "label": "Health CLI exits 0 healthy, 1 connection failure, 2 invalid settings",
+      "file_type": "document",
+      "source_file": "docs/DAY2_VALIDATION.md",
+      "source_location": "Implemented and verified",
+      "status": "implemented_contract"
+    },
+    {
+      "id": "day2_next_models",
+      "label": "Day 3 planned Customer, Account, Card, Transaction and AuditEvent models",
+      "file_type": "document",
+      "source_file": "docs/TASK.md",
+      "source_location": "Day 3 \u2014 Core Domain Models",
+      "status": "planned_next_milestone"
+    },
+    {
+      "id": "day2_next_seed",
+      "label": "Day 3 planned exact numeric money, model migration and demo seed data",
+      "file_type": "document",
+      "source_file": "docs/TASK.md",
+      "source_location": "Day 3 \u2014 Core Domain Models",
+      "status": "planned_next_milestone"
+    },
+    {
+      "id": "day2_stopped_service",
+      "label": "Final recheck found PostgreSQL stopped while its container remained running",
+      "file_type": "document",
+      "source_file": "docs/DAY2_VALIDATION.md",
+      "source_location": "Implemented and verified",
+      "status": "historical_negative_path_verified"
+    },
+    {
+      "id": "day2_traceback_exposure",
+      "label": "Detailed pytest traceback exposed a local connection argument during stopped-service failure",
+      "file_type": "document",
+      "source_file": "docs/DAY2_VALIDATION.md",
+      "source_location": "Implemented and verified",
+      "status": "historical_exposure_remediated"
+    },
+    {
+      "id": "day2_password_rotation",
+      "label": "Both generated local database passwords rotated after traceback exposure",
+      "file_type": "document",
+      "source_file": "docs/DAY2_VALIDATION.md",
+      "source_location": "Implemented and verified",
+      "status": "reported_remediation_complete"
+    },
+    {
+      "id": "day2_concise_tracebacks",
+      "label": "Pytest configured for concise tracebacks after connection-argument exposure",
+      "file_type": "document",
+      "source_file": "docs/DAY2_VALIDATION.md",
+      "source_location": "Implemented and verified",
+      "status": "implemented_remediation"
+    },
+    {
+      "id": "day2_guarded_rotation",
+      "label": "--rotate-passwords requires both expected databases, roles and local environment files",
+      "file_type": "document",
+      "source_file": "docs/ENVIRONMENT.md",
+      "source_location": "Day 2 database setup",
+      "status": "implemented_recovery_guard"
+    },
+    {
+      "id": "day2_rotation_recovery",
+      "label": "Rotation changes passwords only; retain ignored .next files if post-update file replacement fails",
+      "file_type": "document",
+      "source_file": "docs/ENVIRONMENT.md",
+      "source_location": "Day 2 database setup",
+      "status": "accepted_recovery_strategy"
+    },
+    {
+      "id": "logging_config",
+      "label": "logging.config",
+      "file_type": "code",
+      "source_file": "migrations\\env.py",
+      "source_location": "L3"
+    },
+    {
+      "id": "alembic",
+      "label": "alembic",
+      "file_type": "code",
+      "source_file": "migrations\\env.py",
+      "source_location": "L5"
+    },
+    {
+      "id": "alembic_util",
+      "label": "alembic.util",
+      "file_type": "code",
+      "source_file": "migrations\\env.py",
+      "source_location": "L6"
+    },
+    {
+      "id": "sqlalchemy_exc",
+      "label": "sqlalchemy.exc",
+      "file_type": "code",
+      "source_file": "migrations\\env.py",
+      "source_location": "L7"
+    },
+    {
+      "id": "bankflow_config_settings",
+      "label": "bankflow.config.settings",
+      "file_type": "code",
+      "source_file": "migrations\\env.py",
+      "source_location": "L9"
+    },
+    {
+      "id": "bankflow_database_base",
+      "label": "bankflow.database.base",
+      "file_type": "code",
+      "source_file": "migrations\\env.py",
+      "source_location": "L10"
+    },
+    {
+      "id": "bankflow_database_connection",
+      "label": "bankflow.database.connection",
+      "file_type": "code",
+      "source_file": "migrations\\env.py",
+      "source_location": "L11"
+    },
+    {
+      "id": "sqlalchemy_schema",
+      "label": "sqlalchemy.schema",
+      "file_type": "code",
+      "source_file": "migrations\\versions\\0001_application_schema.py",
+      "source_location": "L8"
+    },
+    {
+      "id": "importlib",
+      "label": "importlib",
+      "file_type": "code",
+      "source_file": "D:\\GitHub\\miniprojects\\BankFlow\\scripts\\check_environment.py",
+      "source_location": "L3"
+    },
+    {
+      "id": "sys",
+      "label": "sys",
+      "file_type": "code",
+      "source_file": "D:\\GitHub\\miniprojects\\BankFlow\\scripts\\check_environment.py",
+      "source_location": "L4"
+    },
+    {
+      "id": "importlib_metadata",
+      "label": "importlib.metadata",
+      "file_type": "code",
+      "source_file": "D:\\GitHub\\miniprojects\\BankFlow\\scripts\\check_environment.py",
+      "source_location": "L5"
+    },
+    {
+      "id": "argparse",
+      "label": "argparse",
+      "file_type": "code",
+      "source_file": "scripts\\provision_local_database.py",
+      "source_location": "L3"
+    },
+    {
+      "id": "json",
+      "label": "json",
+      "file_type": "code",
+      "source_file": "scripts\\provision_local_database.py",
+      "source_location": "L4"
+    },
+    {
+      "id": "os",
+      "label": "os",
+      "file_type": "code",
+      "source_file": "scripts\\provision_local_database.py",
+      "source_location": "L5"
+    },
+    {
+      "id": "secrets",
+      "label": "secrets",
+      "file_type": "code",
+      "source_file": "scripts\\provision_local_database.py",
+      "source_location": "L6"
+    },
+    {
+      "id": "subprocess",
+      "label": "subprocess",
+      "file_type": "code",
+      "source_file": "scripts\\provision_local_database.py",
+      "source_location": "L7"
+    },
+    {
+      "id": "pathlib",
+      "label": "pathlib",
+      "file_type": "code",
+      "source_file": "scripts\\provision_local_database.py",
+      "source_location": "L8"
+    },
+    {
+      "id": "typing",
+      "label": "typing",
+      "file_type": "code",
+      "source_file": "src\\bankflow\\config\\settings.py",
+      "source_location": "L4"
+    },
+    {
+      "id": "pydantic",
+      "label": "pydantic",
+      "file_type": "code",
+      "source_file": "src\\bankflow\\config\\settings.py",
+      "source_location": "L6"
+    },
+    {
+      "id": "pydantic_settings",
+      "label": "pydantic.settings",
+      "file_type": "code",
+      "source_file": "src\\bankflow\\config\\settings.py",
+      "source_location": "L7"
+    },
+    {
+      "id": "sqlalchemy",
+      "label": "sqlalchemy",
+      "file_type": "code",
+      "source_file": "src\\bankflow\\config\\settings.py",
+      "source_location": "L8"
+    },
+    {
+      "id": "settings_settings_database_url",
+      "label": "settings.settings.database.url",
+      "file_type": "code",
+      "source_file": "src\\bankflow\\config\\settings.py",
+      "source_location": "L61"
+    },
+    {
+      "id": "sqlalchemy_orm",
+      "label": "sqlalchemy.orm",
+      "file_type": "code",
+      "source_file": "src\\bankflow\\database\\base.py",
+      "source_location": "L4"
+    },
+    {
+      "id": "dataclasses",
+      "label": "dataclasses",
+      "file_type": "code",
+      "source_file": "src\\bankflow\\database\\health.py",
+      "source_location": "L4"
+    },
+    {
+      "id": "collections_abc",
+      "label": "collections.abc",
+      "file_type": "code",
+      "source_file": "src\\bankflow\\database\\session.py",
+      "source_location": "L3"
+    },
+    {
+      "id": "contextlib",
+      "label": "contextlib",
+      "file_type": "code",
+      "source_file": "src\\bankflow\\database\\session.py",
+      "source_location": "L4"
+    },
+    {
+      "id": "pytest",
+      "label": "pytest",
+      "file_type": "code",
+      "source_file": "tests\\conftest.py",
+      "source_location": "L3"
+    },
+    {
+      "id": "uuid",
+      "label": "uuid",
+      "file_type": "code",
+      "source_file": "tests\\integration\\test_database.py",
+      "source_location": "L5"
+    },
+    {
+      "id": "alembic_config",
+      "label": "alembic.config",
+      "file_type": "code",
+      "source_file": "tests\\integration\\test_database.py",
+      "source_location": "L9"
+    },
+    {
+      "id": "bankflow_database_health",
+      "label": "bankflow.database.health",
+      "file_type": "code",
+      "source_file": "tests\\integration\\test_database.py",
+      "source_location": "L15"
+    },
+    {
+      "id": "bankflow_database_session",
+      "label": "bankflow.database.session",
+      "file_type": "code",
+      "source_file": "tests\\integration\\test_database.py",
+      "source_location": "L16"
+    },
+    {
+      "id": "unittest_mock",
+      "label": "unittest.mock",
+      "file_type": "code",
+      "source_file": "tests\\unit\\test_database_health.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "scripts_provision_local_database",
+      "label": "scripts.provision.local.database",
+      "file_type": "code",
+      "source_file": "tests\\unit\\test_provision_local_database.py",
+      "source_location": "L1"
     }
   ],
   "edges": [
@@ -7779,76 +8945,6 @@
       "weight": 1.0
     },
     {
-      "source": "day1checks",
-      "target": "no_app_tests",
-      "relation": "does_not_establish",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": null,
-      "weight": 1.0
-    },
-    {
-      "source": "day1",
-      "target": "day2",
-      "relation": "next_milestone",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/MEMORY.md",
-      "source_location": null,
-      "weight": 1.0
-    },
-    {
-      "source": "day2",
-      "target": "settings",
-      "relation": "plans",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/TASK.md",
-      "source_location": null,
-      "weight": 1.0
-    },
-    {
-      "source": "day2",
-      "target": "engine",
-      "relation": "plans",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/TASK.md",
-      "source_location": null,
-      "weight": 1.0
-    },
-    {
-      "source": "day2",
-      "target": "migration",
-      "relation": "plans",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/TASK.md",
-      "source_location": null,
-      "weight": 1.0
-    },
-    {
-      "source": "day2",
-      "target": "health",
-      "relation": "plans",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/TASK.md",
-      "source_location": null,
-      "weight": 1.0
-    },
-    {
-      "source": "day2",
-      "target": "preflight",
-      "relation": "requires",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/ENVIRONMENT.md",
-      "source_location": null,
-      "weight": 1.0
-    },
-    {
       "source": "datalab",
       "target": "docker",
       "relation": "observed_with",
@@ -7872,16 +8968,6 @@
       "source": "host",
       "target": "datalab",
       "relation": "will_connect_through_published_ports",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/ENVIRONMENT.md",
-      "source_location": null,
-      "weight": 1.0
-    },
-    {
-      "source": "datalab",
-      "target": "preflight",
-      "relation": "requires",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/ENVIRONMENT.md",
@@ -8903,28 +9989,6 @@
       "reason": "Installed client/tool matches the planned component; no connection or service is implemented."
     },
     {
-      "source": "dependency_sqlalchemy",
-      "target": "engine",
-      "relation": "enables_future_implementation",
-      "confidence": "INFERRED",
-      "confidence_score": 0.9,
-      "source_file": "docs/ENVIRONMENT.md",
-      "source_location": null,
-      "weight": 1.0,
-      "reason": "Installed client/tool matches the planned component; no connection or service is implemented."
-    },
-    {
-      "source": "dependency_alembic",
-      "target": "migration",
-      "relation": "enables_future_implementation",
-      "confidence": "INFERRED",
-      "confidence_score": 0.9,
-      "source_file": "docs/ENVIRONMENT.md",
-      "source_location": null,
-      "weight": 1.0,
-      "reason": "Installed client/tool matches the planned component; no connection or service is implemented."
-    },
-    {
       "source": "dependency_redis",
       "target": "redis",
       "relation": "enables_future_implementation",
@@ -9117,26 +10181,6 @@
       "weight": 1
     },
     {
-      "source": "preflight",
-      "target": "readiness_auth_boundary",
-      "relation": "must_establish_authenticated_access_beyond_readiness_responses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1,
-      "source_file": "docs/ENVIRONMENT.md",
-      "source_location": "Day 2 preflight",
-      "weight": 1
-    },
-    {
-      "source": "datalab",
-      "target": "readiness_auth_boundary",
-      "relation": "has_observed_readiness_limits",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1,
-      "source_file": "docs/ENVIRONMENT.md",
-      "source_location": "Windows application endpoints",
-      "weight": 1
-    },
-    {
       "source": "datalab",
       "target": "copied_medilake_paths",
       "relation": "retains_copied_helper_defaults",
@@ -9175,6 +10219,2587 @@
       "source_file": "docs/ENVIRONMENT.md",
       "source_location": "Inspected configuration",
       "weight": 1
+    },
+    {
+      "source": "migrations_env_py",
+      "target": "logging_config",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "migrations\\env.py",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "migrations_env_py",
+      "target": "alembic",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "migrations\\env.py",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "migrations_env_py",
+      "target": "alembic_util",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "migrations\\env.py",
+      "source_location": "L6",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "migrations_env_py",
+      "target": "sqlalchemy_exc",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "migrations\\env.py",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "migrations_env_py",
+      "target": "bankflow_config_settings",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "migrations\\env.py",
+      "source_location": "L9",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "migrations_env_py",
+      "target": "bankflow_database_base",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "migrations\\env.py",
+      "source_location": "L10",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "migrations_env_py",
+      "target": "bankflow_database_connection",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "migrations\\env.py",
+      "source_location": "L11",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "migrations_env_py",
+      "target": "env_include_name",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "migrations\\env.py",
+      "source_location": "L18",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "migrations_env_py",
+      "target": "env_run_migrations_offline",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "migrations\\env.py",
+      "source_location": "L23",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "migrations_env_py",
+      "target": "env_run_migrations_online",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "migrations\\env.py",
+      "source_location": "L35",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "env_rationale_1",
+      "target": "migrations_env_py",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "migrations\\env.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "env_rationale_19",
+      "target": "env_include_name",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "migrations\\env.py",
+      "source_location": "L19",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "migrations_versions_0001_application_schema_py",
+      "target": "alembic",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "migrations\\versions\\0001_application_schema.py",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "migrations_versions_0001_application_schema_py",
+      "target": "sqlalchemy_schema",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "migrations\\versions\\0001_application_schema.py",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "migrations_versions_0001_application_schema_py",
+      "target": "0001_application_schema_upgrade",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "migrations\\versions\\0001_application_schema.py",
+      "source_location": "L16",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "migrations_versions_0001_application_schema_py",
+      "target": "0001_application_schema_downgrade",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "migrations\\versions\\0001_application_schema.py",
+      "source_location": "L20",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "0001_application_schema_rationale_1",
+      "target": "migrations_versions_0001_application_schema_py",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "migrations\\versions\\0001_application_schema.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "d_github_miniprojects_bankflow_scripts_check_environment_py",
+      "target": "importlib",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "D:\\GitHub\\miniprojects\\BankFlow\\scripts\\check_environment.py",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "d_github_miniprojects_bankflow_scripts_check_environment_py",
+      "target": "sys",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "D:\\GitHub\\miniprojects\\BankFlow\\scripts\\check_environment.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "d_github_miniprojects_bankflow_scripts_check_environment_py",
+      "target": "importlib_metadata",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "D:\\GitHub\\miniprojects\\BankFlow\\scripts\\check_environment.py",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "d_github_miniprojects_bankflow_scripts_check_environment_py",
+      "target": "check_environment_main",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "D:\\GitHub\\miniprojects\\BankFlow\\scripts\\check_environment.py",
+      "source_location": "L19",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "check_environment_rationale_1",
+      "target": "d_github_miniprojects_bankflow_scripts_check_environment_py",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "D:\\GitHub\\miniprojects\\BankFlow\\scripts\\check_environment.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "check_environment_rationale_20",
+      "target": "check_environment_main",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "D:\\GitHub\\miniprojects\\BankFlow\\scripts\\check_environment.py",
+      "source_location": "L20",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "scripts_provision_local_database_py",
+      "target": "argparse",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts\\provision_local_database.py",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "scripts_provision_local_database_py",
+      "target": "json",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts\\provision_local_database.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "scripts_provision_local_database_py",
+      "target": "os",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts\\provision_local_database.py",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "scripts_provision_local_database_py",
+      "target": "secrets",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts\\provision_local_database.py",
+      "source_location": "L6",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "scripts_provision_local_database_py",
+      "target": "subprocess",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts\\provision_local_database.py",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "scripts_provision_local_database_py",
+      "target": "pathlib",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts\\provision_local_database.py",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "scripts_provision_local_database_py",
+      "target": "provision_local_database_render_environment",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts\\provision_local_database.py",
+      "source_location": "L17",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "scripts_provision_local_database_py",
+      "target": "provision_local_database_replace_environment_setting",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts\\provision_local_database.py",
+      "source_location": "L27",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "scripts_provision_local_database_py",
+      "target": "provision_local_database_admin_sql",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts\\provision_local_database.py",
+      "source_location": "L43",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "scripts_provision_local_database_py",
+      "target": "provision_local_database_verify_local_superuser",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts\\provision_local_database.py",
+      "source_location": "L77",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "scripts_provision_local_database_py",
+      "target": "provision_local_database_rotate_passwords",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts\\provision_local_database.py",
+      "source_location": "L82",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "scripts_provision_local_database_py",
+      "target": "provision_local_database_provision",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts\\provision_local_database.py",
+      "source_location": "L129",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "scripts_provision_local_database_py",
+      "target": "provision_local_database_main",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts\\provision_local_database.py",
+      "source_location": "L177",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "provision_local_database_verify_local_superuser",
+      "target": "provision_local_database_admin_sql",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts\\provision_local_database.py",
+      "source_location": "L78",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "provision_local_database_rotate_passwords",
+      "target": "provision_local_database_admin_sql",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts\\provision_local_database.py",
+      "source_location": "L88",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "provision_local_database_rotate_passwords",
+      "target": "provision_local_database_verify_local_superuser",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts\\provision_local_database.py",
+      "source_location": "L98",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "provision_local_database_rotate_passwords",
+      "target": "provision_local_database_replace_environment_setting",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts\\provision_local_database.py",
+      "source_location": "L105",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "provision_local_database_provision",
+      "target": "provision_local_database_admin_sql",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts\\provision_local_database.py",
+      "source_location": "L133",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "provision_local_database_provision",
+      "target": "provision_local_database_verify_local_superuser",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts\\provision_local_database.py",
+      "source_location": "L142",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "provision_local_database_provision",
+      "target": "provision_local_database_render_environment",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts\\provision_local_database.py",
+      "source_location": "L147",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "provision_local_database_main",
+      "target": "provision_local_database_rotate_passwords",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts\\provision_local_database.py",
+      "source_location": "L185",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "provision_local_database_main",
+      "target": "provision_local_database_provision",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts\\provision_local_database.py",
+      "source_location": "L185",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "provision_local_database_rationale_1",
+      "target": "scripts_provision_local_database_py",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts\\provision_local_database.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "provision_local_database_rationale_18",
+      "target": "provision_local_database_render_environment",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts\\provision_local_database.py",
+      "source_location": "L18",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "provision_local_database_rationale_28",
+      "target": "provision_local_database_replace_environment_setting",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts\\provision_local_database.py",
+      "source_location": "L28",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "provision_local_database_rationale_83",
+      "target": "provision_local_database_rotate_passwords",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts\\provision_local_database.py",
+      "source_location": "L83",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "init_rationale_1",
+      "target": "d_github_miniprojects_bankflow_src_bankflow_init_py",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "D:\\GitHub\\miniprojects\\BankFlow\\src\\bankflow\\__init__.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "init_rationale_1",
+      "target": "d_github_miniprojects_bankflow_src_bankflow_cache_init_py",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "D:\\GitHub\\miniprojects\\BankFlow\\src\\bankflow\\cache\\__init__.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "src_bankflow_config_settings_py",
+      "target": "pathlib",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\bankflow\\config\\settings.py",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "src_bankflow_config_settings_py",
+      "target": "typing",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\bankflow\\config\\settings.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "src_bankflow_config_settings_py",
+      "target": "pydantic",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\bankflow\\config\\settings.py",
+      "source_location": "L6",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "src_bankflow_config_settings_py",
+      "target": "pydantic_settings",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\bankflow\\config\\settings.py",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "src_bankflow_config_settings_py",
+      "target": "sqlalchemy",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\bankflow\\config\\settings.py",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "src_bankflow_config_settings_py",
+      "target": "settings_configurationerror",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\bankflow\\config\\settings.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "settings_configurationerror",
+      "target": "valueerror",
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\bankflow\\config\\settings.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "src_bankflow_config_settings_py",
+      "target": "settings_settings",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\bankflow\\config\\settings.py",
+      "source_location": "L18",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "settings_settings",
+      "target": "basesettings",
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\bankflow\\config\\settings.py",
+      "source_location": "L18",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "src_bankflow_config_settings_py",
+      "target": "settings_require_password",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\bankflow\\config\\settings.py",
+      "source_location": "L54",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "src_bankflow_config_settings_py",
+      "target": "settings_database_url",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\bankflow\\config\\settings.py",
+      "source_location": "L60",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "src_bankflow_config_settings_py",
+      "target": "settings_load_settings",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\bankflow\\config\\settings.py",
+      "source_location": "L72",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "settings_require_password",
+      "target": "valueerror",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\bankflow\\config\\settings.py",
+      "source_location": "L56",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "settings_load_settings",
+      "target": "settings_settings",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\bankflow\\config\\settings.py",
+      "source_location": "L75",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "settings_load_settings",
+      "target": "settings_configurationerror",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\bankflow\\config\\settings.py",
+      "source_location": "L78",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "settings_rationale_1",
+      "target": "src_bankflow_config_settings_py",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\bankflow\\config\\settings.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "settings_rationale_15",
+      "target": "settings_configurationerror",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\bankflow\\config\\settings.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "settings_rationale_19",
+      "target": "settings_settings",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\bankflow\\config\\settings.py",
+      "source_location": "L19",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "settings_rationale_61",
+      "target": "settings_settings_database_url",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\bankflow\\config\\settings.py",
+      "source_location": "L61",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "settings_rationale_73",
+      "target": "settings_load_settings",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\bankflow\\config\\settings.py",
+      "source_location": "L73",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "init_rationale_1",
+      "target": "d_github_miniprojects_bankflow_src_bankflow_config_init_py",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "D:\\GitHub\\miniprojects\\BankFlow\\src\\bankflow\\config\\__init__.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "src_bankflow_database_base_py",
+      "target": "sqlalchemy",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\bankflow\\database\\base.py",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "src_bankflow_database_base_py",
+      "target": "sqlalchemy_orm",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\bankflow\\database\\base.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "src_bankflow_database_base_py",
+      "target": "base_base",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\bankflow\\database\\base.py",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "base_base",
+      "target": "declarativebase",
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\bankflow\\database\\base.py",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "base_rationale_1",
+      "target": "src_bankflow_database_base_py",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\bankflow\\database\\base.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "src_bankflow_database_connection_py",
+      "target": "sqlalchemy",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\bankflow\\database\\connection.py",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "src_bankflow_database_connection_py",
+      "target": "bankflow_config_settings",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\bankflow\\database\\connection.py",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "src_bankflow_database_connection_py",
+      "target": "connection_create_database_engine",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\bankflow\\database\\connection.py",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "connection_rationale_1",
+      "target": "src_bankflow_database_connection_py",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\bankflow\\database\\connection.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "connection_rationale_9",
+      "target": "connection_create_database_engine",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\bankflow\\database\\connection.py",
+      "source_location": "L9",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "src_bankflow_database_health_py",
+      "target": "argparse",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\bankflow\\database\\health.py",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "src_bankflow_database_health_py",
+      "target": "dataclasses",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\bankflow\\database\\health.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "src_bankflow_database_health_py",
+      "target": "sqlalchemy",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\bankflow\\database\\health.py",
+      "source_location": "L6",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "src_bankflow_database_health_py",
+      "target": "sqlalchemy_exc",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\bankflow\\database\\health.py",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "src_bankflow_database_health_py",
+      "target": "bankflow_config_settings",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\bankflow\\database\\health.py",
+      "source_location": "L9",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "src_bankflow_database_health_py",
+      "target": "bankflow_database_connection",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\bankflow\\database\\health.py",
+      "source_location": "L10",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "src_bankflow_database_health_py",
+      "target": "health_databasehealth",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\bankflow\\database\\health.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "src_bankflow_database_health_py",
+      "target": "health_check_database_health",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\bankflow\\database\\health.py",
+      "source_location": "L19",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "src_bankflow_database_health_py",
+      "target": "health_main",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\bankflow\\database\\health.py",
+      "source_location": "L33",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "health_check_database_health",
+      "target": "health_databasehealth",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\bankflow\\database\\health.py",
+      "source_location": "L24",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "health_main",
+      "target": "health_check_database_health",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\bankflow\\database\\health.py",
+      "source_location": "L44",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "health_rationale_1",
+      "target": "src_bankflow_database_health_py",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\bankflow\\database\\health.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "health_rationale_20",
+      "target": "health_check_database_health",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\bankflow\\database\\health.py",
+      "source_location": "L20",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "src_bankflow_database_session_py",
+      "target": "collections_abc",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\bankflow\\database\\session.py",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "src_bankflow_database_session_py",
+      "target": "contextlib",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\bankflow\\database\\session.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "src_bankflow_database_session_py",
+      "target": "sqlalchemy",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\bankflow\\database\\session.py",
+      "source_location": "L6",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "src_bankflow_database_session_py",
+      "target": "sqlalchemy_orm",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\bankflow\\database\\session.py",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "src_bankflow_database_session_py",
+      "target": "session_create_session_factory",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\bankflow\\database\\session.py",
+      "source_location": "L10",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "src_bankflow_database_session_py",
+      "target": "session_session_scope",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\bankflow\\database\\session.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "session_rationale_1",
+      "target": "src_bankflow_database_session_py",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\bankflow\\database\\session.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "session_rationale_16",
+      "target": "session_session_scope",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\bankflow\\database\\session.py",
+      "source_location": "L16",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "init_rationale_1",
+      "target": "d_github_miniprojects_bankflow_src_bankflow_database_init_py",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "D:\\GitHub\\miniprojects\\BankFlow\\src\\bankflow\\database\\__init__.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "init_rationale_1",
+      "target": "d_github_miniprojects_bankflow_src_bankflow_messaging_init_py",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "D:\\GitHub\\miniprojects\\BankFlow\\src\\bankflow\\messaging\\__init__.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "init_rationale_1",
+      "target": "d_github_miniprojects_bankflow_src_bankflow_models_init_py",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "D:\\GitHub\\miniprojects\\BankFlow\\src\\bankflow\\models\\__init__.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "init_rationale_1",
+      "target": "d_github_miniprojects_bankflow_src_bankflow_repositories_init_py",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "D:\\GitHub\\miniprojects\\BankFlow\\src\\bankflow\\repositories\\__init__.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "init_rationale_1",
+      "target": "d_github_miniprojects_bankflow_src_bankflow_schemas_init_py",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "D:\\GitHub\\miniprojects\\BankFlow\\src\\bankflow\\schemas\\__init__.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "init_rationale_1",
+      "target": "d_github_miniprojects_bankflow_src_bankflow_services_init_py",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "D:\\GitHub\\miniprojects\\BankFlow\\src\\bankflow\\services\\__init__.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "init_rationale_1",
+      "target": "d_github_miniprojects_bankflow_src_bankflow_utils_init_py",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "D:\\GitHub\\miniprojects\\BankFlow\\src\\bankflow\\utils\\__init__.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "tests_conftest_py",
+      "target": "pytest",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\conftest.py",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "tests_conftest_py",
+      "target": "bankflow_config_settings",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\conftest.py",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "tests_conftest_py",
+      "target": "conftest_isolate_settings_environment",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\conftest.py",
+      "source_location": "L9",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "conftest_rationale_1",
+      "target": "tests_conftest_py",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\conftest.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "tests_integration_test_database_py",
+      "target": "os",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\integration\\test_database.py",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "tests_integration_test_database_py",
+      "target": "pathlib",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\integration\\test_database.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "tests_integration_test_database_py",
+      "target": "uuid",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\integration\\test_database.py",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "tests_integration_test_database_py",
+      "target": "pytest",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\integration\\test_database.py",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "tests_integration_test_database_py",
+      "target": "alembic",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\integration\\test_database.py",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "tests_integration_test_database_py",
+      "target": "alembic_config",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\integration\\test_database.py",
+      "source_location": "L9",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "tests_integration_test_database_py",
+      "target": "pydantic",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\integration\\test_database.py",
+      "source_location": "L10",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "tests_integration_test_database_py",
+      "target": "sqlalchemy",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\integration\\test_database.py",
+      "source_location": "L11",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "tests_integration_test_database_py",
+      "target": "bankflow_config_settings",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\integration\\test_database.py",
+      "source_location": "L13",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "tests_integration_test_database_py",
+      "target": "bankflow_database_connection",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\integration\\test_database.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "tests_integration_test_database_py",
+      "target": "bankflow_database_health",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\integration\\test_database.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "tests_integration_test_database_py",
+      "target": "bankflow_database_session",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\integration\\test_database.py",
+      "source_location": "L16",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "tests_integration_test_database_py",
+      "target": "test_database_settings",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\integration\\test_database.py",
+      "source_location": "L28",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "tests_integration_test_database_py",
+      "target": "test_database_engine",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\integration\\test_database.py",
+      "source_location": "L40",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "tests_integration_test_database_py",
+      "target": "test_database_test_real_postgres_health_and_role_privileges",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\integration\\test_database.py",
+      "source_location": "L46",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "tests_integration_test_database_py",
+      "target": "test_database_test_bad_credentials_are_reported_without_driver_details",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\integration\\test_database.py",
+      "source_location": "L57",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "tests_integration_test_database_py",
+      "target": "test_database_test_session_commits_success_and_rolls_back_failed_work",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\integration\\test_database.py",
+      "source_location": "L69",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "tests_integration_test_database_py",
+      "target": "test_database_test_migration_upgrade_downgrade_and_reupgrade",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\integration\\test_database.py",
+      "source_location": "L90",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "tests_integration_test_database_py",
+      "target": "test_database_test_test_role_cannot_connect_to_application_database",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\integration\\test_database.py",
+      "source_location": "L110",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "test_database_rationale_1",
+      "target": "tests_integration_test_database_py",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\integration\\test_database.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "tests_unit_test_database_health_py",
+      "target": "unittest_mock",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\unit\\test_database_health.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "tests_unit_test_database_health_py",
+      "target": "sqlalchemy_exc",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\unit\\test_database_health.py",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "tests_unit_test_database_health_py",
+      "target": "bankflow_database_health",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\unit\\test_database_health.py",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "tests_unit_test_database_health_py",
+      "target": "test_database_health_test_health_failure_does_not_expose_driver_message",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\unit\\test_database_health.py",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "tests_unit_test_provision_local_database_py",
+      "target": "scripts_provision_local_database",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\unit\\test_provision_local_database.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "tests_unit_test_provision_local_database_py",
+      "target": "test_provision_local_database_test_password_rotation_preserves_other_local_settings_and_line_endings",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\unit\\test_provision_local_database.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "tests_unit_test_settings_py",
+      "target": "pytest",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\unit\\test_settings.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "tests_unit_test_settings_py",
+      "target": "pydantic",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\unit\\test_settings.py",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "tests_unit_test_settings_py",
+      "target": "bankflow_config_settings",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\unit\\test_settings.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "tests_unit_test_settings_py",
+      "target": "test_settings_test_environment_overrides_file_and_arguments_override_environment",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\unit\\test_settings.py",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "tests_unit_test_settings_py",
+      "target": "test_settings_test_blank_password_is_rejected",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\unit\\test_settings.py",
+      "source_location": "L16",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "tests_unit_test_settings_py",
+      "target": "test_settings_test_bad_port_is_rejected",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\unit\\test_settings.py",
+      "source_location": "L22",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "tests_unit_test_settings_py",
+      "target": "test_settings_test_missing_password_has_safe_actionable_message",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\unit\\test_settings.py",
+      "source_location": "L27",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "tests_unit_test_settings_py",
+      "target": "test_settings_test_unknown_dotenv_setting_and_bad_secret_type_do_not_leak_values",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\unit\\test_settings.py",
+      "source_location": "L32",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "tests_unit_test_settings_py",
+      "target": "test_settings_test_url_preserves_special_characters_without_exposing_password",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\unit\\test_settings.py",
+      "source_location": "L42",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "tests_unit_test_settings_py",
+      "target": "test_settings_test_invalid_secret_input_is_hidden_in_validation_message",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests\\unit\\test_settings.py",
+      "source_location": "L51",
+      "weight": 1.0,
+      "confidence_score": 1.0
+    },
+    {
+      "source": "env_rationale_1",
+      "target": "settings_configurationerror",
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "migrations\\env.py",
+      "source_location": "L9",
+      "weight": 0.8,
+      "confidence_score": 0.7
+    },
+    {
+      "source": "env_rationale_19",
+      "target": "settings_configurationerror",
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "migrations\\env.py",
+      "source_location": "L9",
+      "weight": 0.8,
+      "confidence_score": 0.7
+    },
+    {
+      "source": "env_rationale_1",
+      "target": "base_base",
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "migrations\\env.py",
+      "source_location": "L10",
+      "weight": 0.8,
+      "confidence_score": 0.7
+    },
+    {
+      "source": "env_rationale_19",
+      "target": "base_base",
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "migrations\\env.py",
+      "source_location": "L10",
+      "weight": 0.8,
+      "confidence_score": 0.7
+    },
+    {
+      "source": "connection_rationale_1",
+      "target": "settings_settings",
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src\\bankflow\\database\\connection.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "confidence_score": 0.7
+    },
+    {
+      "source": "connection_rationale_9",
+      "target": "settings_settings",
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src\\bankflow\\database\\connection.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "confidence_score": 0.7
+    },
+    {
+      "source": "health_databasehealth",
+      "target": "settings_configurationerror",
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src\\bankflow\\database\\health.py",
+      "source_location": "L9",
+      "weight": 0.8,
+      "confidence_score": 0.7
+    },
+    {
+      "source": "health_rationale_1",
+      "target": "settings_configurationerror",
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src\\bankflow\\database\\health.py",
+      "source_location": "L9",
+      "weight": 0.8,
+      "confidence_score": 0.7
+    },
+    {
+      "source": "health_rationale_20",
+      "target": "settings_configurationerror",
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src\\bankflow\\database\\health.py",
+      "source_location": "L9",
+      "weight": 0.8,
+      "confidence_score": 0.7
+    },
+    {
+      "source": "conftest_rationale_1",
+      "target": "settings_settings",
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests\\conftest.py",
+      "source_location": "L5",
+      "weight": 0.8,
+      "confidence_score": 0.7
+    },
+    {
+      "source": "env_run_migrations_online",
+      "target": "settings_load_settings",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "migrations\\env.py",
+      "source_location": "L37",
+      "weight": 1.0
+    },
+    {
+      "source": "env_run_migrations_online",
+      "target": "connection_create_database_engine",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "migrations\\env.py",
+      "source_location": "L40",
+      "weight": 1.0
+    },
+    {
+      "source": "provision_local_database_replace_environment_setting",
+      "target": "valueerror",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "scripts\\provision_local_database.py",
+      "source_location": "L39",
+      "weight": 1.0
+    },
+    {
+      "source": "health_main",
+      "target": "settings_load_settings",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src\\bankflow\\database\\health.py",
+      "source_location": "L38",
+      "weight": 1.0
+    },
+    {
+      "source": "health_main",
+      "target": "connection_create_database_engine",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src\\bankflow\\database\\health.py",
+      "source_location": "L42",
+      "weight": 1.0
+    },
+    {
+      "source": "test_database_settings",
+      "target": "settings_load_settings",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests\\integration\\test_database.py",
+      "source_location": "L29",
+      "weight": 1.0
+    },
+    {
+      "source": "test_database_engine",
+      "target": "connection_create_database_engine",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests\\integration\\test_database.py",
+      "source_location": "L41",
+      "weight": 1.0
+    },
+    {
+      "source": "test_database_test_real_postgres_health_and_role_privileges",
+      "target": "health_check_database_health",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests\\integration\\test_database.py",
+      "source_location": "L47",
+      "weight": 1.0
+    },
+    {
+      "source": "test_database_test_bad_credentials_are_reported_without_driver_details",
+      "target": "connection_create_database_engine",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests\\integration\\test_database.py",
+      "source_location": "L59",
+      "weight": 1.0
+    },
+    {
+      "source": "test_database_test_bad_credentials_are_reported_without_driver_details",
+      "target": "health_check_database_health",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests\\integration\\test_database.py",
+      "source_location": "L61",
+      "weight": 1.0
+    },
+    {
+      "source": "test_database_test_session_commits_success_and_rolls_back_failed_work",
+      "target": "session_create_session_factory",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests\\integration\\test_database.py",
+      "source_location": "L73",
+      "weight": 1.0
+    },
+    {
+      "source": "test_database_test_session_commits_success_and_rolls_back_failed_work",
+      "target": "session_session_scope",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests\\integration\\test_database.py",
+      "source_location": "L75",
+      "weight": 1.0
+    },
+    {
+      "source": "test_database_test_migration_upgrade_downgrade_and_reupgrade",
+      "target": "0001_application_schema_upgrade",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests\\integration\\test_database.py",
+      "source_location": "L93",
+      "weight": 1.0
+    },
+    {
+      "source": "test_database_test_migration_upgrade_downgrade_and_reupgrade",
+      "target": "0001_application_schema_downgrade",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests\\integration\\test_database.py",
+      "source_location": "L104",
+      "weight": 1.0
+    },
+    {
+      "source": "test_database_test_test_role_cannot_connect_to_application_database",
+      "target": "connection_create_database_engine",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests\\integration\\test_database.py",
+      "source_location": "L112",
+      "weight": 1.0
+    },
+    {
+      "source": "test_database_test_test_role_cannot_connect_to_application_database",
+      "target": "health_check_database_health",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests\\integration\\test_database.py",
+      "source_location": "L114",
+      "weight": 1.0
+    },
+    {
+      "source": "test_database_health_test_health_failure_does_not_expose_driver_message",
+      "target": "health_check_database_health",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests\\unit\\test_database_health.py",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "test_provision_local_database_test_password_rotation_preserves_other_local_settings_and_line_endings",
+      "target": "provision_local_database_replace_environment_setting",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests\\unit\\test_provision_local_database.py",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "test_settings_test_environment_overrides_file_and_arguments_override_environment",
+      "target": "settings_load_settings",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests\\unit\\test_settings.py",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "test_settings_test_environment_overrides_file_and_arguments_override_environment",
+      "target": "test_database_settings",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests\\unit\\test_settings.py",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "test_settings_test_blank_password_is_rejected",
+      "target": "test_database_settings",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests\\unit\\test_settings.py",
+      "source_location": "L18",
+      "weight": 1.0
+    },
+    {
+      "source": "test_settings_test_bad_port_is_rejected",
+      "target": "test_database_settings",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests\\unit\\test_settings.py",
+      "source_location": "L24",
+      "weight": 1.0
+    },
+    {
+      "source": "test_settings_test_missing_password_has_safe_actionable_message",
+      "target": "settings_load_settings",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests\\unit\\test_settings.py",
+      "source_location": "L29",
+      "weight": 1.0
+    },
+    {
+      "source": "test_settings_test_unknown_dotenv_setting_and_bad_secret_type_do_not_leak_values",
+      "target": "settings_load_settings",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests\\unit\\test_settings.py",
+      "source_location": "L36",
+      "weight": 1.0
+    },
+    {
+      "source": "test_settings_test_url_preserves_special_characters_without_exposing_password",
+      "target": "test_database_settings",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests\\unit\\test_settings.py",
+      "source_location": "L44",
+      "weight": 1.0
+    },
+    {
+      "source": "test_settings_test_invalid_secret_input_is_hidden_in_validation_message",
+      "target": "test_database_settings",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests\\unit\\test_settings.py",
+      "source_location": "L53",
+      "weight": 1.0
+    },
+    {
+      "source": "day2",
+      "target": "settings",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/TASK.md",
+      "source_location": "Day 2 \u2014 Configuration and Database Foundation",
+      "weight": 1.0
+    },
+    {
+      "source": "day2",
+      "target": "engine",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/TASK.md",
+      "source_location": "Day 2 \u2014 Configuration and Database Foundation",
+      "weight": 1.0
+    },
+    {
+      "source": "day2",
+      "target": "migration",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/TASK.md",
+      "source_location": "Day 2 \u2014 Configuration and Database Foundation",
+      "weight": 1.0
+    },
+    {
+      "source": "day2",
+      "target": "health",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/TASK.md",
+      "source_location": "Day 2 \u2014 Configuration and Database Foundation",
+      "weight": 1.0
+    },
+    {
+      "source": "bankflow",
+      "target": "day2",
+      "relation": "includes_completed_milestone",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "Introduction",
+      "weight": 1.0
+    },
+    {
+      "source": "day1",
+      "target": "day2",
+      "relation": "precedes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/TASK.md",
+      "source_location": "Day 2 \u2014 Configuration and Database Foundation",
+      "weight": 1.0
+    },
+    {
+      "source": "day2",
+      "target": "day2_next_models",
+      "relation": "next_milestone",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/TASK.md",
+      "source_location": "Day 3 \u2014 Core Domain Models",
+      "weight": 1.0
+    },
+    {
+      "source": "day2_next_models",
+      "target": "day2_next_seed",
+      "relation": "requires",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/TASK.md",
+      "source_location": "Day 3 \u2014 Core Domain Models",
+      "weight": 1.0
+    },
+    {
+      "source": "day2_next_models",
+      "target": "money",
+      "relation": "requires_exact_numeric_money",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/TASK.md",
+      "source_location": "Day 3 \u2014 Core Domain Models",
+      "weight": 1.0
+    },
+    {
+      "source": "day2",
+      "target": "preflight",
+      "relation": "verifies",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/ENVIRONMENT.md",
+      "source_location": "Day 2 database setup",
+      "weight": 1.0
+    },
+    {
+      "source": "datalab",
+      "target": "dedicated_db",
+      "relation": "hosts",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/ENVIRONMENT.md",
+      "source_location": "Windows application endpoints",
+      "weight": 1.0
+    },
+    {
+      "source": "datalab",
+      "target": "day2_test_database",
+      "relation": "hosts",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/ENVIRONMENT.md",
+      "source_location": "Windows application endpoints",
+      "weight": 1.0
+    },
+    {
+      "source": "datalab",
+      "target": "readiness_auth_boundary",
+      "relation": "has_service_validation_status",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/ENVIRONMENT.md",
+      "source_location": "Windows application endpoints",
+      "weight": 1.0
+    },
+    {
+      "source": "day2",
+      "target": "day2_validation",
+      "relation": "validated_by",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DAY2_VALIDATION.md",
+      "source_location": "Checks and results",
+      "weight": 1.0
+    },
+    {
+      "source": "day2_validation",
+      "target": "no_app_tests",
+      "relation": "excludes_business_rule_validation",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DAY2_VALIDATION.md",
+      "source_location": "Checks and results",
+      "weight": 1.0
+    },
+    {
+      "source": "day2_validation",
+      "target": "day2_migration_validation",
+      "relation": "includes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DAY2_VALIDATION.md",
+      "source_location": "Checks and results",
+      "weight": 1.0
+    },
+    {
+      "source": "day2_test_guard",
+      "target": "day2_test_database",
+      "relation": "requires",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DAY2_VALIDATION.md",
+      "source_location": "Checks and results",
+      "weight": 1.0
+    },
+    {
+      "source": "day2_test_guard",
+      "target": "day2_app_protection",
+      "relation": "enforces",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/architecture/ADR-003-database-foundation.md",
+      "source_location": "Decisions",
+      "weight": 1.0
+    },
+    {
+      "source": "day2_app_protection",
+      "target": "day2_test_database",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/architecture/ADR-003-database-foundation.md",
+      "source_location": "Decisions",
+      "weight": 1.0
+    },
+    {
+      "source": "day2_role_isolation",
+      "target": "dedicated_db",
+      "relation": "restricts_access_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/architecture/ADR-003-database-foundation.md",
+      "source_location": "Decisions",
+      "weight": 1.0
+    },
+    {
+      "source": "day2_role_isolation",
+      "target": "day2_test_database",
+      "relation": "restricts_access_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/architecture/ADR-003-database-foundation.md",
+      "source_location": "Decisions",
+      "weight": 1.0
+    },
+    {
+      "source": "day2_validation",
+      "target": "day2_role_isolation",
+      "relation": "tests",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DAY2_VALIDATION.md",
+      "source_location": "Checks and results",
+      "weight": 1.0
+    },
+    {
+      "source": "day2_local_owner_limit",
+      "target": "day2_role_isolation",
+      "relation": "qualifies_scope_of",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/architecture/ADR-003-database-foundation.md",
+      "source_location": "Decisions",
+      "weight": 1.0
+    },
+    {
+      "source": "day2_socket_admin",
+      "target": "day2_role_isolation",
+      "relation": "provisions",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/architecture/ADR-003-database-foundation.md",
+      "source_location": "Decisions",
+      "weight": 1.0
+    },
+    {
+      "source": "day2_socket_admin",
+      "target": "day2_setup_privilege_check",
+      "relation": "requires",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DAY2_VALIDATION.md",
+      "source_location": "Implemented and verified",
+      "weight": 1.0
+    },
+    {
+      "source": "day2_admin_attempt",
+      "target": "day2_setup_privilege_check",
+      "relation": "motivates",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DAY2_VALIDATION.md",
+      "source_location": "Implemented and verified",
+      "weight": 1.0
+    },
+    {
+      "source": "day2_provision_guard",
+      "target": "dedicated_db",
+      "relation": "prevents_overwriting",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/architecture/ADR-003-database-foundation.md",
+      "source_location": "Decisions",
+      "weight": 1.0
+    },
+    {
+      "source": "day2_provision_guard",
+      "target": "day2_secret_storage",
+      "relation": "prevents_overwriting",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/architecture/ADR-003-database-foundation.md",
+      "source_location": "Decisions",
+      "weight": 1.0
+    },
+    {
+      "source": "day2_preserve_credentials",
+      "target": "day2_secret_storage",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/ENVIRONMENT.md",
+      "source_location": "Day 2 database setup",
+      "weight": 1.0
+    },
+    {
+      "source": "settings",
+      "target": "day2_settings_precedence",
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/architecture/ADR-003-database-foundation.md",
+      "source_location": "Decisions",
+      "weight": 1.0
+    },
+    {
+      "source": "settings",
+      "target": "day2_url_object",
+      "relation": "builds",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/architecture/ADR-003-database-foundation.md",
+      "source_location": "Decisions",
+      "weight": 1.0
+    },
+    {
+      "source": "settings",
+      "target": "day2_error_redaction",
+      "relation": "applies",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DAY2_VALIDATION.md",
+      "source_location": "Implemented and verified",
+      "weight": 1.0
+    },
+    {
+      "source": "settings",
+      "target": "day2_secret_storage",
+      "relation": "loads",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/ENVIRONMENT.md",
+      "source_location": "Day 2 database setup",
+      "weight": 1.0
+    },
+    {
+      "source": "engine",
+      "target": "day2_connection_controls",
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DAY2_VALIDATION.md",
+      "source_location": "Implemented and verified",
+      "weight": 1.0
+    },
+    {
+      "source": "engine",
+      "target": "day2_engine_lifecycle",
+      "relation": "follows",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/architecture/ADR-003-database-foundation.md",
+      "source_location": "Decisions",
+      "weight": 1.0
+    },
+    {
+      "source": "engine",
+      "target": "day2_transaction_scope",
+      "relation": "provides",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DAY2_VALIDATION.md",
+      "source_location": "Implemented and verified",
+      "weight": 1.0
+    },
+    {
+      "source": "day2_service_boundary",
+      "target": "day2_transaction_scope",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/architecture/ADR-003-database-foundation.md",
+      "source_location": "Decisions",
+      "weight": 1.0
+    },
+    {
+      "source": "services",
+      "target": "day2_transaction_scope",
+      "relation": "will_wrap_units_of_work_with",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/architecture/ADR-003-database-foundation.md",
+      "source_location": "Decisions",
+      "weight": 1.0
+    },
+    {
+      "source": "repo",
+      "target": "day2_service_boundary",
+      "relation": "must_follow",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/architecture/ADR-003-database-foundation.md",
+      "source_location": "Decisions",
+      "weight": 1.0
+    },
+    {
+      "source": "day2_transaction_scope",
+      "target": "atomic",
+      "relation": "supports_future_implementation",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "docs/MEMORY.md",
+      "source_location": "22. Next Actions",
+      "weight": 1.0,
+      "reason": "A shared commit/rollback boundary is a prerequisite for planned atomic balance and transaction writes; no banking atomicity is claimed yet."
+    },
+    {
+      "source": "day2_validation",
+      "target": "day2_transaction_scope",
+      "relation": "tests_commit_and_rollback",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DAY2_VALIDATION.md",
+      "source_location": "Checks and results",
+      "weight": 1.0
+    },
+    {
+      "source": "health",
+      "target": "day2_health_exit_codes",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DAY2_VALIDATION.md",
+      "source_location": "Implemented and verified",
+      "weight": 1.0
+    },
+    {
+      "source": "health",
+      "target": "day2_error_redaction",
+      "relation": "applies",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/architecture/ADR-003-database-foundation.md",
+      "source_location": "Consequences",
+      "weight": 1.0
+    },
+    {
+      "source": "migration",
+      "target": "day2_error_redaction",
+      "relation": "applies",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/architecture/ADR-003-database-foundation.md",
+      "source_location": "Consequences",
+      "weight": 1.0
+    },
+    {
+      "source": "migration",
+      "target": "day2_schema",
+      "relation": "creates",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DAY2_VALIDATION.md",
+      "source_location": "Implemented and verified",
+      "weight": 1.0
+    },
+    {
+      "source": "migration",
+      "target": "day2_public_version",
+      "relation": "records_revision_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/architecture/ADR-003-database-foundation.md",
+      "source_location": "Decisions",
+      "weight": 1.0
+    },
+    {
+      "source": "day2_bootstrap_rationale",
+      "target": "day2_public_version",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/architecture/ADR-003-database-foundation.md",
+      "source_location": "Decisions",
+      "weight": 1.0
+    },
+    {
+      "source": "day2_base_metadata",
+      "target": "day2_schema",
+      "relation": "targets",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/architecture/ADR-003-database-foundation.md",
+      "source_location": "Decisions",
+      "weight": 1.0
+    },
+    {
+      "source": "migration",
+      "target": "day2_autogenerate",
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/architecture/ADR-003-database-foundation.md",
+      "source_location": "Decisions",
+      "weight": 1.0
+    },
+    {
+      "source": "day2_next_models",
+      "target": "day2_base_metadata",
+      "relation": "will_register_with",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/architecture/ADR-003-database-foundation.md",
+      "source_location": "Decisions",
+      "weight": 1.0
+    },
+    {
+      "source": "migration",
+      "target": "day2_no_cascade",
+      "relation": "uses_on_downgrade",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/architecture/ADR-003-database-foundation.md",
+      "source_location": "Decisions",
+      "weight": 1.0
+    },
+    {
+      "source": "day2_unknown_objects",
+      "target": "day2_no_cascade",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/architecture/ADR-003-database-foundation.md",
+      "source_location": "Decisions",
+      "weight": 1.0
+    },
+    {
+      "source": "day2_migration_validation",
+      "target": "day2_test_guard",
+      "relation": "requires",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DAY2_VALIDATION.md",
+      "source_location": "Checks and results",
+      "weight": 1.0
+    },
+    {
+      "source": "day2_migration_validation",
+      "target": "migration",
+      "relation": "verifies",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DAY2_VALIDATION.md",
+      "source_location": "Checks and results",
+      "weight": 1.0
+    },
+    {
+      "source": "postgres",
+      "target": "dedicated_db",
+      "relation": "backed_by",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/ENVIRONMENT.md",
+      "source_location": "Day 2 database setup",
+      "weight": 1.0
+    },
+    {
+      "source": "dependency_sqlalchemy",
+      "target": "engine",
+      "relation": "supports_implementation",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DAY2_VALIDATION.md",
+      "source_location": "Implemented and verified",
+      "weight": 1.0
+    },
+    {
+      "source": "dependency_alembic",
+      "target": "migration",
+      "relation": "supports_implementation",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DAY2_VALIDATION.md",
+      "source_location": "Implemented and verified",
+      "weight": 1.0
+    },
+    {
+      "source": "dependency_psycopg",
+      "target": "engine",
+      "relation": "provides_driver",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DAY2_VALIDATION.md",
+      "source_location": "Implemented and verified",
+      "weight": 1.0
+    },
+    {
+      "source": "dependency_pydantic_settings",
+      "target": "settings",
+      "relation": "supports_implementation",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DAY2_VALIDATION.md",
+      "source_location": "Implemented and verified",
+      "weight": 1.0
+    },
+    {
+      "source": "day2",
+      "target": "redis",
+      "relation": "leaves_integration_pending",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DAY2_VALIDATION.md",
+      "source_location": "Checks and results",
+      "weight": 1.0
+    },
+    {
+      "source": "day2",
+      "target": "kafka",
+      "relation": "leaves_integration_pending",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DAY2_VALIDATION.md",
+      "source_location": "Checks and results",
+      "weight": 1.0
+    },
+    {
+      "source": "day2_validation",
+      "target": "day2_stopped_service",
+      "relation": "includes_negative_path",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DAY2_VALIDATION.md",
+      "source_location": "Implemented and verified",
+      "weight": 1.0
+    },
+    {
+      "source": "day2_stopped_service",
+      "target": "health",
+      "relation": "confirmed_safe_failure_message",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DAY2_VALIDATION.md",
+      "source_location": "Implemented and verified",
+      "weight": 1.0
+    },
+    {
+      "source": "day2_stopped_service",
+      "target": "day2_traceback_exposure",
+      "relation": "revealed",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DAY2_VALIDATION.md",
+      "source_location": "Implemented and verified",
+      "weight": 1.0
+    },
+    {
+      "source": "day2_traceback_exposure",
+      "target": "day2_password_rotation",
+      "relation": "motivated",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DAY2_VALIDATION.md",
+      "source_location": "Implemented and verified",
+      "weight": 1.0
+    },
+    {
+      "source": "day2_traceback_exposure",
+      "target": "day2_concise_tracebacks",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DAY2_VALIDATION.md",
+      "source_location": "Implemented and verified",
+      "weight": 1.0
+    },
+    {
+      "source": "day2_password_rotation",
+      "target": "day2_secret_storage",
+      "relation": "refreshes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DAY2_VALIDATION.md",
+      "source_location": "Implemented and verified",
+      "weight": 1.0
+    },
+    {
+      "source": "day2_guarded_rotation",
+      "target": "day2_password_rotation",
+      "relation": "provides_repeatable_recovery",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DAY2_VALIDATION.md",
+      "source_location": "Implemented and verified",
+      "weight": 1.0
+    },
+    {
+      "source": "day2_guarded_rotation",
+      "target": "dedicated_db",
+      "relation": "requires_existing_resource",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/ENVIRONMENT.md",
+      "source_location": "Day 2 database setup",
+      "weight": 1.0
+    },
+    {
+      "source": "day2_guarded_rotation",
+      "target": "day2_test_database",
+      "relation": "requires_existing_resource",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/ENVIRONMENT.md",
+      "source_location": "Day 2 database setup",
+      "weight": 1.0
+    },
+    {
+      "source": "day2_guarded_rotation",
+      "target": "day2_rotation_recovery",
+      "relation": "follows",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/ENVIRONMENT.md",
+      "source_location": "Day 2 database setup",
+      "weight": 1.0
+    },
+    {
+      "source": "day2_rotation_recovery",
+      "target": "day2_preserve_credentials",
+      "relation": "extends_recovery_strategy",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/ENVIRONMENT.md",
+      "source_location": "Day 2 database setup",
+      "weight": 1.0
     }
   ],
   "hyperedges": [
@@ -9236,8 +12861,40 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/MEMORY.md"
+    },
+    {
+      "id": "day2_isolated_migration_validation",
+      "label": "Opted-in migration reversal is isolated from application data by credentials, role grants and database guards",
+      "nodes": [
+        "day2_test_database",
+        "day2_test_guard",
+        "day2_role_isolation",
+        "day2_migration_validation",
+        "day2_app_protection"
+      ],
+      "relation": "form",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DAY2_VALIDATION.md",
+      "source_location": "Checks and results"
+    },
+    {
+      "id": "day2_schema_bootstrap",
+      "label": "Schema bootstrap keeps migration bookkeeping independent while refusing destructive cascade",
+      "nodes": [
+        "migration",
+        "day2_schema",
+        "day2_public_version",
+        "day2_bootstrap_rationale",
+        "day2_no_cascade"
+      ],
+      "relation": "form",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/architecture/ADR-003-database-foundation.md",
+      "source_location": "Decisions"
     }
   ],
-  "input_tokens": null,
-  "output_tokens": null
+  "input_tokens": 0,
+  "output_tokens": 0
 }

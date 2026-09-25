@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased — Day 2 database foundation (2026-09-24)
+
+- Added validated environment settings, safe credential handling, explicit PostgreSQL engines, transaction-scoped sessions, and a health command.
+- Added Alembic revision `0001` for the application schema.
+- Provisioned isolated application/test databases and non-superuser owner roles in the dedicated container.
+- Added 12 unit cases and five live PostgreSQL tests; recorded migration and connectivity evidence.
+- Added guarded local credential rotation and concise pytest tracebacks after a stopped-service failure exposed connection arguments.
+
 ## Unreleased — Day 1 foundation (2026-09-22)
 
 - Imported canonical requirements, architecture, design, tasks, and project memory.

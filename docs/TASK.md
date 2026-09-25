@@ -174,17 +174,17 @@ Create application configuration and PostgreSQL connectivity.
 
 ### Tasks
 
-- [ ] Create `src/bankflow/config/settings.py`
-- [ ] Create environment configuration model
-- [ ] Add PostgreSQL connection settings
-- [ ] Create `src/bankflow/database/connection.py`
-- [ ] Create SQLAlchemy engine
-- [ ] Create session factory
-- [ ] Add database health-check function
-- [ ] Create base ORM model
-- [ ] Configure Alembic
-- [ ] Run first migration
-- [ ] Validate database connectivity
+- [x] Create `src/bankflow/config/settings.py`
+- [x] Create environment configuration model
+- [x] Add PostgreSQL connection settings
+- [x] Create `src/bankflow/database/connection.py`
+- [x] Create SQLAlchemy engine
+- [x] Create session factory
+- [x] Add database health-check function
+- [x] Create base ORM model
+- [x] Configure Alembic
+- [x] Run first migration
+- [x] Validate database connectivity
 
 ### Deliverables
 
@@ -202,6 +202,8 @@ migrations/
 - failed credentials produce readable errors
 - migrations execute successfully
 - database health check returns expected status
+
+Evidence: [Day 2 validation](DAY2_VALIDATION.md). Completed 2026-09-24; domain tables remain Day 3.
 
 ### Suggested Commits
 

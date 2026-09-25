@@ -2,7 +2,7 @@
 
 **An educational ATM transaction and analytics platform using fictional data.**
 
-BankFlow is evolving from a command-line college assignment into a Python application and event-driven data platform. Day 1 establishes the repository, documentation, package layout, and development environment. The original CLI runs today; the new ATM services, Streamlit screens, database integration, and pipelines are still planned.
+BankFlow is evolving from a command-line college assignment into a Python application and event-driven data platform. Day 2 adds validated configuration, PostgreSQL connectivity, transaction-scoped sessions, and Alembic migrations. The original CLI runs today; banking models, ATM services, Streamlit screens, and pipelines are still planned.
 
 ## Quick start — Windows PowerShell
 
@@ -34,16 +34,26 @@ No Streamlit entry point exists yet; it is scheduled for Day 7. Installed depend
 
 ## Configuration and infrastructure
 
-Copy `.env.example` to `.env` only if `.env` does not already exist, then fill it locally. The example selects a Windows-host application connecting to the dedicated `bankflow` container: PostgreSQL 5433, Redis 6380, and Kafka 9093. Settings loading and connections arrive on Day 2.
+The Windows application connects to the dedicated `bankflow` container: PostgreSQL 5433, Redis 6380, and Kafka 9093. PostgreSQL application access is verified. Redis authentication and Kafka metadata remain future milestone checks.
 
-The user-created `bankflow` container is running with its own runtime volume. PostgreSQL and Redis respond, but authenticated application access is pending. Kafka metadata was unavailable during startup. The proposed BankFlow database/user have not been created. Read the [environment guide](docs/ENVIRONMENT.md) and [service endpoint reference](docs/SERVICES.md) before using the template.
+On this workspace, application and test databases and ignored credentials are already provisioned. Run:
+
+```powershell
+.\.venv\Scripts\python.exe -m bankflow.database.health
+.\.venv\Scripts\alembic.exe upgrade head
+.\.venv\Scripts\alembic.exe current
+```
+
+For a fresh copy of this same lab, `scripts/provision_local_database.py` creates the two databases, restricted owner roles, and local environment files. Run it once with the dedicated container running. It deliberately refuses existing files or resources. For another PostgreSQL installation, create equivalent resources yourself, copy `.env.example` into ignored local files, and fill the connection settings. Never overwrite existing credentials to repeat setup.
+
+Settings precedence is explicit arguments, process environment, dotenv, then defaults. Run commands from the repository root; the health command also accepts `--env-file PATH`. PostgreSQL's password is required; Redis's blank placeholder is not a verified credential. See the [environment guide](docs/ENVIRONMENT.md), [service reference](docs/SERVICES.md), and [database decision](docs/architecture/ADR-003-database-foundation.md).
 
 ## Project map
 
 ```text
 BankFlow/
 ├── src/bankflow/             # importable package, separated by responsibility
-│   ├── config/              # settings and constants (Day 2)
+│   ├── config/              # validated environment settings
 │   ├── models/              # persistent domain entities (Day 3)
 │   ├── schemas/             # input and event contracts
 │   ├── services/            # authentication, accounts, transactions
@@ -54,9 +64,9 @@ BankFlow/
 │   └── utils/
 ├── pages/                   # future Streamlit screens
 ├── consumers/               # future operational event consumer
-├── migrations/              # future Alembic migrations
+├── migrations/              # Alembic environment and schema revision
 ├── scripts/                 # local environment checks; later seed/reset tools
-├── tests/                   # reserved for unit and integration tests
+├── tests/                   # unit tests and opt-in PostgreSQL tests
 ├── airflow/, dbt/           # future V1 analytics jobs
 ├── streaming/, spark/       # future V2 streaming and lakehouse jobs
 ├── docs/                    # canonical planning and handoff documents
@@ -73,6 +83,7 @@ BankFlow/
 - [Day-by-day tasks](docs/TASK.md)
 - [Current project memory](docs/MEMORY.md)
 - [Day 1 decisions](docs/architecture/ADR-001-foundation.md)
+- [Day 2 validation](docs/DAY2_VALIDATION.md)
 - [Baseline analysis](docs/analysis/PROJECT_ANALYSIS.md)
 - [Interactive project graph](graphify-out/graph.html) and [audit report](graphify-out/GRAPH_REPORT.md)
 
@@ -83,8 +94,17 @@ Delivery order: foundation → PostgreSQL persistence → authentication/Redis �
 ```powershell
 .\.venv\Scripts\python.exe -m pip check
 .\.venv\Scripts\python.exe scripts/check_environment.py
-.\.venv\Scripts\python.exe -m ruff check src scripts
-.\.venv\Scripts\python.exe -m ruff format --check src scripts
+.\.venv\Scripts\python.exe -m ruff check src scripts tests migrations
+.\.venv\Scripts\python.exe -m ruff format --check src scripts tests migrations
 ```
 
-There is no automated application test suite yet. Add meaningful tests alongside the first services; `pytest` is installed for that work. See [Day 1 validation](docs/DAY1_VALIDATION.md) for the checks actually performed and their limits.
+Run unit tests without services, or opt into the dedicated test database:
+
+```powershell
+.\.venv\Scripts\python.exe -m pytest -q
+$env:BANKFLOW_RUN_DB_TESTS='1'
+.\.venv\Scripts\python.exe -m pytest -q
+Remove-Item Env:BANKFLOW_RUN_DB_TESTS
+```
+
+The live tests require `.env.test` with `APP_ENV=test`, `POSTGRES_DB=bankflow_test`, and `POSTGRES_USER=bankflow_test_user`. They exercise migration downgrade and upgrade only there. See [Day 2 validation](docs/DAY2_VALIDATION.md) for results and limits.

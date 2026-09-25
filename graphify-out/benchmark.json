@@ -1,25 +1,25 @@
 {
-  "corpus_tokens": 41814,
-  "corpus_words": 31361,
-  "nodes": 385,
-  "edges": 503,
-  "avg_query_tokens": 4002,
-  "reduction_ratio": 10.4,
+  "corpus_tokens": 44505,
+  "corpus_words": 33379,
+  "nodes": 547,
+  "edges": 749,
+  "avg_query_tokens": 6735,
+  "reduction_ratio": 6.6,
   "per_question": [
     {
-      "question": "Which container and host ports does BankFlow use?",
-      "query_tokens": 3257,
-      "reduction": 12.8
+      "question": "How is the Day 2 PostgreSQL foundation validated?",
+      "query_tokens": 8175,
+      "reduction": 5.4
     },
     {
-      "question": "Which service checks still require authentication?",
-      "query_tokens": 4404,
-      "reduction": 9.5
+      "question": "Why are application and test databases isolated?",
+      "query_tokens": 7164,
+      "reduction": 6.2
     },
     {
-      "question": "How do HDFS and Spark internal endpoints differ from host mappings?",
-      "query_tokens": 4347,
-      "reduction": 9.6
+      "question": "How does session_scope define transaction ownership?",
+      "query_tokens": 4868,
+      "reduction": 9.1
     }
   ],
   "limitations": "Approximate retrieved text size only; not accuracy, completeness, actual model usage or billing."

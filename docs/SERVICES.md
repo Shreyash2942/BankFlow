@@ -6,7 +6,7 @@ Recorded 2026-09-22 from the user-provided connection guide and Docker mapping i
 
 | Service | Windows host | Inside bankflow | Status |
 |---|---|---|---|
-| PostgreSQL | `localhost:5433` | `localhost:5432` | Responding; authenticated application access pending |
+| PostgreSQL | `localhost:5433` | `localhost:5432` | Application health query verified on 2026-09-24 |
 | Redis | `localhost:6380` | `localhost:6379` | Responding; authentication required |
 | Kafka bootstrap | `localhost:9093` | `localhost:9092` | Mapping inspected; metadata unavailable during startup |
 | HiveServer2 JDBC | `jdbc:hive2://localhost:10002` | `localhost:10000` | Mapping inspected, query untested |
@@ -18,7 +18,7 @@ Recorded 2026-09-22 from the user-provided connection guide and Docker mapping i
 
 Kafka clients use `host:port` without the helper's `kafka://` display prefix. Published bootstrap ports do not guarantee that broker-advertised addresses are reachable. Validate broker metadata from the selected client runtime before implementing messaging.
 
-The reported PostgreSQL lab database/user are `datalab` / `admin`, distinct from proposed application resources `bankflow` / `bankflow_user`. Redis uses the reported ACL user `default`. Do not assume UI login passwords authenticate database services.
+The reported PostgreSQL lab database/user are `datalab` / `admin`, distinct from the provisioned application resources `bankflow` / `bankflow_user` and isolated test resources `bankflow_test` / `bankflow_test_user`. Redis uses the reported ACL user `default`. Do not assume UI login passwords authenticate database services.
 
 ## HTTP interfaces
 
