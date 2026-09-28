@@ -3,7 +3,7 @@
   "actual_output_tokens": null,
   "actual_cost_usd": null,
   "reason": "Agent execution does not expose actual usage or billing; unknown is not zero.",
-  "estimated_readable_corpus_tokens": 44505,
+  "estimated_readable_corpus_tokens": 50996,
   "semantic_nodes_new": 36,
   "semantic_nodes_reused": 511,
   "updates": [
@@ -20,6 +20,15 @@
       "actual_input_tokens": null,
       "actual_output_tokens": null,
       "actual_cost_usd": null
+    },
+    {
+      "date": "2026-09-28T20:25:38.085098+00:00",
+      "scope": "Day 3 core domain persistence",
+      "actual_input_tokens": null,
+      "actual_output_tokens": null,
+      "actual_cost_usd": null
     }
-  ]
+  ],
+  "graph_nodes_after": 641,
+  "semantic_nodes_added_for_day3": 19
 }

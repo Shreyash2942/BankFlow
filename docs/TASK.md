@@ -224,18 +224,18 @@ Create the persistent banking domain model.
 
 ### Tasks
 
-- [ ] Create Customer model
-- [ ] Create Account model
-- [ ] Create Card model
-- [ ] Create Transaction model
-- [ ] Create AuditEvent model
-- [ ] Add relationships
-- [ ] Add status enums
-- [ ] Use `Decimal`/numeric values for money
-- [ ] Add created/updated timestamps
-- [ ] Create migration
-- [ ] Build seed-data script
-- [ ] Insert demo customer/account/card
+- [x] Create Customer model
+- [x] Create Account model
+- [x] Create Card model
+- [x] Create Transaction model
+- [x] Create AuditEvent model
+- [x] Add relationships
+- [x] Add status enums
+- [x] Use `Decimal`/numeric values for money
+- [x] Add created/updated timestamps
+- [x] Create migration
+- [x] Build seed-data script
+- [x] Insert demo customer/account/card
 
 ### Deliverables
 
@@ -254,6 +254,8 @@ scripts/seed_database.py
 - relationships load correctly
 - demo customer/account/card available
 - balance stored using exact numeric type
+
+Evidence: [Day 3 validation](DAY3_VALIDATION.md). Completed 2026-09-27; repository access remains Day 4.
 
 ### Suggested Commits
 

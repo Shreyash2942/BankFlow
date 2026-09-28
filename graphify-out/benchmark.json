@@ -1,26 +1,26 @@
 {
-  "corpus_tokens": 44505,
-  "corpus_words": 33379,
-  "nodes": 547,
-  "edges": 749,
-  "avg_query_tokens": 6735,
-  "reduction_ratio": 6.6,
+  "corpus_tokens": 50996,
+  "corpus_words": 38247,
+  "nodes": 641,
+  "edges": 981,
+  "avg_query_tokens": 3839,
+  "reduction_ratio": 13.3,
   "per_question": [
     {
-      "question": "How is the Day 2 PostgreSQL foundation validated?",
-      "query_tokens": 8175,
-      "reduction": 5.4
+      "question": "How do revision 0002 and the ORM models enforce exact and traceable balances?",
+      "query_tokens": 3581,
+      "reduction": 14.2
     },
     {
-      "question": "Why are application and test databases isolated?",
-      "query_tokens": 7164,
-      "reduction": 6.2
+      "question": "How does the fictional demo seed connect customers accounts cards and audit events?",
+      "query_tokens": 5325,
+      "reduction": 9.6
     },
     {
-      "question": "How does session_scope define transaction ownership?",
-      "query_tokens": 4868,
-      "reduction": 9.1
+      "question": "Which Day 3 guarantees should the Day 4 repositories preserve?",
+      "query_tokens": 2613,
+      "reduction": 19.5
     }
   ],
-  "limitations": "Approximate retrieved text size only; not accuracy, completeness, actual model usage or billing."
+  "limitations": "Approximate retrieved text size only; not accuracy, completeness, actual model usage, or billing."
 }

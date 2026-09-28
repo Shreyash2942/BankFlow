@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased — Day 3 core domain model (2026-09-27)
+
+- Added customer, account, card, transaction, and audit-event SQLAlchemy models with typed relationships.
+- Added checked status/type enums, UUID identifiers, timezone-aware timestamps, restrictive history relationships, and account versioning.
+- Added exact `NUMERIC(18,2)` balances and transaction snapshots with database constraints for invalid money states.
+- Added Alembic revision `0002` and applied it to isolated test and application databases.
+- Added an idempotent fictional demo seed with a salted PIN hash and $500.00 starting balance.
+- Expanded validation to 15 unit and eight live PostgreSQL tests.
+
 ## Unreleased — Day 2 database foundation (2026-09-24)
 
 - Added validated environment settings, safe credential handling, explicit PostgreSQL engines, transaction-scoped sessions, and a health command.

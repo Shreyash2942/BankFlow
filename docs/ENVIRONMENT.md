@@ -1,6 +1,6 @@
 # Local environment and dedicated BankFlow container
 
-Updated 2026-09-24. The user-created **bankflow** container replaces the original Day 1 choice of the shared `datalab` container. See [ADR-002](architecture/ADR-002-dedicated-container.md).
+Updated 2026-09-27. The user-created **bankflow** container replaces the original Day 1 choice of the shared `datalab` container. See [ADR-002](architecture/ADR-002-dedicated-container.md).
 
 ## Inspected configuration
 
@@ -22,15 +22,15 @@ The lab PostgreSQL database/user are `datalab` / `admin`; `admin` can create dat
 
 The supplied connection guide mixes host-mapped ports with internal HDFS/Spark addresses. HDFS port 9000 and Spark RPC port 7077 were not published. Those localhost URIs describe access inside the container, not Windows. See the complete [service reference](SERVICES.md).
 
-## Day 2 database setup
+## Application database setup
 
-The application and test databases are both at Alembic revision `0001`. The revision creates schema `bankflow`; Alembic records its version in `public`. Customer/account/card/transaction models arrive on Day 3.
+The application and test databases are both at Alembic revision `0002`. Revision `0001` creates schema `bankflow`; revision `0002` creates customers, accounts, cards, transactions, and audit events. The application database contains the single idempotent fictional demo graph described in [Day 3 validation](DAY3_VALIDATION.md).
 
 On a fresh instance of this lab, run `scripts/provision_local_database.py` once from the repository root with the Windows virtual environment. It requires Docker access and the lab's local database superuser. It refuses existing environment files or database resources and checks privileges before writing credentials. A partial failure retains local credential files for deliberate recovery; do not delete or overwrite them to retry blindly.
 
 If a local credential is exposed, start PostgreSQL and run `scripts/provision_local_database.py --rotate-passwords`. Rotation requires both expected databases, roles, and environment files; it changes passwords only and does not reset data. Retain any ignored `.env*.next` files if replacement fails after the database update.
 
-Run `python -m bankflow.database.health`, `alembic upgrade head`, and `alembic current` using the repository virtual environment. Settings load `.env` relative to the working directory; process environment overrides it. See [README](../README.md) for exact PowerShell commands and [Day 2 validation](DAY2_VALIDATION.md) for integration-test isolation.
+Run `python -m bankflow.database.health`, `alembic upgrade head`, `alembic current`, and `python scripts/seed_database.py` using the repository virtual environment. Settings load `.env` relative to the working directory; process environment overrides it. The seed is safe to repeat and rejects partial fixed-ID state. See [README](../README.md) for exact PowerShell commands and [Day 3 validation](DAY3_VALIDATION.md) for integration-test isolation.
 
 Redis authentication and Kafka broker-advertised endpoints still need validation at their milestones. The earlier startup metadata failure does not diagnose its cause. Day 2 created only the dedicated database resources; it did not reset volumes or reconfigure other services.
 

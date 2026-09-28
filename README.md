@@ -2,7 +2,7 @@
 
 **An educational ATM transaction and analytics platform using fictional data.**
 
-BankFlow is evolving from a command-line college assignment into a Python application and event-driven data platform. Day 2 adds validated configuration, PostgreSQL connectivity, transaction-scoped sessions, and Alembic migrations. The original CLI runs today; banking models, ATM services, Streamlit screens, and pipelines are still planned.
+BankFlow is evolving from a command-line college assignment into a Python application and event-driven data platform. Day 3 adds the persistent customer, account, card, transaction, and audit model with exact money and fictional seed data. The original CLI runs today; repositories, ATM services, Streamlit screens, and pipelines are still planned.
 
 ## Quick start — Windows PowerShell
 
@@ -42,6 +42,7 @@ On this workspace, application and test databases and ignored credentials are al
 .\.venv\Scripts\python.exe -m bankflow.database.health
 .\.venv\Scripts\alembic.exe upgrade head
 .\.venv\Scripts\alembic.exe current
+.\.venv\Scripts\python.exe scripts/seed_database.py
 ```
 
 For a fresh copy of this same lab, `scripts/provision_local_database.py` creates the two databases, restricted owner roles, and local environment files. Run it once with the dedicated container running. It deliberately refuses existing files or resources. For another PostgreSQL installation, create equivalent resources yourself, copy `.env.example` into ignored local files, and fill the connection settings. Never overwrite existing credentials to repeat setup.
@@ -54,7 +55,7 @@ Settings precedence is explicit arguments, process environment, dotenv, then def
 BankFlow/
 ├── src/bankflow/             # importable package, separated by responsibility
 │   ├── config/              # validated environment settings
-│   ├── models/              # persistent domain entities (Day 3)
+│   ├── models/              # customer, account, card, transaction, and audit entities
 │   ├── schemas/             # input and event contracts
 │   ├── services/            # authentication, accounts, transactions
 │   ├── repositories/        # database access
@@ -64,8 +65,8 @@ BankFlow/
 │   └── utils/
 ├── pages/                   # future Streamlit screens
 ├── consumers/               # future operational event consumer
-├── migrations/              # Alembic environment and schema revision
-├── scripts/                 # local environment checks; later seed/reset tools
+├── migrations/              # Alembic environment and versioned schema revisions
+├── scripts/                 # environment, provisioning, and idempotent demo seed tools
 ├── tests/                   # unit tests and opt-in PostgreSQL tests
 ├── airflow/, dbt/           # future V1 analytics jobs
 ├── streaming/, spark/       # future V2 streaming and lakehouse jobs
@@ -84,6 +85,8 @@ BankFlow/
 - [Current project memory](docs/MEMORY.md)
 - [Day 1 decisions](docs/architecture/ADR-001-foundation.md)
 - [Day 2 validation](docs/DAY2_VALIDATION.md)
+- [Day 3 validation](docs/DAY3_VALIDATION.md)
+- [Day 3 domain model decision](docs/architecture/ADR-004-core-domain-model.md)
 - [Baseline analysis](docs/analysis/PROJECT_ANALYSIS.md)
 - [Interactive project graph](graphify-out/graph.html) and [audit report](graphify-out/GRAPH_REPORT.md)
 
@@ -107,4 +110,4 @@ $env:BANKFLOW_RUN_DB_TESTS='1'
 Remove-Item Env:BANKFLOW_RUN_DB_TESTS
 ```
 
-The live tests require `.env.test` with `APP_ENV=test`, `POSTGRES_DB=bankflow_test`, and `POSTGRES_USER=bankflow_test_user`. They exercise migration downgrade and upgrade only there. See [Day 2 validation](docs/DAY2_VALIDATION.md) for results and limits.
+The live tests require `.env.test` with `APP_ENV=test`, `POSTGRES_DB=bankflow_test`, and `POSTGRES_USER=bankflow_test_user`. They exercise migration downgrade and upgrade only there. See [Day 3 validation](docs/DAY3_VALIDATION.md) for current results and limits.
