@@ -1,6 +1,6 @@
 # Local environment and dedicated BankFlow container
 
-Updated 2026-09-27. The user-created **bankflow** container replaces the original Day 1 choice of the shared `datalab` container. See [ADR-002](architecture/ADR-002-dedicated-container.md).
+Updated 2026-09-28. The user-created **bankflow** container replaces the original Day 1 choice of the shared `datalab` container. See [ADR-002](architecture/ADR-002-dedicated-container.md).
 
 ## Inspected configuration
 
@@ -30,7 +30,7 @@ On a fresh instance of this lab, run `scripts/provision_local_database.py` once 
 
 If a local credential is exposed, start PostgreSQL and run `scripts/provision_local_database.py --rotate-passwords`. Rotation requires both expected databases, roles, and environment files; it changes passwords only and does not reset data. Retain any ignored `.env*.next` files if replacement fails after the database update.
 
-Run `python -m bankflow.database.health`, `alembic upgrade head`, `alembic current`, and `python scripts/seed_database.py` using the repository virtual environment. Settings load `.env` relative to the working directory; process environment overrides it. The seed is safe to repeat and rejects partial fixed-ID state. See [README](../README.md) for exact PowerShell commands and [Day 3 validation](DAY3_VALIDATION.md) for integration-test isolation.
+Run `python -m bankflow.database.health`, `alembic upgrade head`, `alembic current`, and `python scripts/seed_database.py` using the repository virtual environment. Settings load `.env` relative to the working directory; process environment overrides it. The seed is safe to repeat and rejects partial fixed-ID state. Repository integration tests use only `bankflow_test`; see [README](../README.md) for exact commands and [Day 4 validation](DAY4_VALIDATION.md) for isolation evidence.
 
 Redis authentication and Kafka broker-advertised endpoints still need validation at their milestones. The earlier startup metadata failure does not diagnose its cause. Day 2 created only the dedicated database resources; it did not reset volumes or reconfigure other services.
 

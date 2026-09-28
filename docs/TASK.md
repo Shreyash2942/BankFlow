@@ -276,17 +276,17 @@ Separate database access from business logic.
 
 ### Tasks
 
-- [ ] Create CustomerRepository
-- [ ] Create AccountRepository
-- [ ] Create CardRepository
-- [ ] Create TransactionRepository
-- [ ] Add account lookup methods
-- [ ] Add card lookup methods
-- [ ] Add transaction-history query
-- [ ] Add transaction creation method
-- [ ] Add account balance update method
-- [ ] Add repository exceptions
-- [ ] Write repository tests
+- [x] Create CustomerRepository
+- [x] Create AccountRepository
+- [x] Create CardRepository
+- [x] Create TransactionRepository
+- [x] Add account lookup methods
+- [x] Add card lookup methods
+- [x] Add transaction-history query
+- [x] Add transaction creation method
+- [x] Add account balance update method
+- [x] Add repository exceptions
+- [x] Write repository tests
 
 ### Deliverables
 
@@ -303,6 +303,8 @@ src/bankflow/repositories/transaction_repository.py
 - service code does not need raw SQL
 - transaction history returns ordered results
 - tests pass
+
+Evidence: [Day 4 validation](DAY4_VALIDATION.md). Completed 2026-09-28; authentication and Redis remain Day 5.
 
 ### Suggested Commits
 

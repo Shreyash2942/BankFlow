@@ -1,59 +1,61 @@
 {
   "labels": {
-    "0": "Database Foundation Code",
-    "1": "Planned BankFlow Platform",
-    "2": "Domain Model Package",
+    "0": "Database and Seed Code",
+    "1": "Repository Implementation",
+    "2": "Domain Model and SQLAlchemy",
     "3": "Academic Prototype Correctness",
-    "4": "SQLAlchemy Domain Models",
-    "5": "Demo Seed and Provisioning",
-    "6": "Foundation Validation",
-    "7": "ATM Sequence Interactions",
-    "8": "Python Package Foundation",
-    "9": "Numbered Transaction Flow",
-    "10": "Composite UML Flow",
-    "11": "Generated Activity Flow One",
-    "12": "Generated Activity Flow Two",
-    "13": "Detailed State Machine",
-    "14": "State Machine Transitions",
-    "15": "Core Banking Domain Model",
-    "16": "Alternate State Machine",
-    "17": "PIN Retry Screenshot",
-    "18": "Zero Balance Screenshot",
-    "19": "Environment Import Checker",
-    "20": "Activity Diagram Swimlanes",
-    "21": "Alternate Activity Swimlanes",
-    "22": "Published Service Ports",
-    "23": "Card Lockout Policy",
-    "24": "Event Secret Exclusion",
-    "25": "SQLAlchemy URL Construction",
-    "26": "Unconnected Session End One",
-    "27": "Unconnected Session End Two",
-    "28": "Python Runtime",
-    "29": "Dependency Snapshot",
-    "30": "Development Tooling",
-    "31": "Archived Academic Assets",
-    "32": "Dated Baseline Analysis",
-    "33": "Unreleased Foundation",
-    "34": "Docker Availability",
-    "35": "Database Access Verification",
-    "36": "Separate Tool Runtimes",
-    "37": "Planned Exact Money",
-    "38": "Planned Atomic Transactions",
-    "39": "Open Lockout Policy",
-    "40": "Legacy NaN Defect",
-    "41": "Legacy Precision Defect",
-    "42": "Pending Precision Policy",
-    "43": "Legacy Retry Conflict",
-    "44": "Kafka Failure Risk",
-    "45": "Future Outbox Option",
-    "46": "Streamlit Session Risk",
-    "47": "Container Runtime Volume",
-    "48": "Repository Bind Mount",
-    "49": "Container Python Runtime",
-    "50": "Pending Service Authentication",
-    "51": "Provisioning Recovery",
-    "52": "Superseded Day 3 Plan",
-    "53": "Credential Rotation Recovery"
+    "4": "ATM Transaction Flow",
+    "5": "Database Foundation Validation",
+    "6": "Planned BankFlow Platform",
+    "7": "Python Package Foundation",
+    "8": "Composite UML Flow",
+    "9": "Generated Activity Flow One",
+    "10": "Generated Activity Flow Two",
+    "11": "Environment and Dependencies",
+    "12": "Repository Contract",
+    "13": "Local Database Provisioning",
+    "14": "Detailed State Machine",
+    "15": "Numbered Transaction Flow",
+    "16": "State Machine Transitions",
+    "17": "Core Banking Domain Model",
+    "18": "Alternate State Machine",
+    "19": "PIN Retry Screenshot",
+    "20": "Environment Import Checker",
+    "21": "Repository Module Imports",
+    "22": "Activity Diagram Swimlanes",
+    "23": "Alternate Activity Swimlanes",
+    "24": "Card Lockout Policy",
+    "25": "Event Secret Exclusion",
+    "26": "Published Service Ports",
+    "27": "SQLAlchemy URL Construction",
+    "28": "Unconnected Session End One",
+    "29": "Unconnected Session End Two",
+    "30": "Python Runtime",
+    "31": "Dependency Snapshot",
+    "32": "Development Tooling",
+    "33": "Archived Academic Assets",
+    "34": "Dated Baseline Analysis",
+    "35": "Unreleased Foundation",
+    "36": "Docker Availability",
+    "37": "Database Access Verification",
+    "38": "Separate Tool Runtimes",
+    "39": "Planned Exact Money",
+    "40": "Planned Atomic Transactions",
+    "41": "Open Lockout Policy",
+    "42": "Legacy NaN Defect",
+    "43": "Legacy Precision Defect",
+    "44": "Pending Precision Policy",
+    "45": "Legacy Retry Conflict",
+    "46": "Kafka Failure Risk",
+    "47": "Future Outbox Option",
+    "48": "Streamlit Session Risk",
+    "49": "Container Runtime Volume",
+    "50": "Repository Bind Mount",
+    "51": "Container Python Runtime",
+    "52": "Pending Service Authentication",
+    "53": "Provisioning Recovery",
+    "54": "Superseded Day 3 Plan",
+    "55": "Credential Rotation Recovery"
   },
   "communities": {
     "0": [
@@ -70,6 +72,8 @@
       "bankflow_config_settings",
       "bankflow_database_connection",
       "bankflow_database_health",
+      "bankflow_database_session",
+      "base64",
       "basesettings",
       "conftest_database_engine",
       "conftest_database_settings",
@@ -85,6 +89,8 @@
       "env_rationale_20",
       "env_run_migrations_offline",
       "env_run_migrations_online",
+      "exception",
+      "hashlib",
       "health_check_database_health",
       "health_databasehealth",
       "health_main",
@@ -94,14 +100,31 @@
       "migrations_env_py",
       "migrations_versions_0001_application_schema_py",
       "migrations_versions_0002_create_core_banking_domain_models_py",
+      "pathlib",
+      "pydantic",
+      "pydantic_settings",
       "pytest",
+      "scripts_seed_database_py",
+      "secrets",
+      "seed_database_hash_demo_pin",
+      "seed_database_rationale_1",
+      "seed_database_rationale_31",
+      "seed_database_rationale_43",
+      "seed_database_rationale_52",
+      "seed_database_seedconflicterror",
+      "seed_database_seedresult",
+      "settings_configurationerror",
+      "settings_database_url",
       "settings_load_settings",
+      "settings_rationale_1",
+      "settings_rationale_15",
       "settings_rationale_19",
       "settings_rationale_73",
       "settings_settings",
       "sqlalchemy_dialects",
       "sqlalchemy_exc",
       "sqlalchemy_schema",
+      "src_bankflow_config_settings_py",
       "src_bankflow_database_connection_py",
       "src_bankflow_database_health_py",
       "test_database_health_test_health_failure_does_not_expose_driver_message",
@@ -125,75 +148,33 @@
       "unittest_mock"
     ],
     "1": [
-      "account",
-      "airflow",
-      "attempts",
-      "auth",
-      "bankflow",
-      "bronze",
-      "consumer",
-      "dashboard",
-      "day2",
-      "day2_admin_attempt",
-      "day2_app_protection",
-      "day2_concise_tracebacks",
-      "day2_guarded_rotation",
-      "day2_local_owner_limit",
-      "day2_migration_validation",
-      "day2_password_rotation",
-      "day2_provision_guard",
-      "day2_role_isolation",
-      "day2_secret_storage",
-      "day2_service_boundary",
-      "day2_setup_privilege_check",
-      "day2_socket_admin",
-      "day2_stopped_service",
-      "day2_test_database",
-      "day2_test_guard",
-      "day2_traceback_exposure",
-      "day2_transaction_scope",
-      "day2_validation",
-      "dbt",
-      "decoupling",
-      "dedicated_db",
-      "deposit",
-      "design",
-      "eventstore",
-      "fictional",
-      "gold",
-      "hdfs",
-      "history",
-      "hive",
-      "kafka",
-      "no_app_tests",
-      "postgres",
-      "producer",
-      "redis",
-      "repo",
-      "screens",
-      "separation",
-      "services",
-      "serving",
-      "silver",
-      "spark",
-      "synthetic",
-      "txn",
-      "ui",
-      "v1",
-      "v2"
-    ],
-    "2": [
-      "account_account",
-      "account_rationale_1",
-      "audit_event_auditevent",
-      "audit_event_rationale_1",
-      "base",
-      "base_base",
-      "card_card",
-      "card_rationale_1",
-      "common_timestampmixin",
-      "customer_customer",
-      "customer_rationale_1",
+      "account_repository_accountrepository",
+      "account_repository_accountrepository_get_by_account_number",
+      "account_repository_accountrepository_get_by_id",
+      "account_repository_accountrepository_init",
+      "account_repository_accountrepository_list_for_customer",
+      "account_repository_accountrepository_require_by_id",
+      "account_repository_accountrepository_update_balance",
+      "account_repository_rationale_1",
+      "account_repository_rationale_21",
+      "bankflow_repositories",
+      "card_repository_cardrepository",
+      "card_repository_cardrepository_get_by_id",
+      "card_repository_cardrepository_get_by_token",
+      "card_repository_cardrepository_init",
+      "card_repository_cardrepository_list_for_account",
+      "card_repository_cardrepository_require_by_id",
+      "card_repository_rationale_1",
+      "card_repository_rationale_13",
+      "collections_abc",
+      "contextlib",
+      "customer_repository_customerrepository",
+      "customer_repository_customerrepository_get_by_email",
+      "customer_repository_customerrepository_get_by_id",
+      "customer_repository_customerrepository_init",
+      "customer_repository_customerrepository_require_by_id",
+      "customer_repository_rationale_1",
+      "customer_repository_rationale_13",
       "d_github_miniprojects_bankflow_src_bankflow_cache_init_py",
       "d_github_miniprojects_bankflow_src_bankflow_config_init_py",
       "d_github_miniprojects_bankflow_src_bankflow_database_init_py",
@@ -204,9 +185,77 @@
       "d_github_miniprojects_bankflow_src_bankflow_schemas_init_py",
       "d_github_miniprojects_bankflow_src_bankflow_services_init_py",
       "d_github_miniprojects_bankflow_src_bankflow_utils_init_py",
+      "exceptions_concurrentupdateerror",
+      "exceptions_invalidrepositoryqueryerror",
+      "exceptions_rationale_1",
+      "exceptions_rationale_11",
+      "exceptions_rationale_20",
+      "exceptions_rationale_24",
+      "exceptions_rationale_28",
+      "exceptions_rationale_32",
+      "exceptions_rationale_7",
+      "exceptions_repositoryconflicterror",
+      "exceptions_repositoryerror",
+      "exceptions_repositorynotfounderror",
+      "exceptions_repositorynotfounderror_init",
+      "exceptions_repositorywriteerror",
+      "init_rationale_1",
+      "seed_database_main",
+      "session_create_session_factory",
+      "session_rationale_1",
+      "session_rationale_16",
+      "session_session_scope",
+      "src_bankflow_database_session_py",
+      "src_bankflow_repositories_exceptions_py",
+      "test_database_test_session_commits_success_and_rolls_back_failed_work",
+      "test_repositories_create_customer_graph",
+      "test_repositories_delete_customer_graph",
+      "test_repositories_rationale_1",
+      "test_repositories_test_account_balance_update_uses_decimal_lock_and_version",
+      "test_repositories_test_customer_account_and_card_lookups",
+      "test_repositories_test_transaction_creation_history_order_and_transaction_ownership",
+      "tests_integration_test_repositories_py",
+      "transaction_repository_rationale_1",
+      "transaction_repository_rationale_21",
+      "transaction_repository_transactionrepository",
+      "transaction_repository_transactionrepository_create",
+      "transaction_repository_transactionrepository_get_by_id",
+      "transaction_repository_transactionrepository_init",
+      "transaction_repository_transactionrepository_list_for_account",
+      "transaction_repository_transactionrepository_require_by_id"
+    ],
+    "2": [
+      "account_account",
+      "account_rationale_1",
+      "audit_event_auditevent",
+      "audit_event_rationale_1",
+      "bankflow_database_base",
+      "bankflow_models",
+      "bankflow_models_account",
+      "bankflow_models_audit_event",
+      "bankflow_models_card",
+      "bankflow_models_common",
+      "bankflow_models_customer",
+      "bankflow_models_enums",
+      "bankflow_models_transaction",
+      "bankflow_repositories_exceptions",
+      "base",
+      "base_base",
+      "base_rationale_1",
+      "card_card",
+      "card_rationale_1",
+      "common_checked_enum",
+      "common_rationale_1",
+      "common_rationale_11",
+      "common_timestampmixin",
+      "customer_customer",
+      "customer_rationale_1",
+      "datetime",
       "day3_demo_graph",
       "day3_demo_seed",
+      "decimal",
       "declarativebase",
+      "enum",
       "enums_accountstatus",
       "enums_accounttype",
       "enums_cardstatus",
@@ -214,23 +263,42 @@
       "enums_rationale_1",
       "enums_transactionstatus",
       "enums_transactiontype",
-      "init_rationale_1",
-      "seed_database_main",
-      "seed_database_rationale_52",
+      "os",
+      "scripts_seed_database",
       "seed_database_seed_demo_data",
-      "session_create_session_factory",
-      "session_rationale_16",
-      "session_session_scope",
+      "sqlalchemy",
+      "sqlalchemy_dialects_postgresql",
+      "sqlalchemy_orm",
+      "sqlalchemy_orm_exc",
+      "src_bankflow_database_base_py",
+      "src_bankflow_models_account_py",
+      "src_bankflow_models_audit_event_py",
+      "src_bankflow_models_card_py",
+      "src_bankflow_models_common_py",
+      "src_bankflow_models_customer_py",
       "src_bankflow_models_enums_py",
+      "src_bankflow_models_init_py",
+      "src_bankflow_models_transaction_py",
+      "src_bankflow_repositories_account_repository_py",
+      "src_bankflow_repositories_card_repository_py",
+      "src_bankflow_repositories_customer_repository_py",
+      "src_bankflow_repositories_transaction_repository_py",
       "strenum",
-      "test_database_test_session_commits_success_and_rolls_back_failed_work",
+      "test_model_metadata_test_day3_tables_are_registered_in_application_schema",
+      "test_model_metadata_test_money_columns_are_fixed_precision_decimal",
+      "test_model_metadata_test_status_enums_use_named_varchar_constraints",
       "test_models_delete_graph",
+      "test_models_rationale_1",
       "test_models_test_database_rejects_negative_balance_and_zero_withdrawal",
       "test_models_test_demo_seed_is_complete_idempotent_and_never_stores_plain_pin",
       "test_models_test_tables_relationships_timestamps_and_decimal_round_trip",
+      "tests_integration_test_models_py",
+      "tests_unit_test_model_metadata_py",
       "timestampmixin",
       "transaction_rationale_1",
-      "transaction_transaction"
+      "transaction_transaction",
+      "typing",
+      "uuid"
     ],
     "3": [
       "academic_boundary",
@@ -263,6 +331,15 @@
       "img12_remaining",
       "img12_scenario",
       "img12_withdraw",
+      "img13_auth",
+      "img13_balance",
+      "img13_cash",
+      "img13_closed",
+      "img13_correct",
+      "img13_end",
+      "img13_scenario",
+      "img13_withdraw",
+      "img13_zero",
       "iterative_feedback",
       "lessons",
       "manual_scenarios",
@@ -280,130 +357,22 @@
       "withdrawal"
     ],
     "4": [
-      "bankflow_database_base",
-      "bankflow_database_session",
-      "bankflow_models",
-      "bankflow_models_account",
-      "bankflow_models_audit_event",
-      "bankflow_models_card",
-      "bankflow_models_common",
-      "bankflow_models_customer",
-      "bankflow_models_enums",
-      "bankflow_models_transaction",
-      "base_rationale_1",
-      "collections_abc",
-      "common_checked_enum",
-      "common_rationale_1",
-      "common_rationale_11",
-      "contextlib",
-      "datetime",
-      "decimal",
-      "enum",
-      "os",
-      "scripts_seed_database",
-      "session_rationale_1",
-      "sqlalchemy",
-      "sqlalchemy_dialects_postgresql",
-      "sqlalchemy_orm",
-      "src_bankflow_database_base_py",
-      "src_bankflow_database_session_py",
-      "src_bankflow_models_account_py",
-      "src_bankflow_models_audit_event_py",
-      "src_bankflow_models_card_py",
-      "src_bankflow_models_common_py",
-      "src_bankflow_models_customer_py",
-      "src_bankflow_models_init_py",
-      "src_bankflow_models_transaction_py",
-      "test_model_metadata_test_day3_tables_are_registered_in_application_schema",
-      "test_model_metadata_test_money_columns_are_fixed_precision_decimal",
-      "test_model_metadata_test_status_enums_use_named_varchar_constraints",
-      "test_models_rationale_1",
-      "tests_integration_test_models_py",
-      "tests_unit_test_model_metadata_py",
-      "typing",
-      "uuid"
-    ],
-    "5": [
-      "base64",
-      "hashlib",
-      "json",
-      "pathlib",
-      "provision_local_database_admin_sql",
-      "provision_local_database_main",
-      "provision_local_database_provision",
-      "provision_local_database_rationale_1",
-      "provision_local_database_rationale_18",
-      "provision_local_database_rationale_28",
-      "provision_local_database_rationale_83",
-      "provision_local_database_render_environment",
-      "provision_local_database_replace_environment_setting",
-      "provision_local_database_rotate_passwords",
-      "provision_local_database_verify_local_superuser",
-      "pydantic",
-      "pydantic_settings",
-      "runtimeerror",
-      "scripts_provision_local_database",
-      "scripts_provision_local_database_py",
-      "scripts_seed_database_py",
-      "secrets",
-      "seed_database_hash_demo_pin",
-      "seed_database_rationale_1",
-      "seed_database_rationale_31",
-      "seed_database_rationale_43",
-      "seed_database_seedconflicterror",
-      "seed_database_seedresult",
-      "settings_configurationerror",
-      "settings_database_url",
-      "settings_rationale_1",
-      "settings_rationale_15",
-      "settings_require_password",
-      "src_bankflow_config_settings_py",
-      "subprocess",
-      "test_provision_local_database_test_password_rotation_preserves_other_local_settings_and_line_endings",
-      "tests_unit_test_provision_local_database_py",
-      "valueerror"
-    ],
-    "6": [
-      "day1checks",
-      "day2_autogenerate",
-      "day2_base_metadata",
-      "day2_bootstrap_rationale",
-      "day2_connection_controls",
-      "day2_engine_lifecycle",
-      "day2_error_redaction",
-      "day2_health_exit_codes",
-      "day2_next_models",
-      "day2_no_cascade",
-      "day2_public_version",
-      "day2_schema",
-      "day2_settings_precedence",
-      "day2_unknown_objects",
-      "day2_url_object",
-      "dependency_alembic",
-      "dependency_confluent_kafka",
-      "dependency_psycopg",
-      "dependency_pydantic",
-      "dependency_pydantic_settings",
-      "dependency_redis",
-      "dependency_sqlalchemy",
-      "dependency_streamlit",
-      "engine",
-      "health",
-      "mermaid",
-      "migration",
-      "pins",
-      "scripts_check_environment_py_1_2",
-      "scripts_check_environment_py_20_3",
-      "scripts_check_environment_py_importlib_4",
-      "scripts_check_environment_py_main_1",
-      "scripts_check_environment_py_metadata_5",
-      "scripts_check_environment_py_py_0",
-      "scripts_check_environment_py_sys_6",
-      "settings"
-    ],
-    "7": [
       "academic_auth",
+      "activity_check",
+      "activity_close",
+      "activity_complete",
+      "activity_dispense",
+      "activity_end",
+      "activity_enough",
+      "activity_enter_amount",
+      "activity_final",
+      "activity_insufficient",
+      "activity_request_amount",
+      "activity_take_cash",
       "activity_update",
+      "activity_validate_amount",
+      "activity_view",
+      "activity_zero",
       "sequence_account",
       "sequence_atm",
       "sequence_balance",
@@ -436,7 +405,82 @@
       "sequence_valid",
       "sequence_verify"
     ],
-    "8": [
+    "5": [
+      "day2",
+      "day2_admin_attempt",
+      "day2_app_protection",
+      "day2_autogenerate",
+      "day2_base_metadata",
+      "day2_bootstrap_rationale",
+      "day2_concise_tracebacks",
+      "day2_error_redaction",
+      "day2_guarded_rotation",
+      "day2_health_exit_codes",
+      "day2_local_owner_limit",
+      "day2_migration_validation",
+      "day2_next_models",
+      "day2_no_cascade",
+      "day2_password_rotation",
+      "day2_provision_guard",
+      "day2_public_version",
+      "day2_role_isolation",
+      "day2_schema",
+      "day2_secret_storage",
+      "day2_settings_precedence",
+      "day2_setup_privilege_check",
+      "day2_socket_admin",
+      "day2_stopped_service",
+      "day2_test_database",
+      "day2_test_guard",
+      "day2_traceback_exposure",
+      "day2_unknown_objects",
+      "day2_url_object",
+      "day2_validation",
+      "dedicated_db",
+      "health",
+      "migration",
+      "no_app_tests",
+      "redis",
+      "settings"
+    ],
+    "6": [
+      "account",
+      "airflow",
+      "attempts",
+      "auth",
+      "bankflow",
+      "bronze",
+      "consumer",
+      "dashboard",
+      "day2_service_boundary",
+      "day2_transaction_scope",
+      "dbt",
+      "decoupling",
+      "deposit",
+      "design",
+      "eventstore",
+      "fictional",
+      "gold",
+      "hdfs",
+      "history",
+      "hive",
+      "kafka",
+      "postgres",
+      "producer",
+      "repo",
+      "screens",
+      "separation",
+      "services",
+      "serving",
+      "silver",
+      "spark",
+      "synthetic",
+      "txn",
+      "ui",
+      "v1",
+      "v2"
+    ],
+    "7": [
       "bankflow_storage_paths",
       "canonical",
       "copied_medilake_paths",
@@ -471,40 +515,7 @@
       "src_layout",
       "theme"
     ],
-    "9": [
-      "activity_atm",
-      "activity_attempts",
-      "activity_authenticate",
-      "activity_bank",
-      "activity_bank_check",
-      "activity_bank_debit",
-      "activity_check",
-      "activity_close",
-      "activity_complete",
-      "activity_customer",
-      "activity_dispense",
-      "activity_end",
-      "activity_enough",
-      "activity_enter_amount",
-      "activity_enter_pin",
-      "activity_final",
-      "activity_increment",
-      "activity_insert",
-      "activity_insufficient",
-      "activity_pin_correct",
-      "activity_reject",
-      "activity_request_amount",
-      "activity_request_pin",
-      "activity_separation",
-      "activity_start",
-      "activity_take_cash",
-      "activity_validate_amount",
-      "activity_validate_pin",
-      "activity_verify_pin",
-      "activity_view",
-      "activity_zero"
-    ],
-    "10": [
+    "8": [
       "img09_activity",
       "img09_atm",
       "img09_auth",
@@ -534,7 +545,7 @@
       "img09_verify",
       "img09_withdraw"
     ],
-    "11": [
+    "9": [
       "img06_anomaly",
       "img06_attempt",
       "img06_auth",
@@ -562,7 +573,7 @@
       "img07_insert",
       "img07_start"
     ],
-    "12": [
+    "10": [
       "img07_anomaly",
       "img07_attempt",
       "img07_auth",
@@ -586,7 +597,74 @@
       "img07_verify_pin",
       "img07_zero"
     ],
+    "11": [
+      "day1checks",
+      "day2_connection_controls",
+      "day2_engine_lifecycle",
+      "dependency_alembic",
+      "dependency_confluent_kafka",
+      "dependency_psycopg",
+      "dependency_pydantic",
+      "dependency_pydantic_settings",
+      "dependency_redis",
+      "dependency_sqlalchemy",
+      "dependency_streamlit",
+      "engine",
+      "mermaid",
+      "pins",
+      "scripts_check_environment_py_1_2",
+      "scripts_check_environment_py_20_3",
+      "scripts_check_environment_py_importlib_4",
+      "scripts_check_environment_py_main_1",
+      "scripts_check_environment_py_metadata_5",
+      "scripts_check_environment_py_py_0",
+      "scripts_check_environment_py_sys_6"
+    ],
+    "12": [
+      "day4_account_repository",
+      "day4_bounded_pagination",
+      "day4_caller_owned_unit_of_work",
+      "day4_card_repository",
+      "day4_customer_repository",
+      "day4_database_constraint_boundary",
+      "day4_deterministic_transaction_history",
+      "day4_exact_decimal_money",
+      "day4_live_test_isolation",
+      "day4_optional_lookup_contract",
+      "day4_persistence_business_separation",
+      "day4_postgresql_row_lock",
+      "day4_repository_layer",
+      "day4_session_bound_repository_boundary",
+      "day4_stable_repository_exceptions",
+      "day4_transaction_creation_flush",
+      "day4_transaction_repository",
+      "day4_typed_orm_reads",
+      "day4_validation_suite",
+      "day4_versioned_balance_update"
+    ],
     "13": [
+      "json",
+      "provision_local_database_admin_sql",
+      "provision_local_database_main",
+      "provision_local_database_provision",
+      "provision_local_database_rationale_1",
+      "provision_local_database_rationale_18",
+      "provision_local_database_rationale_28",
+      "provision_local_database_rationale_83",
+      "provision_local_database_render_environment",
+      "provision_local_database_replace_environment_setting",
+      "provision_local_database_rotate_passwords",
+      "provision_local_database_verify_local_superuser",
+      "runtimeerror",
+      "scripts_provision_local_database",
+      "scripts_provision_local_database_py",
+      "settings_require_password",
+      "subprocess",
+      "test_provision_local_database_test_password_rotation_preserves_other_local_settings_and_line_endings",
+      "tests_unit_test_provision_local_database_py",
+      "valueerror"
+    ],
+    "14": [
       "state_original_auth",
       "state_original_check",
       "state_original_closed",
@@ -606,7 +684,26 @@
       "state_original_validate",
       "state_original_withdrawal"
     ],
-    "14": [
+    "15": [
+      "activity_atm",
+      "activity_attempts",
+      "activity_authenticate",
+      "activity_bank",
+      "activity_bank_check",
+      "activity_bank_debit",
+      "activity_customer",
+      "activity_enter_pin",
+      "activity_increment",
+      "activity_insert",
+      "activity_pin_correct",
+      "activity_reject",
+      "activity_request_pin",
+      "activity_separation",
+      "activity_start",
+      "activity_validate_pin",
+      "activity_verify_pin"
+    ],
+    "16": [
       "img08_active",
       "img08_auth",
       "img08_check",
@@ -625,7 +722,7 @@
       "img08_validate",
       "img08_withdrawal"
     ],
-    "15": [
+    "17": [
       "day3_account",
       "day3_audit",
       "day3_audit_retention",
@@ -644,7 +741,7 @@
       "day3_transaction",
       "day3_version_counter"
     ],
-    "16": [
+    "18": [
       "state_revised_active",
       "state_revised_auth",
       "state_revised_check",
@@ -660,7 +757,7 @@
       "state_revised_validate",
       "state_revised_withdrawal"
     ],
-    "17": [
+    "19": [
       "img11_active",
       "img11_auth",
       "img11_balance",
@@ -673,18 +770,7 @@
       "img11_second",
       "img11_withdraw"
     ],
-    "18": [
-      "img13_auth",
-      "img13_balance",
-      "img13_cash",
-      "img13_closed",
-      "img13_correct",
-      "img13_end",
-      "img13_scenario",
-      "img13_withdraw",
-      "img13_zero"
-    ],
-    "19": [
+    "20": [
       "check_environment_main",
       "check_environment_rationale_1",
       "check_environment_rationale_20",
@@ -693,144 +779,151 @@
       "importlib_metadata",
       "sys"
     ],
-    "20": [
+    "21": [
+      "bankflow_repositories_account_repository",
+      "bankflow_repositories_card_repository",
+      "bankflow_repositories_customer_repository",
+      "bankflow_repositories_transaction_repository",
+      "src_bankflow_repositories_init_py"
+    ],
+    "22": [
       "img06_atm",
       "img06_bank",
       "img06_customer",
       "img06_diagram"
     ],
-    "21": [
+    "23": [
       "img07_atm",
       "img07_bank",
       "img07_customer",
       "img07_diagram"
     ],
-    "22": [
-      "internal_service_ports",
-      "ports"
-    ],
-    "23": [
+    "24": [
       "persistent",
       "temporary"
     ],
-    "24": [
+    "25": [
       "plainpins",
       "topic"
     ],
-    "25": [
+    "26": [
+      "internal_service_ports",
+      "ports"
+    ],
+    "27": [
       "settings_rationale_61",
       "settings_settings_database_url"
     ],
-    "26": [
+    "28": [
       "img06_end"
     ],
-    "27": [
+    "29": [
       "img07_end"
     ],
-    "28": [
+    "30": [
       "python314"
     ],
-    "29": [
+    "31": [
       "lock"
     ],
-    "30": [
+    "32": [
       "devtools"
     ],
-    "31": [
+    "33": [
       "archive"
     ],
-    "32": [
+    "34": [
       "historical"
     ],
-    "33": [
+    "35": [
       "unreleased"
     ],
-    "34": [
+    "36": [
       "docker"
     ],
-    "35": [
+    "37": [
       "preflight"
     ],
-    "36": [
+    "38": [
       "runtime_boundary"
     ],
-    "37": [
+    "39": [
       "money"
     ],
-    "38": [
+    "40": [
       "atomic"
     ],
-    "39": [
+    "41": [
       "lock_conflict"
     ],
-    "40": [
+    "42": [
       "legacy_nan"
     ],
-    "41": [
+    "43": [
       "legacy_cents"
     ],
-    "42": [
+    "44": [
       "precision"
     ],
-    "43": [
+    "45": [
       "uml_conflicts"
     ],
-    "44": [
+    "46": [
       "kafka_failure"
     ],
-    "45": [
+    "47": [
       "outbox"
     ],
-    "46": [
+    "48": [
       "reruns"
     ],
-    "47": [
+    "49": [
       "bankflow_runtime_volume"
     ],
-    "48": [
+    "50": [
       "bankflow_repository_mount"
     ],
-    "49": [
+    "51": [
       "container_python310"
     ],
-    "50": [
+    "52": [
       "readiness_auth_boundary"
     ],
-    "51": [
+    "53": [
       "day2_preserve_credentials"
     ],
-    "52": [
+    "54": [
       "day2_next_seed"
     ],
-    "53": [
+    "55": [
       "day2_rotation_recovery"
     ]
   },
   "cohesion": {
-    "0": 0.05,
-    "1": 0.06,
-    "2": 0.12,
-    "3": 0.05,
-    "4": 0.11,
-    "5": 0.08,
-    "6": 0.07,
-    "7": 0.1,
-    "8": 0.06,
-    "9": 0.08,
-    "10": 0.09,
-    "11": 0.09,
-    "12": 0.1,
-    "13": 0.15,
+    "0": 0.04,
+    "1": 0.05,
+    "2": 0.08,
+    "3": 0.04,
+    "4": 0.07,
+    "5": 0.06,
+    "6": 0.1,
+    "7": 0.06,
+    "8": 0.09,
+    "9": 0.09,
+    "10": 0.1,
+    "11": 0.13,
+    "12": 0.18,
+    "13": 0.16,
     "14": 0.15,
-    "15": 0.15,
-    "16": 0.19,
-    "17": 0.18,
-    "18": 0.22,
-    "19": 0.29,
-    "20": 0.5,
-    "21": 0.5,
-    "22": 1.0,
-    "23": 1.0,
+    "15": 0.14,
+    "16": 0.15,
+    "17": 0.15,
+    "18": 0.19,
+    "19": 0.18,
+    "20": 0.29,
+    "21": 0.4,
+    "22": 0.5,
+    "23": 0.5,
     "24": 1.0,
     "25": 1.0,
     "26": 1.0,
@@ -860,27 +953,39 @@
     "50": 1.0,
     "51": 1.0,
     "52": 1.0,
-    "53": 1.0
+    "53": 1.0,
+    "54": 1.0,
+    "55": 1.0
   },
   "gods": [
     {
       "id": "init_rationale_1",
       "label": "BankFlow utils layer; implementation follows the task plan.",
-      "degree": 22
+      "degree": 33
     },
     {
       "id": "account_account",
       "label": "Account",
-      "degree": 20
+      "degree": 21
     },
     {
-      "id": "sequence_atm",
-      "label": "ATM",
-      "degree": 17
+      "id": "exceptions_repositorynotfounderror",
+      "label": "RepositoryNotFoundError",
+      "degree": 21
+    },
+    {
+      "id": "sqlalchemy",
+      "label": "Sqlalchemy",
+      "degree": 20
     },
     {
       "id": "transaction_transaction",
       "label": "Transaction",
+      "degree": 18
+    },
+    {
+      "id": "sequence_atm",
+      "label": "ATM",
       "degree": 17
     },
     {
@@ -889,29 +994,19 @@
       "degree": 16
     },
     {
+      "id": "card_card",
+      "label": "Card",
+      "degree": 16
+    },
+    {
+      "id": "account_repository_accountrepository",
+      "label": "AccountRepository",
+      "degree": 16
+    },
+    {
       "id": "sequence_bank",
       "label": "Bank System",
       "degree": 15
-    },
-    {
-      "id": "settings_configurationerror",
-      "label": "ConfigurationError",
-      "degree": 15
-    },
-    {
-      "id": "card_card",
-      "label": "Card",
-      "degree": 15
-    },
-    {
-      "id": "sqlalchemy",
-      "label": "Sqlalchemy",
-      "degree": 15
-    },
-    {
-      "id": "base_base",
-      "label": "Base",
-      "degree": 14
     }
   ],
   "surprises": [
@@ -974,18 +1069,18 @@
   "suggested_questions": [
     {
       "type": "cross_community",
-      "question": "How does the exact-money decision flow through the ORM models, revision 0002, the demo seed, and live PostgreSQL validation?",
-      "why": "Connects the architecture decision, executable schema, seeded data, and validation evidence."
+      "question": "How do caller-owned sessions, row locks, version checks, and transaction flushes prepare the Day 6 atomic workflow?",
+      "why": "Connects the repository contract, implementation methods, domain versioning, and the next transaction-service milestone."
     },
     {
-      "type": "handoff",
-      "question": "Which Day 3 persistence guarantees must the Day 4 repositories preserve?",
-      "why": "Bridges the completed domain model to the next implementation milestone."
+      "type": "boundary",
+      "question": "How do repository exceptions keep SQLAlchemy failures out of service code?",
+      "why": "Traces database constraints and ORM concurrency errors through the stable persistence boundary."
     },
     {
-      "type": "traceability",
-      "question": "How did the academic prototype's NaN and fractional-cent defects motivate the implemented exact-money constraints?",
-      "why": "Traces archived defects into current model and database decisions."
+      "type": "correctness",
+      "question": "Why does transaction history order by both timestamp and UUID?",
+      "why": "Links PostgreSQL transaction timestamp behavior to deterministic pagination and its integration tests."
     },
     {
       "type": "ambiguous_edge",

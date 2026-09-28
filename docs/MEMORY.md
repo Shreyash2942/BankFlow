@@ -4,7 +4,7 @@
 **Repository Name:** `BankFlow`  
 **Document Type:** Living Project Memory / Handoff File  
 **Purpose:** Preserve project context, implementation state, decisions, issues, and next actions across developers, sessions, and AI agents.  
-**Last Updated:** 2026-09-27  
+**Last Updated:** 2026-09-28  
 
 ---
 
@@ -103,10 +103,10 @@ Version 2 extends BankFlow with:
 
 # 4. Current Project Status
 
-- Overall status: Implementation - Day 3 core domain model complete.
+- Overall status: Implementation - Day 4 repository layer complete.
 - Release: v0.1.0 package foundation; no release tag or published application.
 - Phase: Phase 1, application foundation.
-- Week/day: Week 1, Day 3 complete; Day 4 next.
+- Week/day: Week 1, Day 4 complete; Day 5 next.
 
 | Area | Status |
 |---|---|
@@ -115,11 +115,12 @@ Version 2 extends BankFlow with:
 | Academic baseline | 18 assets preserved with hashes |
 | Python environment | Python 3.14.4, Windows x64; dependencies installed |
 | PostgreSQL | Five operational models, exact money, demo seed, and Alembic revision 0002 verified |
+| Repository layer | Customer, account, card, and transaction access verified against PostgreSQL |
 | Redis / Kafka connections | Not implemented |
 | Transaction services and Streamlit UI | Not implemented |
 | Airflow / dbt / Spark / Iceberg | Not implemented |
-| Automated application tests / CI | 15 unit cases and eight live PostgreSQL tests pass; CI remains planned |
-| Graph and analysis | Baseline preserved; Day 3 graph includes the implemented domain model |
+| Automated application tests / CI | 15 fast cases and 11 live PostgreSQL tests pass; CI remains planned |
+| Graph and analysis | Baseline preserved; Day 4 graph includes the repository boundary |
 
 ---
 
@@ -767,20 +768,30 @@ Use UUID identities, checked string enums, timezone-aware timestamps, `NUMERIC(1
 
 ---
 
+## ADR-MEM-008 — Session-Bound Repository Boundary
+
+**Status:** Accepted
+
+**Decision**
+
+Repositories receive the caller's SQLAlchemy session, use typed ORM queries, flush writes, and never commit or roll back. Transaction history uses deterministic newest-first ordering. Balance updates combine a row lock with the account version counter. Stable repository exceptions shield services from persistence details. See `docs/architecture/ADR-005-repository-boundary.md`.
+
+---
+
 # 21. Active Work
 
-Day 3 is complete: five persistent domain models, exact monetary values, migration `0002`, live constraint/relationship tests, and an idempotent fictional demo seed. Day 4 repositories are next. No business services or Streamlit screens have been implemented.
+Day 4 is complete: customer, account, card, and transaction repositories provide typed lookups, versioned balance updates, transaction creation, and ordered history without owning commits. Day 5 authentication and Redis are next. No business services or Streamlit screens have been implemented.
 
 ---
 
 # 22. Next Actions
 
-1. Create Customer, Account, Card, and Transaction repository classes.
-2. Add typed lookup, history, transaction creation, and balance-update operations.
-3. Keep transaction boundaries in the service/unit-of-work caller; repositories must not commit.
-4. Add repository exceptions without leaking SQL or credentials.
-5. Validate repository ordering, isolation, missing-record behavior, and exact money in `bankflow_test`.
-6. Update Day 4 evidence, task checklist, graph, and this memory.
+1. Validate Redis authentication and configure the application Redis client.
+2. Centralize scrypt PIN creation and verification while preserving the seeded hash format.
+3. Implement failed-attempt counters, session expiration, and the approved permanent lockout behavior.
+4. Persist card lock status and authentication audit events in the caller-owned database transaction.
+5. Ensure PIN values never enter logs, exceptions, Redis keys, or audit details.
+6. Validate the six Day 5 authentication scenarios in isolated tests and update evidence.
 
 Resolve lockout policy, request idempotency, and post-commit publication behavior at their relevant later milestones. Do not infer live connectivity from dependency imports.
 
@@ -817,6 +828,8 @@ Day 1: Python environment and editable package installation succeeded; dependenc
 Day 2: all 17 tests passed at that milestone. See `docs/DAY2_VALIDATION.md`.
 
 Day 3: all 23 tests pass, including eight live PostgreSQL tests for migration reversal, table relationships, exact cent round trips, timestamps, database constraints, role isolation, sessions, and idempotent seeding. Alembic reports 0002 (head), and autogeneration reports no new operations. See `docs/DAY3_VALIDATION.md`. Repositories, banking business logic, Redis, Kafka, and UI are not covered yet.
+
+Day 4: all 26 tests pass, including 11 live PostgreSQL tests. Repository coverage verifies UUID/business-key lookups, stable list/history ordering, bounded pagination, exact `Decimal` inputs, row locks, version increments and conflicts, transaction creation, constraint translation, and caller-owned rollback. See `docs/DAY4_VALIDATION.md`. Authentication, Redis state, banking rules, Kafka, and UI are not covered yet.
 
 ---
 
@@ -865,25 +878,25 @@ When resolved, move the answer into the appropriate permanent section and remove
 
 ## Last Session Summary
 
-Completed Day 3 core persistence in the dedicated container. Five SQLAlchemy models, migration 0002, exact-money constraints, relationships, account versioning, and the fictional demo seed are verified. All 23 tests pass. See `docs/DAY3_VALIDATION.md` and ADR-004.
+Completed Day 4 repositories in the dedicated container. Customer, account, card, and transaction repositories preserve caller-owned transactions and provide the persistence operations needed by Days 5–6. All 26 tests pass. See `docs/DAY4_VALIDATION.md` and ADR-005.
 
 Populated `BankFlow` using `docs/` as the canonical documentation root and `src/bankflow/` as the application package. Preserved 18 academic assets unchanged, normalized the architecture filename, and retained dated baseline reviews. Added environment template, pinned dependencies, Windows dependency snapshot, Python setup guide, import checker, and package/linter configuration.
 
 ## Last Known Working State
 
-The editable package and application dependencies import on Python 3.14.4. The archived CLI still performs its original single-session withdrawal. Application/test databases are at revision 0002; the application database contains one fictional customer/account/card graph with an exact $500.00 balance. Repositories, business services, and UI remain planned.
+The editable package and application dependencies import on Python 3.14.4. The archived CLI still performs its original single-session withdrawal. Application/test databases are at revision 0002; the application database contains one fictional customer/account/card graph with an exact $500.00 balance. Repository access is implemented; authentication, business services, and UI remain planned.
 
 ## Last Completed Task
 
-Day 3 core domain models and seed. See `docs/DAY3_VALIDATION.md` for evidence and `graphify-out/GRAPH_REPORT.md` for graph provenance.
+Day 4 repository layer. See `docs/DAY4_VALIDATION.md` for evidence and `graphify-out/GRAPH_REPORT.md` for graph provenance.
 
 ## Next Task
 
-Day 4: repository layer for customer, account, card, transaction, balance-update, and ordered-history access.
+Day 5: authentication, Redis attempt/session state, PIN verification, and permanent card lockout.
 
 ## Blockers
 
-No Day 4 blockers. The dedicated container must be running for integration tests. Redis authentication and Kafka metadata need later milestone checks.
+Redis authentication must be validated before Day 5 implementation relies on it. The dedicated container must be running for integration tests. Kafka metadata remains a later milestone check.
 
 ---
 
@@ -976,4 +989,4 @@ Before committing this file, verify:
 
 If only one section can be read before starting work, read this:
 
-> BankFlow is a fictional ATM portfolio project. Days 1–3 are complete in the existing `BankFlow` repository: preserved academic assets, Python 3.14 package, validated configuration, PostgreSQL sessions/health, five operational SQLAlchemy models, exact money, migration 0002, and an idempotent fictional demo seed. All 23 tests pass. Application/test databases use restricted owners and ignored credentials; the application database contains one demo graph with a $500.00 balance. Begin Day 4 repositories using `docs/TASK.md`, ADR-004, and `docs/DAY3_VALIDATION.md`. Business services and UI remain planned; Redis authentication and Kafka metadata need later validation.
+> BankFlow is a fictional ATM portfolio project. Days 1–4 are complete in the existing `BankFlow` repository: preserved academic assets, Python 3.14 package, validated configuration, PostgreSQL sessions/health, five operational SQLAlchemy models, exact money, migration 0002, an idempotent fictional demo seed, and session-bound repositories. All 26 tests pass. Application/test databases use restricted owners and ignored credentials; the application database contains one demo graph with a $500.00 balance. Begin Day 5 authentication using `docs/TASK.md`, ADR-005, and `docs/DAY4_VALIDATION.md`. Business services and UI remain planned; Redis authentication and Kafka metadata need later validation.

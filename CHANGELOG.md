@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased — Day 4 repository layer (2026-09-28)
+
+- Added customer, account, card, and transaction repositories using caller-owned SQLAlchemy sessions.
+- Added typed lookups, deterministic transaction history, guarded pagination, transaction creation, and versioned balance updates.
+- Added repository exceptions for missing, invalid, conflicting, and database-rejected operations.
+- Expanded validation to 15 fast tests and 11 live PostgreSQL tests; all 26 pass with database opt-in.
+
 ## Unreleased — Day 3 core domain model (2026-09-27)
 
 - Added customer, account, card, transaction, and audit-event SQLAlchemy models with typed relationships.
