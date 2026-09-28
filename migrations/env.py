@@ -6,6 +6,7 @@ from alembic import context
 from alembic.util import CommandError
 from sqlalchemy.exc import SQLAlchemyError
 
+import bankflow.models  # noqa: F401  # Register every mapped table with Base.metadata.
 from bankflow.config.settings import ConfigurationError, load_settings
 from bankflow.database.base import Base
 from bankflow.database.connection import create_database_engine

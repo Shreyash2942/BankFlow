@@ -1,4 +1,4 @@
-"""Shared ORM metadata. Domain models are introduced on Day 3."""
+"""Shared ORM metadata for BankFlow's application schema."""
 
 from sqlalchemy import MetaData
 from sqlalchemy.orm import DeclarativeBase
