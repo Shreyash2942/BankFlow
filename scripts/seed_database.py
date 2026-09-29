@@ -1,9 +1,6 @@
 """Insert the idempotent fictional BankFlow demo customer, account, and card."""
 
 import argparse
-import base64
-import hashlib
-import secrets
 from dataclasses import dataclass
 from decimal import Decimal
 from pathlib import Path
@@ -16,6 +13,7 @@ from bankflow.config.settings import ConfigurationError, load_settings
 from bankflow.database.connection import create_database_engine
 from bankflow.database.session import create_session_factory, session_scope
 from bankflow.models import Account, AccountType, AuditEvent, Card, Customer
+from bankflow.utils import hash_pin
 
 DEMO_CUSTOMER_ID = UUID("11111111-1111-4111-8111-111111111111")
 DEMO_ACCOUNT_ID = UUID("22222222-2222-4222-8222-222222222222")
@@ -37,15 +35,6 @@ class SeedResult:
     customer_id: UUID = DEMO_CUSTOMER_ID
     account_id: UUID = DEMO_ACCOUNT_ID
     card_id: UUID = DEMO_CARD_ID
-
-
-def _hash_demo_pin(pin: str) -> str:
-    """Create a salted scrypt hash; Day 5 authentication will own verification."""
-    salt = secrets.token_bytes(16)
-    digest = hashlib.scrypt(pin.encode("utf-8"), salt=salt, n=2**14, r=8, p=1, dklen=32)
-    encoded_salt = base64.urlsafe_b64encode(salt).decode("ascii").rstrip("=")
-    encoded_digest = base64.urlsafe_b64encode(digest).decode("ascii").rstrip("=")
-    return f"scrypt$16384$8$1${encoded_salt}${encoded_digest}"
 
 
 def seed_demo_data(session: Session) -> SeedResult:
@@ -81,7 +70,7 @@ def seed_demo_data(session: Session) -> SeedResult:
         account=account,
         card_token=DEMO_CARD_TOKEN,
         last_four="1001",
-        pin_hash=_hash_demo_pin(_DEMO_PIN),
+        pin_hash=hash_pin(_DEMO_PIN),
         expiry_month=12,
         expiry_year=2035,
     )

@@ -43,10 +43,13 @@ class Settings(BaseSettings):
     redis_username: str = "default"
     redis_password: SecretStr = Field(default=SecretStr(""), repr=False)
     redis_db: int = Field(default=0, ge=0, le=15)
+    redis_socket_timeout: int = Field(default=2, ge=1, le=30)
     kafka_bootstrap_servers: NonEmpty = "127.0.0.1:9093"
     kafka_transaction_topic: NonEmpty = "bankflow.transaction.events"
     kafka_consumer_group: NonEmpty = "bankflow-operational-v1"
     max_pin_attempts: int = Field(default=3, ge=1, le=10)
+    pin_attempt_ttl_seconds: int = Field(default=900, ge=1, le=86_400)
+    auth_session_ttl_seconds: int = Field(default=900, ge=1, le=86_400)
     auto_close_zero_balance: bool = True
 
     @field_validator("postgres_password")

@@ -24,8 +24,10 @@ class CardRepository:
             raise RepositoryNotFoundError("Card", card_id)
         return card
 
-    def get_by_token(self, card_token: str) -> Card | None:
+    def get_by_token(self, card_token: str, *, for_update: bool = False) -> Card | None:
         statement = select(Card).where(Card.card_token == card_token)
+        if for_update:
+            statement = statement.with_for_update()
         return self._session.scalars(statement).one_or_none()
 
     def list_for_account(self, account_id: UUID) -> list[Card]:
