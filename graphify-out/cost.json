@@ -3,9 +3,9 @@
   "actual_output_tokens": null,
   "actual_cost_usd": null,
   "reason": "Agent execution does not expose actual usage or billing; unknown is not zero.",
-  "estimated_readable_corpus_tokens": 54612,
-  "semantic_nodes_new": 36,
-  "semantic_nodes_reused": 511,
+  "estimated_readable_corpus_tokens": 452264,
+  "semantic_nodes_new": 115,
+  "semantic_nodes_reused": 518,
   "updates": [
     {
       "date": "2026-09-23T00:02:40.230278+00:00",
@@ -34,9 +34,17 @@
       "actual_input_tokens": null,
       "actual_output_tokens": null,
       "actual_cost_usd": null
+    },
+    {
+      "date": "2026-09-29T17:51:25.026561+00:00",
+      "scope": "Day 5 authentication and Redis",
+      "actual_input_tokens": null,
+      "actual_output_tokens": null,
+      "actual_cost_usd": null
     }
   ],
-  "graph_nodes_after": 728,
+  "graph_nodes_after": 747,
   "semantic_nodes_added_for_day3": 19,
-  "semantic_nodes_added_for_day4": 20
+  "semantic_nodes_added_for_day4": 20,
+  "semantic_nodes_added_for_day5": 115
 }

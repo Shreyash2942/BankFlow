@@ -325,18 +325,18 @@ Implement secure demo authentication and card lockout behavior.
 
 ### Tasks
 
-- [ ] Configure Redis client
-- [ ] Create PIN hashing utility
-- [ ] Add PIN verification
-- [ ] Add Redis failed-attempt counter
-- [ ] Add maximum PIN attempt setting
-- [ ] Implement card lockout
-- [ ] Persist permanent locked status in PostgreSQL
-- [ ] Add session creation
-- [ ] Add session expiration
-- [ ] Add authentication audit events
-- [ ] Ensure PIN is never logged
-- [ ] Add authentication tests
+- [x] Configure Redis client
+- [x] Create PIN hashing utility
+- [x] Add PIN verification
+- [x] Add Redis failed-attempt counter
+- [x] Add maximum PIN attempt setting
+- [x] Implement card lockout
+- [x] Persist permanent locked status in PostgreSQL
+- [x] Add session creation
+- [x] Add session expiration
+- [x] Add authentication audit events
+- [x] Ensure PIN is never logged
+- [x] Add authentication tests
 
 ### Deliverables
 
@@ -358,6 +358,8 @@ wrong PIN third time → card locked
 locked card → authentication denied
 successful login → attempt counter reset
 ```
+
+Evidence: [Day 5 validation](DAY5_VALIDATION.md). Completed 2026-09-29 with authenticated Redis database isolation and 44 passing tests; transaction rules remain Day 6.
 
 ### Suggested Commits
 

@@ -7,7 +7,7 @@ Recorded 2026-09-22 from the user-provided connection guide and Docker mapping i
 | Service | Windows host | Inside bankflow | Status |
 |---|---|---|---|
 | PostgreSQL | `localhost:5433` | `localhost:5432` | Application health query verified on 2026-09-24 |
-| Redis | `localhost:6380` | `localhost:6379` | Responding; authentication required |
+| Redis | `localhost:6380` | `localhost:6379` | Authenticated application and isolated test access verified |
 | Kafka bootstrap | `localhost:9093` | `localhost:9092` | Mapping inspected; metadata unavailable during startup |
 | HiveServer2 JDBC | `jdbc:hive2://localhost:10002` | `localhost:10000` | Mapping inspected, query untested |
 | HiveServer2 Thrift | `thrift://localhost:10002` | `localhost:10000` | Mapping inspected, request untested |

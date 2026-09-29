@@ -1,26 +1,36 @@
 {
-  "corpus_tokens": 54612,
-  "corpus_words": 40959,
-  "nodes": 728,
-  "edges": 1210,
-  "avg_query_tokens": 8874,
-  "reduction_ratio": 6.2,
+  "corpus_tokens": 452264,
+  "corpus_words": 339198,
+  "nodes": 747,
+  "edges": 1243,
+  "avg_query_tokens": 6068,
+  "reduction_ratio": 74.5,
   "per_question": [
     {
-      "question": "How do repository transaction boundaries prepare the Day 6 atomic workflow?",
-      "query_tokens": 8843,
-      "reduction": 6.2
+      "question": "how does authentication work",
+      "query_tokens": 5841,
+      "reduction": 77.4
     },
     {
-      "question": "How are versioned balance updates protected and validated?",
-      "query_tokens": 9388,
-      "reduction": 5.8
+      "question": "what is the main entry point",
+      "query_tokens": 9476,
+      "reduction": 47.7
     },
     {
-      "question": "How does deterministic transaction history support service code?",
-      "query_tokens": 8393,
-      "reduction": 6.5
+      "question": "how are errors handled",
+      "query_tokens": 1998,
+      "reduction": 226.4
+    },
+    {
+      "question": "what connects the data layer to the api",
+      "query_tokens": 5265,
+      "reduction": 85.9
+    },
+    {
+      "question": "what are the core abstractions",
+      "query_tokens": 7761,
+      "reduction": 58.3
     }
   ],
-  "limitations": "Approximate retrieved text size only; not accuracy, completeness, actual model usage, or billing."
+  "limitations": "Approximate retrieved graph-context size only; not accuracy, completeness, actual model usage, or billing."
 }

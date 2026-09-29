@@ -103,10 +103,10 @@ Version 2 extends BankFlow with:
 
 # 4. Current Project Status
 
-- Overall status: Implementation - Day 4 repository layer complete.
+- Overall status: Implementation - Day 5 authentication and Redis complete.
 - Release: v0.1.0 package foundation; no release tag or published application.
 - Phase: Phase 1, application foundation.
-- Week/day: Week 1, Day 4 complete; Day 5 next.
+- Week/day: Week 1, Day 5 complete; Day 6 next.
 
 | Area | Status |
 |---|---|
@@ -116,11 +116,12 @@ Version 2 extends BankFlow with:
 | Python environment | Python 3.14.4, Windows x64; dependencies installed |
 | PostgreSQL | Five operational models, exact money, demo seed, and Alembic revision 0002 verified |
 | Repository layer | Customer, account, card, and transaction access verified against PostgreSQL |
-| Redis / Kafka connections | Not implemented |
+| Authentication / Redis | Authenticated client, expiring counters/sessions, audit events, and durable card lock verified |
+| Kafka connection | Not implemented |
 | Transaction services and Streamlit UI | Not implemented |
 | Airflow / dbt / Spark / Iceberg | Not implemented |
-| Automated application tests / CI | 15 fast cases and 11 live PostgreSQL tests pass; CI remains planned |
-| Graph and analysis | Baseline preserved; Day 4 graph includes the repository boundary |
+| Automated application tests / CI | 30 fast cases and 14 live PostgreSQL/Redis tests pass; CI remains planned |
+| Graph and analysis | Baseline preserved; Day 5 graph includes authentication state and lockout |
 
 ---
 
@@ -544,7 +545,7 @@ Current planning issue:
 
 ### ISSUE-001 — Existing Docker Service Details Not Yet Inspected
 
-**Status:** PostgreSQL resolved; Redis and Kafka validation pending  
+**Status:** PostgreSQL and Redis resolved; Kafka validation pending  
 **Severity:** Medium  
 **Type:** Environment / Dependency  
 
@@ -552,11 +553,11 @@ Current planning issue:
 
 The project plans to reuse PostgreSQL, Redis, Kafka, Airflow, dbt, Spark, Hadoop, Hive, and Iceberg from an existing Docker-based data lab.
 
-The user created the running `bankflow` container with a dedicated runtime volume. Day 2 verified authenticated PostgreSQL access and migrations with separate application/test databases. Redis authentication and Kafka metadata remain future checks.
+The user created the running `bankflow` container with a dedicated runtime volume. Day 2 verified authenticated PostgreSQL access and migrations with separate application/test databases. Day 5 verified authenticated Redis access with separate application/test databases. Kafka metadata remains a future check.
 
 **Impact**
 
-PostgreSQL configuration is verified. Redis and Kafka integration require their own readiness and authentication checks.
+PostgreSQL and Redis configuration are verified. Kafka integration requires its own readiness and authentication checks.
 
 **Next Action**
 
@@ -776,22 +777,27 @@ Use UUID identities, checked string enums, timezone-aware timestamps, `NUMERIC(1
 
 Repositories receive the caller's SQLAlchemy session, use typed ORM queries, flush writes, and never commit or roll back. Transaction history uses deterministic newest-first ordering. Balance updates combine a row lock with the account version counter. Stable repository exceptions shield services from persistence details. See `docs/architecture/ADR-005-repository-boundary.md`.
 
+## ADR-MEM-009 — Split Authentication State by Durability
+
+**Decision**
+
+PostgreSQL stores salted PIN hashes and permanent card locks. Redis stores only expiring failed-attempt counters and sessions. Card rows are locked during authentication; session tokens are opaque and hashed in Redis keys; authentication fails closed if Redis is unavailable. See `docs/architecture/ADR-006-authentication-state.md`.
+
 ---
 
 # 21. Active Work
 
-Day 4 is complete: customer, account, card, and transaction repositories provide typed lookups, versioned balance updates, transaction creation, and ordered history without owning commits. Day 5 authentication and Redis are next. No business services or Streamlit screens have been implemented.
+Day 5 is complete: authentication uses the shared scrypt verifier, Redis-backed attempt/session state, permanent PostgreSQL lockout, and secret-free audit events. Day 6 transaction services are next. No account/transaction services or Streamlit screens have been implemented.
 
 ---
 
 # 22. Next Actions
 
-1. Validate Redis authentication and configure the application Redis client.
-2. Centralize scrypt PIN creation and verification while preserving the seeded hash format.
-3. Implement failed-attempt counters, session expiration, and the approved permanent lockout behavior.
-4. Persist card lock status and authentication audit events in the caller-owned database transaction.
-5. Ensure PIN values never enter logs, exceptions, Redis keys, or audit details.
-6. Validate the six Day 5 authentication scenarios in isolated tests and update evidence.
+1. Implement account and transaction service schemas.
+2. Add balance inquiry, deposit, and withdrawal rules using exact `Decimal` values.
+3. Persist balance mutation, transaction record, and audit event in one caller-owned database transaction.
+4. Enforce insufficient-funds, nonpositive-amount, and configurable zero-balance rules.
+5. Add transaction history orchestration and Day 6 tests.
 
 Resolve lockout policy, request idempotency, and post-commit publication behavior at their relevant later milestones. Do not infer live connectivity from dependency imports.
 
@@ -799,7 +805,7 @@ Resolve lockout policy, request idempotency, and post-commit publication behavio
 
 # 23. Environment Memory
 
-Environment inventory from 2026-09-22; PostgreSQL updated and verified 2026-09-27:
+Environment inventory from 2026-09-22; PostgreSQL and Redis updated and verified through 2026-09-29:
 
 - Python 3.14.4, Windows x64; isolated `.venv` with pinned dependencies.
 - Docker engine 29.8.0; Docker Compose 5.5.1.
@@ -807,13 +813,13 @@ Environment inventory from 2026-09-22; PostgreSQL updated and verified 2026-09-2
 - Runtime volume `datalab-runtime-bankflow` -> `/home/datalab/runtime`; no other container currently mounts it.
 - Repository bind mount -> `/home/datalab/bankflow`; container default Python is 3.10.12. The application remains on Windows Python 3.14.4.
 - Published host ports: PostgreSQL 5433, Redis 6380, Kafka 9093. Internal ports remain 5432, 6379, and 9092.
-- PostgreSQL 14.22 authenticates from Windows on port 5433; the application health query succeeds. Redis required authentication and Kafka metadata was unavailable in the earlier startup checks.
+- PostgreSQL 14.22 authenticates from Windows on port 5433. Redis 6.0.16 authenticates on port 6380; counters and expiring sessions succeed. Kafka metadata was unavailable in the earlier startup checks.
 - HDFS 9000 and Spark RPC 7077 are internal-only in the inspected mappings.
 - Copied `/medilake` storage paths are not adopted; future `/bankflow/bronze` and `/bankflow/silver` paths are proposed, not created.
 - Selected connection strategy: application on Windows -> `127.0.0.1` published ports.
 - User created and started the dedicated container/services. Day 2 provisioned only BankFlow database resources without resetting data or reconfiguring services.
 - Application database/owner: `bankflow` / `bankflow_user`; test database/owner: `bankflow_test` / `bankflow_test_user`. Both are at migration 0002 with five operational tables. The application database has one fictional demo graph; generated credentials stay in ignored local files.
-- Redis authentication, Kafka advertised listeners, other service versions, and V2 resource limits remain unverified.
+- Kafka advertised listeners, other service versions, and V2 resource limits remain unverified.
 
 See `docs/ENVIRONMENT.md` for setup and `docs/architecture/ADR-003-database-foundation.md` for database decisions. Never record credentials here.
 
@@ -830,6 +836,8 @@ Day 2: all 17 tests passed at that milestone. See `docs/DAY2_VALIDATION.md`.
 Day 3: all 23 tests pass, including eight live PostgreSQL tests for migration reversal, table relationships, exact cent round trips, timestamps, database constraints, role isolation, sessions, and idempotent seeding. Alembic reports 0002 (head), and autogeneration reports no new operations. See `docs/DAY3_VALIDATION.md`. Repositories, banking business logic, Redis, Kafka, and UI are not covered yet.
 
 Day 4: all 26 tests pass, including 11 live PostgreSQL tests. Repository coverage verifies UUID/business-key lookups, stable list/history ordering, bounded pagination, exact `Decimal` inputs, row locks, version increments and conflicts, transaction creation, constraint translation, and caller-owned rollback. See `docs/DAY4_VALIDATION.md`. Authentication, Redis state, banking rules, Kafka, and UI are not covered yet.
+
+Day 5: all 44 tests pass, including 14 live PostgreSQL/Redis tests. Authentication coverage verifies correct PINs, three-step lockout, locked-card denial, counter reset, expiring sessions, durable card status, secret-free audit details, and fail-closed Redis errors. See `docs/DAY5_VALIDATION.md`. Banking rules, Kafka, and UI are not covered yet.
 
 ---
 
@@ -878,25 +886,25 @@ When resolved, move the answer into the appropriate permanent section and remove
 
 ## Last Session Summary
 
-Completed Day 4 repositories in the dedicated container. Customer, account, card, and transaction repositories preserve caller-owned transactions and provide the persistence operations needed by Days 5–6. All 26 tests pass. See `docs/DAY4_VALIDATION.md` and ADR-005.
+Completed Day 5 authentication in the dedicated container. Shared scrypt hashing, authenticated Redis counters/sessions, durable PostgreSQL lockout, and secret-free audit records satisfy the six acceptance scenarios. All 44 tests pass. See `docs/DAY5_VALIDATION.md` and ADR-006.
 
 Populated `BankFlow` using `docs/` as the canonical documentation root and `src/bankflow/` as the application package. Preserved 18 academic assets unchanged, normalized the architecture filename, and retained dated baseline reviews. Added environment template, pinned dependencies, Windows dependency snapshot, Python setup guide, import checker, and package/linter configuration.
 
 ## Last Known Working State
 
-The editable package and application dependencies import on Python 3.14.4. The archived CLI still performs its original single-session withdrawal. Application/test databases are at revision 0002; the application database contains one fictional customer/account/card graph with an exact $500.00 balance. Repository access is implemented; authentication, business services, and UI remain planned.
+The editable package and application dependencies import on Python 3.14.4. The archived CLI still performs its original single-session withdrawal. Application/test databases are at revision 0002; the application database contains one fictional customer/account/card graph with an exact $500.00 balance. Repository access and authentication are implemented; transaction services and UI remain planned.
 
 ## Last Completed Task
 
-Day 4 repository layer. See `docs/DAY4_VALIDATION.md` for evidence and `graphify-out/GRAPH_REPORT.md` for graph provenance.
+Day 5 authentication and Redis. See `docs/DAY5_VALIDATION.md` for evidence and `graphify-out/GRAPH_REPORT.md` for graph provenance.
 
 ## Next Task
 
-Day 5: authentication, Redis attempt/session state, PIN verification, and permanent card lockout.
+Day 6: account balance, withdrawal, deposit, transaction history, and atomic business rules.
 
 ## Blockers
 
-Redis authentication must be validated before Day 5 implementation relies on it. The dedicated container must be running for integration tests. Kafka metadata remains a later milestone check.
+The dedicated container must be running for live PostgreSQL/Redis integration tests. Kafka metadata remains a later milestone check.
 
 ---
 
@@ -989,4 +997,4 @@ Before committing this file, verify:
 
 If only one section can be read before starting work, read this:
 
-> BankFlow is a fictional ATM portfolio project. Days 1–4 are complete in the existing `BankFlow` repository: preserved academic assets, Python 3.14 package, validated configuration, PostgreSQL sessions/health, five operational SQLAlchemy models, exact money, migration 0002, an idempotent fictional demo seed, and session-bound repositories. All 26 tests pass. Application/test databases use restricted owners and ignored credentials; the application database contains one demo graph with a $500.00 balance. Begin Day 5 authentication using `docs/TASK.md`, ADR-005, and `docs/DAY4_VALIDATION.md`. Business services and UI remain planned; Redis authentication and Kafka metadata need later validation.
+> BankFlow is a fictional ATM portfolio project. Days 1–5 are complete in the existing `BankFlow` repository: preserved academic assets, Python 3.14 package, validated configuration, PostgreSQL sessions/health, five operational SQLAlchemy models, exact money, migration 0002, an idempotent fictional demo seed, session-bound repositories, and Redis-backed authentication with permanent PostgreSQL card lockout. All 44 tests pass. Application/test databases use restricted owners and ignored credentials; Redis tests use database 1 with unique prefixes. Begin Day 6 transaction services using `docs/TASK.md`, ADR-006, and `docs/DAY5_VALIDATION.md`. Streamlit and Kafka remain planned.

@@ -2,7 +2,7 @@
 
 **An educational ATM transaction and analytics platform using fictional data.**
 
-BankFlow is evolving from a command-line college assignment into a Python application and event-driven data platform. Days 1–4 now provide the package foundation, PostgreSQL domain model, fictional seed data, and a tested repository boundary. The original CLI runs today; authentication, ATM services, Streamlit screens, and pipelines are still planned.
+BankFlow is evolving from a command-line college assignment into a Python application and event-driven data platform. Days 1–5 now provide the package foundation, PostgreSQL domain model, fictional seed data, repository boundary, and Redis-backed authentication with durable card lockout. The original CLI runs today; transaction services, Streamlit screens, and pipelines are still planned.
 
 ## Quick start — Windows PowerShell
 
@@ -34,7 +34,7 @@ No Streamlit entry point exists yet; it is scheduled for Day 7. Installed depend
 
 ## Configuration and infrastructure
 
-The Windows application connects to the dedicated `bankflow` container: PostgreSQL 5433, Redis 6380, and Kafka 9093. PostgreSQL application access is verified. Redis authentication and Kafka metadata remain future milestone checks.
+The Windows application connects to the dedicated `bankflow` container: PostgreSQL 5433, Redis 6380, and Kafka 9093. PostgreSQL and authenticated Redis access are verified. Kafka metadata remains a future milestone check.
 
 On this workspace, application and test databases and ignored credentials are already provisioned. Run:
 
@@ -47,7 +47,7 @@ On this workspace, application and test databases and ignored credentials are al
 
 For a fresh copy of this same lab, `scripts/provision_local_database.py` creates the two databases, restricted owner roles, and local environment files. Run it once with the dedicated container running. It deliberately refuses existing files or resources. For another PostgreSQL installation, create equivalent resources yourself, copy `.env.example` into ignored local files, and fill the connection settings. Never overwrite existing credentials to repeat setup.
 
-Settings precedence is explicit arguments, process environment, dotenv, then defaults. Run commands from the repository root; the health command also accepts `--env-file PATH`. PostgreSQL's password is required; Redis's blank placeholder is not a verified credential. See the [environment guide](docs/ENVIRONMENT.md), [service reference](docs/SERVICES.md), and [database decision](docs/architecture/ADR-003-database-foundation.md).
+Settings precedence is explicit arguments, process environment, dotenv, then defaults. Run commands from the repository root; the health command also accepts `--env-file PATH`. PostgreSQL and Redis credentials belong only in ignored local environment files. See the [environment guide](docs/ENVIRONMENT.md), [service reference](docs/SERVICES.md), and [authentication-state decision](docs/architecture/ADR-006-authentication-state.md).
 
 ## Project map
 
@@ -89,6 +89,8 @@ BankFlow/
 - [Day 3 domain model decision](docs/architecture/ADR-004-core-domain-model.md)
 - [Day 4 validation](docs/DAY4_VALIDATION.md)
 - [Day 4 repository decision](docs/architecture/ADR-005-repository-boundary.md)
+- [Day 5 validation](docs/DAY5_VALIDATION.md)
+- [Day 5 authentication-state decision](docs/architecture/ADR-006-authentication-state.md)
 - [Baseline analysis](docs/analysis/PROJECT_ANALYSIS.md)
 - [Interactive project graph](graphify-out/graph.html) and [audit report](graphify-out/GRAPH_REPORT.md)
 
@@ -112,4 +114,4 @@ $env:BANKFLOW_RUN_DB_TESTS='1'
 Remove-Item Env:BANKFLOW_RUN_DB_TESTS
 ```
 
-The live tests require `.env.test` with `APP_ENV=test`, `POSTGRES_DB=bankflow_test`, and `POSTGRES_USER=bankflow_test_user`. They exercise migration reversal and repository persistence only there. See [Day 4 validation](docs/DAY4_VALIDATION.md) for current results and limits.
+The live tests require `.env.test` with `APP_ENV=test`, `POSTGRES_DB=bankflow_test`, `POSTGRES_USER=bankflow_test_user`, and the dedicated Redis database 1. They exercise migration, persistence, and authentication only in isolated test resources. See [Day 5 validation](docs/DAY5_VALIDATION.md) for current results and limits.

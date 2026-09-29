@@ -182,7 +182,6 @@ Redis is used only for short-lived operational state such as:
 
 - authentication attempt counters
 - sessions
-- temporary lockouts
 - session expiration
 
 Permanent card/account status is persisted to PostgreSQL.
@@ -387,15 +386,14 @@ analytics_hourly_volume
 Expected key patterns:
 
 ```text
-bankflow:session:<session_id>
-bankflow:card:<card_id>:pin_attempts
-bankflow:card:<card_id>:lock
+bankflow:auth:session:<sha256_session_token>
+bankflow:auth:attempts:<card_uuid>
 ```
 
 Example:
 
 ```text
-bankflow:card:10025:pin_attempts = 2
+bankflow:auth:attempts:33333333-3333-4333-8333-333333333333 = 2
 ```
 
 Redis data should have appropriate expiration times where applicable.
@@ -657,24 +655,28 @@ sequenceDiagram
     participant Auth as Authentication Service
     participant Redis
     participant DB as PostgreSQL
-    participant Kafka
 
     User->>UI: Select demo card and enter PIN
     UI->>Auth: Authenticate(card, PIN)
-    Auth->>Redis: Read failed-attempt counter
-    Auth->>DB: Load card and PIN hash
+    Auth->>DB: Lock card row and load PIN hash
     Auth->>Auth: Verify PIN
 
     alt PIN is valid
         Auth->>Redis: Clear failed attempts
-        Auth->>Kafka: Publish authentication.succeeded
+        Auth->>Redis: Create expiring session
+        Auth->>DB: Append success audit event
         Auth-->>UI: Authentication successful
     else PIN is invalid
         Auth->>Redis: Increment failed attempts
-        Auth->>Kafka: Publish authentication.failed
+        opt Attempt limit reached
+            Auth->>DB: Persist permanent card lock
+        end
+        Auth->>DB: Append denial or lock audit event
         Auth-->>UI: Authentication failed
     end
 ```
+
+Kafka publication is added after the Day 8 event contract and Day 9 producer integration.
 
 ---
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased — Day 5 authentication and Redis (2026-09-29)
+
+- Added shared salted scrypt PIN hashing and verification with secret-safe request/result schemas.
+- Added authenticated Redis connectivity, expiring failed-attempt counters, hashed session-token keys, and expiring sessions.
+- Added caller-transaction authentication orchestration, card-row locking, permanent PostgreSQL lockout on the third failure, and secret-free audit events.
+- Isolated live Redis tests on database 1 with unique prefixes and expanded validation to 30 fast tests and 14 live PostgreSQL/Redis tests; all 44 pass with service opt-in.
+
 ## Unreleased — Day 4 repository layer (2026-09-28)
 
 - Added customer, account, card, and transaction repositories using caller-owned SQLAlchemy sessions.
@@ -32,7 +39,7 @@
 - Added a verified Python 3.14 development environment, pinned dependencies, local configuration template, and setup instructions.
 - Documented the existing Data-Lab connection strategy and pending live checks.
 
-No application release has been tagged. Domain services and the Streamlit UI remain planned.
+No application release has been tagged. Transaction services and the Streamlit UI remain planned.
 
 ### Dedicated container follow-up
 
