@@ -380,19 +380,19 @@ Implement account balance, withdrawal, and deposit business logic.
 
 ### Tasks
 
-- [ ] Create AccountService
-- [ ] Create TransactionService
-- [ ] Implement balance inquiry
-- [ ] Implement withdrawal validation
-- [ ] Implement insufficient-funds rule
-- [ ] Implement deposit validation
-- [ ] Generate transaction IDs
-- [ ] Store balance before and after
-- [ ] Persist transaction status
-- [ ] Use database transaction boundaries
-- [ ] Add configurable zero-balance rule
-- [ ] Implement transaction history
-- [ ] Add unit tests
+- [x] Create AccountService
+- [x] Create TransactionService
+- [x] Implement balance inquiry
+- [x] Implement withdrawal validation
+- [x] Implement insufficient-funds rule
+- [x] Implement deposit validation
+- [x] Generate transaction IDs
+- [x] Store balance before and after
+- [x] Persist transaction status
+- [x] Use database transaction boundaries
+- [x] Add configurable zero-balance rule
+- [x] Implement transaction history
+- [x] Add unit tests
 
 ### Deliverables
 
@@ -414,6 +414,8 @@ deposit > 0 → success
 balance updates correctly
 transaction history persists
 ```
+
+Evidence: [Day 6 validation](DAY6_VALIDATION.md). Completed 2026-09-30 with exact-money validation, atomic PostgreSQL workflows, and 71 passing tests; Streamlit remains Day 7.
 
 ### Suggested Commits
 

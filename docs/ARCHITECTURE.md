@@ -701,15 +701,17 @@ sequenceDiagram
         Txn->>DB: Begin DB transaction
         Txn->>DB: Update balance
         Txn->>DB: Insert transaction record
+        Txn->>DB: Append audit event
         Txn->>DB: Commit
-        Txn->>Kafka: Publish withdrawal.completed
         Txn-->>UI: Success + updated balance
     else Insufficient funds
         Txn->>DB: Insert declined transaction
-        Txn->>Kafka: Publish withdrawal.declined
+        Txn->>DB: Append decline audit event
         Txn-->>UI: Insufficient funds
     end
 ```
+
+Day 9 adds post-transaction Kafka publication after the Day 8 event contract is defined.
 
 ---
 

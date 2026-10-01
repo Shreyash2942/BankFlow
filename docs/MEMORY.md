@@ -103,10 +103,10 @@ Version 2 extends BankFlow with:
 
 # 4. Current Project Status
 
-- Overall status: Implementation - Day 5 authentication and Redis complete.
+- Overall status: Implementation - Day 6 transaction engine complete.
 - Release: v0.1.0 package foundation; no release tag or published application.
 - Phase: Phase 1, application foundation.
-- Week/day: Week 1, Day 5 complete; Day 6 next.
+- Week/day: Week 1, Day 6 complete; Day 7 next.
 
 | Area | Status |
 |---|---|
@@ -118,10 +118,11 @@ Version 2 extends BankFlow with:
 | Repository layer | Customer, account, card, and transaction access verified against PostgreSQL |
 | Authentication / Redis | Authenticated client, expiring counters/sessions, audit events, and durable card lock verified |
 | Kafka connection | Not implemented |
-| Transaction services and Streamlit UI | Not implemented |
+| Transaction services | Exact balance inquiry, withdrawal, deposit, decline, closure, and history workflows verified |
+| Streamlit UI | Not implemented |
 | Airflow / dbt / Spark / Iceberg | Not implemented |
-| Automated application tests / CI | 30 fast cases and 14 live PostgreSQL/Redis tests pass; CI remains planned |
-| Graph and analysis | Baseline preserved; Day 5 graph includes authentication state and lockout |
+| Automated application tests / CI | 51 fast cases and 20 live PostgreSQL/Redis tests pass; CI remains planned |
+| Graph and analysis | Baseline preserved; Day 6 graph includes the atomic transaction engine |
 
 ---
 
@@ -574,18 +575,18 @@ and relevant Docker Compose files before creating BankFlow service configuration
 
 ### ISSUE-002 ? Legacy amount validation accepts non-finite and sub-cent values
 
-**Status:** Open (legacy prototype)  
+**Status:** Resolved in the application core; retained in the archived prototype  
 **Severity:** High for transaction correctness  
 **Evidence:** `atm_simulation.py` accepts `nan` and reports a NaN balance; `0.001` is accepted and displayed as a $0.00 withdrawal. Reproduced with captured console inputs in `docs/analysis/PROTOTYPE_VALIDATION.json`.
 
-**Next Action:** Preserve the academic script as provenance; implement and test finite Decimal values and an explicit precision policy in the new transaction core.
+**Resolution:** Day 6 requires finite positive Python `Decimal`, enforces cent precision and `NUMERIC(18,2)` bounds, and tests the rejected legacy cases. The academic script remains unchanged as provenance.
 
 ### ISSUE-003 ? Lockout policy and diagram inconsistencies
 
-**Status:** Open (specification)  
+**Status:** Resolved for the application; legacy diagrams remain archived  
 **Evidence:** TASK Day 5 specifies persistent PostgreSQL lock status; DESIGN section 13 calls the lock temporary. Legacy UML includes incorrect retry connectors, retain/eject conflicts, and different debit/dispense ordering.
 
-**Next Action:** Resolve the lockout/reset policy before authentication work and revise implementation diagrams against the new requirements. See `docs/analysis/DOCUMENT_REVIEW.md` and `docs/analysis/DIAGRAM_REVIEW.md`.
+**Resolution:** Day 5 made PostgreSQL card lockout permanent while Redis counters remain temporary. The maintained architecture flow now reflects the implementation; original diagrams remain unchanged. See ADR-006.
 
 ---
 
@@ -783,21 +784,27 @@ Repositories receive the caller's SQLAlchemy session, use typed ORM queries, flu
 
 PostgreSQL stores salted PIN hashes and permanent card locks. Redis stores only expiring failed-attempt counters and sessions. Card rows are locked during authentication; session tokens are opaque and hashed in Redis keys; authentication fails closed if Redis is unavailable. See `docs/architecture/ADR-006-authentication-state.md`.
 
+## ADR-MEM-010 — Exact and Atomic Transaction Engine
+
+**Decision**
+
+Transaction requests require finite positive Python `Decimal` values at cent precision. Services verify the authenticated customer/account/card graph, lock the account row, and persist balance changes, UUID transaction snapshots, account versions, and audit rows in one caller-owned transaction. Insufficient funds are persisted as a decline; zero-balance closure remains configurable. See `docs/architecture/ADR-007-transaction-engine.md`.
+
 ---
 
 # 21. Active Work
 
-Day 5 is complete: authentication uses the shared scrypt verifier, Redis-backed attempt/session state, permanent PostgreSQL lockout, and secret-free audit events. Day 6 transaction services are next. No account/transaction services or Streamlit screens have been implemented.
+Day 6 is complete: authenticated balance inquiry, withdrawal, deposit, insufficient-funds decline, configurable zero-balance closure, and transaction history use exact money and atomic PostgreSQL units of work. Day 7 Streamlit screens are next.
 
 ---
 
 # 22. Next Actions
 
-1. Implement account and transaction service schemas.
-2. Add balance inquiry, deposit, and withdrawal rules using exact `Decimal` values.
-3. Persist balance mutation, transaction record, and audit event in one caller-owned database transaction.
-4. Enforce insufficient-funds, nonpositive-amount, and configurable zero-balance rules.
-5. Add transaction history orchestration and Day 6 tests.
+1. Configure the Streamlit theme and application shell.
+2. Build demo-card selection and PIN authentication using the Day 5 services.
+3. Add the account dashboard and Day 6 balance inquiry.
+4. Add withdrawal, deposit, and transaction-history pages with explicit `Decimal` conversion.
+5. Add session reset, status feedback, and end-to-end Day 7 validation.
 
 Resolve lockout policy, request idempotency, and post-commit publication behavior at their relevant later milestones. Do not infer live connectivity from dependency imports.
 
@@ -805,7 +812,7 @@ Resolve lockout policy, request idempotency, and post-commit publication behavio
 
 # 23. Environment Memory
 
-Environment inventory from 2026-09-22; PostgreSQL and Redis updated and verified through 2026-09-29:
+Environment inventory from 2026-09-22; PostgreSQL and Redis updated and verified through 2026-09-30:
 
 - Python 3.14.4, Windows x64; isolated `.venv` with pinned dependencies.
 - Docker engine 29.8.0; Docker Compose 5.5.1.
@@ -838,6 +845,8 @@ Day 3: all 23 tests pass, including eight live PostgreSQL tests for migration re
 Day 4: all 26 tests pass, including 11 live PostgreSQL tests. Repository coverage verifies UUID/business-key lookups, stable list/history ordering, bounded pagination, exact `Decimal` inputs, row locks, version increments and conflicts, transaction creation, constraint translation, and caller-owned rollback. See `docs/DAY4_VALIDATION.md`. Authentication, Redis state, banking rules, Kafka, and UI are not covered yet.
 
 Day 5: all 44 tests pass, including 14 live PostgreSQL/Redis tests. Authentication coverage verifies correct PINs, three-step lockout, locked-card denial, counter reset, expiring sessions, durable card status, secret-free audit details, and fail-closed Redis errors. See `docs/DAY5_VALIDATION.md`. Banking rules, Kafka, and UI are not covered yet.
+
+Day 6: all 71 tests pass, including 20 live PostgreSQL/Redis tests. Transaction coverage verifies strict finite cent-precision money, balance inquiry, successful and declined withdrawals, deposits, overflow prevention, UUID history, subject authorization, configurable zero-balance closure, and whole-unit rollback after persistence failure. See `docs/DAY6_VALIDATION.md`. Streamlit, Kafka, and analytics remain planned.
 
 ---
 
@@ -886,21 +895,21 @@ When resolved, move the answer into the appropriate permanent section and remove
 
 ## Last Session Summary
 
-Completed Day 5 authentication in the dedicated container. Shared scrypt hashing, authenticated Redis counters/sessions, durable PostgreSQL lockout, and secret-free audit records satisfy the six acceptance scenarios. All 44 tests pass. See `docs/DAY5_VALIDATION.md` and ADR-006.
+Completed Day 6 transaction services in the dedicated container. Exact-money balance inquiry, withdrawal, deposit, declined transactions, configurable account closure, history, subject authorization, and atomic rollback satisfy the acceptance scenarios. All 71 tests pass. See `docs/DAY6_VALIDATION.md` and ADR-007.
 
 Populated `BankFlow` using `docs/` as the canonical documentation root and `src/bankflow/` as the application package. Preserved 18 academic assets unchanged, normalized the architecture filename, and retained dated baseline reviews. Added environment template, pinned dependencies, Windows dependency snapshot, Python setup guide, import checker, and package/linter configuration.
 
 ## Last Known Working State
 
-The editable package and application dependencies import on Python 3.14.4. The archived CLI still performs its original single-session withdrawal. Application/test databases are at revision 0002; the application database contains one fictional customer/account/card graph with an exact $500.00 balance. Repository access and authentication are implemented; transaction services and UI remain planned.
+The editable package and application dependencies import on Python 3.14.4. The archived CLI still performs its original single-session withdrawal. Application/test databases are at revision 0002; the application database contains one fictional customer/account/card graph with an exact $500.00 balance. Repository, authentication, and transaction services are implemented; the Streamlit UI remains planned.
 
 ## Last Completed Task
 
-Day 5 authentication and Redis. See `docs/DAY5_VALIDATION.md` for evidence and `graphify-out/GRAPH_REPORT.md` for graph provenance.
+Day 6 transaction engine. See `docs/DAY6_VALIDATION.md` for evidence and `graphify-out/GRAPH_REPORT.md` for graph provenance.
 
 ## Next Task
 
-Day 6: account balance, withdrawal, deposit, transaction history, and atomic business rules.
+Day 7: Streamlit application shell, authentication, dashboard, transaction forms, and history screens.
 
 ## Blockers
 
@@ -997,4 +1006,4 @@ Before committing this file, verify:
 
 If only one section can be read before starting work, read this:
 
-> BankFlow is a fictional ATM portfolio project. Days 1–5 are complete in the existing `BankFlow` repository: preserved academic assets, Python 3.14 package, validated configuration, PostgreSQL sessions/health, five operational SQLAlchemy models, exact money, migration 0002, an idempotent fictional demo seed, session-bound repositories, and Redis-backed authentication with permanent PostgreSQL card lockout. All 44 tests pass. Application/test databases use restricted owners and ignored credentials; Redis tests use database 1 with unique prefixes. Begin Day 6 transaction services using `docs/TASK.md`, ADR-006, and `docs/DAY5_VALIDATION.md`. Streamlit and Kafka remain planned.
+> BankFlow is a fictional ATM portfolio project. Days 1–6 are complete in the existing `BankFlow` repository: preserved academic assets, Python 3.14 package, PostgreSQL models/migration 0002, exact money, demo seed, session-bound repositories, Redis-backed authentication, permanent card lockout, and an atomic transaction engine for inquiries, withdrawals, deposits, declines, closure, and history. All 71 tests pass. Application/test databases use restricted owners and ignored credentials; Redis tests use database 1 with unique prefixes. Begin Day 7 Streamlit work using `docs/TASK.md`, ADR-007, and `docs/DAY6_VALIDATION.md`. Kafka remains planned.

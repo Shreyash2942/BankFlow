@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased — Day 6 transaction engine (2026-09-30)
+
+- Added authenticated account balance inquiry, withdrawal, deposit, and transaction-history services.
+- Added strict finite `Decimal` cent validation, insufficient-funds persistence, exact balance snapshots, UUID transactions, and balance overflow protection.
+- Added caller-transaction audit records, configurable zero-balance closure, subject authorization, and rollback verification.
+- Expanded validation to 51 fast tests and 20 live PostgreSQL/Redis tests; all 71 pass with service opt-in.
+
 ## Unreleased — Day 5 authentication and Redis (2026-09-29)
 
 - Added shared salted scrypt PIN hashing and verification with secret-safe request/result schemas.
@@ -39,7 +46,7 @@
 - Added a verified Python 3.14 development environment, pinned dependencies, local configuration template, and setup instructions.
 - Documented the existing Data-Lab connection strategy and pending live checks.
 
-No application release has been tagged. Transaction services and the Streamlit UI remain planned.
+No application release has been tagged. The Streamlit UI remains planned for Day 7.
 
 ### Dedicated container follow-up
 

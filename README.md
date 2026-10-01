@@ -2,7 +2,7 @@
 
 **An educational ATM transaction and analytics platform using fictional data.**
 
-BankFlow is evolving from a command-line college assignment into a Python application and event-driven data platform. Days 1–5 now provide the package foundation, PostgreSQL domain model, fictional seed data, repository boundary, and Redis-backed authentication with durable card lockout. The original CLI runs today; transaction services, Streamlit screens, and pipelines are still planned.
+BankFlow is evolving from a command-line college assignment into a Python application and event-driven data platform. Days 1–6 now provide the package foundation, PostgreSQL domain model, fictional seed data, repository boundary, Redis-backed authentication, and an exact-money transaction engine. The original CLI and application services run today; Streamlit screens and pipelines are still planned.
 
 ## Quick start — Windows PowerShell
 
@@ -91,6 +91,8 @@ BankFlow/
 - [Day 4 repository decision](docs/architecture/ADR-005-repository-boundary.md)
 - [Day 5 validation](docs/DAY5_VALIDATION.md)
 - [Day 5 authentication-state decision](docs/architecture/ADR-006-authentication-state.md)
+- [Day 6 validation](docs/DAY6_VALIDATION.md)
+- [Day 6 transaction-engine decision](docs/architecture/ADR-007-transaction-engine.md)
 - [Baseline analysis](docs/analysis/PROJECT_ANALYSIS.md)
 - [Interactive project graph](graphify-out/graph.html) and [audit report](graphify-out/GRAPH_REPORT.md)
 
@@ -114,4 +116,4 @@ $env:BANKFLOW_RUN_DB_TESTS='1'
 Remove-Item Env:BANKFLOW_RUN_DB_TESTS
 ```
 
-The live tests require `.env.test` with `APP_ENV=test`, `POSTGRES_DB=bankflow_test`, `POSTGRES_USER=bankflow_test_user`, and the dedicated Redis database 1. They exercise migration, persistence, and authentication only in isolated test resources. See [Day 5 validation](docs/DAY5_VALIDATION.md) for current results and limits.
+The live tests require `.env.test` with `APP_ENV=test`, `POSTGRES_DB=bankflow_test`, `POSTGRES_USER=bankflow_test_user`, and the dedicated Redis database 1. They exercise migration, persistence, authentication, and transaction workflows only in isolated test resources. See [Day 6 validation](docs/DAY6_VALIDATION.md) for current results and limits.
