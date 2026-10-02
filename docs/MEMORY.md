@@ -4,7 +4,7 @@
 **Repository Name:** `BankFlow`  
 **Document Type:** Living Project Memory / Handoff File  
 **Purpose:** Preserve project context, implementation state, decisions, issues, and next actions across developers, sessions, and AI agents.  
-**Last Updated:** 2026-09-28  
+**Last Updated:** 2026-10-01  
 
 ---
 
@@ -103,10 +103,10 @@ Version 2 extends BankFlow with:
 
 # 4. Current Project Status
 
-- Overall status: Implementation - Day 6 transaction engine complete.
+- Overall status: Implementation - Day 7 Streamlit ATM interface complete.
 - Release: v0.1.0 package foundation; no release tag or published application.
 - Phase: Phase 1, application foundation.
-- Week/day: Week 1, Day 6 complete; Day 7 next.
+- Week/day: Week 1, Day 7 complete; Day 8 next.
 
 | Area | Status |
 |---|---|
@@ -119,10 +119,10 @@ Version 2 extends BankFlow with:
 | Authentication / Redis | Authenticated client, expiring counters/sessions, audit events, and durable card lock verified |
 | Kafka connection | Not implemented |
 | Transaction services | Exact balance inquiry, withdrawal, deposit, decline, closure, and history workflows verified |
-| Streamlit UI | Not implemented |
+| Streamlit UI | Welcome/authentication, dashboard, withdrawal, deposit, history, reset, and end-session flows verified |
 | Airflow / dbt / Spark / Iceberg | Not implemented |
-| Automated application tests / CI | 51 fast cases and 20 live PostgreSQL/Redis tests pass; CI remains planned |
-| Graph and analysis | Baseline preserved; Day 6 graph includes the atomic transaction engine |
+| Automated application tests / CI | 51 fast cases and 22 live PostgreSQL/Redis/Streamlit tests pass; CI remains planned |
+| Graph and analysis | Baseline preserved; Day 7 graph includes the Streamlit application boundary |
 
 ---
 
@@ -794,17 +794,17 @@ Transaction requests require finite positive Python `Decimal` values at cent pre
 
 # 21. Active Work
 
-Day 6 is complete: authenticated balance inquiry, withdrawal, deposit, insufficient-funds decline, configurable zero-balance closure, and transaction history use exact money and atomic PostgreSQL units of work. Day 7 Streamlit screens are next.
+Day 7 is complete: the themed Streamlit demo supports card selection, PIN authentication, dashboard balance, withdrawal, deposit, history, demo reset, and session termination through the existing service layer. Day 8 event schemas are next.
 
 ---
 
 # 22. Next Actions
 
-1. Configure the Streamlit theme and application shell.
-2. Build demo-card selection and PIN authentication using the Day 5 services.
-3. Add the account dashboard and Day 6 balance inquiry.
-4. Add withdrawal, deposit, and transaction-history pages with explicit `Decimal` conversion.
-5. Add session reset, status feedback, and end-to-end Day 7 validation.
+1. Define the canonical transaction-event envelope and versioning policy.
+2. Add Pydantic event schemas for balance inquiry, withdrawal, deposit, and declined outcomes.
+3. Map committed service results to secret-free events without coupling schema creation to Kafka availability.
+4. Add schema compatibility and serialization tests.
+5. Record Day 8 validation and architecture decisions before producer integration.
 
 Resolve lockout policy, request idempotency, and post-commit publication behavior at their relevant later milestones. Do not infer live connectivity from dependency imports.
 
@@ -847,6 +847,8 @@ Day 4: all 26 tests pass, including 11 live PostgreSQL tests. Repository coverag
 Day 5: all 44 tests pass, including 14 live PostgreSQL/Redis tests. Authentication coverage verifies correct PINs, three-step lockout, locked-card denial, counter reset, expiring sessions, durable card status, secret-free audit details, and fail-closed Redis errors. See `docs/DAY5_VALIDATION.md`. Banking rules, Kafka, and UI are not covered yet.
 
 Day 6: all 71 tests pass, including 20 live PostgreSQL/Redis tests. Transaction coverage verifies strict finite cent-precision money, balance inquiry, successful and declined withdrawals, deposits, overflow prevention, UUID history, subject authorization, configurable zero-balance closure, and whole-unit rollback after persistence failure. See `docs/DAY6_VALIDATION.md`. Streamlit, Kafka, and analytics remain planned.
+
+Day 7: all 73 tests pass, including 22 live PostgreSQL/Redis/Streamlit tests. UI acceptance coverage verifies authentication, balance inquiry, withdrawal, deposit, history ordering, atomic demo reset, and Redis session termination through the actual Streamlit pages. See `docs/DAY7_VALIDATION.md`. Kafka and analytics remain planned.
 
 ---
 
@@ -895,21 +897,21 @@ When resolved, move the answer into the appropriate permanent section and remove
 
 ## Last Session Summary
 
-Completed Day 6 transaction services in the dedicated container. Exact-money balance inquiry, withdrawal, deposit, declined transactions, configurable account closure, history, subject authorization, and atomic rollback satisfy the acceptance scenarios. All 71 tests pass. See `docs/DAY6_VALIDATION.md` and ADR-007.
+Completed Day 7 Streamlit screens in the dedicated container. Demo-card authentication, dashboard balance, withdrawals, deposits, history, reset, and session termination satisfy the interactive acceptance path while preserving PostgreSQL/Redis authority. All 73 tests pass. See `docs/DAY7_VALIDATION.md` and ADR-008.
 
 Populated `BankFlow` using `docs/` as the canonical documentation root and `src/bankflow/` as the application package. Preserved 18 academic assets unchanged, normalized the architecture filename, and retained dated baseline reviews. Added environment template, pinned dependencies, Windows dependency snapshot, Python setup guide, import checker, and package/linter configuration.
 
 ## Last Known Working State
 
-The editable package and application dependencies import on Python 3.14.4. The archived CLI still performs its original single-session withdrawal. Application/test databases are at revision 0002; the application database contains one fictional customer/account/card graph with an exact $500.00 balance. Repository, authentication, and transaction services are implemented; the Streamlit UI remains planned.
+The editable package and application dependencies import on Python 3.14.4. The archived CLI still performs its original single-session withdrawal. Application/test databases are at revision 0002; the application database contains one fictional customer/account/card graph. Repository, authentication, transaction services, and the Streamlit ATM UI are implemented. The app runs at `http://localhost:8501` when launched with `streamlit run app.py`.
 
 ## Last Completed Task
 
-Day 6 transaction engine. See `docs/DAY6_VALIDATION.md` for evidence and `graphify-out/GRAPH_REPORT.md` for graph provenance.
+Day 7 Streamlit ATM interface. See `docs/DAY7_VALIDATION.md` for evidence and `graphify-out/GRAPH_REPORT.md` for graph provenance.
 
 ## Next Task
 
-Day 7: Streamlit application shell, authentication, dashboard, transaction forms, and history screens.
+Day 8: versioned transaction-event schemas and serialization contracts.
 
 ## Blockers
 
@@ -1006,4 +1008,4 @@ Before committing this file, verify:
 
 If only one section can be read before starting work, read this:
 
-> BankFlow is a fictional ATM portfolio project. Days 1–6 are complete in the existing `BankFlow` repository: preserved academic assets, Python 3.14 package, PostgreSQL models/migration 0002, exact money, demo seed, session-bound repositories, Redis-backed authentication, permanent card lockout, and an atomic transaction engine for inquiries, withdrawals, deposits, declines, closure, and history. All 71 tests pass. Application/test databases use restricted owners and ignored credentials; Redis tests use database 1 with unique prefixes. Begin Day 7 Streamlit work using `docs/TASK.md`, ADR-007, and `docs/DAY6_VALIDATION.md`. Kafka remains planned.
+> BankFlow is a fictional ATM portfolio project. Days 1–7 are complete in the existing `BankFlow` repository: preserved academic assets, Python 3.14 package, PostgreSQL models/migration 0002, exact money, demo seed, session-bound repositories, Redis-backed authentication, atomic transaction services, and a Streamlit ATM flow for sign-in, balance, withdrawal, deposit, history, reset, and session termination. All 73 tests pass. Application/test databases use restricted owners and ignored credentials; UI acceptance uses `bankflow_test` and Redis database 1. Begin Day 8 event-schema work using `docs/TASK.md`, ADR-008, and `docs/DAY7_VALIDATION.md`. Kafka connectivity remains a later producer milestone.

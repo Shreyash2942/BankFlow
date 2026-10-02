@@ -436,18 +436,18 @@ Build the first complete interactive BankFlow demo.
 
 ### Tasks
 
-- [ ] Configure Streamlit theme
-- [ ] Build welcome screen
-- [ ] Add demo card selection
-- [ ] Build PIN authentication form
-- [ ] Build account dashboard
-- [ ] Build withdrawal page
-- [ ] Build deposit page
-- [ ] Build transaction-history page
-- [ ] Add success/warning/error states
-- [ ] Add demo-mode badge
-- [ ] Add session reset/end-session control
-- [ ] Validate UI against `DESIGN.md`
+- [x] Configure Streamlit theme
+- [x] Build welcome screen
+- [x] Add demo card selection
+- [x] Build PIN authentication form
+- [x] Build account dashboard
+- [x] Build withdrawal page
+- [x] Build deposit page
+- [x] Build transaction-history page
+- [x] Add success/warning/error states
+- [x] Add demo-mode badge
+- [x] Add session reset/end-session control
+- [x] Validate UI against `DESIGN.md`
 
 ### Deliverables
 
@@ -473,6 +473,8 @@ deposit
 view transaction history
 end session
 ```
+
+Evidence: [Day 7 validation](DAY7_VALIDATION.md). Completed 2026-10-01 with a live Streamlit acceptance path against the isolated test database and Redis database 1.
 
 ### Suggested Commits
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased — Day 7 Streamlit ATM interface (2026-10-01)
+
+- Added the themed Streamlit shell, fictional demo-card selection, masked PIN authentication, and Redis-backed session navigation.
+- Added authenticated dashboard, withdrawal, deposit, and transaction-history pages using the existing exact-money service boundary.
+- Added explicit success, warning, error, demo-mode, reset, and end-session states.
+- Added an atomic fixed-demo reset and a live Streamlit acceptance path; 51 fast tests and 22 live PostgreSQL/Redis/UI tests now pass.
+
 ## Unreleased — Day 6 transaction engine (2026-09-30)
 
 - Added authenticated account balance inquiry, withdrawal, deposit, and transaction-history services.
@@ -46,7 +53,7 @@
 - Added a verified Python 3.14 development environment, pinned dependencies, local configuration template, and setup instructions.
 - Documented the existing Data-Lab connection strategy and pending live checks.
 
-No application release has been tagged. The Streamlit UI remains planned for Day 7.
+No application release has been tagged. The planned v0.5.0 Streamlit milestone is implemented locally.
 
 ### Dedicated container follow-up
 

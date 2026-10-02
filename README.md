@@ -2,7 +2,7 @@
 
 **An educational ATM transaction and analytics platform using fictional data.**
 
-BankFlow is evolving from a command-line college assignment into a Python application and event-driven data platform. Days 1–6 now provide the package foundation, PostgreSQL domain model, fictional seed data, repository boundary, Redis-backed authentication, and an exact-money transaction engine. The original CLI and application services run today; Streamlit screens and pipelines are still planned.
+BankFlow is evolving from a command-line college assignment into a Python application and event-driven data platform. Days 1–7 now provide the package foundation, PostgreSQL domain model, fictional seed data, repository boundary, Redis-backed authentication, an exact-money transaction engine, and a complete Streamlit ATM demo. Kafka and analytics pipelines remain later milestones.
 
 ## Quick start — Windows PowerShell
 
@@ -30,7 +30,17 @@ For another platform, create an environment with `python3.14 -m venv .venv`, use
 
 Fictional demo PIN: `2468`. Each run starts at $500. A $100 withdrawal leaves $400; three wrong PINs end the session; withdrawing $500 prints account closure. This archived script intentionally retains the original float-based validation bugs and process-local state. It is not the new transaction engine.
 
-No Streamlit entry point exists yet; it is scheduled for Day 7. Installed dependencies and empty folders do not imply implemented features.
+## Run the Streamlit demo
+
+Start PostgreSQL and Redis in the dedicated `bankflow` container, apply migrations, seed the fictional account, and launch the app:
+
+```powershell
+.\.venv\Scripts\alembic.exe upgrade head
+.\.venv\Scripts\python.exe scripts/seed_database.py
+.\.venv\Scripts\streamlit.exe run app.py
+```
+
+Open [http://localhost:8501](http://localhost:8501) and use the displayed fictional PIN, `2468`. The app supports authentication, balance inquiry, withdrawal, deposit, transaction history, reset, and end-session workflows. Reset affects only the fixed fictional demo graph.
 
 ## Configuration and infrastructure
 
@@ -62,8 +72,9 @@ BankFlow/
 │   ├── database/            # engine, sessions, model base
 │   ├── cache/               # Redis integration
 │   ├── messaging/           # Kafka adapters
+│   ├── ui/                  # Streamlit runtime and presentation helpers
 │   └── utils/
-├── pages/                   # future Streamlit screens
+├── pages/                   # authenticated ATM screens
 ├── consumers/               # future operational event consumer
 ├── migrations/              # Alembic environment and versioned schema revisions
 ├── scripts/                 # environment, provisioning, and idempotent demo seed tools
@@ -93,6 +104,8 @@ BankFlow/
 - [Day 5 authentication-state decision](docs/architecture/ADR-006-authentication-state.md)
 - [Day 6 validation](docs/DAY6_VALIDATION.md)
 - [Day 6 transaction-engine decision](docs/architecture/ADR-007-transaction-engine.md)
+- [Day 7 validation](docs/DAY7_VALIDATION.md)
+- [Day 7 Streamlit-boundary decision](docs/architecture/ADR-008-streamlit-interface.md)
 - [Baseline analysis](docs/analysis/PROJECT_ANALYSIS.md)
 - [Interactive project graph](graphify-out/graph.html) and [audit report](graphify-out/GRAPH_REPORT.md)
 
@@ -116,4 +129,4 @@ $env:BANKFLOW_RUN_DB_TESTS='1'
 Remove-Item Env:BANKFLOW_RUN_DB_TESTS
 ```
 
-The live tests require `.env.test` with `APP_ENV=test`, `POSTGRES_DB=bankflow_test`, `POSTGRES_USER=bankflow_test_user`, and the dedicated Redis database 1. They exercise migration, persistence, authentication, and transaction workflows only in isolated test resources. See [Day 6 validation](docs/DAY6_VALIDATION.md) for current results and limits.
+The live tests require `.env.test` with `APP_ENV=test`, `POSTGRES_DB=bankflow_test`, `POSTGRES_USER=bankflow_test_user`, and the dedicated Redis database 1. They exercise migration, persistence, authentication, transaction workflows, and the complete Streamlit path only in isolated test resources. See [Day 7 validation](docs/DAY7_VALIDATION.md) for current results and limits.
