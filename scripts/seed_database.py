@@ -2,7 +2,6 @@
 
 import argparse
 from dataclasses import dataclass
-from decimal import Decimal
 from pathlib import Path
 from uuid import UUID
 
@@ -12,17 +11,18 @@ from sqlalchemy.orm import Session
 from bankflow.config.settings import ConfigurationError, load_settings
 from bankflow.database.connection import create_database_engine
 from bankflow.database.session import create_session_factory, session_scope
+from bankflow.demo import (
+    DEMO_ACCOUNT_ID,
+    DEMO_ACCOUNT_NUMBER,
+    DEMO_CARD_ID,
+    DEMO_CARD_TOKEN,
+    DEMO_CUSTOMER_ID,
+    DEMO_EMAIL,
+    DEMO_PIN,
+    DEMO_STARTING_BALANCE,
+)
 from bankflow.models import Account, AccountType, AuditEvent, Card, Customer
 from bankflow.utils import hash_pin
-
-DEMO_CUSTOMER_ID = UUID("11111111-1111-4111-8111-111111111111")
-DEMO_ACCOUNT_ID = UUID("22222222-2222-4222-8222-222222222222")
-DEMO_CARD_ID = UUID("33333333-3333-4333-8333-333333333333")
-DEMO_EMAIL = "demo.customer@bankflow.example"
-DEMO_ACCOUNT_NUMBER = "BF-DEMO-CHECKING-1001"
-DEMO_CARD_TOKEN = "bankflow-demo-card-1001"
-DEMO_STARTING_BALANCE = Decimal("500.00")
-_DEMO_PIN = "2468"  # Fictional credential already published in the project README.
 
 
 class SeedConflictError(RuntimeError):
@@ -70,7 +70,7 @@ def seed_demo_data(session: Session) -> SeedResult:
         account=account,
         card_token=DEMO_CARD_TOKEN,
         last_four="1001",
-        pin_hash=hash_pin(_DEMO_PIN),
+        pin_hash=hash_pin(DEMO_PIN),
         expiry_month=12,
         expiry_year=2035,
     )

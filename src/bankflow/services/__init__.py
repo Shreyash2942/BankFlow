@@ -10,6 +10,11 @@ from bankflow.services.auth_service import (
     AuthenticationService,
     AuthenticationStateUnavailableError,
 )
+from bankflow.services.demo_service import (
+    DemoDataUnavailableError,
+    DemoResetResult,
+    DemoService,
+)
 from bankflow.services.transaction_service import (
     BalanceLimitExceededError,
     TransactionService,
@@ -23,5 +28,8 @@ __all__ = [
     "AuthenticationStateUnavailableError",
     "BalanceLimitExceededError",
     "BankingServiceError",
+    "DemoDataUnavailableError",
+    "DemoResetResult",
+    "DemoService",
     "TransactionService",
 ]
