@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased — Day 8 Kafka event design (2026-10-05)
+
+- Added a closed, versioned event envelope with UUID4 identity, typed event names, UTC timestamps, and a fixed source.
+- Added discriminated transaction and authentication payloads plus factories for the ten initial BankFlow event types.
+- Preserved exact decimal money during JSON serialization and excluded credentials, PIN material, card/session tokens, and other secrets from the contract.
+- Added 17 schema/factory tests; 68 service-free tests and all 90 tests with live PostgreSQL/Redis/Streamlit opt-in now pass.
+
 ## Unreleased — Day 7 Streamlit ATM interface (2026-10-01)
 
 - Added the themed Streamlit shell, fictional demo-card selection, masked PIN authentication, and Redis-backed session navigation.

@@ -523,17 +523,19 @@ Define the event contract before implementing producers and consumers.
 
 ### Tasks
 
-- [ ] Define event envelope
-- [ ] Add event ID
-- [ ] Add event type
-- [ ] Add schema version
-- [ ] Add event timestamp
-- [ ] Add source
-- [ ] Define transaction-event payloads
-- [ ] Define authentication-event payloads
-- [ ] Document prohibited sensitive fields
-- [ ] Add Pydantic event schemas
-- [ ] Add serialization tests
+- [x] Define event envelope
+- [x] Add event ID
+- [x] Add event type
+- [x] Add schema version
+- [x] Add event timestamp
+- [x] Add source
+- [x] Define transaction-event payloads
+- [x] Define authentication-event payloads
+- [x] Document prohibited sensitive fields
+- [x] Add Pydantic event schemas
+- [x] Add serialization tests
+
+Completed on 2026-10-05. Evidence: `docs/DAY8_VALIDATION.md`, `docs/events/EVENT_SCHEMA.md`, and `docs/architecture/ADR-009-event-contract.md`.
 
 ### Deliverables
 

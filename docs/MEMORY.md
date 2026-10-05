@@ -4,7 +4,7 @@
 **Repository Name:** `BankFlow`  
 **Document Type:** Living Project Memory / Handoff File  
 **Purpose:** Preserve project context, implementation state, decisions, issues, and next actions across developers, sessions, and AI agents.  
-**Last Updated:** 2026-10-01  
+**Last Updated:** 2026-10-05  
 
 ---
 
@@ -103,10 +103,10 @@ Version 2 extends BankFlow with:
 
 # 4. Current Project Status
 
-- Overall status: Implementation - Day 7 Streamlit ATM interface complete.
+- Overall status: Implementation - Day 8 event contract complete.
 - Release: v0.1.0 package foundation; no release tag or published application.
-- Phase: Phase 1, application foundation.
-- Week/day: Week 1, Day 7 complete; Day 8 next.
+- Phase: Phase 2, event platform and V1 release.
+- Week/day: Week 2, Day 8 complete; Day 9 next.
 
 | Area | Status |
 |---|---|
@@ -117,12 +117,12 @@ Version 2 extends BankFlow with:
 | PostgreSQL | Five operational models, exact money, demo seed, and Alembic revision 0002 verified |
 | Repository layer | Customer, account, card, and transaction access verified against PostgreSQL |
 | Authentication / Redis | Authenticated client, expiring counters/sessions, audit events, and durable card lock verified |
-| Kafka connection | Not implemented |
+| Kafka events | Versioned transaction/authentication contract and factories complete; producer connection not implemented |
 | Transaction services | Exact balance inquiry, withdrawal, deposit, decline, closure, and history workflows verified |
 | Streamlit UI | Welcome/authentication, dashboard, withdrawal, deposit, history, reset, and end-session flows verified |
 | Airflow / dbt / Spark / Iceberg | Not implemented |
-| Automated application tests / CI | 51 fast cases and 22 live PostgreSQL/Redis/Streamlit tests pass; CI remains planned |
-| Graph and analysis | Baseline preserved; Day 7 graph includes the Streamlit application boundary |
+| Automated application tests / CI | 68 service-free cases and 22 live PostgreSQL/Redis/Streamlit cases pass; all 90 pass with live opt-in; CI remains planned |
+| Graph and analysis | Baseline preserved; Day 8 graph includes the versioned event contract and serialization boundary |
 
 ---
 
@@ -790,21 +790,27 @@ PostgreSQL stores salted PIN hashes and permanent card locks. Redis stores only 
 
 Transaction requests require finite positive Python `Decimal` values at cent precision. Services verify the authenticated customer/account/card graph, lock the account row, and persist balance changes, UUID transaction snapshots, account versions, and audit rows in one caller-owned transaction. Insufficient funds are persisted as a decline; zero-balance closure remains configurable. See `docs/architecture/ADR-007-transaction-engine.md`.
 
+## ADR-MEM-011 — Versioned and Secret-Free Event Contract
+
+**Decision**
+
+Application events use one immutable schema-version-1 envelope with UUID4 identity, dotted event type, UTC occurrence time, fixed application source, and a discriminated transaction or authentication payload. Exact money serializes as decimal strings. Closed schemas reject unknown or inconsistent fields, and event factories never expose PIN material, card/session tokens, credentials, or unnecessary personal data. Factories remain independent of Kafka; Day 9 owns post-commit publication. See `docs/architecture/ADR-009-event-contract.md`.
+
 ---
 
 # 21. Active Work
 
-Day 7 is complete: the themed Streamlit demo supports card selection, PIN authentication, dashboard balance, withdrawal, deposit, history, demo reset, and session termination through the existing service layer. Day 8 event schemas are next.
+Day 8 is complete: immutable Pydantic schemas and typed factories define the ten initial transaction/authentication events, preserve exact decimal money, reject inconsistent payloads, and exclude sensitive fields. Day 9 producer integration is next.
 
 ---
 
 # 22. Next Actions
 
-1. Define the canonical transaction-event envelope and versioning policy.
-2. Add Pydantic event schemas for balance inquiry, withdrawal, deposit, and declined outcomes.
-3. Map committed service results to secret-free events without coupling schema creation to Kafka availability.
-4. Add schema compatibility and serialization tests.
-5. Record Day 8 validation and architecture decisions before producer integration.
+1. Configure the Kafka producer and `bankflow.transaction.events` topic.
+2. Publish authentication, transaction, card-lock, account-close, and session events through the Day 8 factories.
+3. Trigger completion events only after the owning database transaction commits.
+4. Add delivery callbacks, unavailable-broker behavior, and producer tests.
+5. Validate the running broker and record Day 9 evidence without placing credentials in tracked files.
 
 Resolve lockout policy, request idempotency, and post-commit publication behavior at their relevant later milestones. Do not infer live connectivity from dependency imports.
 
@@ -849,6 +855,8 @@ Day 5: all 44 tests pass, including 14 live PostgreSQL/Redis tests. Authenticati
 Day 6: all 71 tests pass, including 20 live PostgreSQL/Redis tests. Transaction coverage verifies strict finite cent-precision money, balance inquiry, successful and declined withdrawals, deposits, overflow prevention, UUID history, subject authorization, configurable zero-balance closure, and whole-unit rollback after persistence failure. See `docs/DAY6_VALIDATION.md`. Streamlit, Kafka, and analytics remain planned.
 
 Day 7: all 73 tests pass, including 22 live PostgreSQL/Redis/Streamlit tests. UI acceptance coverage verifies authentication, balance inquiry, withdrawal, deposit, history ordering, atomic demo reset, and Redis session termination through the actual Streamlit pages. See `docs/DAY7_VALIDATION.md`. Kafka and analytics remain planned.
+
+Day 8: 68 service-free tests pass and all 90 tests pass with the 22 live PostgreSQL/Redis/Streamlit cases enabled. Event coverage verifies the closed version-1 envelope, UUID4 identity, UTC timestamps, exact decimal serialization, event-to-payload consistency, transaction/authentication factory mappings, prohibited-field absence, secret-free authentication output, and JSON round trips. See `docs/DAY8_VALIDATION.md`. Kafka transport and analytics remain planned.
 
 ---
 
@@ -897,25 +905,25 @@ When resolved, move the answer into the appropriate permanent section and remove
 
 ## Last Session Summary
 
-Completed Day 7 Streamlit screens in the dedicated container. Demo-card authentication, dashboard balance, withdrawals, deposits, history, reset, and session termination satisfy the interactive acceptance path while preserving PostgreSQL/Redis authority. All 73 tests pass. See `docs/DAY7_VALIDATION.md` and ADR-008.
+Completed Day 8 event design. A closed version-1 envelope, transaction/authentication payloads, typed factories, exact decimal JSON serialization, and sensitive-field controls cover all ten initial event types. All 68 service-free tests and all 90 tests with live-service opt-in pass. See `docs/DAY8_VALIDATION.md`, `docs/events/EVENT_SCHEMA.md`, and ADR-009.
 
 Populated `BankFlow` using `docs/` as the canonical documentation root and `src/bankflow/` as the application package. Preserved 18 academic assets unchanged, normalized the architecture filename, and retained dated baseline reviews. Added environment template, pinned dependencies, Windows dependency snapshot, Python setup guide, import checker, and package/linter configuration.
 
 ## Last Known Working State
 
-The editable package and application dependencies import on Python 3.14.4. The archived CLI still performs its original single-session withdrawal. Application/test databases are at revision 0002; the application database contains one fictional customer/account/card graph. Repository, authentication, transaction services, and the Streamlit ATM UI are implemented. The app runs at `http://localhost:8501` when launched with `streamlit run app.py`.
+The editable package and application dependencies import on Python 3.14.4. The archived CLI still performs its original single-session withdrawal. Application/test databases are at revision 0002; the application database contains one fictional customer/account/card graph. Repository, authentication, transaction services, Streamlit ATM UI, and version-1 event contract are implemented. The app runs at `http://localhost:8501` when launched with `streamlit run app.py`.
 
 ## Last Completed Task
 
-Day 7 Streamlit ATM interface. See `docs/DAY7_VALIDATION.md` for evidence and `graphify-out/GRAPH_REPORT.md` for graph provenance.
+Day 8 Kafka event design. See `docs/DAY8_VALIDATION.md` for evidence and `graphify-out/GRAPH_REPORT.md` for graph provenance.
 
 ## Next Task
 
-Day 8: versioned transaction-event schemas and serialization contracts.
+Day 9: Kafka producer configuration, post-commit publication, delivery callbacks, unavailable-broker behavior, and tests.
 
 ## Blockers
 
-The dedicated container must be running for live PostgreSQL/Redis integration tests. Kafka metadata remains a later milestone check.
+The dedicated container must be running for live PostgreSQL/Redis integration tests. Day 9 must verify Kafka metadata and producer delivery against the host-mapped broker at `localhost:9093`.
 
 ---
 
@@ -1008,4 +1016,4 @@ Before committing this file, verify:
 
 If only one section can be read before starting work, read this:
 
-> BankFlow is a fictional ATM portfolio project. Days 1–7 are complete in the existing `BankFlow` repository: preserved academic assets, Python 3.14 package, PostgreSQL models/migration 0002, exact money, demo seed, session-bound repositories, Redis-backed authentication, atomic transaction services, and a Streamlit ATM flow for sign-in, balance, withdrawal, deposit, history, reset, and session termination. All 73 tests pass. Application/test databases use restricted owners and ignored credentials; UI acceptance uses `bankflow_test` and Redis database 1. Begin Day 8 event-schema work using `docs/TASK.md`, ADR-008, and `docs/DAY7_VALIDATION.md`. Kafka connectivity remains a later producer milestone.
+> BankFlow is a fictional ATM portfolio project. Days 1–8 are complete in the existing `BankFlow` repository: preserved academic assets, Python 3.14 package, PostgreSQL models/migration 0002, exact money, demo seed, session-bound repositories, Redis-backed authentication, atomic transaction services, Streamlit ATM flows, and a closed version-1 event contract with secret-free factories. All 68 service-free tests and all 90 tests with live-service opt-in pass. Application/test databases use restricted owners and ignored credentials; UI acceptance uses `bankflow_test` and Redis database 1. Begin Day 9 Kafka producer work using `docs/TASK.md`, ADR-009, `docs/events/EVENT_SCHEMA.md`, and `docs/DAY8_VALIDATION.md`.

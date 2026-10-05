@@ -1,61 +1,66 @@
 {
   "labels": {
-    "0": "Academic ATM Code",
-    "1": "Core ORM Models",
-    "2": "Account Service",
-    "3": "Repository Layer",
-    "4": "Foundation Validation Decisions",
-    "5": "Streamlit Runtime and Demo Reset",
-    "6": "Authentication and Redis",
-    "7": "Transaction Service Design",
-    "8": "Streamlit Interface Architecture",
-    "9": "Alembic and Database Runtime",
-    "10": "ATM Sequence Model",
-    "11": "Academic Interaction Trace",
-    "12": "UML Sequence and Activity",
-    "13": "ATM Activity Model",
-    "14": "ATM Activity Diagram",
+    "0": "Academic CLI Traceability",
+    "1": "PIN Authentication UML",
+    "2": "Core ORM Models",
+    "3": "Event Schemas and Factories",
+    "4": "Account Services",
+    "5": "Repository Layer",
+    "6": "Foundation Validation",
+    "7": "Event Contract Architecture",
+    "8": "Streamlit Runtime and Demo",
+    "9": "Authentication and Redis",
+    "10": "Transaction Service Decisions",
+    "11": "Alembic Database Runtime",
+    "12": "ATM Sequence Model",
+    "13": "Database Provisioning",
+    "14": "UML Execution Trace",
     "15": "ATM State Machine Logic",
     "16": "ATM State Diagram",
-    "17": "Database Provisioning",
-    "18": "Demo Seed and UI Tests",
-    "19": "ATM State Model Details",
-    "20": "Demo Execution Scenario",
-    "21": "Academic Reports and Engineering Lessons",
-    "22": "Foundation Architecture",
-    "23": "Settings Validation Tests",
-    "24": "Domain Model Architecture",
-    "25": "Exact Money UI Contracts",
-    "26": "Repository Architecture",
-    "27": "Transaction Schema Tests",
-    "28": "Planned Lakehouse",
-    "29": "Schema Bootstrap Migration",
-    "30": "Environment Import Check",
-    "31": "Model Metadata Tests",
-    "32": "UML Activity Swimlanes",
-    "33": "UML Swimlane Source",
-    "34": "Test Settings Isolation",
-    "35": "Kafka Sequencing",
-    "36": "Transaction Engine Evidence",
-    "37": "Withdrawal UI",
-    "38": "Deposit UI",
-    "39": "Layered UI Architecture",
-    "40": "Welcome and Authentication UI",
-    "41": "Account Dashboard UI",
-    "42": "Transaction History UI",
-    "43": "Demo Constants",
-    "44": "Development Tooling",
-    "45": "Dependency Snapshot",
-    "46": "Lockout Design",
-    "47": "Database Isolation",
-    "48": "Redis Isolation",
-    "49": "Fictional Data Policy",
-    "50": "Event Secret Exclusion",
-    "51": "Kafka Connectivity Gap",
-    "52": "Dedicated Lab Container",
-    "53": "Session Termination Flow",
-    "54": "Session Termination Design",
-    "55": "Day 5 Service Handoff"
+    "17": "ATM State Scenarios",
+    "18": "Withdrawal Activity Flow",
+    "19": "Academic Withdrawal Flow",
+    "20": "Prototype Acceptance Scenarios",
+    "21": "Streamlit Interface Boundary",
+    "22": "Software Engineering Lessons",
+    "23": "Foundation and Environment",
+    "24": "Settings Validation Tests",
+    "25": "Core Domain Decision",
+    "26": "Exact Money Requests",
+    "27": "Repository Boundary Decision",
+    "28": "Transaction Schema Tests",
+    "29": "V2 Lakehouse Plan",
+    "30": "Initial Alembic Migration",
+    "31": "Environment Import Check",
+    "32": "ORM Metadata Tests",
+    "33": "UML Swimlane Diagram",
+    "34": "UML Activity Swimlanes",
+    "35": "Test Environment Isolation",
+    "36": "Transaction Engine ADR",
+    "37": "Withdrawal Page",
+    "38": "Deposit Page",
+    "39": "Demo Reset Boundary",
+    "40": "Streamlit Entry Page",
+    "41": "Dashboard Page",
+    "42": "History Page",
+    "43": "Demo Identifiers",
+    "44": "Kafka Extension Boundary",
+    "45": "Development Tooling",
+    "46": "Dependency Lock",
+    "47": "UI Lockout Design",
+    "48": "Database Isolation",
+    "49": "Redis Test Isolation",
+    "50": "Fictional Data Policy",
+    "51": "Event Secret Exclusion",
+    "52": "Kafka Readiness Gap",
+    "53": "Dedicated Lab Container",
+    "54": "Session Ending",
+    "55": "ATM Session End",
+    "56": "Day 5 Scope Boundary",
+    "57": "Day 6 Kafka Deferral",
+    "58": "Kafka Delivery Sequence",
+    "59": "Secret Masking",
+    "60": "Accessible Status Design"
   },
   "communities": {
     "0": [
@@ -123,6 +128,66 @@
       "withdrawal"
     ],
     "1": [
+      "academic_auth",
+      "img06_anomaly",
+      "img06_attempt",
+      "img06_auth",
+      "img06_bank_balance",
+      "img06_correct",
+      "img06_enter_pin",
+      "img06_insert",
+      "img06_limit",
+      "img06_reject",
+      "img06_request_pin",
+      "img06_start",
+      "img06_validate_pin",
+      "img06_verify_pin",
+      "img07_anomaly",
+      "img07_attempt",
+      "img07_auth",
+      "img07_bank_balance",
+      "img07_correct",
+      "img07_enter_pin",
+      "img07_insert",
+      "img07_limit",
+      "img07_reject",
+      "img07_request_pin",
+      "img07_start",
+      "img07_validate_pin",
+      "img07_verify_pin",
+      "sequence_account",
+      "sequence_atm",
+      "sequence_balance",
+      "sequence_bank",
+      "sequence_check_balance",
+      "sequence_check_pin",
+      "sequence_customer",
+      "sequence_debit",
+      "sequence_debit_success",
+      "sequence_dispense",
+      "sequence_enter_amount",
+      "sequence_enter_pin",
+      "sequence_get_balance",
+      "sequence_insert",
+      "sequence_insuff_message",
+      "sequence_insuff_response",
+      "sequence_insufficient",
+      "sequence_invalid",
+      "sequence_menu",
+      "sequence_pin_result",
+      "sequence_request_amount",
+      "sequence_request_pin",
+      "sequence_return_balance",
+      "sequence_select",
+      "sequence_separation",
+      "sequence_show_balance",
+      "sequence_success",
+      "sequence_sufficient",
+      "sequence_update",
+      "sequence_valid",
+      "sequence_verify"
+    ],
+    "2": [
       "account_account",
       "account_rationale_1",
       "audit_event_auditevent",
@@ -153,6 +218,7 @@
       "init_rationale_1",
       "src_bankflow_cache_init_py",
       "src_bankflow_database_base_py",
+      "src_bankflow_messaging_init_py",
       "src_bankflow_models_account_py",
       "src_bankflow_models_audit_event_py",
       "src_bankflow_models_card_py",
@@ -178,7 +244,63 @@
       "transaction_rationale_1",
       "transaction_transaction"
     ],
-    "2": [
+    "3": [
+      "event_factory_balance_viewed_event",
+      "event_factory_deserialize_event",
+      "event_factory_envelope",
+      "event_factory_event_from_authentication_result",
+      "event_factory_event_from_transaction_result",
+      "event_factory_eventfactoryerror",
+      "event_factory_rationale_1",
+      "event_factory_rationale_189",
+      "event_factory_rationale_194",
+      "event_factory_rationale_27",
+      "event_factory_rationale_59",
+      "event_factory_serialize_event",
+      "event_factory_session_ended_event",
+      "event_factory_withdrawal_requested_event",
+      "events_authenticationeventoutcome",
+      "events_authenticationeventpayload",
+      "events_bankflowevent",
+      "events_eventtype",
+      "events_keep_subject_identifiers_complete",
+      "events_normalize_timestamp_to_utc",
+      "events_rationale_1",
+      "events_rationale_106",
+      "events_rationale_154",
+      "events_rationale_71",
+      "events_transactioneventpayload",
+      "events_validate_event_type_matches_payload",
+      "events_validate_financial_shape",
+      "src_bankflow_messaging_event_factory_py",
+      "src_bankflow_schemas_events_py",
+      "test_event_factory_authentication",
+      "test_event_factory_rationale_1",
+      "test_event_factory_result",
+      "test_event_factory_test_authentication_factory_omits_session_secret_and_handles_unknown_card",
+      "test_event_factory_test_authentication_factory_rejects_inconsistent_service_results",
+      "test_event_factory_test_authentication_factory_requires_subjects_for_success_and_lock",
+      "test_event_factory_test_balance_and_requested_withdrawal_factories_use_exact_snapshots",
+      "test_event_factory_test_factory_maps_completed_declined_and_closed_transaction_results",
+      "test_event_factory_test_session_end_and_utf8_serialization_round_trip",
+      "test_event_factory_test_transaction_factory_rejects_an_event_type_result_mismatch",
+      "test_event_schema_event",
+      "test_event_schema_rationale_1",
+      "test_event_schema_schema_property_names",
+      "test_event_schema_test_authentication_events_allow_unknown_cards_but_require_complete_known_subjects",
+      "test_event_schema_test_event_timestamp_must_be_aware_and_event_id_must_be_uuid4",
+      "test_event_schema_test_event_type_rejects_the_wrong_payload_family_or_outcome",
+      "test_event_schema_test_generated_schema_and_validation_exclude_prohibited_sensitive_fields",
+      "test_event_schema_test_schema_version_source_and_unknown_fields_are_closed_contracts",
+      "test_event_schema_test_transaction_event_round_trip_preserves_exact_money_and_utc_timestamp",
+      "test_event_schema_test_transaction_payload_enforces_money_and_decline_shape",
+      "test_event_schema_test_transaction_payload_must_match_event_type",
+      "test_event_schema_transaction_payload",
+      "tests_unit_test_event_factory_py",
+      "tests_unit_test_event_schema_py",
+      "valueerror"
+    ],
+    "4": [
       "account_accountbalance",
       "account_rationale_12",
       "account_service_accountauthorizationerror",
@@ -232,7 +354,7 @@
       "transaction_transactionresult",
       "transaction_withdrawalrequest"
     ],
-    "3": [
+    "5": [
       "account_repository_accountrepository",
       "account_repository_accountrepository_get_by_account_number",
       "account_repository_accountrepository_get_by_id",
@@ -284,7 +406,7 @@
       "transaction_repository_transactionrepository_list_for_account",
       "transaction_repository_transactionrepository_require_by_id"
     ],
-    "4": [
+    "6": [
       "day1checks",
       "day2_admin_attempt",
       "day2_app_protection",
@@ -334,7 +456,57 @@
       "pins",
       "settings"
     ],
-    "5": [
+    "7": [
+      "adr009_auth_privacy_rationale",
+      "adr009_auth_subject_policy",
+      "adr009_closed_envelope",
+      "adr009_delivery_atomicity_limit",
+      "adr009_discriminated_payloads",
+      "adr009_event_contract_decision",
+      "adr009_event_transaction_identity",
+      "adr009_exact_decimal_money",
+      "adr009_infrastructure_independence_rationale",
+      "adr009_postgresql_system_of_record",
+      "adr009_pure_factory_boundary",
+      "adr009_schema_version_policy",
+      "adr009_secret_free_boundary",
+      "adr009_stable_contract_rationale",
+      "architecture_day9_publication",
+      "architecture_event_contract_boundary",
+      "changelog_day8_event_design",
+      "day8_validation_acceptance_evidence",
+      "day8_validation_contract",
+      "day8_validation_results",
+      "day8_validation_transport_boundary",
+      "event_schema_account_closed",
+      "event_schema_authentication_failed",
+      "event_schema_authentication_payload",
+      "event_schema_authentication_succeeded",
+      "event_schema_balance_viewed",
+      "event_schema_canonical_envelope",
+      "event_schema_card_locked",
+      "event_schema_deposit_completed",
+      "event_schema_event_type_mapping",
+      "event_schema_post_commit_publication",
+      "event_schema_python_api",
+      "event_schema_sensitive_field_prohibition",
+      "event_schema_session_ended",
+      "event_schema_transaction_payload",
+      "event_schema_unsupported_version_handling",
+      "event_schema_v1_contract",
+      "event_schema_versioning_policy",
+      "event_schema_withdrawal_completed",
+      "event_schema_withdrawal_declined",
+      "event_schema_withdrawal_requested",
+      "memory_day8_status",
+      "memory_day9_next",
+      "memory_event_contract_decision",
+      "readme_day8_project_status",
+      "task_day8_completion_evidence",
+      "task_day8_kafka_event_design",
+      "task_day9_kafka_producer"
+    ],
+    "8": [
       "demo_service_demodataunavailableerror",
       "demo_service_demoresetresult",
       "demo_service_demoservice",
@@ -382,7 +554,7 @@
       "streamlit_support_show_action_error",
       "streamlit_support_transaction_rows"
     ],
-    "6": [
+    "9": [
       "adr006_split_authentication_state",
       "ascii_four_digit_pin_contract",
       "authentication_outcomes",
@@ -426,7 +598,7 @@
       "successful_session_compensation",
       "validated_settings"
     ],
-    "7": [
+    "10": [
       "account_authorization_error",
       "account_balance_snapshot_contract",
       "account_row_locking",
@@ -434,10 +606,6 @@
       "adr007_audit_atomicity",
       "adr007_caller_owned_transaction",
       "adr007_declined_attempt_persistence",
-      "architecture_postgresql_system_of_record",
-      "architecture_transaction_service_responsibilities",
-      "architecture_withdrawal_flow",
-      "architecture_zero_balance_demo_rule",
       "audit_event_append",
       "authorized_account_resolution",
       "balance_inquiry_workflow",
@@ -468,46 +636,7 @@
       "zero_balance_closure_rule",
       "zero_balance_configuration_test"
     ],
-    "8": [
-      "adr8_accessible_status_design",
-      "adr8_balance_inquiry_rerun_control",
-      "adr8_exact_money_service_adapter",
-      "adr8_external_session_authority",
-      "adr8_fixed_demo_reset_boundary",
-      "adr8_future_kafka_extension_boundary",
-      "adr8_infrastructure_object_cache",
-      "adr8_rationale_decouple_future_events",
-      "adr8_rationale_preserve_domain_authority",
-      "adr8_rationale_prevent_duplicate_inquiries",
-      "adr8_rationale_repeatable_safe_demo",
-      "adr8_thin_streamlit_boundary",
-      "adr8_transient_secret_handling",
-      "changelog_day7_streamlit_release_state",
-      "changelog_no_release_tag",
-      "day7_validation_acceptance_path",
-      "day7_validation_atomic_demo_reset",
-      "day7_validation_exact_money_ui",
-      "day7_validation_isolated_live_tests",
-      "day7_validation_redis_authority",
-      "memory_day7_complete",
-      "memory_day8_next_action",
-      "memory_event_driven_platform",
-      "memory_kafka_connectivity_pending",
-      "memory_week1_quality_gate",
-      "readme_bankflow_platform",
-      "readme_delivery_sequence",
-      "readme_fictional_data_boundary",
-      "readme_streamlit_demo",
-      "task_day7_interactive_demo",
-      "task_day7_streamlit_deliverables",
-      "task_day8_domain_payloads",
-      "task_day8_event_contract",
-      "task_day8_event_envelope",
-      "task_day8_sensitive_field_policy",
-      "task_day8_serialization_contract_tests",
-      "task_week1_v050_milestone"
-    ],
-    "9": [
+    "11": [
       "0002_create_core_banking_domain_models_downgrade",
       "0002_create_core_banking_domain_models_rationale_1",
       "0002_create_core_banking_domain_models_upgrade",
@@ -542,7 +671,7 @@
       "tests_integration_test_database_py",
       "tests_unit_test_database_health_py"
     ],
-    "10": [
+    "12": [
       "activity_atm",
       "activity_attempts",
       "activity_authenticate",
@@ -576,41 +705,40 @@
       "activity_view",
       "activity_zero"
     ],
-    "11": [
-      "academic_auth",
-      "sequence_account",
-      "sequence_atm",
-      "sequence_balance",
-      "sequence_bank",
-      "sequence_check_balance",
-      "sequence_check_pin",
-      "sequence_customer",
-      "sequence_debit",
-      "sequence_debit_success",
-      "sequence_dispense",
-      "sequence_enter_amount",
-      "sequence_enter_pin",
-      "sequence_get_balance",
-      "sequence_insert",
-      "sequence_insuff_message",
-      "sequence_insuff_response",
-      "sequence_insufficient",
-      "sequence_invalid",
-      "sequence_menu",
-      "sequence_pin_result",
-      "sequence_request_amount",
-      "sequence_request_pin",
-      "sequence_return_balance",
-      "sequence_select",
-      "sequence_separation",
-      "sequence_show_balance",
-      "sequence_success",
-      "sequence_sufficient",
-      "sequence_update",
-      "sequence_valid",
-      "sequence_verify"
+    "13": [
+      "provision_local_database_admin_sql",
+      "provision_local_database_main",
+      "provision_local_database_provision",
+      "provision_local_database_rationale_1",
+      "provision_local_database_rationale_18",
+      "provision_local_database_rationale_28",
+      "provision_local_database_rationale_83",
+      "provision_local_database_render_environment",
+      "provision_local_database_replace_environment_setting",
+      "provision_local_database_rotate_passwords",
+      "provision_local_database_verify_local_superuser",
+      "runtime_bankflowruntime_close",
+      "runtimeerror",
+      "scripts_provision_local_database_py",
+      "scripts_seed_database_py",
+      "seed_database_main",
+      "seed_database_rationale_1",
+      "seed_database_rationale_29",
+      "seed_database_rationale_41",
+      "seed_database_seed_demo_data",
+      "seed_database_seedconflicterror",
+      "seed_database_seedresult",
+      "test_provision_local_database_test_password_rotation_preserves_other_local_settings_and_line_endings",
+      "test_streamlit_app_button",
+      "test_streamlit_app_delete_demo_graph",
+      "test_streamlit_app_rationale_1",
+      "test_streamlit_app_streamlit_demo",
+      "test_streamlit_app_test_user_can_authenticate_transact_review_reset_and_end_session",
+      "test_streamlit_app_test_user_can_end_session",
+      "tests_integration_test_streamlit_app_py",
+      "tests_unit_test_provision_local_database_py"
     ],
-    "12": [
+    "14": [
       "img09_activity",
       "img09_atm",
       "img09_auth",
@@ -639,58 +767,6 @@
       "img09_validate",
       "img09_verify",
       "img09_withdraw"
-    ],
-    "13": [
-      "img06_anomaly",
-      "img06_attempt",
-      "img06_auth",
-      "img06_bank_balance",
-      "img06_bank_update",
-      "img06_check",
-      "img06_closed",
-      "img06_complete",
-      "img06_correct",
-      "img06_dispense",
-      "img06_enter_pin",
-      "img06_funds",
-      "img06_insert",
-      "img06_insufficient",
-      "img06_limit",
-      "img06_reject",
-      "img06_request_amount",
-      "img06_request_pin",
-      "img06_start",
-      "img06_update",
-      "img06_validate_amount",
-      "img06_validate_pin",
-      "img06_verify_pin",
-      "img06_zero",
-      "img07_insert",
-      "img07_start"
-    ],
-    "14": [
-      "img07_anomaly",
-      "img07_attempt",
-      "img07_auth",
-      "img07_bank_balance",
-      "img07_bank_update",
-      "img07_check",
-      "img07_closed",
-      "img07_complete",
-      "img07_correct",
-      "img07_dispense",
-      "img07_enter_pin",
-      "img07_funds",
-      "img07_insufficient",
-      "img07_limit",
-      "img07_reject",
-      "img07_request_amount",
-      "img07_request_pin",
-      "img07_update",
-      "img07_validate_amount",
-      "img07_validate_pin",
-      "img07_verify_pin",
-      "img07_zero"
     ],
     "15": [
       "state_original_auth",
@@ -732,42 +808,6 @@
       "img08_withdrawal"
     ],
     "17": [
-      "provision_local_database_admin_sql",
-      "provision_local_database_main",
-      "provision_local_database_provision",
-      "provision_local_database_rationale_1",
-      "provision_local_database_rationale_18",
-      "provision_local_database_rationale_28",
-      "provision_local_database_rationale_83",
-      "provision_local_database_render_environment",
-      "provision_local_database_replace_environment_setting",
-      "provision_local_database_rotate_passwords",
-      "provision_local_database_verify_local_superuser",
-      "runtimeerror",
-      "scripts_provision_local_database_py",
-      "test_provision_local_database_test_password_rotation_preserves_other_local_settings_and_line_endings",
-      "tests_unit_test_provision_local_database_py",
-      "valueerror"
-    ],
-    "18": [
-      "runtime_bankflowruntime_close",
-      "scripts_seed_database_py",
-      "seed_database_main",
-      "seed_database_rationale_1",
-      "seed_database_rationale_29",
-      "seed_database_rationale_41",
-      "seed_database_seed_demo_data",
-      "seed_database_seedconflicterror",
-      "seed_database_seedresult",
-      "test_streamlit_app_button",
-      "test_streamlit_app_delete_demo_graph",
-      "test_streamlit_app_rationale_1",
-      "test_streamlit_app_streamlit_demo",
-      "test_streamlit_app_test_user_can_authenticate_transact_review_reset_and_end_session",
-      "test_streamlit_app_test_user_can_end_session",
-      "tests_integration_test_streamlit_app_py"
-    ],
-    "19": [
       "state_revised_active",
       "state_revised_auth",
       "state_revised_check",
@@ -783,6 +823,32 @@
       "state_revised_validate",
       "state_revised_withdrawal"
     ],
+    "18": [
+      "img06_bank_update",
+      "img06_check",
+      "img06_closed",
+      "img06_complete",
+      "img06_dispense",
+      "img06_funds",
+      "img06_insufficient",
+      "img06_request_amount",
+      "img06_update",
+      "img06_validate_amount",
+      "img06_zero"
+    ],
+    "19": [
+      "img07_bank_update",
+      "img07_check",
+      "img07_closed",
+      "img07_complete",
+      "img07_dispense",
+      "img07_funds",
+      "img07_insufficient",
+      "img07_request_amount",
+      "img07_update",
+      "img07_validate_amount",
+      "img07_zero"
+    ],
     "20": [
       "img11_active",
       "img11_auth",
@@ -797,6 +863,19 @@
       "img11_withdraw"
     ],
     "21": [
+      "adr8_balance_inquiry_rerun_control",
+      "adr8_exact_money_service_adapter",
+      "adr8_external_session_authority",
+      "adr8_infrastructure_object_cache",
+      "adr8_rationale_preserve_domain_authority",
+      "adr8_rationale_prevent_duplicate_inquiries",
+      "adr8_thin_streamlit_boundary",
+      "day7_validation_acceptance_path",
+      "day7_validation_exact_money_ui",
+      "day7_validation_isolated_live_tests",
+      "day7_validation_redis_authority"
+    ],
+    "22": [
       "atm_system_design_report",
       "classroom_to_production_security_gap",
       "four_atm_execution_scenarios",
@@ -809,7 +888,7 @@
       "three_complementary_uml_views",
       "working_code_is_insufficient"
     ],
-    "22": [
+    "23": [
       "adr001_repository_runtime_foundation",
       "bankflow_service_endpoint_reference",
       "dedicated_bankflow_container",
@@ -820,7 +899,7 @@
       "preserved_academic_provenance",
       "windows_application_runtime"
     ],
-    "23": [
+    "24": [
       "test_settings_test_bad_port_is_rejected",
       "test_settings_test_blank_password_is_rejected",
       "test_settings_test_environment_overrides_file_and_arguments_override_environment",
@@ -830,7 +909,7 @@
       "test_settings_test_url_preserves_special_characters_without_exposing_password",
       "tests_unit_test_settings_py"
     ],
-    "24": [
+    "25": [
       "adr004_exact_traceable_domain_model",
       "application_generated_uuid_identity",
       "exact_money_policy",
@@ -839,7 +918,7 @@
       "idempotent_demo_seed",
       "safe_card_credential_persistence"
     ],
-    "25": [
+    "26": [
       "adr007_strict_decimal_ui_consequence",
       "day6_exact_money_acceptance",
       "deposit_request_contract",
@@ -848,7 +927,7 @@
       "schema_rejects_unsafe_money_test",
       "withdrawal_request_contract"
     ],
-    "26": [
+    "27": [
       "adr005_session_bound_repository",
       "atomic_transaction_preparation",
       "caller_owned_unit_of_work",
@@ -856,59 +935,54 @@
       "stable_repository_exceptions",
       "stable_transaction_history_order"
     ],
-    "27": [
+    "28": [
       "test_transaction_schema_rationale_1",
       "test_transaction_schema_test_transaction_amount_accepts_positive_decimal_cents",
       "test_transaction_schema_test_transaction_amount_rejects_nonpositive_imprecise_or_non_decimal_values",
       "test_transaction_schema_test_transaction_history_query_enforces_repository_bounds",
       "tests_unit_test_transaction_schema_py"
     ],
-    "28": [
+    "29": [
       "bronze",
       "gold",
       "silver",
       "synthetic",
       "v2"
     ],
-    "29": [
+    "30": [
       "0001_application_schema_downgrade",
       "0001_application_schema_rationale_1",
       "0001_application_schema_upgrade",
       "migrations_versions_0001_application_schema_py"
     ],
-    "30": [
+    "31": [
       "check_environment_main",
       "check_environment_rationale_1",
       "check_environment_rationale_20",
       "d_github_miniprojects_bankflow_scripts_check_environment_py"
     ],
-    "31": [
+    "32": [
       "test_model_metadata_test_day3_tables_are_registered_in_application_schema",
       "test_model_metadata_test_money_columns_are_fixed_precision_decimal",
       "test_model_metadata_test_status_enums_use_named_varchar_constraints",
       "tests_unit_test_model_metadata_py"
     ],
-    "32": [
+    "33": [
       "img06_atm",
       "img06_bank",
       "img06_customer",
       "img06_diagram"
     ],
-    "33": [
+    "34": [
       "img07_atm",
       "img07_bank",
       "img07_customer",
       "img07_diagram"
     ],
-    "34": [
+    "35": [
       "conftest_isolate_settings_environment",
       "conftest_rationale_1",
       "tests_conftest_py"
-    ],
-    "35": [
-      "adr007_kafka_deferral",
-      "architecture_db_before_event_publication",
-      "day6_kafka_deferral"
     ],
     "36": [
       "adr007_exact_atomic_boundary",
@@ -926,8 +1000,9 @@
       "pages_3_deposit_py"
     ],
     "39": [
-      "architecture_separation_of_concerns",
-      "architecture_streamlit_ui_responsibility"
+      "adr8_fixed_demo_reset_boundary",
+      "adr8_rationale_repeatable_safe_demo",
+      "day7_validation_atomic_demo_reset"
     ],
     "40": [
       "app_py",
@@ -946,83 +1021,99 @@
       "src_bankflow_demo_py"
     ],
     "44": [
-      "devtools"
+      "adr8_future_kafka_extension_boundary",
+      "adr8_rationale_decouple_future_events"
     ],
     "45": [
-      "lock"
+      "devtools"
     ],
     "46": [
-      "temporary"
+      "lock"
     ],
     "47": [
-      "isolated_application_test_databases"
+      "temporary"
     ],
     "48": [
-      "redis_database_isolation"
+      "isolated_application_test_databases"
     ],
     "49": [
-      "fictional"
+      "redis_database_isolation"
     ],
     "50": [
-      "plainpins"
+      "fictional"
     ],
     "51": [
-      "kafka_metadata_validation_gap"
+      "plainpins"
     ],
     "52": [
-      "reuse_lab"
+      "kafka_metadata_validation_gap"
     ],
     "53": [
-      "img06_end"
+      "reuse_lab"
     ],
     "54": [
-      "img07_end"
+      "img06_end"
     ],
     "55": [
+      "img07_end"
+    ],
+    "56": [
       "day5_to_day6_handoff"
+    ],
+    "57": [
+      "day6_kafka_deferral"
+    ],
+    "58": [
+      "adr007_kafka_deferral"
+    ],
+    "59": [
+      "adr8_transient_secret_handling"
+    ],
+    "60": [
+      "adr8_accessible_status_design"
     ]
   },
   "cohesion": {
     "0": 0.04,
-    "1": 0.09,
-    "2": 0.13,
+    "1": 0.05,
+    "2": 0.09,
     "3": 0.09,
-    "4": 0.05,
-    "5": 0.06,
-    "6": 0.07,
-    "7": 0.07,
-    "8": 0.07,
-    "9": 0.08,
+    "4": 0.13,
+    "5": 0.09,
+    "6": 0.05,
+    "7": 0.06,
+    "8": 0.06,
+    "9": 0.07,
     "10": 0.08,
-    "11": 0.11,
-    "12": 0.09,
-    "13": 0.09,
-    "14": 0.1,
+    "11": 0.08,
+    "12": 0.08,
+    "13": 0.1,
+    "14": 0.09,
     "15": 0.15,
     "16": 0.15,
-    "17": 0.23,
-    "18": 0.17,
-    "19": 0.19,
+    "17": 0.19,
+    "18": 0.2,
+    "19": 0.2,
     "20": 0.18,
-    "21": 0.18,
-    "22": 0.22,
-    "23": 0.25,
-    "24": 0.29,
+    "21": 0.2,
+    "22": 0.18,
+    "23": 0.22,
+    "24": 0.25,
     "25": 0.29,
-    "26": 0.4,
+    "26": 0.29,
     "27": 0.4,
     "28": 0.4,
-    "29": 0.5,
+    "29": 0.4,
     "30": 0.5,
     "31": 0.5,
     "32": 0.5,
     "33": 0.5,
-    "34": 0.67,
+    "34": 0.5,
     "35": 0.67,
     "36": 0.67,
     "37": 0.67,
     "38": 0.67,
-    "39": 1.0,
+    "39": 0.67,
     "40": 1.0,
     "41": 1.0,
     "42": 1.0,
@@ -1038,12 +1129,17 @@
     "52": 1.0,
     "53": 1.0,
     "54": 1.0,
-    "55": 1.0
+    "55": 1.0,
+    "56": 1.0,
+    "57": 1.0,
+    "58": 1.0,
+    "59": 1.0,
+    "60": 1.0
   },
   "gods": [
     {
       "id": "init_rationale_1",
-      "label": "Streamlit-facing adapters; domain rules remain in application services.",
+      "label": "Typed event construction; Kafka transport follows on Day 9.",
       "degree": 44
     },
     {
@@ -1116,17 +1212,6 @@
       "why": "inferred connection - not explicitly stated in source; crosses file types (code \u2194 doc); connects across different repos/directories; peripheral node `Restrictive Financial History with Durable Audit Rows` unexpectedly reaches hub `Secret-Free Authentication Audit Events`"
     },
     {
-      "source": "PostgreSQL Transactional Source Of Truth",
-      "target": "Caller-Owned Service Unit Of Work",
-      "source_files": [
-        "docs/ARCHITECTURE.md",
-        "src/bankflow/services/transaction_service.py"
-      ],
-      "confidence": "INFERRED",
-      "relation": "conceptually_related_to",
-      "why": "inferred connection - not explicitly stated in source; crosses file types (code \u2194 doc); connects across different repos/directories; peripheral node `PostgreSQL Transactional Source Of Truth` unexpectedly reaches hub `Caller-Owned Service Unit Of Work`"
-    },
-    {
       "source": "Scenario 2: Incorrect PIN then successful authentication",
       "target": "authenticate_customer()",
       "source_files": [
@@ -1147,6 +1232,17 @@
       "confidence": "INFERRED",
       "relation": "uses",
       "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; bridges separate communities; peripheral node `Alembic environment using the same validated settings as the application.` unexpectedly reaches hub `Base`"
+    },
+    {
+      "source": "Autogeneration must not propose changes to unrelated schemas.",
+      "target": "Base",
+      "source_files": [
+        "migrations\\env.py",
+        "src\\bankflow\\database\\base.py"
+      ],
+      "confidence": "INFERRED",
+      "relation": "uses",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; bridges separate communities; peripheral node `Autogeneration must not propose changes to unrelated schemas.` unexpectedly reaches hub `Base`"
     }
   ],
   "suggested_questions": [

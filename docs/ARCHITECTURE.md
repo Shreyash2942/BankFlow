@@ -425,6 +425,8 @@ session.ended
 
 Sensitive authentication data must never be placed in Kafka messages.
 
+The canonical version-1 envelope and its closed transaction/authentication payloads are implemented in `src/bankflow/schemas/events.py` and documented in `docs/events/EVENT_SCHEMA.md`. Exact monetary values serialize as decimal strings. Producers consume these schemas rather than constructing ad hoc dictionaries.
+
 ---
 
 # 6. Version 2 Lakehouse Architecture
@@ -676,7 +678,7 @@ sequenceDiagram
     end
 ```
 
-Kafka publication is added after the Day 8 event contract and Day 9 producer integration.
+The Day 8 event contract is complete. Kafka publication is added by the Day 9 producer integration.
 
 ---
 
@@ -711,7 +713,7 @@ sequenceDiagram
     end
 ```
 
-Day 9 adds post-transaction Kafka publication after the Day 8 event contract is defined.
+Day 9 adds post-transaction Kafka publication using the completed Day 8 event contract.
 
 ---
 

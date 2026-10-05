@@ -2,7 +2,7 @@
 
 **An educational ATM transaction and analytics platform using fictional data.**
 
-BankFlow is evolving from a command-line college assignment into a Python application and event-driven data platform. Days 1–7 now provide the package foundation, PostgreSQL domain model, fictional seed data, repository boundary, Redis-backed authentication, an exact-money transaction engine, and a complete Streamlit ATM demo. Kafka and analytics pipelines remain later milestones.
+BankFlow is evolving from a command-line college assignment into a Python application and event-driven data platform. Days 1–8 now provide the package foundation, PostgreSQL domain model, fictional seed data, repository boundary, Redis-backed authentication, an exact-money transaction engine, a complete Streamlit ATM demo, and a versioned application-event contract. Kafka transport and analytics pipelines remain later milestones.
 
 ## Quick start — Windows PowerShell
 
@@ -44,7 +44,7 @@ Open [http://localhost:8501](http://localhost:8501) and use the displayed fictio
 
 ## Configuration and infrastructure
 
-The Windows application connects to the dedicated `bankflow` container: PostgreSQL 5433, Redis 6380, and Kafka 9093. PostgreSQL and authenticated Redis access are verified. Kafka metadata remains a future milestone check.
+The Windows application connects to the dedicated `bankflow` container: PostgreSQL 5433, Redis 6380, and Kafka 9093. PostgreSQL and authenticated Redis access are verified. The Kafka event contract is implemented; broker metadata and producer delivery remain Day 9 work.
 
 On this workspace, application and test databases and ignored credentials are already provisioned. Run:
 
@@ -71,7 +71,7 @@ BankFlow/
 │   ├── repositories/        # typed lookups, balance updates, and transaction history
 │   ├── database/            # engine, sessions, model base
 │   ├── cache/               # Redis integration
-│   ├── messaging/           # Kafka adapters
+│   ├── messaging/           # typed event factories; Kafka producer follows
 │   ├── ui/                  # Streamlit runtime and presentation helpers
 │   └── utils/
 ├── pages/                   # authenticated ATM screens
@@ -106,6 +106,9 @@ BankFlow/
 - [Day 6 transaction-engine decision](docs/architecture/ADR-007-transaction-engine.md)
 - [Day 7 validation](docs/DAY7_VALIDATION.md)
 - [Day 7 Streamlit-boundary decision](docs/architecture/ADR-008-streamlit-interface.md)
+- [Day 8 validation](docs/DAY8_VALIDATION.md)
+- [Event schema](docs/events/EVENT_SCHEMA.md)
+- [Day 8 event-contract decision](docs/architecture/ADR-009-event-contract.md)
 - [Baseline analysis](docs/analysis/PROJECT_ANALYSIS.md)
 - [Interactive project graph](graphify-out/graph.html) and [audit report](graphify-out/GRAPH_REPORT.md)
 
@@ -129,4 +132,4 @@ $env:BANKFLOW_RUN_DB_TESTS='1'
 Remove-Item Env:BANKFLOW_RUN_DB_TESTS
 ```
 
-The live tests require `.env.test` with `APP_ENV=test`, `POSTGRES_DB=bankflow_test`, `POSTGRES_USER=bankflow_test_user`, and the dedicated Redis database 1. They exercise migration, persistence, authentication, transaction workflows, and the complete Streamlit path only in isolated test resources. See [Day 7 validation](docs/DAY7_VALIDATION.md) for current results and limits.
+The live tests require `.env.test` with `APP_ENV=test`, `POSTGRES_DB=bankflow_test`, `POSTGRES_USER=bankflow_test_user`, and the dedicated Redis database 1. They exercise migration, persistence, authentication, transaction workflows, and the complete Streamlit path only in isolated test resources. The Day 8 event contract is service-free; 68 fast tests and all 90 tests with live-service opt-in pass. See [Day 8 validation](docs/DAY8_VALIDATION.md) for current results and limits.
