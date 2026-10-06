@@ -84,16 +84,20 @@ def _button(app: AppTest, label: str):
     return next(button for button in app.button if button.label == label)
 
 
+def _has_markdown(app: AppTest, text: str) -> bool:
+    return any(text in block.value for block in app.markdown)
+
+
 def test_user_can_authenticate_transact_review_reset_and_end_session(streamlit_demo):
     app = AppTest.from_file(ROOT / "app.py", default_timeout=10).run()
     assert not app.exception
-    assert app.title[0].value == "Welcome to BankFlow"
+    assert _has_markdown(app, "Welcome to")
 
     app.text_input[0].input("2468")
     _button(app, "Authenticate").click()
     app.run()
     assert not app.exception
-    assert app.title[0].value == "Account dashboard"
+    assert _has_markdown(app, "Welcome back")
 
     app.switch_page("pages/2_Withdraw.py").run()
     app.number_input[0].set_value(100.0)
@@ -111,7 +115,7 @@ def test_user_can_authenticate_transact_review_reset_and_end_session(streamlit_d
 
     app.switch_page("pages/4_Transaction_History.py").run()
     assert not app.exception
-    assert app.title[0].value == "Transaction history"
+    assert _has_markdown(app, "Transaction history")
     history = app.dataframe[0].value
     assert list(history["Type"][:2]) == ["Deposit", "Withdrawal"]
 
@@ -121,7 +125,7 @@ def test_user_can_authenticate_transact_review_reset_and_end_session(streamlit_d
     _button(app, "Reset demo").click()
     app.run()
     assert not app.exception
-    assert app.title[0].value == "Welcome to BankFlow"
+    assert _has_markdown(app, "Welcome to")
     assert "Demo restored to $500.00" in app.success[0].value
 
     with Session(streamlit_demo) as session:
@@ -136,7 +140,7 @@ def test_user_can_authenticate_transact_review_reset_and_end_session(streamlit_d
     assert account.balance == Decimal("500.00")
     assert transaction_types == []
 
-    assert app.title[0].value == "Welcome to BankFlow"
+    assert _has_markdown(app, "Welcome to")
 
 
 def test_user_can_end_session(streamlit_demo):
@@ -145,11 +149,14 @@ def test_user_can_end_session(streamlit_demo):
     _button(app, "Authenticate").click()
     app.run()
     assert not app.exception
-    assert app.title[0].value == "Account dashboard"
+    assert _has_markdown(app, "Welcome back")
 
     app.switch_page("pages/1_Dashboard.py").run()
     _button(app, "End session").click()
     app.run()
     assert not app.exception
+    _button(app, "Confirm end session").click()
+    app.run()
+    assert not app.exception
     assert app.session_state["bankflow_session_token"] is None
-    assert app.title[0].value == "Welcome to BankFlow"
+    assert _has_markdown(app, "Welcome to")

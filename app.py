@@ -15,12 +15,13 @@ from bankflow.ui.streamlit_support import (
     load_runtime_or_stop,
     render_brand_header,
     render_flash_message,
+    render_page_heading,
     render_sidebar,
     reset_demo_from_ui,
     show_action_error,
 )
 
-configure_page("Welcome")
+configure_page("Welcome", sidebar="collapsed")
 apply_design_system()
 runtime = load_runtime_or_stop()
 render_brand_header()
@@ -34,8 +35,11 @@ if authentication is not None:
         show_action_error("Your account could not be loaded. Please try again.")
         st.stop()
     render_sidebar(runtime, summary)
-    st.title(f"Welcome back, {summary.customer_name}")
-    st.write("Your fictional demo session is active.")
+    render_page_heading(
+        "✓",
+        f"Welcome back, {summary.customer_name}",
+        "Your secure demo session is active and ready to continue.",
+    )
     st.page_link(
         "pages/1_Dashboard.py",
         label="Continue to dashboard",
@@ -44,27 +48,47 @@ if authentication is not None:
     )
     st.stop()
 
-left, right = st.columns([1.15, 0.85], gap="large")
+left, right = st.columns([1.05, 0.95], gap="large", vertical_alignment="top")
 with left:
-    st.title("Welcome to BankFlow")
-    st.write(
-        "Explore an event-driven ATM platform with an isolated fictional account. "
-        "Select the demo card and authenticate to begin."
-    )
-    st.info("Demo environment · No real financial data")
     st.markdown(
         """
-        <div class="notice-card">
-          <strong>What you can try</strong><br><br>
-          View an exact account balance, make withdrawals and deposits, and inspect the
-          resulting transaction history.
+        <div class="hero-panel">
+          <div class="hero-kicker">MODERN BANKING · REAL DATA · BIGGER POSSIBILITIES</div>
+          <h1>Welcome to<br>Bank<span>Flow</span></h1>
+          <p>An event-driven ATM transaction and analytics platform built for the modern
+          data world. Explore secure demo banking operations and see how everyday
+          transactions become useful data.</p>
+          <div class="hero-feature">
+            <div class="hero-feature-icon">▣</div>
+            <div><strong>Realistic ATM experience</strong>
+            <small>Authenticate, withdraw, deposit, and review account activity.</small></div>
+          </div>
+          <div class="hero-feature">
+            <div class="hero-feature-icon">▥</div>
+            <div><strong>Data-driven foundation</strong>
+            <small>Built on PostgreSQL, Redis, and a versioned event contract.</small></div>
+          </div>
+          <div class="hero-feature">
+            <div class="hero-feature-icon">◇</div>
+            <div><strong>Safe to explore</strong>
+            <small>Fictional accounts only. No real money or customer data.</small></div>
+          </div>
         </div>
         """,
         unsafe_allow_html=True,
     )
 
 with right:
-    st.subheader("Start a demo session")
+    st.markdown(
+        """
+        <div class="auth-heading">
+          <div class="eyebrow">🔒 ATM ACCESS</div>
+          <h2>Select a demo card</h2>
+          <p>Choose a fictional card and enter its PIN to access the demo account.</p>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
     try:
         cards = runtime.list_demo_cards()
     except Exception:
@@ -87,12 +111,12 @@ with right:
 
     with st.form("authentication_form"):
         pin = st.text_input(
-            "Four-digit PIN",
+            "Enter four-digit PIN",
             type="password",
             max_chars=4,
-            help="This field is masked and the PIN is never stored by the interface.",
+            help="The PIN is masked and is never stored by the interface.",
         )
-        st.caption(f"Fictional demo PIN: {DEMO_PIN}")
+        st.caption(f"Demo credentials · PIN: {DEMO_PIN}")
         submitted = st.form_submit_button("Authenticate", type="primary", width="stretch")
 
     if submitted:
@@ -105,7 +129,7 @@ with right:
         else:
             if result.authenticated and result.session_token is not None:
                 st.session_state[SESSION_TOKEN_KEY] = result.session_token.get_secret_value()
-                st.session_state[FLASH_KEY] = "Authentication successful."
+                st.session_state[FLASH_KEY] = "Authentication successful. Welcome to BankFlow."
                 st.switch_page("pages/1_Dashboard.py")
             elif result.outcome is AuthenticationOutcome.INVALID_CREDENTIALS:
                 attempts = result.remaining_attempts
@@ -116,7 +140,15 @@ with right:
             else:
                 st.error("This demo card is currently unavailable.")
 
-    with st.expander("Reset demo"):
+    st.markdown(
+        """
+        <div class="secure-strip">
+          <span>🛡 Secure demo</span><span>▰ Real data model</span><span>▥ Event ready</span>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+    with st.expander("Reset demo environment"):
         st.caption("Restore $500.00, unlock the card, and clear transaction history.")
         confirmed = st.checkbox("I understand this clears the demo history")
         if st.button("Reset demo", disabled=not confirmed, width="stretch"):
