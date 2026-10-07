@@ -1,5 +1,6 @@
 """Thin application runtime used by Streamlit pages."""
 
+import logging
 from dataclasses import dataclass, field
 from decimal import Decimal
 from pathlib import Path
@@ -14,13 +15,32 @@ from bankflow.config.settings import Settings, load_settings
 from bankflow.database.connection import create_database_engine
 from bankflow.database.session import create_session_factory, session_scope
 from bankflow.demo import DEMO_CARD_ID
-from bankflow.models import Account, AccountStatus, AccountType, Card, CardStatus
+from bankflow.messaging import (
+    EventPublicationError,
+    EventPublisher,
+    KafkaEventProducer,
+    balance_viewed_event,
+    event_from_authentication_result,
+    event_from_transaction_result,
+    session_ended_event,
+    withdrawal_requested_event,
+)
+from bankflow.models import (
+    Account,
+    AccountStatus,
+    AccountType,
+    Card,
+    CardStatus,
+    TransactionStatus,
+)
+from bankflow.repositories import CardRepository
 from bankflow.schemas.account import AccountBalance
 from bankflow.schemas.authentication import (
     AuthenticationRequest,
     AuthenticationResult,
     AuthenticationSession,
 )
+from bankflow.schemas.events import BankFlowEvent, EventType
 from bankflow.schemas.transaction import (
     DepositRequest,
     TransactionHistory,
@@ -35,6 +55,8 @@ from bankflow.services import (
     DemoService,
     TransactionService,
 )
+
+LOGGER = logging.getLogger(__name__)
 
 
 @dataclass(frozen=True)
@@ -71,12 +93,14 @@ class BankFlowRuntime:
         session_factory: sessionmaker[Session],
         redis_client: Redis,
         state_store: AuthenticationStateStore,
+        event_publisher: EventPublisher,
     ) -> None:
         self.settings = settings
         self._engine = engine
         self._sessions = session_factory
         self._redis = redis_client
         self._state = state_store
+        self._events = event_publisher
 
     @classmethod
     def from_env(cls, env_file: str | Path = ".env") -> "BankFlowRuntime":
@@ -89,11 +113,45 @@ class BankFlowRuntime:
             create_session_factory(engine),
             redis_client,
             AuthenticationStateStore(redis_client),
+            KafkaEventProducer.from_settings(settings),
         )
 
     def close(self) -> None:
+        if isinstance(self._events, KafkaEventProducer):
+            undelivered = self._events.close()
+            if undelivered:
+                LOGGER.warning("Kafka producer closed with %s undelivered event(s)", undelivered)
         self._redis.close()
         self._engine.dispose()
+
+    def _publish(self, *events: BankFlowEvent) -> None:
+        """Publish committed facts without changing an already completed operation."""
+
+        for event in events:
+            try:
+                self._events.publish(event)
+            except EventPublicationError as exc:
+                LOGGER.warning(
+                    "Committed operation event %s was not delivered: %s", event.event_id, exc
+                )
+                break
+            except Exception:
+                LOGGER.exception("Unexpected event publication failure for %s", event.event_id)
+                break
+
+    @staticmethod
+    def _authentication_subject(session: Session, card_token: str) -> AuthenticationSession | None:
+        card = CardRepository(session).get_by_token(card_token)
+        if card is None:
+            return None
+        account = session.get(Account, card.account_id)
+        if account is None:
+            return None
+        return AuthenticationSession(
+            card_id=card.id,
+            account_id=account.id,
+            customer_id=account.customer_id,
+        )
 
     def list_demo_cards(self) -> tuple[DemoCardOption, ...]:
         with session_scope(self._sessions) as session:
@@ -115,15 +173,21 @@ class BankFlowRuntime:
     def authenticate(self, card_token: str, pin: str) -> AuthenticationResult:
         request = AuthenticationRequest(card_token=card_token, pin=pin)
         with session_scope(self._sessions) as session:
-            return AuthenticationService.from_settings(
+            result = AuthenticationService.from_settings(
                 session, self._state, self.settings
             ).authenticate(request)
+            authentication = self._authentication_subject(session, card_token)
+        self._publish(event_from_authentication_result(result, authentication=authentication))
+        return result
 
     def resolve_session(self, token: str) -> AuthenticationSession | None:
         return self._state.get_session(token)
 
     def end_session(self, token: str) -> None:
+        authentication = self._state.get_session(token)
         self._state.delete_session(token)
+        if authentication is not None:
+            self._publish(session_ended_event(authentication))
 
     def account_summary(self, authentication: AuthenticationSession) -> AccountSummary:
         with session_scope(self._sessions) as session:
@@ -148,23 +212,74 @@ class BankFlowRuntime:
 
     def inquire_balance(self, authentication: AuthenticationSession) -> AccountBalance:
         with session_scope(self._sessions) as session:
-            return AccountService(session).inquire_balance(authentication)
+            result = AccountService(session).inquire_balance(authentication)
+        self._publish(balance_viewed_event(result, authentication))
+        return result
 
     def withdraw(
         self, authentication: AuthenticationSession, request: WithdrawalRequest
     ) -> TransactionResult:
         with session_scope(self._sessions) as session:
-            return TransactionService.from_settings(session, self.settings).withdraw(
+            result = TransactionService.from_settings(session, self.settings).withdraw(
                 authentication, request
             )
+            account = session.get(Account, authentication.account_id)
+            if account is None:
+                raise RuntimeError("The committed withdrawal account could not be loaded.")
+            currency = account.currency
+        terminal_type = (
+            EventType.WITHDRAWAL_COMPLETED
+            if result.status is TransactionStatus.COMPLETED
+            else EventType.WITHDRAWAL_DECLINED
+        )
+        events = [
+            withdrawal_requested_event(
+                result.transaction_id,
+                request,
+                authentication,
+                balance_before=result.balance_before,
+                currency=currency,
+                account_status=AccountStatus.ACTIVE,
+            ),
+            event_from_transaction_result(
+                terminal_type,
+                result,
+                authentication,
+                currency=currency,
+            ),
+        ]
+        if result.account_status is AccountStatus.CLOSED:
+            events.append(
+                event_from_transaction_result(
+                    EventType.ACCOUNT_CLOSED,
+                    result,
+                    authentication,
+                    currency=currency,
+                )
+            )
+        self._publish(*events)
+        return result
 
     def deposit(
         self, authentication: AuthenticationSession, request: DepositRequest
     ) -> TransactionResult:
         with session_scope(self._sessions) as session:
-            return TransactionService.from_settings(session, self.settings).deposit(
+            result = TransactionService.from_settings(session, self.settings).deposit(
                 authentication, request
             )
+            account = session.get(Account, authentication.account_id)
+            if account is None:
+                raise RuntimeError("The committed deposit account could not be loaded.")
+            currency = account.currency
+        self._publish(
+            event_from_transaction_result(
+                EventType.DEPOSIT_COMPLETED,
+                result,
+                authentication,
+                currency=currency,
+            )
+        )
+        return result
 
     def history(
         self, authentication: AuthenticationSession, *, limit: int = 100, offset: int = 0
