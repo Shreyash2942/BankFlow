@@ -425,7 +425,7 @@ session.ended
 
 Sensitive authentication data must never be placed in Kafka messages.
 
-The canonical version-1 envelope and its closed transaction/authentication payloads are implemented in `src/bankflow/schemas/events.py` and documented in `docs/events/EVENT_SCHEMA.md`. Exact monetary values serialize as decimal strings. Producers consume these schemas rather than constructing ad hoc dictionaries.
+The canonical version-1 envelope and its closed transaction/authentication payloads are implemented in `src/bankflow/schemas/events.py` and documented in `docs/events/EVENT_SCHEMA.md`. Exact monetary values serialize as decimal strings. The Day 9 producer publishes these validated envelopes only after the owning PostgreSQL transaction commits, uses aggregate UUIDs as partition keys, waits for delivery callbacks, and treats PostgreSQL as authoritative if Kafka is unavailable. See ADR-010.
 
 ---
 
@@ -678,7 +678,7 @@ sequenceDiagram
     end
 ```
 
-The Day 8 event contract is complete. Kafka publication is added by the Day 9 producer integration.
+The Day 9 runtime publishes the resulting authentication fact only after its audit/card transaction commits. Redis session creation remains part of the existing authentication service boundary.
 
 ---
 
@@ -713,7 +713,7 @@ sequenceDiagram
     end
 ```
 
-Day 9 adds post-transaction Kafka publication using the completed Day 8 event contract.
+Day 9 publishes requested and terminal withdrawal facts after PostgreSQL commit. A zero-balance completion also publishes `account.closed`. Producer failure is logged without misreporting or reversing the committed banking result.
 
 ---
 

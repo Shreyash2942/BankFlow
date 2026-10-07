@@ -564,17 +564,19 @@ Publish application events after successful business operations.
 
 ### Tasks
 
-- [ ] Configure Kafka producer
-- [ ] Add topic configuration
-- [ ] Publish authentication events
-- [ ] Publish withdrawal events
-- [ ] Publish deposit events
-- [ ] Publish card-lock events
-- [ ] Publish account-close events
-- [ ] Add producer delivery callbacks
-- [ ] Handle Kafka unavailable condition
-- [ ] Ensure DB transaction succeeds before completion event
-- [ ] Add producer tests
+- [x] Configure Kafka producer
+- [x] Add topic configuration
+- [x] Publish authentication events
+- [x] Publish withdrawal events
+- [x] Publish deposit events
+- [x] Publish card-lock events
+- [x] Publish account-close events
+- [x] Add producer delivery callbacks
+- [x] Handle Kafka unavailable condition
+- [x] Ensure DB transaction succeeds before completion event
+- [x] Add producer tests
+
+Completed on 2026-10-06. Balance-viewed and session-ended events are also published. Evidence: `docs/DAY9_VALIDATION.md` and `docs/architecture/ADR-010-kafka-producer.md`.
 
 ### Deliverables
 

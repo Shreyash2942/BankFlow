@@ -1,6 +1,6 @@
 # BankFlow service endpoint reference
 
-Recorded 2026-09-22 from the user-provided connection guide and Docker mapping inspection. Target container: `bankflow`. Credentials and token-bearing URLs are not stored in this document.
+Recorded from the user-provided connection guide and updated through 2026-10-06. Target container: `bankflow`. Credentials and token-bearing URLs are not stored in this document.
 
 ## Service endpoints
 
@@ -8,7 +8,7 @@ Recorded 2026-09-22 from the user-provided connection guide and Docker mapping i
 |---|---|---|---|
 | PostgreSQL | `localhost:5433` | `localhost:5432` | Application health query verified on 2026-09-24 |
 | Redis | `localhost:6380` | `localhost:6379` | Authenticated application and isolated test access verified |
-| Kafka bootstrap | `localhost:9093` | `localhost:9092` | Mapping inspected; metadata unavailable during startup |
+| Kafka bootstrap | `localhost:9093` | `localhost:9092` | Kafka 3.7.1 metadata and produce/consume round trip verified |
 | HiveServer2 JDBC | `jdbc:hive2://localhost:10002` | `localhost:10000` | Mapping inspected, query untested |
 | HiveServer2 Thrift | `thrift://localhost:10002` | `localhost:10000` | Mapping inspected, request untested |
 | Hive Metastore | `thrift://localhost:9084` | `localhost:9083` | Mapping inspected, request untested |
@@ -16,7 +16,7 @@ Recorded 2026-09-22 from the user-provided connection guide and Docker mapping i
 | HDFS filesystem | Port 9000 not published | `hdfs://localhost:9000` | User-reported internal URI; storage untested |
 | Spark RPC | Port 7077 not published | `spark://localhost:7077` | User-reported internal URI; submission untested |
 
-Kafka clients use `host:port` without the helper's `kafka://` display prefix. Published bootstrap ports do not guarantee that broker-advertised addresses are reachable. Validate broker metadata from the selected client runtime before implementing messaging.
+Kafka clients use `host:port` without the helper's `kafka://` display prefix. The dedicated broker advertises `host.docker.internal:9093`, which is reachable from both Windows and container-side clients through Docker Desktop. The primary topic is `bankflow.transaction.events`; its local development configuration has one partition and replication factor one.
 
 The reported PostgreSQL lab database/user are `datalab` / `admin`, distinct from the provisioned application resources `bankflow` / `bankflow_user` and isolated test resources `bankflow_test` / `bankflow_test_user`. Redis uses the reported ACL user `default`. Do not assume UI login passwords authenticate database services.
 

@@ -4,7 +4,7 @@
 **Repository Name:** `BankFlow`  
 **Document Type:** Living Project Memory / Handoff File  
 **Purpose:** Preserve project context, implementation state, decisions, issues, and next actions across developers, sessions, and AI agents.  
-**Last Updated:** 2026-10-05  
+**Last Updated:** 2026-10-06  
 
 ---
 
@@ -103,10 +103,10 @@ Version 2 extends BankFlow with:
 
 # 4. Current Project Status
 
-- Overall status: Implementation - Day 8 event contract complete.
+- Overall status: Implementation - Day 9 Kafka producer complete.
 - Release: v0.1.0 package foundation; no release tag or published application.
 - Phase: Phase 2, event platform and V1 release.
-- Week/day: Week 2, Day 8 complete; Day 9 next.
+- Week/day: Week 2, Day 9 complete; Day 10 next.
 
 | Area | Status |
 |---|---|
@@ -117,12 +117,12 @@ Version 2 extends BankFlow with:
 | PostgreSQL | Five operational models, exact money, demo seed, and Alembic revision 0002 verified |
 | Repository layer | Customer, account, card, and transaction access verified against PostgreSQL |
 | Authentication / Redis | Authenticated client, expiring counters/sessions, audit events, and durable card lock verified |
-| Kafka events | Versioned transaction/authentication contract and factories complete; producer connection not implemented |
+| Kafka events | Versioned contract plus acknowledged post-commit producer integration verified against Kafka 3.7.1 |
 | Transaction services | Exact balance inquiry, withdrawal, deposit, decline, closure, and history workflows verified |
 | Streamlit UI | Welcome/authentication, dashboard, withdrawal, deposit, history, reset, and end-session flows verified |
 | Airflow / dbt / Spark / Iceberg | Not implemented |
-| Automated application tests / CI | 68 service-free cases and 22 live PostgreSQL/Redis/Streamlit cases pass; all 90 pass with live opt-in; CI remains planned |
-| Graph and analysis | Baseline preserved; Day 8 graph includes the versioned event contract and serialization boundary |
+| Automated application tests / CI | 74 service-free cases and 26 live PostgreSQL/Redis/Streamlit/Kafka cases pass; all 100 pass with service opt-ins; CI remains planned |
+| Graph and analysis | Day 9 graph: 1,000 nodes, 1,646 edges, 63 communities; producer delivery and post-commit publication boundaries included |
 
 ---
 
@@ -546,7 +546,7 @@ Current planning issue:
 
 ### ISSUE-001 — Existing Docker Service Details Not Yet Inspected
 
-**Status:** PostgreSQL and Redis resolved; Kafka validation pending  
+**Status:** Resolved for PostgreSQL, Redis, and Kafka  
 **Severity:** Medium  
 **Type:** Environment / Dependency  
 
@@ -554,22 +554,15 @@ Current planning issue:
 
 The project plans to reuse PostgreSQL, Redis, Kafka, Airflow, dbt, Spark, Hadoop, Hive, and Iceberg from an existing Docker-based data lab.
 
-The user created the running `bankflow` container with a dedicated runtime volume. Day 2 verified authenticated PostgreSQL access and migrations with separate application/test databases. Day 5 verified authenticated Redis access with separate application/test databases. Kafka metadata remains a future check.
+The user created the running `bankflow` container with a dedicated runtime volume. Day 2 verified authenticated PostgreSQL access and migrations with separate application/test databases. Day 5 verified authenticated Redis access. Day 9 found and corrected the copied broker's unreachable advertised listener and verified Kafka 3.7.1 metadata and delivery.
 
 **Impact**
 
-PostgreSQL and Redis configuration are verified. Kafka integration requires its own readiness and authentication checks.
+PostgreSQL, Redis, and Kafka application endpoints are verified. Later services remain milestone-specific.
 
 **Next Action**
 
-Inspect:
-
-```bash
-docker ps
-docker network ls
-```
-
-and relevant Docker Compose files before creating BankFlow service configuration.
+Inspect each later service when its milestone begins; do not infer health from an exposed port.
 
 ---
 
@@ -626,9 +619,7 @@ A database transaction may succeed while event publication fails.
 
 **Mitigation**
 
-For V1, explicitly handle producer failures and document behavior.
-
-Consider an outbox pattern as a future improvement if reliability requirements increase.
+Day 9 publishes only after commit, bounds delivery waits, logs broker failures, and returns the committed banking result. TD-001 records the remaining crash gap; use an outbox if guaranteed recovery becomes a release requirement.
 
 ---
 
@@ -660,9 +651,19 @@ Start only required services for each phase and record local resource constraint
 
 # 19. Technical Debt Register
 
-No new BankFlow implementation debt has been introduced. The legacy prototype uses float money and process-local state; preserve that baseline and replace these limitations in the new core rather than treating it as the completed platform.
+The legacy prototype uses float money and process-local state; preserve that baseline and replace these limitations in the new core rather than treating it as the completed platform.
 
-Use this section once implementation begins.
+```text
+TD-001
+Title: Direct post-commit Kafka publication has no durable replay
+Status: Accepted for V1
+Priority: Medium
+Introduced: Day 9
+Reason: Preserve PostgreSQL authority without adding outbox schema and relay scope to producer day
+Impact: A process crash after commit and before acknowledgement can omit an event
+Planned Resolution: Add a transactional outbox and idempotent relay if release reliability requires recovery
+Target Version: Future reliability milestone
+```
 
 Template:
 
@@ -796,29 +797,35 @@ Transaction requests require finite positive Python `Decimal` values at cent pre
 
 Application events use one immutable schema-version-1 envelope with UUID4 identity, dotted event type, UTC occurrence time, fixed application source, and a discriminated transaction or authentication payload. Exact money serializes as decimal strings. Closed schemas reject unknown or inconsistent fields, and event factories never expose PIN material, card/session tokens, credentials, or unnecessary personal data. Factories remain independent of Kafka; Day 9 owns post-commit publication. See `docs/architecture/ADR-009-event-contract.md`.
 
+## ADR-MEM-012 — Acknowledged Post-Commit Kafka Publication
+
+**Decision**
+
+`BankFlowRuntime` publishes validated events only after its caller-owned PostgreSQL transaction commits. The producer uses idempotence, `acks=all`, bounded delivery callbacks, aggregate keys, and safe headers. Broker failures are logged and do not reverse the committed banking operation. The known commit-to-publish gap is accepted for V1. See `docs/architecture/ADR-010-kafka-producer.md`.
+
 ---
 
 # 21. Active Work
 
-Day 8 is complete: immutable Pydantic schemas and typed factories define the ten initial transaction/authentication events, preserve exact decimal money, reject inconsistent payloads, and exclude sensitive fields. Day 9 producer integration is next.
+Day 9 is complete: acknowledged Kafka publication covers all ten initial event types at the runtime's post-commit boundary, and broker unavailability preserves PostgreSQL results. Day 10 consumer and event-store work is next.
 
 ---
 
 # 22. Next Actions
 
-1. Configure the Kafka producer and `bankflow.transaction.events` topic.
-2. Publish authentication, transaction, card-lock, account-close, and session events through the Day 8 factories.
-3. Trigger completion events only after the owning database transaction commits.
-4. Add delivery callbacks, unavailable-broker behavior, and producer tests.
-5. Validate the running broker and record Day 9 evidence without placing credentials in tracked files.
+1. Configure the Day 10 consumer and `bankflow-operational-v1` group.
+2. Validate and deserialize complete version-1 envelopes before persistence.
+3. Add duplicate-event protection using `event_id`.
+4. Define invalid-message handling, structured logging, and graceful shutdown.
+5. Persist consumed operational event metadata and add consumer tests.
 
-Resolve lockout policy, request idempotency, and post-commit publication behavior at their relevant later milestones. Do not infer live connectivity from dependency imports.
+Keep TD-001 visible when defining consumer guarantees; producer acknowledgement does not close the direct commit-to-publish crash gap.
 
 ---
 
 # 23. Environment Memory
 
-Environment inventory from 2026-09-22; PostgreSQL and Redis updated and verified through 2026-09-30:
+Environment inventory from 2026-09-22; PostgreSQL, Redis, and Kafka updated and verified through 2026-10-06:
 
 - Python 3.14.4, Windows x64; isolated `.venv` with pinned dependencies.
 - Docker engine 29.8.0; Docker Compose 5.5.1.
@@ -826,13 +833,13 @@ Environment inventory from 2026-09-22; PostgreSQL and Redis updated and verified
 - Runtime volume `datalab-runtime-bankflow` -> `/home/datalab/runtime`; no other container currently mounts it.
 - Repository bind mount -> `/home/datalab/bankflow`; container default Python is 3.10.12. The application remains on Windows Python 3.14.4.
 - Published host ports: PostgreSQL 5433, Redis 6380, Kafka 9093. Internal ports remain 5432, 6379, and 9092.
-- PostgreSQL 14.22 authenticates from Windows on port 5433. Redis 6.0.16 authenticates on port 6380; counters and expiring sessions succeed. Kafka metadata was unavailable in the earlier startup checks.
+- PostgreSQL 14.22 authenticates from Windows on port 5433. Redis 6.0.16 authenticates on port 6380; counters and expiring sessions succeed. Kafka 3.7.1 returns broker metadata and acknowledges/round-trips application events on port 9093.
 - HDFS 9000 and Spark RPC 7077 are internal-only in the inspected mappings.
 - Copied `/medilake` storage paths are not adopted; future `/bankflow/bronze` and `/bankflow/silver` paths are proposed, not created.
 - Selected connection strategy: application on Windows -> `127.0.0.1` published ports.
 - User created and started the dedicated container/services. Day 2 provisioned only BankFlow database resources without resetting data or reconfiguring services.
 - Application database/owner: `bankflow` / `bankflow_user`; test database/owner: `bankflow_test` / `bankflow_test_user`. Both are at migration 0002 with five operational tables. The application database has one fictional demo graph; generated credentials stay in ignored local files.
-- Kafka advertised listeners, other service versions, and V2 resource limits remain unverified.
+- Kafka advertises `host.docker.internal:9093`; its application topic has one partition and replication factor one. Other service versions and V2 resource limits remain unverified.
 
 See `docs/ENVIRONMENT.md` for setup and `docs/architecture/ADR-003-database-foundation.md` for database decisions. Never record credentials here.
 
@@ -857,6 +864,8 @@ Day 6: all 71 tests pass, including 20 live PostgreSQL/Redis tests. Transaction 
 Day 7: all 73 tests pass, including 22 live PostgreSQL/Redis/Streamlit tests. UI acceptance coverage verifies authentication, balance inquiry, withdrawal, deposit, history ordering, atomic demo reset, and Redis session termination through the actual Streamlit pages. See `docs/DAY7_VALIDATION.md`. Kafka and analytics remain planned.
 
 Day 8: 68 service-free tests pass and all 90 tests pass with the 22 live PostgreSQL/Redis/Streamlit cases enabled. Event coverage verifies the closed version-1 envelope, UUID4 identity, UTC timestamps, exact decimal serialization, event-to-payload consistency, transaction/authentication factory mappings, prohibited-field absence, secret-free authentication output, and JSON round trips. See `docs/DAY8_VALIDATION.md`. Kafka transport and analytics remain planned.
+
+Day 9: 74 service-free tests pass and all 100 tests pass with 26 live PostgreSQL/Redis/Streamlit/Kafka cases enabled. Producer coverage verifies idempotent all-ack configuration, serialization, aggregate keys, safe headers, callbacks, receipts, timeouts, queue failures, post-commit visibility, authentication/card/transaction lifecycles, unavailable-broker commit preservation, and a live produce/consume round trip. See `docs/DAY9_VALIDATION.md`. Kafka consumption and analytics remain planned.
 
 ---
 
@@ -891,8 +900,6 @@ None.
 Questions requiring future decisions:
 
 ```text
-Q-001: Can Kafka return usable broker metadata from Windows?
-Q-002: What Kafka deployment mode/version is currently used?
 Q-004: What Hive/Iceberg catalog configuration already exists?
 Q-005: What local resource limits should be assumed for V2 scale testing?
 ```
@@ -905,25 +912,25 @@ When resolved, move the answer into the appropriate permanent section and remove
 
 ## Last Session Summary
 
-Completed Day 8 event design. A closed version-1 envelope, transaction/authentication payloads, typed factories, exact decimal JSON serialization, and sensitive-field controls cover all ten initial event types. All 68 service-free tests and all 90 tests with live-service opt-in pass. See `docs/DAY8_VALIDATION.md`, `docs/events/EVENT_SCHEMA.md`, and ADR-009.
+Completed Day 9 producer integration. `KafkaEventProducer` provides acknowledged, idempotent delivery with bounded callbacks, while `BankFlowRuntime` publishes all ten event types after database commit and preserves committed results during broker failure. Kafka 3.7.1 metadata and a live produce/consume round trip succeed after correcting the dedicated broker advertisement. All 74 service-free tests and all 100 tests with service opt-ins pass. See `docs/DAY9_VALIDATION.md`, `docs/events/EVENT_SCHEMA.md`, and ADR-010.
 
 Populated `BankFlow` using `docs/` as the canonical documentation root and `src/bankflow/` as the application package. Preserved 18 academic assets unchanged, normalized the architecture filename, and retained dated baseline reviews. Added environment template, pinned dependencies, Windows dependency snapshot, Python setup guide, import checker, and package/linter configuration.
 
 ## Last Known Working State
 
-The editable package and application dependencies import on Python 3.14.4. The archived CLI still performs its original single-session withdrawal. Application/test databases are at revision 0002; the application database contains one fictional customer/account/card graph. Repository, authentication, transaction services, Streamlit ATM UI, and version-1 event contract are implemented. The app runs at `http://localhost:8501` when launched with `streamlit run app.py`.
+The editable package and application dependencies import on Python 3.14.4. The archived CLI still performs its original single-session withdrawal. Application/test databases are at revision 0002; the application database contains one fictional customer/account/card graph. Repository, authentication, transaction services, Streamlit ATM UI, version-1 event contract, and acknowledged Kafka producer are implemented. The app runs at `http://localhost:8501` when launched with `streamlit run app.py`.
 
 ## Last Completed Task
 
-Day 8 Kafka event design. See `docs/DAY8_VALIDATION.md` for evidence and `graphify-out/GRAPH_REPORT.md` for graph provenance.
+Day 9 Kafka producer integration. See `docs/DAY9_VALIDATION.md` for evidence and `graphify-out/GRAPH_REPORT.md` for graph provenance.
 
 ## Next Task
 
-Day 9: Kafka producer configuration, post-commit publication, delivery callbacks, unavailable-broker behavior, and tests.
+Day 10: Kafka consumer configuration, schema validation, invalid-message handling, duplicate protection, event persistence, graceful shutdown, and tests.
 
 ## Blockers
 
-The dedicated container must be running for live PostgreSQL/Redis integration tests. Day 9 must verify Kafka metadata and producer delivery against the host-mapped broker at `localhost:9093`.
+The dedicated container must be running for live PostgreSQL/Redis/Kafka integration tests. Day 10 needs a migration decision for consumed event metadata before persistence is implemented.
 
 ---
 
@@ -1016,4 +1023,4 @@ Before committing this file, verify:
 
 If only one section can be read before starting work, read this:
 
-> BankFlow is a fictional ATM portfolio project. Days 1–8 are complete in the existing `BankFlow` repository: preserved academic assets, Python 3.14 package, PostgreSQL models/migration 0002, exact money, demo seed, session-bound repositories, Redis-backed authentication, atomic transaction services, Streamlit ATM flows, and a closed version-1 event contract with secret-free factories. All 68 service-free tests and all 90 tests with live-service opt-in pass. Application/test databases use restricted owners and ignored credentials; UI acceptance uses `bankflow_test` and Redis database 1. Begin Day 9 Kafka producer work using `docs/TASK.md`, ADR-009, `docs/events/EVENT_SCHEMA.md`, and `docs/DAY8_VALIDATION.md`.
+> BankFlow is a fictional ATM portfolio project. Days 1–9 are complete in the existing `BankFlow` repository: preserved academic assets, Python 3.14 package, PostgreSQL models/migration 0002, exact money, demo seed, session-bound repositories, Redis-backed authentication, atomic transaction services, Streamlit ATM flows, a closed version-1 event contract, and acknowledged post-commit Kafka publication. All 74 service-free tests and all 100 tests with service opt-ins pass. Application/test databases use restricted owners and ignored credentials; Kafka 3.7.1 is reachable at the mapped host endpoint. Begin Day 10 consumer work using `docs/TASK.md`, ADR-009, ADR-010, `docs/events/EVENT_SCHEMA.md`, and `docs/DAY9_VALIDATION.md`.

@@ -1,6 +1,6 @@
 # Local environment and dedicated BankFlow container
 
-Updated 2026-09-29. The user-created **bankflow** container replaces the original Day 1 choice of the shared `datalab` container. See [ADR-002](architecture/ADR-002-dedicated-container.md).
+Updated 2026-10-06. The user-created **bankflow** container replaces the original Day 1 choice of the shared `datalab` container. See [ADR-002](architecture/ADR-002-dedicated-container.md).
 
 ## Inspected configuration
 
@@ -16,7 +16,7 @@ Updated 2026-09-29. The user-created **bankflow** container replaces the origina
 |---|---|---|---|
 | PostgreSQL | `127.0.0.1:5433` | 5432 | Application authentication and SELECT 1 verified |
 | Redis | `127.0.0.1:6380` | 6379 | Authenticated PING, counters, and expiring sessions verified |
-| Kafka | `127.0.0.1:9093` | 9092 | Mapping confirmed; host metadata unavailable during startup |
+| Kafka | `127.0.0.1:9093` | 9092 | Kafka 3.7.1 metadata, acknowledged delivery, and consume round trip verified |
 
 The lab PostgreSQL database/user are `datalab` / `admin`; `admin` can create databases but cannot create roles. The existing `datalab` database superuser is accessible through the local Unix socket as container OS user `datalab`. Day 2 provisioned separate application resources `bankflow` / `bankflow_user` and test resources `bankflow_test` / `bankflow_test_user`, with generated credentials only in ignored local files. Both owner roles are non-superusers; PUBLIC access to these databases is revoked.
 
@@ -32,7 +32,9 @@ If a local credential is exposed, start PostgreSQL and run `scripts/provision_lo
 
 Run `python -m bankflow.database.health`, `alembic upgrade head`, `alembic current`, and `python scripts/seed_database.py` using the repository virtual environment. Settings load `.env` relative to the working directory; process environment overrides it. The seed is safe to repeat and rejects partial fixed-ID state. Repository integration tests use only `bankflow_test`; see [README](../README.md) for exact commands and [Day 4 validation](DAY4_VALIDATION.md) for isolation evidence.
 
-Day 5 validated Redis authentication without changing the container service configuration. Application state uses Redis database 0; opt-in integration tests require database 1 and unique key prefixes. Passwords remain in ignored `.env` files. Kafka broker-advertised endpoints still need validation at their milestone.
+Day 5 validated Redis authentication without changing the container service configuration. Application state uses Redis database 0; opt-in integration tests require database 1 and unique key prefixes. Passwords remain in ignored `.env` files.
+
+Day 9 found that the copied broker listened on internal port 9092 but advertised `127.0.0.1:9092`, causing Windows clients bootstrapped through port 9093 to be redirected to the wrong port. The dedicated runtime configuration now advertises `host.docker.internal:9093`; the original file is retained inside the container as `server.properties.pre-bankflow-day9`. Kafka was restarted with its prior 384 MiB heap setting. Broker ID 1 now returns usable metadata from Windows, and `bankflow.transaction.events` has one partition, replication factor one, and an in-sync leader. This is local single-broker durability only.
 
 ## Dependency boundaries
 

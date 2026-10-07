@@ -1,6 +1,6 @@
 # BankFlow event contract — schema version 1
 
-BankFlow publishes application facts as UTF-8 JSON after the related PostgreSQL work has committed. Day 8 defines and validates the contract only. Kafka transport, delivery callbacks, and publication timing are implemented on Day 9.
+BankFlow publishes application facts as UTF-8 JSON after the related PostgreSQL work has committed. Day 8 defined the contract; Day 9 added acknowledged Kafka transport, delivery callbacks, and post-commit publication.
 
 ## Canonical envelope
 
@@ -104,4 +104,12 @@ validated: BankFlowEvent = deserialize_event(encoded)
 schema: dict = BankFlowEvent.model_json_schema()
 ```
 
-Factories perform no Kafka or database I/O. Day 9 will call them only after the relevant database transaction succeeds, preserving PostgreSQL as the transactional source of truth.
+Factories perform no Kafka or database I/O. The application runtime calls them only after the relevant database transaction succeeds, preserving PostgreSQL as the transactional source of truth.
+
+## Kafka transport
+
+All schema-version-1 facts currently use `bankflow.transaction.events`. The producer enables idempotent delivery, requires acknowledgements from all in-sync replicas, compresses payloads with gzip, and waits for a bounded delivery callback before returning.
+
+Transaction events use `transaction_id` as their Kafka key. Authentication events use `card_id` when the card is known and `event_id` for unknown-card failures. Headers repeat only safe routing metadata: `event_type`, `schema_version`, and `source`.
+
+Business data commits before publication begins. A broker outage is logged and does not reverse an already committed PostgreSQL operation. V1 therefore has an explicit delivery gap between the database commit and Kafka acknowledgement; an outbox is the planned reliability upgrade if recovery and replay requirements increase. See [ADR-010](../architecture/ADR-010-kafka-producer.md).

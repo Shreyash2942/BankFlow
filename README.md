@@ -2,7 +2,7 @@
 
 **An educational ATM transaction and analytics platform using fictional data.**
 
-BankFlow is evolving from a command-line college assignment into a Python application and event-driven data platform. Days 1–8 now provide the package foundation, PostgreSQL domain model, fictional seed data, repository boundary, Redis-backed authentication, an exact-money transaction engine, a complete Streamlit ATM demo, and a versioned application-event contract. Kafka transport and analytics pipelines remain later milestones.
+BankFlow is evolving from a command-line college assignment into a Python application and event-driven data platform. Days 1–9 now provide the package foundation, PostgreSQL domain model, fictional seed data, repository boundary, Redis-backed authentication, an exact-money transaction engine, a complete Streamlit ATM demo, a versioned event contract, and acknowledged post-commit Kafka publication. Event consumption and analytics pipelines remain later milestones.
 
 ## Quick start — Windows PowerShell
 
@@ -44,7 +44,7 @@ Open [http://localhost:8501](http://localhost:8501) and use the displayed fictio
 
 ## Configuration and infrastructure
 
-The Windows application connects to the dedicated `bankflow` container: PostgreSQL 5433, Redis 6380, and Kafka 9093. PostgreSQL and authenticated Redis access are verified. The Kafka event contract is implemented; broker metadata and producer delivery remain Day 9 work.
+The Windows application connects to the dedicated `bankflow` container: PostgreSQL 5433, Redis 6380, and Kafka 9093. PostgreSQL, authenticated Redis, Kafka 3.7.1 metadata, and acknowledged Kafka delivery are verified. The dedicated broker advertises `host.docker.internal:9093` so host clients do not get redirected to its internal port.
 
 On this workspace, application and test databases and ignored credentials are already provisioned. Run:
 
@@ -71,7 +71,7 @@ BankFlow/
 │   ├── repositories/        # typed lookups, balance updates, and transaction history
 │   ├── database/            # engine, sessions, model base
 │   ├── cache/               # Redis integration
-│   ├── messaging/           # typed event factories; Kafka producer follows
+│   ├── messaging/           # typed event factories and acknowledged Kafka producer
 │   ├── ui/                  # Streamlit runtime and presentation helpers
 │   └── utils/
 ├── pages/                   # authenticated ATM screens
@@ -109,6 +109,8 @@ BankFlow/
 - [Day 8 validation](docs/DAY8_VALIDATION.md)
 - [Event schema](docs/events/EVENT_SCHEMA.md)
 - [Day 8 event-contract decision](docs/architecture/ADR-009-event-contract.md)
+- [Day 9 validation](docs/DAY9_VALIDATION.md)
+- [Day 9 Kafka producer decision](docs/architecture/ADR-010-kafka-producer.md)
 - [Baseline analysis](docs/analysis/PROJECT_ANALYSIS.md)
 - [Interactive project graph](graphify-out/graph.html) and [audit report](graphify-out/GRAPH_REPORT.md)
 
@@ -132,4 +134,14 @@ $env:BANKFLOW_RUN_DB_TESTS='1'
 Remove-Item Env:BANKFLOW_RUN_DB_TESTS
 ```
 
-The live tests require `.env.test` with `APP_ENV=test`, `POSTGRES_DB=bankflow_test`, `POSTGRES_USER=bankflow_test_user`, and the dedicated Redis database 1. They exercise migration, persistence, authentication, transaction workflows, and the complete Streamlit path only in isolated test resources. The Day 8 event contract is service-free; 68 fast tests and all 90 tests with live-service opt-in pass. See [Day 8 validation](docs/DAY8_VALIDATION.md) for current results and limits.
+Run the live Kafka acknowledgement and round-trip test alongside the other integrations with:
+
+```powershell
+$env:BANKFLOW_RUN_DB_TESTS='1'
+$env:BANKFLOW_RUN_KAFKA_TESTS='1'
+.\.venv\Scripts\python.exe -m pytest -q
+Remove-Item Env:BANKFLOW_RUN_DB_TESTS
+Remove-Item Env:BANKFLOW_RUN_KAFKA_TESTS
+```
+
+The live tests require `.env.test` with isolated PostgreSQL and Redis test resources. Kafka uses the shared fictional event topic and a unique consumer group for its round-trip assertion. Day 9 has 74 service-free tests and all 100 tests pass with service opt-ins. See [Day 9 validation](docs/DAY9_VALIDATION.md) for current results and limits.

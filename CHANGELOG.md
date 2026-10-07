@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased — Day 9 Kafka producer integration (2026-10-06)
+
+- Added an idempotent, all-acknowledgement Kafka producer with bounded delivery callbacks, aggregate partition keys, safe headers, and stable unavailable-broker errors.
+- Published authentication, card-lock, balance, withdrawal lifecycle, deposit, account-close, and session-end events only after owning PostgreSQL commits.
+- Kept committed banking operations authoritative when Kafka is unavailable and documented the remaining database-to-broker delivery gap.
+- Corrected the dedicated broker's advertised listener for host clients and verified Kafka 3.7.1 metadata plus an acknowledged produce/consume round trip.
+- Added six producer unit tests, three live post-commit runtime tests, and one live Kafka test; 74 service-free tests and all 100 tests with service opt-ins pass.
+
 ## Unreleased — Day 8 Kafka event design (2026-10-05)
 
 - Added a closed, versioned event envelope with UUID4 identity, typed event names, UTC timestamps, and a fixed source.
