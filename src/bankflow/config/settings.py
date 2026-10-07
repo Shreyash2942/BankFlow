@@ -47,6 +47,8 @@ class Settings(BaseSettings):
     kafka_bootstrap_servers: NonEmpty = "127.0.0.1:9093"
     kafka_transaction_topic: NonEmpty = "bankflow.transaction.events"
     kafka_consumer_group: NonEmpty = "bankflow-operational-v1"
+    kafka_client_id: NonEmpty = "bankflow-application-v1"
+    kafka_delivery_timeout_seconds: int = Field(default=5, ge=1, le=60)
     max_pin_attempts: int = Field(default=3, ge=1, le=10)
     pin_attempt_ttl_seconds: int = Field(default=900, ge=1, le=86_400)
     auth_session_ttl_seconds: int = Field(default=900, ge=1, le=86_400)
