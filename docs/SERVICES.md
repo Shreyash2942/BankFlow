@@ -1,6 +1,6 @@
 # BankFlow service endpoint reference
 
-Recorded from the user-provided connection guide and updated through 2026-10-06. Target container: `bankflow`. Credentials and token-bearing URLs are not stored in this document.
+Recorded from the user-provided connection guide and updated through 2026-10-09. Target container: `bankflow`. Credentials and token-bearing URLs are not stored in this document.
 
 ## Service endpoints
 
@@ -8,7 +8,7 @@ Recorded from the user-provided connection guide and updated through 2026-10-06.
 |---|---|---|---|
 | PostgreSQL | `localhost:5433` | `localhost:5432` | Application health query verified on 2026-09-24 |
 | Redis | `localhost:6380` | `localhost:6379` | Authenticated application and isolated test access verified |
-| Kafka bootstrap | `localhost:9093` | `localhost:9092` | Kafka 3.7.1 metadata and produce/consume round trip verified |
+| Kafka bootstrap | `localhost:9093` | `localhost:9092` | Kafka 3.7.1 producer, validating consumer, replay deduplication, and invalid-message handling verified |
 | HiveServer2 JDBC | `jdbc:hive2://localhost:10002` | `localhost:10000` | Mapping inspected, query untested |
 | HiveServer2 Thrift | `thrift://localhost:10002` | `localhost:10000` | Mapping inspected, request untested |
 | Hive Metastore | `thrift://localhost:9084` | `localhost:9083` | Mapping inspected, request untested |
@@ -17,6 +17,8 @@ Recorded from the user-provided connection guide and updated through 2026-10-06.
 | Spark RPC | Port 7077 not published | `spark://localhost:7077` | User-reported internal URI; submission untested |
 
 Kafka clients use `host:port` without the helper's `kafka://` display prefix. The dedicated broker advertises `host.docker.internal:9093`, which is reachable from both Windows and container-side clients through Docker Desktop. The primary topic is `bankflow.transaction.events`; its local development configuration has one partition and replication factor one.
+
+The operational consumer uses group `bankflow-operational-v1`. Run `python consumers/transaction_consumer.py` from the repository root after `alembic upgrade head`; SIGINT/SIGTERM stops it after the current bounded poll.
 
 The reported PostgreSQL lab database/user are `datalab` / `admin`, distinct from the provisioned application resources `bankflow` / `bankflow_user` and isolated test resources `bankflow_test` / `bankflow_test_user`. Redis uses the reported ACL user `default`. Do not assume UI login passwords authenticate database services.
 

@@ -113,3 +113,11 @@ All schema-version-1 facts currently use `bankflow.transaction.events`. The prod
 Transaction events use `transaction_id` as their Kafka key. Authentication events use `card_id` when the card is known and `event_id` for unknown-card failures. Headers repeat only safe routing metadata: `event_type`, `schema_version`, and `source`.
 
 Business data commits before publication begins. A broker outage is logged and does not reverse an already committed PostgreSQL operation. V1 therefore has an explicit delivery gap between the database commit and Kafka acknowledgement; an outbox is the planned reliability upgrade if recovery and replay requirements increase. See [ADR-010](../architecture/ADR-010-kafka-producer.md).
+
+## Operational consumer and event store
+
+The Day 10 consumer uses group `bankflow-operational-v1`, disables auto-commit, reads only committed Kafka records, and validates each complete envelope before persistence. Valid events are stored in `bankflow.consumed_events` with the exact JSON payload plus topic, partition, offset, consumer group, and consumption time.
+
+`event_id` is the primary duplicate key. A unique topic/partition/offset constraint also prevents one broker record from being stored under different event data. The PostgreSQL transaction commits before the consumer synchronously commits the Kafka offset; a replay after an offset failure is therefore classified as a duplicate.
+
+Malformed or unsupported messages are logged using only validation outcome and Kafka position, without their raw value, then committed to prevent a poison-message loop. Day 10 does not persist rejected payloads or provide a dead-letter topic. See [ADR-011](../architecture/ADR-011-kafka-consumer-event-store.md).

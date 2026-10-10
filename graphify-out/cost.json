@@ -3,7 +3,7 @@
   "actual_output_tokens": null,
   "actual_cost_usd": null,
   "reason": "Agent execution does not expose actual usage or billing; unknown is not zero.",
-  "estimated_readable_corpus_tokens": 472284,
+  "estimated_readable_corpus_tokens": 476729,
   "semantic_nodes_new": 48,
   "semantic_nodes_reused": 11,
   "updates": [
@@ -69,14 +69,22 @@
       "actual_input_tokens": null,
       "actual_output_tokens": null,
       "actual_cost_usd": null
+    },
+    {
+      "date": "2026-10-10T00:14:41.061256+00:00",
+      "scope": "Day 10 Kafka consumer and event store",
+      "actual_input_tokens": null,
+      "actual_output_tokens": null,
+      "actual_cost_usd": null
     }
   ],
-  "graph_nodes_after": 1000,
+  "graph_nodes_after": 1082,
   "semantic_nodes_added_for_day3": 19,
   "semantic_nodes_added_for_day4": 20,
   "semantic_nodes_added_for_day5": 115,
   "semantic_nodes_added_for_day6": 66,
   "semantic_nodes_added_for_day7": 37,
   "semantic_nodes_added_for_day8": 48,
-  "semantic_nodes_added_for_day9": 73
+  "semantic_nodes_added_for_day9": 73,
+  "semantic_nodes_added_for_day10": 51
 }

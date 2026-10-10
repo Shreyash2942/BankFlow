@@ -1,6 +1,6 @@
 # Local environment and dedicated BankFlow container
 
-Updated 2026-10-06. The user-created **bankflow** container replaces the original Day 1 choice of the shared `datalab` container. See [ADR-002](architecture/ADR-002-dedicated-container.md).
+Updated 2026-10-09. The user-created **bankflow** container replaces the original Day 1 choice of the shared `datalab` container. See [ADR-002](architecture/ADR-002-dedicated-container.md).
 
 ## Inspected configuration
 
@@ -16,7 +16,7 @@ Updated 2026-10-06. The user-created **bankflow** container replaces the origina
 |---|---|---|---|
 | PostgreSQL | `127.0.0.1:5433` | 5432 | Application authentication and SELECT 1 verified |
 | Redis | `127.0.0.1:6380` | 6379 | Authenticated PING, counters, and expiring sessions verified |
-| Kafka | `127.0.0.1:9093` | 9092 | Kafka 3.7.1 metadata, acknowledged delivery, and consume round trip verified |
+| Kafka | `127.0.0.1:9093` | 9092 | Kafka 3.7.1 producer and validating consumer round trips verified |
 
 The lab PostgreSQL database/user are `datalab` / `admin`; `admin` can create databases but cannot create roles. The existing `datalab` database superuser is accessible through the local Unix socket as container OS user `datalab`. Day 2 provisioned separate application resources `bankflow` / `bankflow_user` and test resources `bankflow_test` / `bankflow_test_user`, with generated credentials only in ignored local files. Both owner roles are non-superusers; PUBLIC access to these databases is revoked.
 
@@ -24,7 +24,7 @@ The supplied connection guide mixes host-mapped ports with internal HDFS/Spark a
 
 ## Application database setup
 
-The application and test databases are both at Alembic revision `0002`. Revision `0001` creates schema `bankflow`; revision `0002` creates customers, accounts, cards, transactions, and audit events. The application database contains the single idempotent fictional demo graph described in [Day 3 validation](DAY3_VALIDATION.md).
+The application and test databases are both at Alembic revision `0003`. Revision `0001` creates schema `bankflow`; revision `0002` creates customers, accounts, cards, transactions, and audit events; revision `0003` creates the consumed-event store. The application database contains the single idempotent fictional demo graph described in [Day 3 validation](DAY3_VALIDATION.md).
 
 On a fresh instance of this lab, run `scripts/provision_local_database.py` once from the repository root with the Windows virtual environment. It requires Docker access and the lab's local database superuser. It refuses existing environment files or database resources and checks privileges before writing credentials. A partial failure retains local credential files for deliberate recovery; do not delete or overwrite them to retry blindly.
 
@@ -35,6 +35,8 @@ Run `python -m bankflow.database.health`, `alembic upgrade head`, `alembic curre
 Day 5 validated Redis authentication without changing the container service configuration. Application state uses Redis database 0; opt-in integration tests require database 1 and unique key prefixes. Passwords remain in ignored `.env` files.
 
 Day 9 found that the copied broker listened on internal port 9092 but advertised `127.0.0.1:9092`, causing Windows clients bootstrapped through port 9093 to be redirected to the wrong port. The dedicated runtime configuration now advertises `host.docker.internal:9093`; the original file is retained inside the container as `server.properties.pre-bankflow-day9`. Kafka was restarted with its prior 384 MiB heap setting. Broker ID 1 now returns usable metadata from Windows, and `bankflow.transaction.events` has one partition, replication factor one, and an in-sync leader. This is local single-broker durability only.
+
+Day 10 verified a manual-commit consumer against isolated test topics. Valid events persist to PostgreSQL, duplicate delivery is idempotent, invalid schema versions are skipped without recording payload values, and Kafka offsets advance only after a terminal database or validation outcome.
 
 ## Dependency boundaries
 

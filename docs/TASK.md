@@ -603,16 +603,16 @@ Consume Kafka events and persist analytics/audit information.
 
 ### Tasks
 
-- [ ] Create consumer configuration
-- [ ] Create consumer group
-- [ ] Deserialize event messages
-- [ ] Validate event schema
-- [ ] Handle invalid messages
-- [ ] Add structured logging
-- [ ] Persist consumed event metadata
-- [ ] Add graceful shutdown
-- [ ] Add duplicate-event protection
-- [ ] Add consumer tests
+- [x] Create consumer configuration
+- [x] Create consumer group
+- [x] Deserialize event messages
+- [x] Validate event schema
+- [x] Handle invalid messages
+- [x] Add structured logging
+- [x] Persist consumed event metadata
+- [x] Add graceful shutdown
+- [x] Add duplicate-event protection
+- [x] Add consumer tests
 
 ### Deliverables
 
@@ -629,6 +629,8 @@ feat: persist consumed event metadata
 feat: add invalid-event handling and deduplication
 test: add Kafka consumer integration coverage
 ```
+
+Completed 2026-10-09. Evidence: `docs/DAY10_VALIDATION.md`, ADR-011, migration `0003`, 83 service-free tests, and all 112 tests with PostgreSQL/Redis/Kafka opt-ins.
 
 ---
 

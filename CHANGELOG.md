@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased — Day 10 Kafka consumer and event store (2026-10-09)
+
+- Added a manual-commit, `read_committed` Kafka consumer with canonical envelope validation, structured secret-free logs, and graceful signal shutdown.
+- Added Alembic revision `0003` and the append-only `consumed_events` store for exact payloads and Kafka metadata.
+- Added atomic duplicate protection by event ID and topic/partition/offset; database failures leave offsets uncommitted, while replay after offset failure is safe.
+- Added deterministic consumer tests, PostgreSQL event-store tests, and a live Kafka-to-PostgreSQL test covering persistence, replay, and invalid messages.
+- Isolated the Day 9 Kafka smoke test to a unique topic; 83 service-free tests and all 112 tests with service opt-ins pass.
+
 ## Unreleased — Day 9 Kafka producer integration (2026-10-06)
 
 - Added an idempotent, all-acknowledgement Kafka producer with bounded delivery callbacks, aggregate partition keys, safe headers, and stable unavailable-broker errors.

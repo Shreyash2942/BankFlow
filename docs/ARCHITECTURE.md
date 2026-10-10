@@ -366,6 +366,7 @@ accounts
 cards
 transactions
 audit_events
+consumed_events
 ```
 
 ### Analytics Serving Tables
@@ -426,6 +427,8 @@ session.ended
 Sensitive authentication data must never be placed in Kafka messages.
 
 The canonical version-1 envelope and its closed transaction/authentication payloads are implemented in `src/bankflow/schemas/events.py` and documented in `docs/events/EVENT_SCHEMA.md`. Exact monetary values serialize as decimal strings. The Day 9 producer publishes these validated envelopes only after the owning PostgreSQL transaction commits, uses aggregate UUIDs as partition keys, waits for delivery callbacks, and treats PostgreSQL as authoritative if Kafka is unavailable. See ADR-010.
+
+The Day 10 operational consumer joins `bankflow-operational-v1`, validates the complete envelope, and persists it to `consumed_events` before committing the Kafka offset. Event-ID and Kafka-position uniqueness make replay idempotent. Invalid values are logged without message contents and committed so they do not block the partition. See ADR-011.
 
 ---
 

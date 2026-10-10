@@ -2,7 +2,7 @@
 
 **An educational ATM transaction and analytics platform using fictional data.**
 
-BankFlow is evolving from a command-line college assignment into a Python application and event-driven data platform. Days 1–9 now provide the package foundation, PostgreSQL domain model, fictional seed data, repository boundary, Redis-backed authentication, an exact-money transaction engine, a complete Streamlit ATM demo, a versioned event contract, and acknowledged post-commit Kafka publication. Event consumption and analytics pipelines remain later milestones.
+BankFlow is evolving from a command-line college assignment into a Python application and event-driven data platform. Days 1–10 now provide the package foundation, PostgreSQL domain model, fictional seed data, repository boundary, Redis-backed authentication, an exact-money transaction engine, a complete Streamlit ATM demo, a versioned event contract, acknowledged post-commit Kafka publication, and an idempotent validating consumer with a PostgreSQL event store. Analytics transformations remain later milestones.
 
 ## Quick start — Windows PowerShell
 
@@ -42,6 +42,14 @@ Start PostgreSQL and Redis in the dedicated `bankflow` container, apply migratio
 
 Open [http://localhost:8501](http://localhost:8501) and use the displayed fictional PIN, `2468`. The app supports authentication, balance inquiry, withdrawal, deposit, transaction history, reset, and end-session workflows. Reset affects only the fixed fictional demo graph.
 
+Run the operational event consumer in a second terminal after migrations:
+
+```powershell
+.\.venv\Scripts\python.exe consumers\transaction_consumer.py
+```
+
+It joins `bankflow-operational-v1`, validates version-1 envelopes, and writes deduplicated rows to `bankflow.consumed_events`. Press Ctrl+C for bounded graceful shutdown.
+
 ## Configuration and infrastructure
 
 The Windows application connects to the dedicated `bankflow` container: PostgreSQL 5433, Redis 6380, and Kafka 9093. PostgreSQL, authenticated Redis, Kafka 3.7.1 metadata, and acknowledged Kafka delivery are verified. The dedicated broker advertises `host.docker.internal:9093` so host clients do not get redirected to its internal port.
@@ -65,17 +73,17 @@ Settings precedence is explicit arguments, process environment, dotenv, then def
 BankFlow/
 ├── src/bankflow/             # importable package, separated by responsibility
 │   ├── config/              # validated environment settings
-│   ├── models/              # customer, account, card, transaction, and audit entities
+│   ├── models/              # banking, audit, and consumed-event entities
 │   ├── schemas/             # input and event contracts
 │   ├── services/            # authentication, accounts, transactions
 │   ├── repositories/        # typed lookups, balance updates, and transaction history
 │   ├── database/            # engine, sessions, model base
 │   ├── cache/               # Redis integration
-│   ├── messaging/           # typed event factories and acknowledged Kafka producer
+│   ├── messaging/           # event factories plus Kafka producer and consumer
 │   ├── ui/                  # Streamlit runtime and presentation helpers
 │   └── utils/
 ├── pages/                   # authenticated ATM screens
-├── consumers/               # future operational event consumer
+├── consumers/               # operational event-consumer entry point
 ├── migrations/              # Alembic environment and versioned schema revisions
 ├── scripts/                 # environment, provisioning, and idempotent demo seed tools
 ├── tests/                   # unit tests and opt-in PostgreSQL tests
@@ -111,18 +119,20 @@ BankFlow/
 - [Day 8 event-contract decision](docs/architecture/ADR-009-event-contract.md)
 - [Day 9 validation](docs/DAY9_VALIDATION.md)
 - [Day 9 Kafka producer decision](docs/architecture/ADR-010-kafka-producer.md)
+- [Day 10 validation](docs/DAY10_VALIDATION.md)
+- [Day 10 Kafka consumer decision](docs/architecture/ADR-011-kafka-consumer-event-store.md)
 - [Baseline analysis](docs/analysis/PROJECT_ANALYSIS.md)
 - [Interactive project graph](graphify-out/graph.html) and [audit report](graphify-out/GRAPH_REPORT.md)
 
-Delivery order: foundation → PostgreSQL persistence → authentication/Redis → transaction engine → Streamlit → Kafka → Airflow/dbt analytics → V1 acceptance → Spark/Iceberg V2.
+Delivery order: foundation → PostgreSQL persistence → authentication/Redis → transaction engine → Streamlit → Kafka producer/consumer → Airflow/dbt analytics → V1 acceptance → Spark/Iceberg V2.
 
 ## Development checks
 
 ```powershell
 .\.venv\Scripts\python.exe -m pip check
 .\.venv\Scripts\python.exe scripts/check_environment.py
-.\.venv\Scripts\python.exe -m ruff check src scripts tests migrations
-.\.venv\Scripts\python.exe -m ruff format --check src scripts tests migrations
+.\.venv\Scripts\python.exe -m ruff check src consumers scripts tests migrations
+.\.venv\Scripts\python.exe -m ruff format --check src consumers scripts tests migrations
 ```
 
 Run unit tests without services, or opt into the dedicated test database:
@@ -144,4 +154,4 @@ Remove-Item Env:BANKFLOW_RUN_DB_TESTS
 Remove-Item Env:BANKFLOW_RUN_KAFKA_TESTS
 ```
 
-The live tests require `.env.test` with isolated PostgreSQL and Redis test resources. Kafka uses the shared fictional event topic and a unique consumer group for its round-trip assertion. Day 9 has 74 service-free tests and all 100 tests pass with service opt-ins. See [Day 9 validation](docs/DAY9_VALIDATION.md) for current results and limits.
+The live tests require `.env.test` with isolated PostgreSQL and Redis test resources. Kafka smoke tests use unique temporary topics and consumer groups. Day 10 has 83 service-free tests and all 112 tests pass with service opt-ins. See [Day 10 validation](docs/DAY10_VALIDATION.md) for current results and limits.
