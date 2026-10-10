@@ -1,5 +1,17 @@
-"""Versioned event construction and acknowledged Kafka publication."""
+"""Versioned Kafka event construction, publication, and consumption."""
 
+from bankflow.messaging.consumer import (
+    ConsumeResult,
+    ConsumeStatus,
+    EventPersistenceError,
+    EventStore,
+    KafkaConsumerError,
+    KafkaEventConsumer,
+    KafkaMessageMetadata,
+    PostgresEventStore,
+    StructuredJsonFormatter,
+    consumer_config,
+)
 from bankflow.messaging.event_factory import (
     EventFactoryError,
     balance_viewed_event,
@@ -21,14 +33,24 @@ from bankflow.messaging.producer import (
 )
 
 __all__ = [
+    "ConsumeResult",
+    "ConsumeStatus",
     "EventFactoryError",
+    "EventPersistenceError",
+    "EventStore",
     "DeliveryReceipt",
     "EventPublicationError",
     "EventPublisher",
     "KafkaDeliveryError",
+    "KafkaConsumerError",
+    "KafkaEventConsumer",
     "KafkaEventProducer",
+    "KafkaMessageMetadata",
     "KafkaUnavailableError",
+    "PostgresEventStore",
+    "StructuredJsonFormatter",
     "balance_viewed_event",
+    "consumer_config",
     "deserialize_event",
     "event_from_authentication_result",
     "event_from_transaction_result",
