@@ -3,6 +3,7 @@
 from bankflow.models.account import Account
 from bankflow.models.audit_event import AuditEvent
 from bankflow.models.card import Card
+from bankflow.models.consumed_event import ConsumedEvent
 from bankflow.models.customer import Customer
 from bankflow.models.enums import (
     AccountStatus,
@@ -21,6 +22,7 @@ __all__ = [
     "AuditEvent",
     "Card",
     "CardStatus",
+    "ConsumedEvent",
     "Customer",
     "CustomerStatus",
     "Transaction",
