@@ -23,7 +23,9 @@ pytestmark = [
 
 
 def test_live_producer_receives_ack_and_event_round_trips():
-    settings = load_settings(".env.test")
+    settings = load_settings(".env.test").model_copy(
+        update={"kafka_transaction_topic": f"bankflow.day9.test.{uuid4().hex}"}
+    )
     producer = KafkaEventProducer.from_settings(settings)
     event = BankFlowEvent(
         event_id=uuid4(),

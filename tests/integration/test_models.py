@@ -64,6 +64,7 @@ def test_tables_relationships_timestamps_and_decimal_round_trip(migrated_databas
         "cards",
         "transactions",
         "audit_events",
+        "consumed_events",
     }.issubset(inspect(database_engine).get_table_names(schema="bankflow"))
 
     customer_id, account_id, card_id, transaction_id = (uuid4() for _ in range(4))

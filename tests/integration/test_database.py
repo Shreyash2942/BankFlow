@@ -75,7 +75,7 @@ def test_migration_upgrade_downgrade_and_reupgrade(database_settings, database_e
     with database_engine.connect() as connection:
         assert (
             connection.execute(text("SELECT version_num FROM alembic_version")).scalar_one()
-            == "0002"
+            == "0003"
         )
         assert (
             connection.execute(text("SELECT to_regnamespace('bankflow')")).scalar_one()

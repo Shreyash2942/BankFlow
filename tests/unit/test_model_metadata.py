@@ -3,7 +3,7 @@ from decimal import Decimal
 from sqlalchemy import Enum, Numeric
 
 from bankflow.database.base import Base
-from bankflow.models import Account, Card, Transaction
+from bankflow.models import Account, Card, ConsumedEvent, Transaction
 
 
 def test_day3_tables_are_registered_in_application_schema():
@@ -13,7 +13,18 @@ def test_day3_tables_are_registered_in_application_schema():
         "bankflow.cards",
         "bankflow.transactions",
         "bankflow.audit_events",
+        "bankflow.consumed_events",
     }.issubset(Base.metadata.tables)
+
+
+def test_consumed_event_store_has_event_and_kafka_position_uniqueness():
+    assert ConsumedEvent.__table__.primary_key.columns.keys() == ["event_id"]
+    unique_columns = {
+        tuple(column.name for column in constraint.columns)
+        for constraint in ConsumedEvent.__table__.constraints
+        if constraint.__class__.__name__ == "UniqueConstraint"
+    }
+    assert ("topic", "partition", "offset") in unique_columns
 
 
 def test_money_columns_are_fixed_precision_decimal():
