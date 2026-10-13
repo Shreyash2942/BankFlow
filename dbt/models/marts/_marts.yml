@@ -1,0 +1,58 @@
+version: 2
+
+models:
+  - name: analytics_daily_transactions
+    description: Daily transaction volume, outcomes, and exact-money metrics by currency and operation.
+    columns:
+      - name: daily_transaction_key
+        data_tests: [not_null, unique]
+      - name: transaction_date
+        data_tests: [not_null]
+      - name: currency
+        data_tests: [not_null]
+      - name: transaction_type
+        data_tests: [not_null]
+      - name: transaction_count
+        data_tests: [not_null]
+      - name: successful_count
+        data_tests: [not_null]
+      - name: declined_count
+        data_tests: [not_null]
+      - name: requested_amount
+        data_tests: [not_null]
+      - name: completed_amount
+        data_tests: [not_null]
+      - name: average_amount
+        data_tests: [not_null]
+      - name: success_rate
+        data_tests: [not_null]
+      - name: decline_rate
+        data_tests: [not_null]
+
+  - name: analytics_authentication_metrics
+    description: Daily authentication outcomes including known-card and unknown-card activity.
+    columns:
+      - name: authentication_metric_key
+        data_tests: [not_null, unique]
+      - name: authentication_date
+        data_tests: [not_null]
+      - name: event_type
+        data_tests: [not_null]
+      - name: authentication_outcome
+        data_tests: [not_null]
+      - name: event_count
+        data_tests: [not_null]
+
+  - name: analytics_account_activity
+    description: Daily per-account transaction and authentication activity.
+    columns:
+      - name: account_activity_key
+        data_tests: [not_null, unique]
+      - name: activity_date
+        data_tests: [not_null]
+      - name: account_id
+        data_tests: [not_null]
+      - name: transaction_count
+        data_tests: [not_null]
+      - name: authentication_event_count
+        data_tests: [not_null]
