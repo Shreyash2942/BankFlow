@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: int_transaction_metrics
+    description: One canonical terminal analytical fact per banking transaction identifier.
+    columns:
+      - name: transaction_id
+        data_tests: [not_null, unique]
+      - name: event_id
+        data_tests: [not_null, unique]
+      - name: transaction_date
+        data_tests: [not_null]
+      - name: is_successful
+        data_tests: [not_null]
+      - name: is_declined
+        data_tests: [not_null]

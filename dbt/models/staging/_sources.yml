@@ -1,0 +1,55 @@
+version: 2
+
+sources:
+  - name: bankflow
+    description: Validated operational events persisted by the Day 10 Kafka consumer.
+    schema: bankflow
+    tables:
+      - name: consumed_events
+        description: Append-only versioned event envelopes with Kafka ingestion metadata.
+        loaded_at_field: consumed_at
+        columns:
+          - name: event_id
+            description: Globally unique event-envelope identifier.
+            data_tests:
+              - not_null
+              - unique
+          - name: event_type
+            data_tests:
+              - not_null
+              - accepted_values:
+                  values:
+                    - authentication.succeeded
+                    - authentication.failed
+                    - card.locked
+                    - session.ended
+                    - balance.viewed
+                    - withdrawal.requested
+                    - withdrawal.completed
+                    - withdrawal.declined
+                    - deposit.completed
+                    - account.closed
+          - name: schema_version
+            data_tests:
+              - not_null
+              - accepted_values:
+                  values: [1]
+                  quote: false
+          - name: occurred_at
+            data_tests: [not_null]
+          - name: source
+            data_tests:
+              - not_null
+              - accepted_values:
+                  values: [bankflow.application]
+          - name: payload
+            data_tests: [not_null]
+          - name: topic
+            data_tests: [not_null]
+          - name: partition
+            data_tests: [not_null]
+          - name: offset
+            quote: true
+            data_tests: [not_null]
+          - name: consumed_at
+            data_tests: [not_null]

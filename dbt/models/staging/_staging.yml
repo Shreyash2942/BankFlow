@@ -1,0 +1,48 @@
+version: 2
+
+models:
+  - name: stg_transaction_events
+    description: Typed transaction-event payloads at one row per validated event envelope.
+    columns:
+      - name: event_id
+        data_tests: [not_null, unique]
+      - name: transaction_id
+        data_tests: [not_null]
+      - name: customer_id
+        data_tests: [not_null]
+      - name: account_id
+        data_tests: [not_null]
+      - name: transaction_type
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: [balance_inquiry, withdrawal, deposit]
+      - name: transaction_status
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: [pending, completed, declined]
+      - name: amount
+        data_tests: [not_null]
+      - name: currency
+        data_tests: [not_null]
+      - name: occurred_at
+        data_tests: [not_null]
+
+  - name: stg_authentication_events
+    description: Typed authentication-event payloads at one row per validated event envelope.
+    columns:
+      - name: event_id
+        data_tests: [not_null, unique]
+      - name: authentication_outcome
+        data_tests:
+          - not_null
+          - accepted_values:
+              values:
+                - authenticated
+                - invalid_credentials
+                - card_locked
+                - card_unavailable
+                - session_ended
+      - name: occurred_at
+        data_tests: [not_null]
