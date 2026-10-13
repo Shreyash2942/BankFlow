@@ -1,0 +1,21 @@
+name: bankflow
+version: 1.0.0
+config-version: 2
+
+profile: bankflow
+
+model-paths: ["models"]
+test-paths: ["tests"]
+clean-targets: ["target", "dbt_packages"]
+
+models:
+  bankflow:
+    staging:
+      +materialized: table
+      +tags: [staging]
+    intermediate:
+      +materialized: view
+      +tags: [intermediate]
+    marts:
+      +materialized: table
+      +tags: [marts]
