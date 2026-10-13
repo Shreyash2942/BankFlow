@@ -1,12 +1,12 @@
-# Graph Report - .  (2026-10-09)
+# Graph Report - .  (2026-10-12)
 
 ## Corpus Check
-- 140 files · ~357,547 words
+- 143 files · ~358,412 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1082 nodes · 1817 edges · 69 communities detected
-- Extraction: 70% EXTRACTED · 30% INFERRED · 0% AMBIGUOUS · INFERRED: 540 edges (avg confidence: 0.65)
+- 1107 nodes · 1845 edges · 70 communities detected
+- Extraction: 70% EXTRACTED · 29% INFERRED · 0% AMBIGUOUS · INFERRED: 540 edges (avg confidence: 0.65)
 - Token cost: unavailable; agent execution does not expose actual token usage, and unknown is not zero.
 
 ## Community Hubs (Navigation)
@@ -18,24 +18,26 @@
 - [[_COMMUNITY_Event Schemas and Factories|Event Schemas and Factories]]
 - [[_COMMUNITY_Foundation Validation|Foundation Validation]]
 - [[_COMMUNITY_Withdrawal Activity Flow|Withdrawal Activity Flow]]
-- [[_COMMUNITY_PIN Authentication UML|PIN Authentication UML]]
 - [[_COMMUNITY_Core and Event ORM Models|Core and Event ORM Models]]
-- [[_COMMUNITY_Kafka Consumer Architecture|Kafka Consumer Architecture]]
+- [[_COMMUNITY_PIN Authentication UML|PIN Authentication UML]]
 - [[_COMMUNITY_Authentication and Redis|Authentication and Redis]]
 - [[_COMMUNITY_Transaction Service Decisions|Transaction Service Decisions]]
 - [[_COMMUNITY_Kafka Producer Implementation|Kafka Producer Implementation]]
 - [[_COMMUNITY_Database Provisioning and Tests|Database Provisioning and Tests]]
 - [[_COMMUNITY_PIN Validation Flow|PIN Validation Flow]]
-- [[_COMMUNITY_UML Execution Trace|UML Execution Trace]]
+- [[_COMMUNITY_dbt Analytics Layer|dbt Analytics Layer]]
+- [[_COMMUNITY_Kafka Consumer Architecture|Kafka Consumer Architecture]]
 - [[_COMMUNITY_Alembic Database Runtime|Alembic Database Runtime]]
+- [[_COMMUNITY_UML Execution Trace|UML Execution Trace]]
 - [[_COMMUNITY_ATM State Machine Logic|ATM State Machine Logic]]
 - [[_COMMUNITY_Event Contract Architecture|Event Contract Architecture]]
 - [[_COMMUNITY_ATM State Diagram|ATM State Diagram]]
+- [[_COMMUNITY_Kafka Consumer Architecture 22|Kafka Consumer Architecture 22]]
+- [[_COMMUNITY_PIN Authentication UML 23|PIN Authentication UML 23]]
 - [[_COMMUNITY_Kafka Producer Architecture|Kafka Producer Architecture]]
 - [[_COMMUNITY_Streamlit Interface Boundary|Streamlit Interface Boundary]]
 - [[_COMMUNITY_Software Engineering Lessons|Software Engineering Lessons]]
 - [[_COMMUNITY_Settings Validation Tests|Settings Validation Tests]]
-- [[_COMMUNITY_Streamlit Acceptance Tests|Streamlit Acceptance Tests]]
 - [[_COMMUNITY_Core Domain Decision|Core Domain Decision]]
 - [[_COMMUNITY_Exact Money Requests|Exact Money Requests]]
 - [[_COMMUNITY_Repository Boundary Decision|Repository Boundary Decision]]
@@ -60,8 +62,8 @@
 - [[_COMMUNITY_Streamlit Entry Page|Streamlit Entry Page]]
 - [[_COMMUNITY_Dashboard Page|Dashboard Page]]
 - [[_COMMUNITY_History Page|History Page]]
-- [[_COMMUNITY_Kafka Failure Handling|Kafka Failure Handling]]
 - [[_COMMUNITY_Kafka Broker Connectivity|Kafka Broker Connectivity]]
+- [[_COMMUNITY_Kafka Failure Handling|Kafka Failure Handling]]
 - [[_COMMUNITY_Kafka Delivery Guarantees|Kafka Delivery Guarantees]]
 - [[_COMMUNITY_Development Tooling|Development Tooling]]
 - [[_COMMUNITY_Dependency Lock|Dependency Lock]]
@@ -78,7 +80,6 @@
 - [[_COMMUNITY_Accessible Status Design|Accessible Status Design]]
 - [[_COMMUNITY_Deterministic Kafka Ordering|Deterministic Kafka Ordering]]
 - [[_COMMUNITY_Safe Database URL Construction|Safe Database URL Construction]]
-- [[_COMMUNITY_Day 11 dbt Plan|Day 11 dbt Plan]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `Settings` - 49 edges
@@ -118,6 +119,9 @@
 - **Consume Validate Persist Commit Flow** — architecture_kafka_topic, validation_schema, validation_consumed_events, validation_offset_order [EXTRACTED 1.00]
 - **Idempotent Replay Pattern** — adr011_at_least_once, validation_event_id_guard, validation_position_guard, adr011_safe_replay [EXTRACTED 1.00]
 - **Invalid Message Progress and Privacy** — adr011_validation_policy, adr011_invalid_handling, adr011_structured_logging, adr011_no_dlt [EXTRACTED 1.00]
+- **Consumed Event Store to Version 1 Analytics Marts** — adr012_consumed_events_source, dbt_readme_transaction_staging_snapshot, dbt_readme_authentication_staging_snapshot, dbt_readme_terminal_transaction_fact, adr012_daily_transaction_mart_grain, adr012_authentication_mart_grain, adr012_account_activity_mart_grain [EXTRACTED 1.00]
+- **Day 11 Analytics Quality and Validation Evidence** — day11_source_contract_tests, day11_generic_model_tests, day11_singular_reconciliation_tests, day11_controlled_nine_event_fixture, day11_dual_database_build_validation, day11_generated_dbt_documentation [EXTRACTED 1.00]
+- **Day 12 Analytics Orchestration Handoff** — memory_day12_handoff, task_day12_airflow_analytics_dag, task_day12_health_freshness_quality_checks, task_day12_retries_failure_logging, adr012_staging_table_materialization, adr012_table_mart_materialization [EXTRACTED 1.00]
 
 ## Communities
 
@@ -134,8 +138,8 @@ Cohesion: 0.06
 Nodes (34): AccountRepository, Account lookups and exact-balance persistence., Persist account state while the caller owns commit and rollback., CustomerRepository, Customer persistence queries., Read customers without owning the surrounding transaction., DemoDataUnavailableError, DemoResetResult (+26 more)
 
 ### Community 3 - "Post-Commit Runtime Events"
-Cohesion: 0.07
-Nodes (38): from_settings(), AccountSummary, _authentication_subject(), BankFlowRuntime, DemoCardOption, from_env(), Thin application runtime used by Streamlit pages., Publish committed facts without changing an already completed operation. (+30 more)
+Cohesion: 0.06
+Nodes (45): from_settings(), AccountSummary, _authentication_subject(), BankFlowRuntime, DemoCardOption, from_env(), Thin application runtime used by Streamlit pages., Publish committed facts without changing an already completed operation. (+37 more)
 
 ### Community 4 - "Account Services"
 Cohesion: 0.11
@@ -153,249 +157,253 @@ Nodes (48): Day 1 import, lint, hash and CLI checks, Initial admin-role setup at
 Cohesion: 0.05
 Nodes (48): Activity arrow routing disagrees with numbered PIN and bank balance flow, Increment Failed Attempt Counter, Authenticate Customer, Bank Check Balance, Bank debit amount from account, Check Account Balance, Close Account automatically at zero balance, Display Transaction Complete / Updated Balance (+40 more)
 
-### Community 8 - "PIN Authentication UML"
-Cohesion: 0.07
-Nodes (46): Academic PIN check and three-failure session rejection, Account, ATM, 15 Balance, Bank System, 12 Check Balance(amount), 5 Check PIN, Customer (+38 more)
-
-### Community 9 - "Core and Event ORM Models"
+### Community 8 - "Core and Event ORM Models"
 Cohesion: 0.11
 Nodes (33): Account, Account-operation responses exposed by the service layer., AuditEvent, Append-oriented operational audit record with secret-free structured details., Base, Base, Shared ORM metadata for BankFlow's application schema., Card (+25 more)
 
-### Community 10 - "Kafka Consumer Architecture"
-Cohesion: 0.05
-Nodes (44): Kafka At Least Once Delivery, Terminal Outcome Offset Policy, ADR-011 Consumer Event Store Decision, Atomic Replay Deduplication, Effectively Once Persistence, Independent Consumed Event Store, Invalid Message Rejection, No Day 10 Dead Letter Topic (+36 more)
+### Community 9 - "PIN Authentication UML"
+Cohesion: 0.08
+Nodes (41): Academic PIN check and three-failure session rejection, Authenticated / show menu, Check Balance, Account Closed for zero balance, Transaction Complete for positive balance, Customer Rejected / retain card, Account Status, Update Balance by subtracting amount (+33 more)
 
-### Community 11 - "Authentication and Redis"
+### Community 10 - "Authentication and Redis"
 Cohesion: 0.08
 Nodes (38): ADR-006 Split Authentication State by Durability, Four-ASCII-Digit PIN Contract, Authentication Outcome Vocabulary, Secret-Safe Authentication Request Contract, Secret-Safe Authentication Result Contract, Transactional Authentication Service, Identifier-Only Authentication Session Payload, Redis Authentication State Store (+30 more)
 
-### Community 12 - "Transaction Service Decisions"
+### Community 11 - "Transaction Service Decisions"
 Cohesion: 0.08
 Nodes (36): Account Authorization Error, Account Balance Snapshot Contract, Account Row Locking For Consistent Operations, Account Unavailable Error, Audit Rows Share The Database Transaction, Caller-Owned SQLAlchemy Transaction Decision, Persist Declined Insufficient-Funds Attempts, Audit Event Append Helper (+28 more)
 
-### Community 13 - "Kafka Producer Implementation"
+### Community 12 - "Kafka Producer Implementation"
 Cohesion: 0.12
 Nodes (23): DeliveryReceipt, EventPublicationError, KafkaDeliveryError, KafkaEventProducer, KafkaUnavailableError, _partition_key(), producer_config(), Synchronous, acknowledged Kafka publication for committed application events. (+15 more)
 
-### Community 14 - "Database Provisioning and Tests"
+### Community 13 - "Database Provisioning and Tests"
 Cohesion: 0.09
 Nodes (26): downgrade(), create consumed event store  Revision ID: 0003 Revises: 0002, upgrade(), admin_sql(), main(), provision(), Provision or rotate local Day 2 database access without resetting data., Render one local environment file without exposing its password. (+18 more)
 
-### Community 15 - "PIN Validation Flow"
+### Community 14 - "PIN Validation Flow"
 Cohesion: 0.08
 Nodes (32): ATM System, Attempts >= 3?, Authenticate Customer: access granted, Bank / Account System, Bank checks sufficient funds, Debit Amount from Account, Check Account Balance, Close Account at zero balance (+24 more)
 
-### Community 16 - "UML Execution Trace"
+### Community 15 - "dbt Analytics Layer"
+Cohesion: 0.08
+Nodes (32): Account Activity Mart Grain: Date and Known Account, Avoid Persistent View Dependencies that Block Alembic Rollback, Authentication Mart Grain: Date, Event Type, Outcome, PostgreSQL bankflow.consumed_events Source, Daily Transaction Mart Grain: Date, Currency, Transaction Type, Exact Money as numeric(18, 2), Intermediate Transaction Metrics View, Materialized Staging Snapshot Tables (+24 more)
+
+### Community 16 - "Kafka Consumer Architecture"
 Cohesion: 0.09
-Nodes (28): Numbered activity panel, Sequence ATM lifeline, Authenticated / show menu, Check available account balance, Sequence Bank System lifeline, Dispense Cash after debit success, Check Balance, Account Closed for zero balance (+20 more)
+Nodes (23): Kafka At Least Once Delivery, Terminal Outcome Offset Policy, ADR-011 Consumer Event Store Decision, Atomic Replay Deduplication, Effectively Once Persistence, Independent Consumed Event Store, Invalid Message Rejection, No Day 10 Dead Letter Topic (+15 more)
 
 ### Community 17 - "Alembic Database Runtime"
 Cohesion: 0.1
 Nodes (15): create core banking domain models  Revision ID: 0002 Revises: 0001, upgrade(), database_engine(), migrated_database(), create_database_engine(), Lazy SQLAlchemy engine construction; the caller owns engine disposal., Create a pool without opening a connection until first use., run_migrations_online() (+7 more)
 
-### Community 18 - "ATM State Machine Logic"
+### Community 18 - "UML Execution Trace"
+Cohesion: 0.13
+Nodes (19): Numbered activity panel, Sequence ATM lifeline, Check available account balance, Sequence Bank System lifeline, Dispense Cash after debit success, Sequence Customer actor, Sequence Account Database lifeline, Debit account and update database balance (+11 more)
+
+### Community 19 - "ATM State Machine Logic"
 Cohesion: 0.15
 Nodes (18): Authenticated: showMenu, Check Balance: validateAmount, Account Closed: displayClosedMsg, Transaction Complete, Final State, PIN format validation, Idle: displayWelcome / clearScreen, Increment Attempts: incrementCounter (+10 more)
 
-### Community 19 - "Event Contract Architecture"
+### Community 20 - "Event Contract Architecture"
 Cohesion: 0.11
 Nodes (18): Avoid Revealing Unknown Card Existence, Authentication Subject Identifier Policy, Closed BankFlowEvent Envelope, Kafka Delivery and Database-Broker Atomicity Limit, Discriminated Transaction and Authentication Payloads, ADR-009 Versioned and Secret-Free Application Event Contract, Distinct Event and Transaction Identities, Exact Decimal Money as JSON Strings (+10 more)
 
-### Community 20 - "ATM State Diagram"
+### Community 21 - "ATM State Diagram"
 Cohesion: 0.15
 Nodes (17): Account Active / transaction complete, Authenticated Customer, Check Balance, Account Closed, ATM UML State Machine Diagram, Eject Card, Final State / End of Session, Idle / waiting for card (+9 more)
 
-### Community 21 - "Kafka Producer Architecture"
+### Community 22 - "Kafka Consumer Architecture 22"
+Cohesion: 0.16
+Nodes (15): Day 10 Kafka Consumer Release, Dedicated bankflow Container, Kafka Endpoint 127.0.0.1:9093, Alembic Revision 0003, Operational Consumer Contract, Operational Consumer Runtime, Kafka 3.7.1 Runtime, bankflow.consumed_events (+7 more)
+
+### Community 23 - "PIN Authentication UML 23"
+Cohesion: 0.19
+Nodes (14): Account Active: transaction complete; display new balance, Authenticated: showMenu, Check Balance after withdrawal, Account Closed: display closed message, Final State: end of session, Idle: waiting for card; display welcome, Increment Attempts: increase failed attempt counter, Initial State (+6 more)
+
+### Community 24 - "Kafka Producer Architecture"
 Cohesion: 0.14
 Nodes (14): Acknowledged Post-Commit Kafka Publication, Committed Banking Result Remains Authoritative, Injectable EventPublisher Abstraction, Future Transactional Outbox, Non-Atomic Commit-to-Broker Gap, Runtime Commit Boundary, Aggregate UUID Partition Keys, BankFlowRuntime (+6 more)
 
-### Community 22 - "Streamlit Interface Boundary"
+### Community 25 - "Streamlit Interface Boundary"
 Cohesion: 0.2
 Nodes (11): Balance Inquiry Rerun Control, Exact-Money Service Adapter, External Redis Session Authority, Infrastructure-Only Streamlit Cache, Rationale: Preserve PostgreSQL and Redis Authority, Rationale: Prevent Duplicate Inquiry Transactions, Thin Streamlit Interface Boundary, Day 7 Live Acceptance Path (+3 more)
 
-### Community 23 - "Software Engineering Lessons"
+### Community 26 - "Software Engineering Lessons"
 Cohesion: 0.18
 Nodes (11): ATM System Design and Implementation Report, Classroom-to-Production ATM Security Gap, Four ATM Execution Scenarios, Numbered Design-to-Execution Traceability, Waterfall Prototyping and Agile Tradeoffs, Requirements Before Implementation, Authenticated ATM Withdrawal Workflow, Security Across the Software Lifecycle (+3 more)
 
-### Community 24 - "Settings Validation Tests"
+### Community 27 - "Settings Validation Tests"
 Cohesion: 0.25
 Nodes (0): 
 
-### Community 25 - "Streamlit Acceptance Tests"
-Cohesion: 0.43
-Nodes (7): _button(), _delete_demo_graph(), _has_markdown(), Live acceptance path for the Day 7 Streamlit application., streamlit_demo(), test_user_can_authenticate_transact_review_reset_and_end_session(), test_user_can_end_session()
-
-### Community 26 - "Core Domain Decision"
+### Community 28 - "Core Domain Decision"
 Cohesion: 0.29
 Nodes (7): ADR-004 Exact and Traceable Banking Domain Model, Application-Generated UUID Identity, Exact NUMERIC and Decimal Money Policy, Restrictive Financial History Retention, Avoid Academic Prototype Floating-Point Defects, Idempotent Fixed Demo Seed, Tokenized Card and Salted PIN-Hash Persistence
 
-### Community 27 - "Exact Money Requests"
+### Community 29 - "Exact Money Requests"
 Cohesion: 0.29
 Nodes (7): Day 7 Must Convert UI Values Deliberately, Day 6 Exact Money Acceptance, Deposit Request Contract, Strict Positive Decimal Money Contract, Positive Decimal Cents Acceptance Test, Unsafe Money Rejection Test, Withdrawal Request Contract
 
-### Community 28 - "Repository Boundary Decision"
+### Community 30 - "Repository Boundary Decision"
 Cohesion: 0.4
 Nodes (6): ADR-005 Session-Bound Repository Boundary, Repository Preparation for Atomic Transactions, Caller-Owned Database Unit of Work, Account Row Lock and Version Check, Stable Repository Exceptions, Stable Newest-First Transaction History
 
-### Community 29 - "Live ORM Persistence Tests"
+### Community 31 - "Live ORM Persistence Tests"
 Cohesion: 0.47
 Nodes (4): _delete_graph(), Live Day 3 persistence checks, gated by BANKFLOW_RUN_DB_TESTS=1., test_demo_seed_is_complete_idempotent_and_never_stores_plain_pin(), test_tables_relationships_timestamps_and_decimal_round_trip()
 
-### Community 30 - "Kafka Analytics Pipeline"
+### Community 32 - "Kafka Analytics Pipeline"
 Cohesion: 0.33
 Nodes (6): Airflow and dbt Analytics Path, Transaction Analytics Decoupling Rationale, Operational Event Store, bankflow.transaction.events Topic, Python Kafka Consumer, Version 1 Kafka Transport
 
-### Community 31 - "V2 Lakehouse Plan"
+### Community 33 - "V2 Lakehouse Plan"
 Cohesion: 0.4
 Nodes (5): Planned immutable Iceberg Bronze events, Planned Gold business metrics, Planned standardized Silver datasets, Planned synthetic event generator, Planned V2 streaming lakehouse
 
-### Community 32 - "Foundation and Environment"
+### Community 34 - "Foundation and Environment"
 Cohesion: 0.4
 Nodes (5): ADR-001 Repository and Runtime Foundation, Installable src/bankflow Package Layout, Legacy ATM Prototype Limitations, Original Academic ATM Archive, Preserved Academic Source Provenance
 
-### Community 33 - "ORM Metadata Tests"
+### Community 35 - "ORM Metadata Tests"
 Cohesion: 0.4
 Nodes (0): 
 
-### Community 34 - "Initial Alembic Migration"
+### Community 36 - "Initial Alembic Migration"
 Cohesion: 0.5
 Nodes (1): Create the application schema; domain tables follow in Day 3.  Revision ID: 0001
 
-### Community 35 - "Environment Import Check"
+### Community 37 - "Environment Import Check"
 Cohesion: 0.5
 Nodes (3): main(), Check Day 1 imports without opening network connections or loading secrets., Return nonzero if the selected interpreter or an application import fails.
 
-### Community 36 - "UML Swimlane Diagram"
+### Community 38 - "UML Swimlane Diagram"
 Cohesion: 0.5
 Nodes (4): ATM System swimlane, Bank / Account System swimlane, Customer swimlane, Numbered ATM UML activity diagram
 
-### Community 37 - "UML Activity Swimlanes"
+### Community 39 - "UML Activity Swimlanes"
 Cohesion: 0.5
 Nodes (4): ATM System swimlane, Bank / Account System swimlane, Customer swimlane, Numbered ATM UML activity diagram
 
-### Community 38 - "Phase 2 Analytics UI"
+### Community 40 - "Phase 2 Analytics UI"
 Cohesion: 0.67
 Nodes (4): Event-Stream Transaction Monitoring, Phase 2 Analytics Screens, Live Platform Status, Real Service Backing Rule
 
-### Community 39 - "Test Environment Isolation"
+### Community 41 - "Test Environment Isolation"
 Cohesion: 0.67
 Nodes (1): Keep external environment overrides from changing test database selection.
 
-### Community 40 - "Transaction Engine ADR"
+### Community 42 - "Transaction Engine ADR"
 Cohesion: 0.67
 Nodes (3): ADR-007 Exact And Atomic Service Boundary, Correct Legacy Float And Fractional-Cent Defects, Day 6 Transaction Engine Validation Evidence
 
-### Community 41 - "Demo Reset Boundary"
+### Community 43 - "Demo Reset Boundary"
 Cohesion: 0.67
 Nodes (3): Fixed Demo Reset Boundary, Rationale: Make Portfolio Demonstrations Repeatable, Atomic Fixed-Demo Reset
 
-### Community 42 - "Withdrawal Page"
+### Community 44 - "Withdrawal Page"
 Cohesion: 0.67
 Nodes (1): Authenticated withdrawal form.
 
-### Community 43 - "Deposit Page"
+### Community 45 - "Deposit Page"
 Cohesion: 0.67
 Nodes (1): Authenticated deposit form.
 
-### Community 44 - "Redis Client Boundary"
+### Community 46 - "Redis Client Boundary"
 Cohesion: 1.0
 Nodes (2): Bounded-Time Authenticated Redis Client, Redis Reachability Health Check
 
-### Community 45 - "Demo Identifiers"
+### Community 47 - "Demo Identifiers"
 Cohesion: 1.0
 Nodes (1): Stable identifiers and public credentials for the fictional demo account.
 
-### Community 46 - "Kafka Extension Boundary"
+### Community 48 - "Kafka Extension Boundary"
 Cohesion: 1.0
 Nodes (2): Future Kafka Extension Below Service Boundary, Rationale: Add Kafka Without Changing UI Forms
 
-### Community 47 - "Streamlit Entry Page"
+### Community 49 - "Streamlit Entry Page"
 Cohesion: 1.0
 Nodes (1): BankFlow welcome and authentication screen.
 
-### Community 48 - "Dashboard Page"
+### Community 50 - "Dashboard Page"
 Cohesion: 1.0
 Nodes (1): Authenticated BankFlow account dashboard.
 
-### Community 49 - "History Page"
+### Community 51 - "History Page"
 Cohesion: 1.0
 Nodes (1): Authenticated transaction-history page.
 
-### Community 50 - "Kafka Failure Handling"
-Cohesion: 1.0
-Nodes (2): Broker Outage Commit Preservation, Stable Kafka Transport Exceptions
-
-### Community 51 - "Kafka Broker Connectivity"
+### Community 52 - "Kafka Broker Connectivity"
 Cohesion: 1.0
 Nodes (2): host.docker.internal Broker Advertisement Fix, Live Produce and Consume Round Trip
 
-### Community 52 - "Kafka Delivery Guarantees"
+### Community 53 - "Kafka Failure Handling"
+Cohesion: 1.0
+Nodes (2): Broker Outage Commit Preservation, Stable Kafka Transport Exceptions
+
+### Community 54 - "Kafka Delivery Guarantees"
 Cohesion: 1.0
 Nodes (2): Bounded Delivery Callback, Idempotent All-Acknowledgement Producer Configuration
 
-### Community 53 - "Development Tooling"
+### Community 55 - "Development Tooling"
 Cohesion: 1.0
 Nodes (1): pytest and Ruff development tooling
 
-### Community 54 - "Dependency Lock"
+### Community 56 - "Dependency Lock"
 Cohesion: 1.0
 Nodes (1): Windows Python 3.14 dependency snapshot
 
-### Community 55 - "UI Lockout Design"
+### Community 57 - "UI Lockout Design"
 Cohesion: 1.0
 Nodes (1): Temporary card lockout in UI design
 
-### Community 56 - "Fictional Data Policy"
+### Community 58 - "Fictional Data Policy"
 Cohesion: 1.0
 Nodes (1): Educational fictional data only
 
-### Community 57 - "Event Secret Exclusion"
+### Community 59 - "Event Secret Exclusion"
 Cohesion: 1.0
 Nodes (1): PINs and hashes excluded from events
 
-### Community 58 - "Dedicated Lab Container"
+### Community 60 - "Dedicated Lab Container"
 Cohesion: 1.0
 Nodes (1): Dedicated user-provided lab container replaces shared lab
 
-### Community 59 - "Session Ending"
+### Community 61 - "Session Ending"
 Cohesion: 1.0
 Nodes (1): End ATM Session
 
-### Community 60 - "ATM Session End"
+### Community 62 - "ATM Session End"
 Cohesion: 1.0
 Nodes (1): End ATM Session
 
-### Community 61 - "Day 5 Scope Boundary"
+### Community 63 - "Day 5 Scope Boundary"
 Cohesion: 1.0
 Nodes (1): Day 5 Defers Banking Operations To Day 6
 
-### Community 62 - "Day 6 Kafka Deferral"
+### Community 64 - "Day 6 Kafka Deferral"
 Cohesion: 1.0
 Nodes (1): Day 6 Kafka Deferral
 
-### Community 63 - "Kafka Delivery Sequence"
+### Community 65 - "Kafka Delivery Sequence"
 Cohesion: 1.0
 Nodes (1): Kafka Follows Day 8 Contract And Day 9 Integration
 
-### Community 64 - "Secret Masking"
+### Community 66 - "Secret Masking"
 Cohesion: 1.0
 Nodes (1): Transient Masked Secret Handling
 
-### Community 65 - "Accessible Status Design"
+### Community 67 - "Accessible Status Design"
 Cohesion: 1.0
 Nodes (1): Accessible Text-Bearing Status Design
 
-### Community 66 - "Deterministic Kafka Ordering"
+### Community 68 - "Deterministic Kafka Ordering"
 Cohesion: 1.0
 Nodes (1): Deterministic Aggregate Ordering
 
-### Community 67 - "Safe Database URL Construction"
+### Community 69 - "Safe Database URL Construction"
 Cohesion: 1.0
 Nodes (1): Build a URL without interpolating or manually escaping credentials.
-
-### Community 68 - "Day 11 dbt Plan"
-Cohesion: 1.0
-Nodes (1): Day 11 dbt Plan
 
 ## Ambiguous Edges - Review These
 - `PIN Entry: prompt for PIN` → `Retry (attempts < 3) label without connected retry arrow`  [AMBIGUOUS]
@@ -414,7 +422,7 @@ Nodes (1): Day 11 dbt Plan
   docs/original-college-project/ChatGPT Image Aug 31, 2026, 07_56_47 PM.png · relation: flags_routing_ambiguity
 
 ## Knowledge Gaps
-- **259 isolated node(s):** `ATM Simulation CSC505 - Principles of Software Engineering  This program follows`, `Print a numbered activity that matches the UML Activity Diagram.`, `Authenticate the customer using a PIN with a maximum of three attempts.`, `Request and validate a withdrawal amount.`, `Run one complete ATM session.` (+254 more)
+- **270 isolated node(s):** `ATM Simulation CSC505 - Principles of Software Engineering  This program follows`, `Print a numbered activity that matches the UML Activity Diagram.`, `Authenticate the customer using a PIN with a maximum of three attempts.`, `Request and validate a withdrawal amount.`, `Run one complete ATM session.` (+265 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **Thin community `Redis Client Boundary`** (2 nodes): `Bounded-Time Authenticated Redis Client`, `Redis Reachability Health Check`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
@@ -428,9 +436,9 @@ Nodes (1): Day 11 dbt Plan
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
 - **Thin community `History Page`** (2 nodes): `Authenticated transaction-history page.`, `4_Transaction_History.py`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Kafka Failure Handling`** (2 nodes): `Broker Outage Commit Preservation`, `Stable Kafka Transport Exceptions`
-  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
 - **Thin community `Kafka Broker Connectivity`** (2 nodes): `host.docker.internal Broker Advertisement Fix`, `Live Produce and Consume Round Trip`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Kafka Failure Handling`** (2 nodes): `Broker Outage Commit Preservation`, `Stable Kafka Transport Exceptions`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
 - **Thin community `Kafka Delivery Guarantees`** (2 nodes): `Bounded Delivery Callback`, `Idempotent All-Acknowledgement Producer Configuration`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
@@ -463,8 +471,6 @@ Nodes (1): Day 11 dbt Plan
 - **Thin community `Deterministic Kafka Ordering`** (1 nodes): `Deterministic Aggregate Ordering`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
 - **Thin community `Safe Database URL Construction`** (1 nodes): `Build a URL without interpolating or manually escaping credentials.`
-  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Day 11 dbt Plan`** (1 nodes): `Day 11 dbt Plan`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
 
 ## Suggested Questions

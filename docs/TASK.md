@@ -642,16 +642,16 @@ Create the Version 1 analytics transformation layer.
 
 ### Tasks
 
-- [ ] Configure dbt project
-- [ ] Add PostgreSQL source definitions
-- [ ] Create staging transaction model
-- [ ] Create staging authentication-event model
-- [ ] Create intermediate transaction metrics
-- [ ] Create daily transaction mart
-- [ ] Create authentication metrics mart
-- [ ] Create account activity mart
-- [ ] Add dbt tests
-- [ ] Generate dbt documentation
+- [x] Configure dbt project
+- [x] Add PostgreSQL source definitions
+- [x] Create staging transaction model
+- [x] Create staging authentication-event model
+- [x] Create intermediate transaction metrics
+- [x] Create daily transaction mart
+- [x] Create authentication metrics mart
+- [x] Create account activity mart
+- [x] Add dbt tests
+- [x] Generate dbt documentation
 
 ### Deliverables
 
@@ -671,6 +671,10 @@ feat: add dbt staging and intermediate models
 feat: add transaction and authentication marts
 test: add dbt model quality tests
 ```
+
+Completed 2026-10-12. Evidence: `docs/DAY11_VALIDATION.md`, ADR-012, successful
+test/application dbt builds, controlled nine-event reconciliation, and generated
+dbt documentation artifacts.
 
 ---
 
