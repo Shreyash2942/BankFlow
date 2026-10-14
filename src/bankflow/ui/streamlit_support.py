@@ -190,6 +190,24 @@ def apply_design_system() -> None:
         .notice-card.warning {background: #fff8e8; border-color: #f9df9a;}
         .notice-card strong, .content-card strong {color: var(--bf-ink);}
         .notice-card p:last-child {margin-bottom: 0;}
+        .service-card {
+          min-height: 9rem; padding: 1.05rem; border-radius: 14px;
+          background: rgba(255,255,255,.96); border: 1px solid var(--bf-line);
+          box-shadow: 0 5px 18px rgba(15,35,68,.04);
+        }
+        .service-name {color: var(--bf-ink); font-weight: 800; font-size: .98rem;}
+        .service-state {font-weight: 750; margin: .65rem 0 .35rem; text-transform: capitalize;}
+        .service-state:before {
+          content: ""; display: inline-block; width: .6rem; height: .6rem;
+          margin-right: .45rem; border-radius: 50%; background: #94a3b8;
+        }
+        .service-state.healthy {color: #047857;}
+        .service-state.healthy:before {background: var(--bf-emerald);}
+        .service-state.degraded, .service-state.pending {color: #b45309;}
+        .service-state.degraded:before, .service-state.pending:before {background: #f59e0b;}
+        .service-state.unavailable {color: #b91c1c;}
+        .service-state.unavailable:before {background: var(--bf-red);}
+        .service-detail {color: var(--bf-muted); font-size: .78rem; line-height: 1.4;}
         div[data-testid="stForm"] {
           background: rgba(255,255,255,.96); border: 1px solid var(--bf-line);
           border-radius: 16px; padding: 1.25rem; box-shadow: 0 5px 18px rgba(15,35,68,.04);
@@ -400,6 +418,8 @@ def render_sidebar(runtime: BankFlowRuntime, summary: AccountSummary) -> None:
         st.page_link("pages/2_Withdraw.py", label="Withdraw", icon="↘️")
         st.page_link("pages/3_Deposit.py", label="Deposit", icon="↗️")
         st.page_link("pages/4_Transaction_History.py", label="Transaction history", icon="📋")
+        st.page_link("pages/5_Analytics.py", label="Analytics", icon="📊")
+        st.page_link("pages/6_Platform_Status.py", label="Platform status", icon="⚙️")
         st.divider()
         st.markdown(
             """
@@ -424,6 +444,55 @@ def render_sidebar(runtime: BankFlowRuntime, summary: AccountSummary) -> None:
             ):
                 reset_demo_from_ui(runtime)
         st.caption("BankFlow v0.1.0 · Phase 2 in progress")
+
+
+def render_platform_sidebar() -> None:
+    """Render navigation that remains available while application services are down."""
+
+    with st.sidebar:
+        st.markdown(
+            """
+            <div class="sidebar-brand">
+              <div class="sidebar-brand-name"><span class="sidebar-brand-mark">▰</span>BankFlow</div>
+              <div class="sidebar-tagline">Transactions Today.<br>Insights Tomorrow.</div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+        st.page_link("app.py", label="Welcome", icon="🏦")
+        st.page_link("pages/1_Dashboard.py", label="Dashboard", icon="🏠")
+        st.page_link("pages/5_Analytics.py", label="Analytics", icon="📊")
+        st.page_link("pages/6_Platform_Status.py", label="Platform status", icon="⚙️")
+        st.divider()
+        st.markdown(
+            """
+            <div class="sidebar-demo"><strong>⚗ Demo Environment</strong><br>
+            Live, bounded service probes</div>
+            """,
+            unsafe_allow_html=True,
+        )
+        st.caption("BankFlow v0.1.0 · Phase 2 in progress")
+
+
+def render_status_card(
+    name: str,
+    state: str,
+    detail: str,
+    *,
+    latency_ms: int | None = None,
+) -> None:
+    safe_state = state if state in {"healthy", "degraded", "unavailable", "pending"} else "pending"
+    latency = f" · {latency_ms} ms" if latency_ms is not None else ""
+    st.markdown(
+        f"""
+        <div class="service-card">
+          <div class="service-name">{html.escape(name)}</div>
+          <div class="service-state {safe_state}">{html.escape(safe_state)}</div>
+          <div class="service-detail">{html.escape(detail)}{html.escape(latency)}</div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
 
 def render_flash_message() -> None:

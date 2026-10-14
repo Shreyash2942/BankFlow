@@ -51,6 +51,9 @@ class Settings(BaseSettings):
     kafka_consumer_client_id: NonEmpty = "bankflow-operational-consumer-v1"
     kafka_delivery_timeout_seconds: int = Field(default=5, ge=1, le=60)
     kafka_consumer_poll_timeout_seconds: float = Field(default=1.0, gt=0, le=30)
+    airflow_base_url: NonEmpty = "http://127.0.0.1:8081"
+    platform_health_timeout_seconds: int = Field(default=2, ge=1, le=10)
+    dbt_artifact_directory: Path = Path("dbt/target")
     max_pin_attempts: int = Field(default=3, ge=1, le=10)
     pin_attempt_ttl_seconds: int = Field(default=900, ge=1, le=86_400)
     auth_session_ttl_seconds: int = Field(default=900, ge=1, le=86_400)
