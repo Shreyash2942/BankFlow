@@ -2,7 +2,7 @@
 
 **An educational ATM transaction and analytics platform using fictional data.**
 
-BankFlow is evolving from a command-line college assignment into a Python application and event-driven data platform. Days 1–11 now provide the package foundation, PostgreSQL domain model, fictional seed data, repository boundary, Redis-backed authentication, an exact-money transaction engine, a complete Streamlit ATM demo, a versioned event contract, acknowledged post-commit Kafka publication, an idempotent validating consumer, and tested dbt analytics marts.
+BankFlow is evolving from a command-line college assignment into a Python application and event-driven data platform. The implemented milestones provide the package foundation, PostgreSQL domain model, fictional seed data, repository boundary, Redis-backed authentication, an exact-money transaction engine, a complete Streamlit ATM demo, a versioned event contract, acknowledged post-commit Kafka publication, an idempotent validating consumer, tested dbt analytics marts, and live analytics/platform-status pages.
 
 ## Quick start — Windows PowerShell
 
@@ -82,7 +82,7 @@ BankFlow/
 │   ├── messaging/           # event factories plus Kafka producer and consumer
 │   ├── ui/                  # Streamlit runtime and presentation helpers
 │   └── utils/
-├── pages/                   # authenticated ATM screens
+├── pages/                   # ATM, analytics, and platform-status screens
 ├── consumers/               # operational event-consumer entry point
 ├── migrations/              # Alembic environment and versioned schema revisions
 ├── scripts/                 # environment, provisioning, and idempotent demo seed tools
@@ -124,6 +124,8 @@ BankFlow/
 - [Day 11 validation](docs/DAY11_VALIDATION.md)
 - [Day 11 dbt analytics decision](docs/architecture/ADR-012-dbt-analytics-layer.md)
 - [dbt analytics runbook](dbt/README.md)
+- [Day 13 validation](docs/DAY13_VALIDATION.md)
+- [Day 13 analytics/status decision](docs/architecture/ADR-013-analytics-and-status-ui.md)
 - [Baseline analysis](docs/analysis/PROJECT_ANALYSIS.md)
 - [Interactive project graph](graphify-out/graph.html) and [audit report](graphify-out/GRAPH_REPORT.md)
 
@@ -157,4 +159,4 @@ Remove-Item Env:BANKFLOW_RUN_DB_TESTS
 Remove-Item Env:BANKFLOW_RUN_KAFKA_TESTS
 ```
 
-The live tests require `.env.test` with isolated PostgreSQL and Redis test resources. Kafka smoke tests use unique temporary topics and consumer groups. The application suite has 83 service-free tests and all 112 pass with service opt-ins; the dbt project adds its own source, model, and reconciliation tests. See [Day 11 validation](docs/DAY11_VALIDATION.md) for current analytics evidence and limits.
+The live tests require `.env.test` with isolated PostgreSQL and Redis test resources. Kafka smoke tests use unique temporary topics and consumer groups. The application suite has 91 service-free tests and all 120 pass with service opt-ins; the dbt project adds its own source, model, and reconciliation tests. See [Day 13 validation](docs/DAY13_VALIDATION.md) for current dashboard and service-health evidence.

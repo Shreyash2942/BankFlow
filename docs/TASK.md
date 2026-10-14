@@ -723,18 +723,18 @@ Expose application metrics and infrastructure status through Streamlit.
 
 ### Tasks
 
-- [ ] Create Analytics page
-- [ ] Add transaction-count metrics
-- [ ] Add successful/declined metrics
-- [ ] Add withdrawal/deposit metrics
-- [ ] Add authentication-failure metrics
-- [ ] Add transaction-volume chart
-- [ ] Add transaction-type chart
-- [ ] Create Platform Status page
-- [ ] Add PostgreSQL health indicator
-- [ ] Add Redis health indicator
-- [ ] Add Kafka health indicator
-- [ ] Add Airflow/dbt status summary
+- [x] Create Analytics page
+- [x] Add transaction-count metrics
+- [x] Add successful/declined metrics
+- [x] Add withdrawal/deposit metrics
+- [x] Add authentication-failure metrics
+- [x] Add transaction-volume chart
+- [x] Add transaction-type chart
+- [x] Create Platform Status page
+- [x] Add PostgreSQL health indicator
+- [x] Add Redis health indicator
+- [x] Add Kafka health indicator
+- [x] Add Airflow/dbt status summary
 
 ### Deliverables
 
@@ -751,6 +751,11 @@ feat: add transaction and authentication visualizations
 feat: add platform health-status page
 style: align analytics components with design system
 ```
+
+Completed 2026-10-14. Evidence: `docs/DAY13_VALIDATION.md`, ADR-013, 91
+service-free tests, all 120 tests with service opt-ins, and live health probes
+against the dedicated container. Day 12 orchestration remains pending and is
+reported honestly by the status page.
 
 ---
 

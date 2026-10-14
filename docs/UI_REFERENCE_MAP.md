@@ -22,14 +22,14 @@ warning states, responsive stacking, and persistent demo-environment labeling.
 
 ## Phase 2 screen contracts
 
-| Reference image | Planned integration |
-|---|---|
-| `Analytics Dashboard - UI Design.png` | Event and operational analytics |
-| `Analytics Dashboard - UI Design 2.png` | Account-oriented analytics |
-| `Transactions Dashboard - UI Design.png` | Event-stream transaction monitoring |
-| `Platform Status - UI Design.png` | Live service and pipeline health |
-| `About bankflow.png` | Project, architecture, and technology overview |
-| `End Session (Logout) - UI Design-1.2.png` | Expanded demo/session management |
+| Reference image | Streamlit implementation | Status |
+|---|---|---|
+| `Analytics Dashboard - UI Design.png` | `pages/5_Analytics.py` operational metrics | Implemented |
+| `Analytics Dashboard - UI Design 2.png` | `pages/5_Analytics.py` transaction amount views | Implemented within V1 mart scope |
+| `Transactions Dashboard - UI Design.png` | Event-stream transaction monitoring | Planned for V2 |
+| `Platform Status - UI Design.png` | `pages/6_Platform_Status.py` live service/build health | Implemented for V1 services |
+| `About bankflow.png` | Project, architecture, and technology overview | Planned |
+| `End Session (Logout) - UI Design-1.2.png` | Expanded demo/session management | Planned |
 
 These later screens should only display values backed by real BankFlow services, topics, pipelines,
 or persisted records. Their supplied images define layout and visual treatment, while the Phase 2

@@ -1,5 +1,18 @@
 # Changelog
 
+## Unreleased — Day 13 analytics and platform status (2026-10-14)
+
+- Added an authenticated Streamlit analytics dashboard backed exclusively by the Version 1 dbt marts, with shared date filtering, exact transaction amounts, authentication outcomes, and two focused charts.
+- Added a session-independent platform-status page with concurrent bounded probes for PostgreSQL, Redis, Kafka, and Airflow plus local dbt artifact summaries.
+- Kept the deferred Day 12 analytics DAG explicitly pending while reporting the healthy Airflow scheduler separately.
+- Aligned both pages with the supplied UI references and expanded validation to 91 service-free tests and all 120 tests with service opt-ins.
+
+## Unreleased — Day 11 dbt analytics (2026-10-12)
+
+- Added PostgreSQL event sources, materialized transaction/authentication staging snapshots, terminal transaction metrics, and three Version 1 analytics marts.
+- Added 67 source, schema, controlled-value, key, financial, and reconciliation tests plus generated dbt documentation.
+- Verified exact-money aggregation with a controlled nine-event fixture and preserved Alembic rollback through migration-safe staging materialization.
+
 ## Unreleased — Day 10 Kafka consumer and event store (2026-10-09)
 
 - Added a manual-commit, `read_committed` Kafka consumer with canonical envelope validation, structured secret-free logs, and graceful signal shutdown.
