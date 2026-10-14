@@ -2,6 +2,7 @@
 
 import logging
 from dataclasses import dataclass, field
+from datetime import date
 from decimal import Decimal
 from pathlib import Path
 from uuid import UUID
@@ -10,6 +11,7 @@ from redis import Redis
 from sqlalchemy import Engine, select
 from sqlalchemy.orm import Session, joinedload, sessionmaker
 
+from bankflow.analytics import AnalyticsSnapshot, load_analytics_snapshot
 from bankflow.cache.redis_client import AuthenticationStateStore, create_redis_client
 from bankflow.config.settings import Settings, load_settings
 from bankflow.database.connection import create_database_engine
@@ -289,6 +291,9 @@ class BankFlowRuntime:
             return TransactionService.from_settings(session, self.settings).history(
                 authentication, query
             )
+
+    def analytics_snapshot(self, *, start_date: date | None = None) -> AnalyticsSnapshot:
+        return load_analytics_snapshot(self._engine, start_date=start_date)
 
     def reset_demo(self, *, session_token: str | None = None) -> DemoResetResult:
         with session_scope(self._sessions) as session:
