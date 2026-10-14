@@ -119,6 +119,16 @@ def test_user_can_authenticate_transact_review_reset_and_end_session(streamlit_d
     history = app.dataframe[0].value
     assert list(history["Type"][:2]) == ["Deposit", "Withdrawal"]
 
+    app.switch_page("pages/5_Analytics.py").run(timeout=10)
+    assert not app.exception
+    assert _has_markdown(app, "Analytics dashboard")
+
+    app.switch_page("pages/6_Platform_Status.py").run(timeout=10)
+    assert not app.exception
+    assert _has_markdown(app, "Platform status")
+    assert _has_markdown(app, "PostgreSQL")
+    assert _has_markdown(app, "BankFlow dbt")
+
     app.switch_page("pages/1_Dashboard.py").run()
     app.checkbox[0].check()
     app.run()
