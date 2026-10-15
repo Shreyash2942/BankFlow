@@ -289,6 +289,62 @@
         "confidence": "EXTRACTED",
         "confidence_score": 1,
         "source_file": "docs/architecture/ADR-013-analytics-and-status-ui.md"
+      },
+      {
+        "id": "day12_orchestration_components",
+        "label": "Day 12 Orchestration Components",
+        "nodes": [
+          "bankflow_daily_analytics_dag",
+          "postgresql_health_gate",
+          "event_freshness_gate",
+          "dbt_staging_stage",
+          "dbt_marts_stage",
+          "dbt_quality_stage"
+        ],
+        "relation": "implement",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "docs/architecture/ADR-014-airflow-analytics-orchestration.md"
+      },
+      {
+        "id": "airflow_reliability_controls",
+        "label": "Airflow Reliability Controls",
+        "nodes": [
+          "airflow_retry_policy",
+          "bounded_task_execution",
+          "credential_safe_failure_logging"
+        ],
+        "relation": "form",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "docs/DAY12_VALIDATION.md"
+      },
+      {
+        "id": "day12_validation_evidence",
+        "label": "Day 12 Validation Evidence",
+        "nodes": [
+          "zero_airflow_import_errors",
+          "five_successful_airflow_tasks",
+          "sixty_seven_passing_dbt_tests"
+        ],
+        "relation": "form",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "docs/DAY12_VALIDATION.md"
+      },
+      {
+        "id": "day13_operational_status_boundary",
+        "label": "Day 13 Operational Status Boundary",
+        "nodes": [
+          "platform_status_page",
+          "airflow_scheduler_health",
+          "analytics_dag_availability",
+          "dbt_artifact_status"
+        ],
+        "relation": "implement",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "docs/DAY13_VALIDATION.md"
       }
     ]
   },
@@ -425,7 +481,7 @@
       "file_type": "code",
       "source_file": "migrations\\env.py",
       "source_location": "L36",
-      "community": 17,
+      "community": 18,
       "norm_label": "run_migrations_online()",
       "id": "env_run_migrations_online"
     },
@@ -452,7 +508,7 @@
       "file_type": "code",
       "source_file": "migrations\\versions\\0001_application_schema.py",
       "source_location": "L1",
-      "community": 38,
+      "community": 40,
       "norm_label": "0001_application_schema.py",
       "id": "migrations_versions_0001_application_schema_py"
     },
@@ -461,7 +517,7 @@
       "file_type": "code",
       "source_file": "migrations\\versions\\0001_application_schema.py",
       "source_location": "L16",
-      "community": 38,
+      "community": 40,
       "norm_label": "upgrade()",
       "id": "0001_application_schema_upgrade"
     },
@@ -470,7 +526,7 @@
       "file_type": "code",
       "source_file": "migrations\\versions\\0001_application_schema.py",
       "source_location": "L20",
-      "community": 38,
+      "community": 40,
       "norm_label": "downgrade()",
       "id": "0001_application_schema_downgrade"
     },
@@ -479,7 +535,7 @@
       "file_type": "rationale",
       "source_file": "migrations\\versions\\0001_application_schema.py",
       "source_location": "L1",
-      "community": 38,
+      "community": 40,
       "norm_label": "create the application schema; domain tables follow in day 3.  revision id: 0001",
       "id": "0001_application_schema_rationale_1"
     },
@@ -488,7 +544,7 @@
       "file_type": "code",
       "source_file": "migrations\\versions\\0002_create_core_banking_domain_models.py",
       "source_location": "L1",
-      "community": 17,
+      "community": 18,
       "norm_label": "0002_create_core_banking_domain_models.py",
       "id": "migrations_versions_0002_create_core_banking_domain_models_py"
     },
@@ -497,7 +553,7 @@
       "file_type": "code",
       "source_file": "migrations\\versions\\0002_create_core_banking_domain_models.py",
       "source_location": "L17",
-      "community": 17,
+      "community": 18,
       "norm_label": "upgrade()",
       "id": "0002_create_core_banking_domain_models_upgrade"
     },
@@ -506,7 +562,7 @@
       "file_type": "code",
       "source_file": "migrations\\versions\\0002_create_core_banking_domain_models.py",
       "source_location": "L378",
-      "community": 17,
+      "community": 18,
       "norm_label": "downgrade()",
       "id": "0002_create_core_banking_domain_models_downgrade"
     },
@@ -515,7 +571,7 @@
       "file_type": "rationale",
       "source_file": "migrations\\versions\\0002_create_core_banking_domain_models.py",
       "source_location": "L1",
-      "community": 17,
+      "community": 18,
       "norm_label": "create core banking domain models  revision id: 0002 revises: 0001",
       "id": "0002_create_core_banking_domain_models_rationale_1"
     },
@@ -524,7 +580,7 @@
       "file_type": "code",
       "source_file": "D:\\GitHub\\miniprojects\\BankFlow\\scripts\\check_environment.py",
       "source_location": "L1",
-      "community": 39,
+      "community": 41,
       "norm_label": "check_environment.py",
       "id": "d_github_miniprojects_bankflow_scripts_check_environment_py"
     },
@@ -533,7 +589,7 @@
       "file_type": "code",
       "source_file": "D:\\GitHub\\miniprojects\\BankFlow\\scripts\\check_environment.py",
       "source_location": "L19",
-      "community": 39,
+      "community": 41,
       "norm_label": "main()",
       "id": "check_environment_main"
     },
@@ -542,7 +598,7 @@
       "file_type": "rationale",
       "source_file": "D:\\GitHub\\miniprojects\\BankFlow\\scripts\\check_environment.py",
       "source_location": "L1",
-      "community": 39,
+      "community": 41,
       "norm_label": "check day 1 imports without opening network connections or loading secrets.",
       "id": "check_environment_rationale_1"
     },
@@ -551,7 +607,7 @@
       "file_type": "rationale",
       "source_file": "D:\\GitHub\\miniprojects\\BankFlow\\scripts\\check_environment.py",
       "source_location": "L20",
-      "community": 39,
+      "community": 41,
       "norm_label": "return nonzero if the selected interpreter or an application import fails.",
       "id": "check_environment_rationale_20"
     },
@@ -560,7 +616,7 @@
       "file_type": "code",
       "source_file": "scripts\\provision_local_database.py",
       "source_location": "L1",
-      "community": 13,
+      "community": 12,
       "norm_label": "provision_local_database.py",
       "id": "scripts_provision_local_database_py"
     },
@@ -569,7 +625,7 @@
       "file_type": "code",
       "source_file": "scripts\\provision_local_database.py",
       "source_location": "L17",
-      "community": 13,
+      "community": 12,
       "norm_label": "render_environment()",
       "id": "provision_local_database_render_environment"
     },
@@ -578,7 +634,7 @@
       "file_type": "code",
       "source_file": "scripts\\provision_local_database.py",
       "source_location": "L27",
-      "community": 13,
+      "community": 12,
       "norm_label": "replace_environment_setting()",
       "id": "provision_local_database_replace_environment_setting"
     },
@@ -587,7 +643,7 @@
       "file_type": "code",
       "source_file": "scripts\\provision_local_database.py",
       "source_location": "L43",
-      "community": 13,
+      "community": 12,
       "norm_label": "admin_sql()",
       "id": "provision_local_database_admin_sql"
     },
@@ -596,7 +652,7 @@
       "file_type": "code",
       "source_file": "scripts\\provision_local_database.py",
       "source_location": "L77",
-      "community": 13,
+      "community": 12,
       "norm_label": "verify_local_superuser()",
       "id": "provision_local_database_verify_local_superuser"
     },
@@ -605,7 +661,7 @@
       "file_type": "code",
       "source_file": "scripts\\provision_local_database.py",
       "source_location": "L82",
-      "community": 13,
+      "community": 12,
       "norm_label": "rotate_passwords()",
       "id": "provision_local_database_rotate_passwords"
     },
@@ -614,7 +670,7 @@
       "file_type": "code",
       "source_file": "scripts\\provision_local_database.py",
       "source_location": "L129",
-      "community": 13,
+      "community": 12,
       "norm_label": "provision()",
       "id": "provision_local_database_provision"
     },
@@ -623,7 +679,7 @@
       "file_type": "code",
       "source_file": "scripts\\provision_local_database.py",
       "source_location": "L177",
-      "community": 13,
+      "community": 12,
       "norm_label": "main()",
       "id": "provision_local_database_main"
     },
@@ -632,7 +688,7 @@
       "file_type": "rationale",
       "source_file": "scripts\\provision_local_database.py",
       "source_location": "L1",
-      "community": 13,
+      "community": 12,
       "norm_label": "provision or rotate local day 2 database access without resetting data.",
       "id": "provision_local_database_rationale_1"
     },
@@ -641,7 +697,7 @@
       "file_type": "rationale",
       "source_file": "scripts\\provision_local_database.py",
       "source_location": "L18",
-      "community": 13,
+      "community": 12,
       "norm_label": "render one local environment file without exposing its password.",
       "id": "provision_local_database_rationale_18"
     },
@@ -650,7 +706,7 @@
       "file_type": "rationale",
       "source_file": "scripts\\provision_local_database.py",
       "source_location": "L28",
-      "community": 13,
+      "community": 12,
       "norm_label": "replace exactly one setting while preserving every other local choice.",
       "id": "provision_local_database_rationale_28"
     },
@@ -659,7 +715,7 @@
       "file_type": "rationale",
       "source_file": "scripts\\provision_local_database.py",
       "source_location": "L83",
-      "community": 13,
+      "community": 12,
       "norm_label": "rotate both owner passwords and atomically replace their ignored files.",
       "id": "provision_local_database_rationale_83"
     },
@@ -681,7 +737,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 48,
+      "community": 50,
       "norm_label": "bounded-time authenticated redis client",
       "id": "bounded_redis_client"
     },
@@ -694,7 +750,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 48,
+      "community": 50,
       "norm_label": "redis reachability health check",
       "id": "redis_health_check"
     },
@@ -707,7 +763,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 11,
+      "community": 10,
       "norm_label": "redis authentication state store",
       "id": "authentication_state_store"
     },
@@ -720,7 +776,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 11,
+      "community": 10,
       "norm_label": "atomic expiring failed-attempt counter",
       "id": "expiring_failed_attempt_counter"
     },
@@ -733,7 +789,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 11,
+      "community": 10,
       "norm_label": "sha-256 session-token redis keys",
       "id": "hashed_session_token_keys"
     },
@@ -746,7 +802,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 11,
+      "community": 10,
       "norm_label": "expiring redis authentication sessions",
       "id": "expiring_authentication_sessions"
     },
@@ -809,7 +865,7 @@
       "file_type": "code",
       "source_file": "src\\bankflow\\database\\connection.py",
       "source_location": "L1",
-      "community": 17,
+      "community": 18,
       "norm_label": "connection.py",
       "id": "src_bankflow_database_connection_py"
     },
@@ -818,7 +874,7 @@
       "file_type": "code",
       "source_file": "src\\bankflow\\database\\connection.py",
       "source_location": "L8",
-      "community": 17,
+      "community": 18,
       "norm_label": "create_database_engine()",
       "id": "connection_create_database_engine"
     },
@@ -827,7 +883,7 @@
       "file_type": "rationale",
       "source_file": "src\\bankflow\\database\\connection.py",
       "source_location": "L1",
-      "community": 17,
+      "community": 18,
       "norm_label": "lazy sqlalchemy engine construction; the caller owns engine disposal.",
       "id": "connection_rationale_1"
     },
@@ -836,7 +892,7 @@
       "file_type": "rationale",
       "source_file": "src\\bankflow\\database\\connection.py",
       "source_location": "L9",
-      "community": 17,
+      "community": 18,
       "norm_label": "create a pool without opening a connection until first use.",
       "id": "connection_rationale_9"
     },
@@ -845,7 +901,7 @@
       "file_type": "code",
       "source_file": "src\\bankflow\\database\\health.py",
       "source_location": "L1",
-      "community": 17,
+      "community": 18,
       "norm_label": "health.py",
       "id": "src_bankflow_database_health_py"
     },
@@ -854,7 +910,7 @@
       "file_type": "code",
       "source_file": "src\\bankflow\\database\\health.py",
       "source_location": "L14",
-      "community": 17,
+      "community": 18,
       "norm_label": "databasehealth",
       "id": "health_databasehealth"
     },
@@ -863,7 +919,7 @@
       "file_type": "code",
       "source_file": "src\\bankflow\\database\\health.py",
       "source_location": "L19",
-      "community": 17,
+      "community": 18,
       "norm_label": "check_database_health()",
       "id": "health_check_database_health"
     },
@@ -872,7 +928,7 @@
       "file_type": "code",
       "source_file": "src\\bankflow\\database\\health.py",
       "source_location": "L33",
-      "community": 17,
+      "community": 18,
       "norm_label": "main()",
       "id": "health_main"
     },
@@ -881,7 +937,7 @@
       "file_type": "rationale",
       "source_file": "src\\bankflow\\database\\health.py",
       "source_location": "L1",
-      "community": 17,
+      "community": 18,
       "norm_label": "run with python -m bankflow.database.health from the repository root.",
       "id": "health_rationale_1"
     },
@@ -890,7 +946,7 @@
       "file_type": "rationale",
       "source_file": "src\\bankflow\\database\\health.py",
       "source_location": "L20",
-      "community": 17,
+      "community": 18,
       "norm_label": "probe a real connection without returning raw driver errors or credentials.",
       "id": "health_rationale_20"
     },
@@ -1335,7 +1391,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 11,
+      "community": 10,
       "norm_label": "card lookup by fictional token",
       "id": "card_repository_token_lookup"
     },
@@ -1348,7 +1404,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 11,
+      "community": 10,
       "norm_label": "optional card row lock lookup",
       "id": "card_row_lock_lookup"
     },
@@ -1447,7 +1503,7 @@
       "file_type": "code",
       "source_file": "",
       "source_location": "",
-      "community": 17,
+      "community": 18,
       "norm_label": "exception",
       "id": "exception"
     },
@@ -1712,7 +1768,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 11,
+      "community": 10,
       "norm_label": "authentication outcome vocabulary",
       "id": "authentication_outcomes"
     },
@@ -1725,7 +1781,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 11,
+      "community": 10,
       "norm_label": "secret-safe authentication request contract",
       "id": "authentication_request_contract"
     },
@@ -1738,7 +1794,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 11,
+      "community": 10,
       "norm_label": "secret-safe authentication result contract",
       "id": "authentication_result_contract"
     },
@@ -1751,7 +1807,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 11,
+      "community": 10,
       "norm_label": "identifier-only authentication session payload",
       "id": "authentication_session_payload"
     },
@@ -1841,7 +1897,7 @@
       "file_type": "code",
       "source_file": "",
       "source_location": "",
-      "community": 13,
+      "community": 12,
       "norm_label": "runtimeerror",
       "id": "runtimeerror"
     },
@@ -1962,7 +2018,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 11,
+      "community": 10,
       "norm_label": "transactional authentication service",
       "id": "authentication_service"
     },
@@ -1975,7 +2031,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 11,
+      "community": 10,
       "norm_label": "caller-owned authentication transaction",
       "id": "caller_owned_auth_transaction"
     },
@@ -1988,7 +2044,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 11,
+      "community": 10,
       "norm_label": "generic invalid-credential denial",
       "id": "generic_invalid_credential_denial"
     },
@@ -2001,7 +2057,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 11,
+      "community": 10,
       "norm_label": "fail-closed authentication on redis error",
       "id": "redis_fail_closed_authentication"
     },
@@ -2014,7 +2070,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 11,
+      "community": 10,
       "norm_label": "durable postgresql card lockout",
       "id": "durable_postgres_card_lockout"
     },
@@ -2027,7 +2083,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 11,
+      "community": 10,
       "norm_label": "secret-free authentication audit events",
       "id": "secret_free_authentication_audit"
     },
@@ -2040,7 +2096,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 11,
+      "community": 10,
       "norm_label": "session deletion on database flush failure",
       "id": "successful_session_compensation"
     },
@@ -2179,7 +2235,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 11,
+      "community": 10,
       "norm_label": "versioned salted scrypt pin hashing",
       "id": "scrypt_pin_hashing"
     },
@@ -2192,7 +2248,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 11,
+      "community": 10,
       "norm_label": "four-ascii-digit pin contract",
       "id": "ascii_four_digit_pin_contract"
     },
@@ -2205,7 +2261,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 11,
+      "community": 10,
       "norm_label": "constant-time pin verification",
       "id": "constant_time_pin_verification"
     },
@@ -2218,7 +2274,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 11,
+      "community": 10,
       "norm_label": "safe rejection of malformed pin hashes",
       "id": "malformed_hash_safe_rejection"
     },
@@ -2236,7 +2292,7 @@
       "file_type": "code",
       "source_file": "tests\\conftest.py",
       "source_location": "L1",
-      "community": 43,
+      "community": 45,
       "norm_label": "conftest.py",
       "id": "tests_conftest_py"
     },
@@ -2245,7 +2301,7 @@
       "file_type": "code",
       "source_file": "tests\\conftest.py",
       "source_location": "L9",
-      "community": 43,
+      "community": 45,
       "norm_label": "isolate_settings_environment()",
       "id": "conftest_isolate_settings_environment"
     },
@@ -2254,7 +2310,7 @@
       "file_type": "rationale",
       "source_file": "tests\\conftest.py",
       "source_location": "L1",
-      "community": 43,
+      "community": 45,
       "norm_label": "keep external environment overrides from changing test database selection.",
       "id": "conftest_rationale_1"
     },
@@ -2263,7 +2319,7 @@
       "file_type": "code",
       "source_file": "tests\\integration\\conftest.py",
       "source_location": "L1",
-      "community": 17,
+      "community": 18,
       "norm_label": "conftest.py",
       "id": "tests_integration_conftest_py"
     },
@@ -2272,7 +2328,7 @@
       "file_type": "code",
       "source_file": "tests\\integration\\conftest.py",
       "source_location": "L14",
-      "community": 17,
+      "community": 18,
       "norm_label": "database_settings()",
       "id": "conftest_database_settings"
     },
@@ -2281,7 +2337,7 @@
       "file_type": "code",
       "source_file": "tests\\integration\\conftest.py",
       "source_location": "L26",
-      "community": 17,
+      "community": 18,
       "norm_label": "database_engine()",
       "id": "conftest_database_engine"
     },
@@ -2290,7 +2346,7 @@
       "file_type": "code",
       "source_file": "tests\\integration\\conftest.py",
       "source_location": "L33",
-      "community": 17,
+      "community": 18,
       "norm_label": "migrated_database()",
       "id": "conftest_migrated_database"
     },
@@ -2303,7 +2359,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 11,
+      "community": 10,
       "norm_label": "live third-attempt lockout scenario",
       "id": "integration_lockout_scenario"
     },
@@ -2316,7 +2372,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 11,
+      "community": 10,
       "norm_label": "live successful session and counter reset scenario",
       "id": "integration_success_session_scenario"
     },
@@ -2329,7 +2385,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 11,
+      "community": 10,
       "norm_label": "live authentication session expiry scenario",
       "id": "integration_session_expiry_scenario"
     },
@@ -2342,7 +2398,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 11,
+      "community": 10,
       "norm_label": "isolated postgresql and redis authentication test resources",
       "id": "isolated_live_auth_test_resources"
     },
@@ -2499,7 +2555,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 11,
+      "community": 10,
       "norm_label": "authentication schema secret-masking tests",
       "id": "schema_secret_masking_tests"
     },
@@ -2512,7 +2568,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 11,
+      "community": 10,
       "norm_label": "redis failure fail-closed security test",
       "id": "redis_failure_security_test"
     },
@@ -2521,7 +2577,7 @@
       "file_type": "code",
       "source_file": "tests\\unit\\test_database_health.py",
       "source_location": "L1",
-      "community": 17,
+      "community": 18,
       "norm_label": "test_database_health.py",
       "id": "tests_unit_test_database_health_py"
     },
@@ -2530,7 +2586,7 @@
       "file_type": "code",
       "source_file": "tests\\unit\\test_database_health.py",
       "source_location": "L8",
-      "community": 17,
+      "community": 18,
       "norm_label": "test_health_failure_does_not_expose_driver_message()",
       "id": "test_database_health_test_health_failure_does_not_expose_driver_message"
     },
@@ -2543,7 +2599,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 11,
+      "community": 10,
       "norm_label": "pin hashing security tests",
       "id": "pin_hashing_security_tests"
     },
@@ -2552,7 +2608,7 @@
       "file_type": "code",
       "source_file": "tests\\unit\\test_provision_local_database.py",
       "source_location": "L1",
-      "community": 13,
+      "community": 12,
       "norm_label": "test_provision_local_database.py",
       "id": "tests_unit_test_provision_local_database_py"
     },
@@ -2561,7 +2617,7 @@
       "file_type": "code",
       "source_file": "tests\\unit\\test_provision_local_database.py",
       "source_location": "L4",
-      "community": 13,
+      "community": 12,
       "norm_label": "test_password_rotation_preserves_other_local_settings_and_line_endings()",
       "id": "test_provision_local_database_test_password_rotation_preserves_other_local_settings_and_line_endings"
     },
@@ -2574,7 +2630,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 11,
+      "community": 10,
       "norm_label": "redis authentication state unit tests",
       "id": "redis_state_unit_tests"
     },
@@ -2583,7 +2639,7 @@
       "file_type": "code",
       "source_file": "tests\\unit\\test_settings.py",
       "source_location": "L1",
-      "community": 29,
+      "community": 31,
       "norm_label": "test_settings.py",
       "id": "tests_unit_test_settings_py"
     },
@@ -2592,7 +2648,7 @@
       "file_type": "code",
       "source_file": "tests\\unit\\test_settings.py",
       "source_location": "L7",
-      "community": 29,
+      "community": 31,
       "norm_label": "test_environment_overrides_file_and_arguments_override_environment()",
       "id": "test_settings_test_environment_overrides_file_and_arguments_override_environment"
     },
@@ -2601,7 +2657,7 @@
       "file_type": "code",
       "source_file": "tests\\unit\\test_settings.py",
       "source_location": "L16",
-      "community": 29,
+      "community": 31,
       "norm_label": "test_blank_password_is_rejected()",
       "id": "test_settings_test_blank_password_is_rejected"
     },
@@ -2610,7 +2666,7 @@
       "file_type": "code",
       "source_file": "tests\\unit\\test_settings.py",
       "source_location": "L22",
-      "community": 29,
+      "community": 31,
       "norm_label": "test_bad_port_is_rejected()",
       "id": "test_settings_test_bad_port_is_rejected"
     },
@@ -2619,7 +2675,7 @@
       "file_type": "code",
       "source_file": "tests\\unit\\test_settings.py",
       "source_location": "L27",
-      "community": 29,
+      "community": 31,
       "norm_label": "test_missing_password_has_safe_actionable_message()",
       "id": "test_settings_test_missing_password_has_safe_actionable_message"
     },
@@ -2628,7 +2684,7 @@
       "file_type": "code",
       "source_file": "tests\\unit\\test_settings.py",
       "source_location": "L32",
-      "community": 29,
+      "community": 31,
       "norm_label": "test_unknown_dotenv_setting_and_bad_secret_type_do_not_leak_values()",
       "id": "test_settings_test_unknown_dotenv_setting_and_bad_secret_type_do_not_leak_values"
     },
@@ -2637,7 +2693,7 @@
       "file_type": "code",
       "source_file": "tests\\unit\\test_settings.py",
       "source_location": "L42",
-      "community": 29,
+      "community": 31,
       "norm_label": "test_url_preserves_special_characters_without_exposing_password()",
       "id": "test_settings_test_url_preserves_special_characters_without_exposing_password"
     },
@@ -2646,7 +2702,7 @@
       "file_type": "code",
       "source_file": "tests\\unit\\test_settings.py",
       "source_location": "L51",
-      "community": 29,
+      "community": 31,
       "norm_label": "test_invalid_secret_input_is_hidden_in_validation_message()",
       "id": "test_settings_test_invalid_secret_input_is_hidden_in_validation_message"
     },
@@ -2701,7 +2757,7 @@
       "source_file": "requirements-dev.txt",
       "source_location": null,
       "status": "installed_only",
-      "community": 57,
+      "community": 59,
       "norm_label": "pytest and ruff development tooling",
       "id": "devtools"
     },
@@ -2711,7 +2767,7 @@
       "source_file": "requirements-lock-py314-windows.txt",
       "source_location": null,
       "status": "validated_foundation",
-      "community": 58,
+      "community": 60,
       "norm_label": "windows python 3.14 dependency snapshot",
       "id": "lock"
     },
@@ -3054,7 +3110,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 11,
+      "community": 10,
       "norm_label": "day 3 core domain model validation",
       "id": "day3_domain_model_validation"
     },
@@ -3067,7 +3123,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 11,
+      "community": 10,
       "norm_label": "restrictive financial history with durable audit rows",
       "id": "day3_restrictive_financial_history"
     },
@@ -3080,7 +3136,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 11,
+      "community": 10,
       "norm_label": "day 4 caller-owned repository boundary",
       "id": "day4_repository_boundary"
     },
@@ -3093,7 +3149,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 11,
+      "community": 10,
       "norm_label": "day 4 postgresql row-locking foundation",
       "id": "day4_row_locking_foundation"
     },
@@ -3103,7 +3159,7 @@
       "source_file": "docs/DESIGN.md",
       "source_location": null,
       "status": "unresolved_specification",
-      "community": 59,
+      "community": 61,
       "norm_label": "temporary card lockout in ui design",
       "id": "temporary"
     },
@@ -3143,7 +3199,7 @@
       "source_file": "docs/PRODUCT_REQUIREMENTS.md",
       "source_location": null,
       "status": "planned",
-      "community": 35,
+      "community": 37,
       "norm_label": "planned v2 streaming lakehouse",
       "id": "v2"
     },
@@ -3153,7 +3209,7 @@
       "source_file": "docs/PRODUCT_REQUIREMENTS.md",
       "source_location": null,
       "status": "scope_constraint",
-      "community": 60,
+      "community": 62,
       "norm_label": "educational fictional data only",
       "id": "fictional"
     },
@@ -3173,7 +3229,7 @@
       "source_file": "docs/PRODUCT_REQUIREMENTS.md",
       "source_location": null,
       "status": "planned",
-      "community": 35,
+      "community": 37,
       "norm_label": "planned immutable iceberg bronze events",
       "id": "bronze"
     },
@@ -3183,7 +3239,7 @@
       "source_file": "docs/PRODUCT_REQUIREMENTS.md",
       "source_location": null,
       "status": "planned",
-      "community": 35,
+      "community": 37,
       "norm_label": "planned standardized silver datasets",
       "id": "silver"
     },
@@ -3193,7 +3249,7 @@
       "source_file": "docs/PRODUCT_REQUIREMENTS.md",
       "source_location": null,
       "status": "planned",
-      "community": 35,
+      "community": 37,
       "norm_label": "planned gold business metrics",
       "id": "gold"
     },
@@ -3203,7 +3259,7 @@
       "source_file": "docs/PRODUCT_REQUIREMENTS.md",
       "source_location": null,
       "status": "planned",
-      "community": 35,
+      "community": 37,
       "norm_label": "planned synthetic event generator",
       "id": "synthetic"
     },
@@ -3243,7 +3299,7 @@
       "source_file": "docs/PRODUCT_REQUIREMENTS.md",
       "source_location": null,
       "status": "scope_constraint",
-      "community": 61,
+      "community": 63,
       "norm_label": "pins and hashes excluded from events",
       "id": "plainpins"
     },
@@ -3357,7 +3413,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 10,
+      "community": 13,
       "norm_label": "academic pin check and three-failure session rejection",
       "id": "academic_auth"
     },
@@ -3538,7 +3594,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 36,
+      "community": 38,
       "norm_label": "adr-001 repository and runtime foundation",
       "id": "adr001_repository_runtime_foundation"
     },
@@ -3551,7 +3607,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 36,
+      "community": 38,
       "norm_label": "installable src/bankflow package layout",
       "id": "installable_src_package_layout"
     },
@@ -3564,7 +3620,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 36,
+      "community": 38,
       "norm_label": "preserved academic source provenance",
       "id": "preserved_academic_provenance"
     },
@@ -3576,7 +3632,7 @@
       "status": "accepted_rationale",
       "confidence": "EXTRACTED",
       "confidence_score": 1,
-      "community": 62,
+      "community": 64,
       "norm_label": "dedicated user-provided lab container replaces shared lab",
       "id": "reuse_lab"
     },
@@ -3739,7 +3795,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 30,
+      "community": 32,
       "norm_label": "adr-004 exact and traceable banking domain model",
       "id": "adr004_exact_traceable_domain_model"
     },
@@ -3752,7 +3808,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 30,
+      "community": 32,
       "norm_label": "exact numeric and decimal money policy",
       "id": "exact_money_policy"
     },
@@ -3765,7 +3821,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 30,
+      "community": 32,
       "norm_label": "application-generated uuid identity",
       "id": "application_generated_uuid_identity"
     },
@@ -3778,7 +3834,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 30,
+      "community": 32,
       "norm_label": "restrictive financial history retention",
       "id": "financial_history_retention"
     },
@@ -3791,7 +3847,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 30,
+      "community": 32,
       "norm_label": "tokenized card and salted pin-hash persistence",
       "id": "safe_card_credential_persistence"
     },
@@ -3804,7 +3860,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 30,
+      "community": 32,
       "norm_label": "idempotent fixed demo seed",
       "id": "idempotent_demo_seed"
     },
@@ -3817,7 +3873,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 30,
+      "community": 32,
       "norm_label": "avoid academic prototype floating-point defects",
       "id": "floating_point_defect_avoidance"
     },
@@ -3830,7 +3886,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 32,
+      "community": 34,
       "norm_label": "adr-005 session-bound repository boundary",
       "id": "adr005_session_bound_repository"
     },
@@ -3843,7 +3899,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 32,
+      "community": 34,
       "norm_label": "caller-owned database unit of work",
       "id": "caller_owned_unit_of_work"
     },
@@ -3856,7 +3912,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 32,
+      "community": 34,
       "norm_label": "stable newest-first transaction history",
       "id": "stable_transaction_history_order"
     },
@@ -3869,7 +3925,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 32,
+      "community": 34,
       "norm_label": "account row lock and version check",
       "id": "row_lock_and_version_check"
     },
@@ -3882,7 +3938,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 32,
+      "community": 34,
       "norm_label": "stable repository exceptions",
       "id": "stable_repository_exceptions"
     },
@@ -3895,7 +3951,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 32,
+      "community": 34,
       "norm_label": "repository preparation for atomic transactions",
       "id": "atomic_transaction_preparation"
     },
@@ -3908,7 +3964,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 11,
+      "community": 10,
       "norm_label": "adr-006 split authentication state by durability",
       "id": "adr006_split_authentication_state"
     },
@@ -3921,7 +3977,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 11,
+      "community": 10,
       "norm_label": "durable postgresql card lockout",
       "id": "durable_card_lockout"
     },
@@ -3934,7 +3990,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 11,
+      "community": 10,
       "norm_label": "opaque hashed session token",
       "id": "opaque_hashed_session_token"
     },
@@ -3947,7 +4003,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 11,
+      "community": 10,
       "norm_label": "fail-closed authentication on redis failure",
       "id": "fail_closed_redis_authentication"
     },
@@ -3960,7 +4016,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 11,
+      "community": 10,
       "norm_label": "redis and postgresql non-atomic compensation",
       "id": "redis_postgresql_non_atomic_compensation"
     },
@@ -3973,7 +4029,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 36,
+      "community": 38,
       "norm_label": "original academic atm archive",
       "id": "original_academic_atm_archive"
     },
@@ -3986,7 +4042,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 36,
+      "community": 38,
       "norm_label": "legacy atm prototype limitations",
       "id": "legacy_prototype_limitations"
     },
@@ -4000,7 +4056,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 15,
+      "community": 14,
       "norm_label": "customer",
       "id": "activity_customer"
     },
@@ -4014,7 +4070,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 15,
+      "community": 14,
       "norm_label": "atm system",
       "id": "activity_atm"
     },
@@ -4028,7 +4084,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 15,
+      "community": 14,
       "norm_label": "bank / account system",
       "id": "activity_bank"
     },
@@ -4042,7 +4098,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 15,
+      "community": 14,
       "norm_label": "start atm session",
       "id": "activity_start"
     },
@@ -4056,7 +4112,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 15,
+      "community": 14,
       "norm_label": "insert card",
       "id": "activity_insert"
     },
@@ -4070,7 +4126,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 15,
+      "community": 14,
       "norm_label": "request pin",
       "id": "activity_request_pin"
     },
@@ -4084,7 +4140,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 15,
+      "community": 14,
       "norm_label": "enter pin using keypad",
       "id": "activity_enter_pin"
     },
@@ -4098,7 +4154,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 15,
+      "community": 14,
       "norm_label": "validate pin",
       "id": "activity_validate_pin"
     },
@@ -4112,7 +4168,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 15,
+      "community": 14,
       "norm_label": "verify pin against account record",
       "id": "activity_verify_pin"
     },
@@ -4126,7 +4182,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 15,
+      "community": 14,
       "norm_label": "pin correct?",
       "id": "activity_pin_correct"
     },
@@ -4140,7 +4196,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 15,
+      "community": 14,
       "norm_label": "increment failed attempt counter",
       "id": "activity_increment"
     },
@@ -4154,7 +4210,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 15,
+      "community": 14,
       "norm_label": "attempts >= 3?",
       "id": "activity_attempts"
     },
@@ -4168,7 +4224,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 15,
+      "community": 14,
       "norm_label": "reject customer: card retained",
       "id": "activity_reject"
     },
@@ -4182,7 +4238,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 15,
+      "community": 14,
       "norm_label": "authenticate customer: access granted",
       "id": "activity_authenticate"
     },
@@ -4196,7 +4252,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 15,
+      "community": 14,
       "norm_label": "request withdrawal amount",
       "id": "activity_request_amount"
     },
@@ -4210,7 +4266,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 15,
+      "community": 14,
       "norm_label": "enter withdrawal amount",
       "id": "activity_enter_amount"
     },
@@ -4224,7 +4280,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 15,
+      "community": 14,
       "norm_label": "validate withdrawal amount",
       "id": "activity_validate_amount"
     },
@@ -4238,7 +4294,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 15,
+      "community": 14,
       "norm_label": "amount <= balance?",
       "id": "activity_enough"
     },
@@ -4252,7 +4308,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 15,
+      "community": 14,
       "norm_label": "display insufficient funds message",
       "id": "activity_insufficient"
     },
@@ -4266,7 +4322,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 15,
+      "community": 14,
       "norm_label": "dispense cash",
       "id": "activity_dispense"
     },
@@ -4280,7 +4336,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 15,
+      "community": 14,
       "norm_label": "take cash and receipt",
       "id": "activity_take_cash"
     },
@@ -4294,7 +4350,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 15,
+      "community": 14,
       "norm_label": "update account balance",
       "id": "activity_update"
     },
@@ -4308,7 +4364,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 15,
+      "community": 14,
       "norm_label": "debit amount from account",
       "id": "activity_bank_debit"
     },
@@ -4322,7 +4378,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 15,
+      "community": 14,
       "norm_label": "check account balance",
       "id": "activity_check"
     },
@@ -4336,7 +4392,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 15,
+      "community": 14,
       "norm_label": "bank checks sufficient funds",
       "id": "activity_bank_check"
     },
@@ -4350,7 +4406,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 15,
+      "community": 14,
       "norm_label": "balance = 0?",
       "id": "activity_zero"
     },
@@ -4364,7 +4420,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 15,
+      "community": 14,
       "norm_label": "close account at zero balance",
       "id": "activity_close"
     },
@@ -4378,7 +4434,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 15,
+      "community": 14,
       "norm_label": "display transaction complete / updated balance",
       "id": "activity_complete"
     },
@@ -4392,7 +4448,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 15,
+      "community": 14,
       "norm_label": "view message / updated balance",
       "id": "activity_view"
     },
@@ -4406,7 +4462,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 15,
+      "community": 14,
       "norm_label": "end atm session: remove card",
       "id": "activity_end"
     },
@@ -4420,7 +4476,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 15,
+      "community": 14,
       "norm_label": "activity final",
       "id": "activity_final"
     },
@@ -4434,7 +4490,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 15,
+      "community": 14,
       "norm_label": "separate customer, atm, and bank responsibilities",
       "id": "activity_separation"
     },
@@ -4644,7 +4700,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 19,
+      "community": 20,
       "norm_label": "initial state",
       "id": "state_original_initial"
     },
@@ -4658,7 +4714,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 19,
+      "community": 20,
       "norm_label": "idle: displaywelcome / clearscreen",
       "id": "state_original_idle"
     },
@@ -4672,7 +4728,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 19,
+      "community": 20,
       "norm_label": "pin entry: promptpin / clearinput",
       "id": "state_original_pin_entry"
     },
@@ -4686,7 +4742,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 19,
+      "community": 20,
       "norm_label": "validate pin",
       "id": "state_original_validate"
     },
@@ -4700,7 +4756,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 19,
+      "community": 20,
       "norm_label": "increment attempts: incrementcounter",
       "id": "state_original_increment"
     },
@@ -4714,7 +4770,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 19,
+      "community": 20,
       "norm_label": "customer rejected: retaincard and displayrejectedmsg",
       "id": "state_original_rejected"
     },
@@ -4728,7 +4784,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 19,
+      "community": 20,
       "norm_label": "authenticated: showmenu",
       "id": "state_original_auth"
     },
@@ -4742,7 +4798,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 19,
+      "community": 20,
       "norm_label": "withdrawal: requestamount",
       "id": "state_original_withdrawal"
     },
@@ -4756,7 +4812,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 19,
+      "community": 20,
       "norm_label": "check balance: validateamount",
       "id": "state_original_check"
     },
@@ -4770,7 +4826,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 19,
+      "community": 20,
       "norm_label": "update balance: balance = balance - amount",
       "id": "state_original_update"
     },
@@ -4784,7 +4840,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 19,
+      "community": 20,
       "norm_label": "account status: evaluatebalance",
       "id": "state_original_status"
     },
@@ -4798,7 +4854,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 19,
+      "community": 20,
       "norm_label": "transaction complete",
       "id": "state_original_complete"
     },
@@ -4812,7 +4868,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 19,
+      "community": 20,
       "norm_label": "account closed: displayclosedmsg",
       "id": "state_original_closed"
     },
@@ -4826,7 +4882,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 19,
+      "community": 20,
       "norm_label": "final state",
       "id": "state_original_final"
     },
@@ -4840,7 +4896,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 19,
+      "community": 20,
       "norm_label": "transitions use event [guard] / action",
       "id": "state_original_notation"
     },
@@ -4854,7 +4910,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 19,
+      "community": 20,
       "norm_label": "pin format validation",
       "id": "state_original_format"
     },
@@ -4868,7 +4924,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 19,
+      "community": 20,
       "norm_label": "invalid amount <= 0",
       "id": "state_original_invalid"
     },
@@ -4882,7 +4938,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 19,
+      "community": 20,
       "norm_label": "insufficient funds: amount > balance",
       "id": "state_original_insufficient"
     },
@@ -4896,7 +4952,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 40,
+      "community": 42,
       "norm_label": "numbered atm uml activity diagram",
       "id": "img06_diagram"
     },
@@ -4910,7 +4966,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 40,
+      "community": 42,
       "norm_label": "customer swimlane",
       "id": "img06_customer"
     },
@@ -4924,7 +4980,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 40,
+      "community": 42,
       "norm_label": "atm system swimlane",
       "id": "img06_atm"
     },
@@ -4938,7 +4994,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 40,
+      "community": 42,
       "norm_label": "bank / account system swimlane",
       "id": "img06_bank"
     },
@@ -5274,7 +5330,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 63,
+      "community": 65,
       "norm_label": "end atm session",
       "id": "img06_end"
     },
@@ -5302,7 +5358,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 41,
+      "community": 43,
       "norm_label": "numbered atm uml activity diagram",
       "id": "img07_diagram"
     },
@@ -5316,7 +5372,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 41,
+      "community": 43,
       "norm_label": "customer swimlane",
       "id": "img07_customer"
     },
@@ -5330,7 +5386,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 41,
+      "community": 43,
       "norm_label": "atm system swimlane",
       "id": "img07_atm"
     },
@@ -5344,7 +5400,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 41,
+      "community": 43,
       "norm_label": "bank / account system swimlane",
       "id": "img07_bank"
     },
@@ -5680,7 +5736,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 64,
+      "community": 66,
       "norm_label": "end atm session",
       "id": "img07_end"
     },
@@ -5708,7 +5764,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 21,
+      "community": 22,
       "norm_label": "atm uml state machine diagram",
       "id": "img08_diagram"
     },
@@ -5722,7 +5778,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 21,
+      "community": 22,
       "norm_label": "idle / waiting for card",
       "id": "img08_idle"
     },
@@ -5736,7 +5792,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 21,
+      "community": 22,
       "norm_label": "pin entry / prompt for pin",
       "id": "img08_pin_entry"
     },
@@ -5750,7 +5806,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 21,
+      "community": 22,
       "norm_label": "validate pin",
       "id": "img08_validate"
     },
@@ -5764,7 +5820,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 21,
+      "community": 22,
       "norm_label": "increment attempts",
       "id": "img08_increment"
     },
@@ -5778,7 +5834,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 21,
+      "community": 22,
       "norm_label": "maximum pin attempts = 3",
       "id": "img08_limit"
     },
@@ -5792,7 +5848,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 21,
+      "community": 22,
       "norm_label": "customer rejected",
       "id": "img08_rejected"
     },
@@ -5806,7 +5862,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 21,
+      "community": 22,
       "norm_label": "display card retained message",
       "id": "img08_retain"
     },
@@ -5820,7 +5876,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 21,
+      "community": 22,
       "norm_label": "eject card",
       "id": "img08_eject"
     },
@@ -5834,7 +5890,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 21,
+      "community": 22,
       "norm_label": "authenticated customer",
       "id": "img08_auth"
     },
@@ -5848,7 +5904,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 21,
+      "community": 22,
       "norm_label": "request withdrawal amount",
       "id": "img08_request"
     },
@@ -5862,7 +5918,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 21,
+      "community": 22,
       "norm_label": "withdrawal: dispense cash and update balance",
       "id": "img08_withdrawal"
     },
@@ -5876,7 +5932,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 21,
+      "community": 22,
       "norm_label": "check balance",
       "id": "img08_check"
     },
@@ -5890,7 +5946,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 21,
+      "community": 22,
       "norm_label": "account active / transaction complete",
       "id": "img08_active"
     },
@@ -5904,7 +5960,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 21,
+      "community": 22,
       "norm_label": "account closed",
       "id": "img08_closed"
     },
@@ -5918,7 +5974,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 21,
+      "community": 22,
       "norm_label": "final state / end of session",
       "id": "img08_end"
     },
@@ -5932,7 +5988,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 21,
+      "community": 22,
       "norm_label": "retry label and increment-to-final routing appear inconsistent",
       "id": "img08_retry_problem"
     },
@@ -5946,7 +6002,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 22,
+      "community": 16,
       "norm_label": "composite atm uml diagrams",
       "id": "img09_diagram"
     },
@@ -5960,7 +6016,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 22,
+      "community": 16,
       "norm_label": "state machine panel",
       "id": "img09_state"
     },
@@ -5974,7 +6030,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 22,
+      "community": 16,
       "norm_label": "numbered activity panel",
       "id": "img09_activity"
     },
@@ -5988,7 +6044,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 22,
+      "community": 16,
       "norm_label": "sequence diagram panel",
       "id": "img09_sequence"
     },
@@ -6002,7 +6058,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 10,
+      "community": 16,
       "norm_label": "idle",
       "id": "img09_idle"
     },
@@ -6016,7 +6072,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 10,
+      "community": 16,
       "norm_label": "pin entry with format-validation self-transition",
       "id": "img09_pin"
     },
@@ -6030,7 +6086,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 10,
+      "community": 16,
       "norm_label": "validate pin",
       "id": "img09_validate"
     },
@@ -6044,7 +6100,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 10,
+      "community": 16,
       "norm_label": "authenticated / show menu",
       "id": "img09_auth"
     },
@@ -6058,7 +6114,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 10,
+      "community": 16,
       "norm_label": "customer rejected / retain card",
       "id": "img09_rejected"
     },
@@ -6072,7 +6128,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 10,
+      "community": 16,
       "norm_label": "withdrawal / enter amount",
       "id": "img09_withdraw"
     },
@@ -6086,7 +6142,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 10,
+      "community": 16,
       "norm_label": "check balance",
       "id": "img09_check"
     },
@@ -6100,7 +6156,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 10,
+      "community": 16,
       "norm_label": "update balance by subtracting amount",
       "id": "img09_update"
     },
@@ -6114,7 +6170,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 10,
+      "community": 16,
       "norm_label": "account status",
       "id": "img09_status"
     },
@@ -6128,7 +6184,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 10,
+      "community": 16,
       "norm_label": "transaction complete for positive balance",
       "id": "img09_complete"
     },
@@ -6142,7 +6198,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 10,
+      "community": 16,
       "norm_label": "account closed for zero balance",
       "id": "img09_closed"
     },
@@ -6156,7 +6212,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 22,
+      "community": 16,
       "norm_label": "activity panel duplicates step 6 increment failed attempt counter",
       "id": "img09_duplicate_step"
     },
@@ -6170,7 +6226,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 22,
+      "community": 16,
       "norm_label": "activity pin failure branch reaches final node and retry guards are misrouted",
       "id": "img09_routing_problem"
     },
@@ -6184,7 +6240,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 22,
+      "community": 16,
       "norm_label": "sequence customer actor",
       "id": "img09_customer"
     },
@@ -6198,7 +6254,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 22,
+      "community": 16,
       "norm_label": "sequence atm lifeline",
       "id": "img09_atm"
     },
@@ -6212,7 +6268,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 22,
+      "community": 16,
       "norm_label": "sequence bank system lifeline",
       "id": "img09_bank"
     },
@@ -6226,7 +6282,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 22,
+      "community": 16,
       "norm_label": "sequence account database lifeline",
       "id": "img09_database"
     },
@@ -6240,7 +6296,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 22,
+      "community": 16,
       "norm_label": "verify pin against account database",
       "id": "img09_verify"
     },
@@ -6254,7 +6310,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 22,
+      "community": 16,
       "norm_label": "check available account balance",
       "id": "img09_balance"
     },
@@ -6268,7 +6324,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 22,
+      "community": 16,
       "norm_label": "debit account and update database balance",
       "id": "img09_debit"
     },
@@ -6282,7 +6338,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 22,
+      "community": 16,
       "norm_label": "debit success response",
       "id": "img09_debit_success"
     },
@@ -6296,7 +6352,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 22,
+      "community": 16,
       "norm_label": "dispense cash after debit success",
       "id": "img09_cash"
     },
@@ -6310,7 +6366,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 22,
+      "community": 16,
       "norm_label": "show updated balance",
       "id": "img09_show"
     },
@@ -6324,7 +6380,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 22,
+      "community": 16,
       "norm_label": "show insufficient funds for balance below amount",
       "id": "img09_insufficient"
     },
@@ -6338,7 +6394,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 10,
+      "community": 13,
       "norm_label": "customer",
       "id": "sequence_customer"
     },
@@ -6352,7 +6408,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 10,
+      "community": 13,
       "norm_label": "atm",
       "id": "sequence_atm"
     },
@@ -6366,7 +6422,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 10,
+      "community": 13,
       "norm_label": "bank system",
       "id": "sequence_bank"
     },
@@ -6380,7 +6436,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 10,
+      "community": 13,
       "norm_label": "account",
       "id": "sequence_account"
     },
@@ -6394,7 +6450,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 10,
+      "community": 13,
       "norm_label": "1 insert card",
       "id": "sequence_insert"
     },
@@ -6408,7 +6464,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 10,
+      "community": 13,
       "norm_label": "2 request pin",
       "id": "sequence_request_pin"
     },
@@ -6422,7 +6478,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 10,
+      "community": 13,
       "norm_label": "3 enter pin",
       "id": "sequence_enter_pin"
     },
@@ -6436,7 +6492,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 10,
+      "community": 13,
       "norm_label": "4 verify pin(pin)",
       "id": "sequence_verify"
     },
@@ -6450,7 +6506,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 10,
+      "community": 13,
       "norm_label": "5 check pin",
       "id": "sequence_check_pin"
     },
@@ -6464,7 +6520,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 10,
+      "community": 13,
       "norm_label": "6 pin valid / invalid",
       "id": "sequence_pin_result"
     },
@@ -6478,7 +6534,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 10,
+      "community": 13,
       "norm_label": "7 pin valid",
       "id": "sequence_valid"
     },
@@ -6492,7 +6548,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 10,
+      "community": 13,
       "norm_label": "pin invalid",
       "id": "sequence_invalid"
     },
@@ -6506,7 +6562,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 10,
+      "community": 13,
       "norm_label": "8 display menu",
       "id": "sequence_menu"
     },
@@ -6520,7 +6576,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 10,
+      "community": 13,
       "norm_label": "9 select withdrawal",
       "id": "sequence_select"
     },
@@ -6534,7 +6590,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 10,
+      "community": 13,
       "norm_label": "10 request amount",
       "id": "sequence_request_amount"
     },
@@ -6548,7 +6604,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 10,
+      "community": 13,
       "norm_label": "11 enter amount",
       "id": "sequence_enter_amount"
     },
@@ -6562,7 +6618,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 10,
+      "community": 13,
       "norm_label": "12 check balance(amount)",
       "id": "sequence_check_balance"
     },
@@ -6576,7 +6632,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 10,
+      "community": 13,
       "norm_label": "13 get balance",
       "id": "sequence_get_balance"
     },
@@ -6590,7 +6646,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 10,
+      "community": 13,
       "norm_label": "14 return balance",
       "id": "sequence_return_balance"
     },
@@ -6604,7 +6660,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 10,
+      "community": 13,
       "norm_label": "15 balance",
       "id": "sequence_balance"
     },
@@ -6618,7 +6674,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 10,
+      "community": 13,
       "norm_label": "balance >= amount",
       "id": "sequence_sufficient"
     },
@@ -6632,7 +6688,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 10,
+      "community": 13,
       "norm_label": "16 debit account(amount)",
       "id": "sequence_debit"
     },
@@ -6646,7 +6702,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 10,
+      "community": 13,
       "norm_label": "17 update balance",
       "id": "sequence_update"
     },
@@ -6660,7 +6716,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 10,
+      "community": 13,
       "norm_label": "18 success",
       "id": "sequence_success"
     },
@@ -6674,7 +6730,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 10,
+      "community": 13,
       "norm_label": "19 debit success",
       "id": "sequence_debit_success"
     },
@@ -6688,7 +6744,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 10,
+      "community": 13,
       "norm_label": "20 dispense cash",
       "id": "sequence_dispense"
     },
@@ -6702,7 +6758,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 10,
+      "community": 13,
       "norm_label": "21 show updated balance",
       "id": "sequence_show_balance"
     },
@@ -6716,7 +6772,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 10,
+      "community": 13,
       "norm_label": "balance < amount",
       "id": "sequence_insufficient"
     },
@@ -6730,7 +6786,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 10,
+      "community": 13,
       "norm_label": "20a insufficient funds",
       "id": "sequence_insuff_response"
     },
@@ -6744,7 +6800,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 10,
+      "community": 13,
       "norm_label": "21a show insufficient funds message",
       "id": "sequence_insuff_message"
     },
@@ -6758,7 +6814,7 @@
       "author": null,
       "contributor": null,
       "status": "archived_academic_evidence",
-      "community": 10,
+      "community": 13,
       "norm_label": "atm delegates account verification and debit to bank",
       "id": "sequence_separation"
     },
@@ -7275,7 +7331,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 12,
+      "community": 11,
       "norm_label": "account balance snapshot contract",
       "id": "account_balance_snapshot_contract"
     },
@@ -7288,7 +7344,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 31,
+      "community": 33,
       "norm_label": "strict positive decimal money contract",
       "id": "positive_money_contract"
     },
@@ -7301,7 +7357,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 31,
+      "community": 33,
       "norm_label": "withdrawal request contract",
       "id": "withdrawal_request_contract"
     },
@@ -7314,7 +7370,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 31,
+      "community": 33,
       "norm_label": "deposit request contract",
       "id": "deposit_request_contract"
     },
@@ -7327,7 +7383,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 12,
+      "community": 11,
       "norm_label": "transaction result with exact balance snapshots",
       "id": "transaction_result_contract"
     },
@@ -7340,7 +7396,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 12,
+      "community": 11,
       "norm_label": "bounded transaction history query",
       "id": "transaction_history_query_contract"
     },
@@ -7353,7 +7409,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 12,
+      "community": 11,
       "norm_label": "immutable paginated transaction history",
       "id": "transaction_history_contract"
     },
@@ -7366,7 +7422,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 12,
+      "community": 11,
       "norm_label": "account authorization error",
       "id": "account_authorization_error"
     },
@@ -7379,7 +7435,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 12,
+      "community": 11,
       "norm_label": "account unavailable error",
       "id": "account_unavailable_error"
     },
@@ -7392,7 +7448,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 12,
+      "community": 11,
       "norm_label": "mismatched session ownership graph",
       "id": "unauthorized_subject_graph"
     },
@@ -7405,7 +7461,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 12,
+      "community": 11,
       "norm_label": "financial operation on inactive account",
       "id": "inactive_financial_operation"
     },
@@ -7418,7 +7474,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 12,
+      "community": 11,
       "norm_label": "history access for inactive account",
       "id": "inactive_account_history_access"
     },
@@ -7431,7 +7487,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 12,
+      "community": 11,
       "norm_label": "account row locking for consistent operations",
       "id": "account_row_locking"
     },
@@ -7444,7 +7500,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 12,
+      "community": 11,
       "norm_label": "authenticated account ownership resolution",
       "id": "authorized_account_resolution"
     },
@@ -7457,7 +7513,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 12,
+      "community": 11,
       "norm_label": "persisted balance inquiry workflow",
       "id": "balance_inquiry_workflow"
     },
@@ -7470,7 +7526,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 12,
+      "community": 11,
       "norm_label": "persisted financial transaction record",
       "id": "persisted_transaction_record"
     },
@@ -7483,7 +7539,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 12,
+      "community": 11,
       "norm_label": "transaction-linked operational audit event",
       "id": "operational_audit_event"
     },
@@ -7496,7 +7552,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 12,
+      "community": 11,
       "norm_label": "transaction service",
       "id": "transaction_service"
     },
@@ -7509,7 +7565,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 12,
+      "community": 11,
       "norm_label": "caller-owned service unit of work",
       "id": "caller_owned_service_uow"
     },
@@ -7522,7 +7578,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 12,
+      "community": 11,
       "norm_label": "audit event append helper",
       "id": "audit_event_append"
     },
@@ -7535,7 +7591,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 12,
+      "community": 11,
       "norm_label": "atomic withdrawal workflow",
       "id": "withdrawal_workflow"
     },
@@ -7548,7 +7604,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 12,
+      "community": 11,
       "norm_label": "persisted insufficient funds decline",
       "id": "insufficient_funds_decline"
     },
@@ -7561,7 +7617,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 12,
+      "community": 11,
       "norm_label": "configurable zero balance closure rule",
       "id": "zero_balance_closure_rule"
     },
@@ -7574,7 +7630,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 12,
+      "community": 11,
       "norm_label": "atomic deposit workflow",
       "id": "deposit_workflow"
     },
@@ -7587,7 +7643,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 12,
+      "community": 11,
       "norm_label": "exact money balance overflow guard",
       "id": "balance_overflow_guard"
     },
@@ -7600,7 +7656,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 12,
+      "community": 11,
       "norm_label": "deposit result exceeding supported balance range",
       "id": "deposit_balance_overflow"
     },
@@ -7613,7 +7669,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 12,
+      "community": 11,
       "norm_label": "authorized transaction history workflow",
       "id": "transaction_history_workflow"
     },
@@ -7626,7 +7682,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 31,
+      "community": 33,
       "norm_label": "positive decimal cents acceptance test",
       "id": "schema_accepts_positive_decimal_cents_test"
     },
@@ -7639,7 +7695,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 31,
+      "community": 33,
       "norm_label": "unsafe money rejection test",
       "id": "schema_rejects_unsafe_money_test"
     },
@@ -7652,7 +7708,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 12,
+      "community": 11,
       "norm_label": "transaction history bounds test",
       "id": "history_query_bounds_test"
     },
@@ -7665,7 +7721,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 12,
+      "community": 11,
       "norm_label": "day 6 balance withdrawal deposit history test",
       "id": "day6_end_to_end_workflow_test"
     },
@@ -7678,7 +7734,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 12,
+      "community": 11,
       "norm_label": "configurable zero balance closure test",
       "id": "zero_balance_configuration_test"
     },
@@ -7691,7 +7747,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 12,
+      "community": 11,
       "norm_label": "injected transaction failure rollback test",
       "id": "transaction_failure_rollback_test"
     },
@@ -7704,7 +7760,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 12,
+      "community": 11,
       "norm_label": "session subject mismatch authorization test",
       "id": "subject_mismatch_authorization_test"
     },
@@ -7717,7 +7773,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 12,
+      "community": 11,
       "norm_label": "deposit overflow no partial write test",
       "id": "deposit_overflow_atomicity_test"
     },
@@ -7730,7 +7786,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 65,
+      "community": 67,
       "norm_label": "day 5 defers banking operations to day 6",
       "id": "day5_to_day6_handoff"
     },
@@ -7743,7 +7799,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 44,
+      "community": 46,
       "norm_label": "day 6 transaction engine validation evidence",
       "id": "day6_validation_evidence"
     },
@@ -7756,7 +7812,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 31,
+      "community": 33,
       "norm_label": "day 6 exact money acceptance",
       "id": "day6_exact_money_acceptance"
     },
@@ -7769,7 +7825,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 12,
+      "community": 11,
       "norm_label": "day 6 ownership authorization acceptance",
       "id": "day6_authorization_acceptance"
     },
@@ -7782,7 +7838,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 12,
+      "community": 11,
       "norm_label": "day 6 account locking acceptance",
       "id": "day6_account_locking_acceptance"
     },
@@ -7795,7 +7851,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 12,
+      "community": 11,
       "norm_label": "day 6 atomic rollback acceptance",
       "id": "day6_atomic_rollback_acceptance"
     },
@@ -7808,7 +7864,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 66,
+      "community": 68,
       "norm_label": "day 6 kafka deferral",
       "id": "day6_kafka_deferral"
     },
@@ -7821,7 +7877,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 44,
+      "community": 46,
       "norm_label": "adr-007 exact and atomic service boundary",
       "id": "adr007_exact_atomic_boundary"
     },
@@ -7834,7 +7890,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 44,
+      "community": 46,
       "norm_label": "correct legacy float and fractional-cent defects",
       "id": "adr007_legacy_money_defect_rationale"
     },
@@ -7847,7 +7903,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 31,
+      "community": 33,
       "norm_label": "day 7 must convert ui values deliberately",
       "id": "adr007_strict_decimal_ui_consequence"
     },
@@ -7860,7 +7916,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 12,
+      "community": 11,
       "norm_label": "caller-owned sqlalchemy transaction decision",
       "id": "adr007_caller_owned_transaction"
     },
@@ -7873,7 +7929,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 12,
+      "community": 11,
       "norm_label": "audit rows share the database transaction",
       "id": "adr007_audit_atomicity"
     },
@@ -7886,7 +7942,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 12,
+      "community": 11,
       "norm_label": "persist declined insufficient-funds attempts",
       "id": "adr007_declined_attempt_persistence"
     },
@@ -7899,7 +7955,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 67,
+      "community": 69,
       "norm_label": "kafka follows day 8 contract and day 9 integration",
       "id": "adr007_kafka_deferral"
     },
@@ -7908,7 +7964,7 @@
       "file_type": "code",
       "source_file": "scripts\\seed_database.py",
       "source_location": "L1",
-      "community": 13,
+      "community": 12,
       "norm_label": "seed_database.py",
       "id": "scripts_seed_database_py"
     },
@@ -7917,7 +7973,7 @@
       "file_type": "code",
       "source_file": "scripts\\seed_database.py",
       "source_location": "L28",
-      "community": 13,
+      "community": 12,
       "norm_label": "seedconflicterror",
       "id": "seed_database_seedconflicterror"
     },
@@ -7926,7 +7982,7 @@
       "file_type": "code",
       "source_file": "scripts\\seed_database.py",
       "source_location": "L33",
-      "community": 13,
+      "community": 12,
       "norm_label": "seedresult",
       "id": "seed_database_seedresult"
     },
@@ -7935,7 +7991,7 @@
       "file_type": "code",
       "source_file": "scripts\\seed_database.py",
       "source_location": "L40",
-      "community": 13,
+      "community": 12,
       "norm_label": "seed_demo_data()",
       "id": "seed_database_seed_demo_data"
     },
@@ -7944,7 +8000,7 @@
       "file_type": "code",
       "source_file": "scripts\\seed_database.py",
       "source_location": "L96",
-      "community": 13,
+      "community": 12,
       "norm_label": "main()",
       "id": "seed_database_main"
     },
@@ -7953,7 +8009,7 @@
       "file_type": "rationale",
       "source_file": "scripts\\seed_database.py",
       "source_location": "L1",
-      "community": 13,
+      "community": 12,
       "norm_label": "insert the idempotent fictional bankflow demo customer, account, and card.",
       "id": "seed_database_rationale_1"
     },
@@ -7962,7 +8018,7 @@
       "file_type": "rationale",
       "source_file": "scripts\\seed_database.py",
       "source_location": "L29",
-      "community": 13,
+      "community": 12,
       "norm_label": "existing fixed demo identifiers do not form the expected complete seed.",
       "id": "seed_database_rationale_29"
     },
@@ -7971,7 +8027,7 @@
       "file_type": "rationale",
       "source_file": "scripts\\seed_database.py",
       "source_location": "L41",
-      "community": 13,
+      "community": 12,
       "norm_label": "create the fixed demo graph once and reject partial/conflicting state.",
       "id": "seed_database_rationale_41"
     },
@@ -7980,7 +8036,7 @@
       "file_type": "code",
       "source_file": "src\\bankflow\\demo.py",
       "source_location": "L1",
-      "community": 49,
+      "community": 51,
       "norm_label": "demo.py",
       "id": "src_bankflow_demo_py"
     },
@@ -7989,7 +8045,7 @@
       "file_type": "rationale",
       "source_file": "src\\bankflow\\demo.py",
       "source_location": "L1",
-      "community": 49,
+      "community": 51,
       "norm_label": "stable identifiers and public credentials for the fictional demo account.",
       "id": "demo_rationale_1"
     },
@@ -8140,7 +8196,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 45,
+      "community": 47,
       "norm_label": "atomic fixed-demo reset",
       "id": "day7_validation_atomic_demo_reset"
     },
@@ -8192,7 +8248,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 68,
+      "community": 70,
       "norm_label": "transient masked secret handling",
       "id": "adr8_transient_secret_handling"
     },
@@ -8231,7 +8287,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 45,
+      "community": 47,
       "norm_label": "fixed demo reset boundary",
       "id": "adr8_fixed_demo_reset_boundary"
     },
@@ -8257,7 +8313,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 69,
+      "community": 71,
       "norm_label": "accessible text-bearing status design",
       "id": "adr8_accessible_status_design"
     },
@@ -8270,7 +8326,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 50,
+      "community": 52,
       "norm_label": "future kafka extension below service boundary",
       "id": "adr8_future_kafka_extension_boundary"
     },
@@ -8309,7 +8365,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 45,
+      "community": 47,
       "norm_label": "rationale: make portfolio demonstrations repeatable",
       "id": "adr8_rationale_repeatable_safe_demo"
     },
@@ -8322,7 +8378,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 50,
+      "community": 52,
       "norm_label": "rationale: add kafka without changing ui forms",
       "id": "adr8_rationale_decouple_future_events"
     },
@@ -8821,7 +8877,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 20,
+      "community": 21,
       "norm_label": "day 8 event contract validation",
       "id": "day8_validation_contract"
     },
@@ -8834,7 +8890,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 20,
+      "community": 21,
       "norm_label": "day 8 acceptance evidence",
       "id": "day8_validation_acceptance_evidence"
     },
@@ -8847,7 +8903,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 20,
+      "community": 21,
       "norm_label": "day 8 validation results",
       "id": "day8_validation_results"
     },
@@ -8860,7 +8916,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 20,
+      "community": 21,
       "norm_label": "in-process contract-only boundary",
       "id": "day8_validation_transport_boundary"
     },
@@ -8873,7 +8929,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 20,
+      "community": 21,
       "norm_label": "adr-009 versioned and secret-free application event contract",
       "id": "adr009_event_contract_decision"
     },
@@ -8886,7 +8942,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 20,
+      "community": 21,
       "norm_label": "define a stable consumer contract before transport",
       "id": "adr009_stable_contract_rationale"
     },
@@ -8899,7 +8955,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 20,
+      "community": 21,
       "norm_label": "closed bankflowevent envelope",
       "id": "adr009_closed_envelope"
     },
@@ -8912,7 +8968,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 20,
+      "community": 21,
       "norm_label": "schema version 1 semantic versioning policy",
       "id": "adr009_schema_version_policy"
     },
@@ -8925,7 +8981,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 20,
+      "community": 21,
       "norm_label": "exact decimal money as json strings",
       "id": "adr009_exact_decimal_money"
     },
@@ -8938,7 +8994,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 20,
+      "community": 21,
       "norm_label": "discriminated transaction and authentication payloads",
       "id": "adr009_discriminated_payloads"
     },
@@ -8951,7 +9007,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 20,
+      "community": 21,
       "norm_label": "secret-free event boundary",
       "id": "adr009_secret_free_boundary"
     },
@@ -8964,7 +9020,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 20,
+      "community": 21,
       "norm_label": "authentication subject identifier policy",
       "id": "adr009_auth_subject_policy"
     },
@@ -8977,7 +9033,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 20,
+      "community": 21,
       "norm_label": "avoid revealing unknown card existence",
       "id": "adr009_auth_privacy_rationale"
     },
@@ -8990,7 +9046,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 20,
+      "community": 21,
       "norm_label": "distinct event and transaction identities",
       "id": "adr009_event_transaction_identity"
     },
@@ -9003,7 +9059,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 20,
+      "community": 21,
       "norm_label": "pure event construction boundary",
       "id": "adr009_pure_factory_boundary"
     },
@@ -9016,7 +9072,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 20,
+      "community": 21,
       "norm_label": "validate and serialize without database or broker i/o",
       "id": "adr009_infrastructure_independence_rationale"
     },
@@ -9029,7 +9085,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 20,
+      "community": 21,
       "norm_label": "postgresql transaction as system of record",
       "id": "adr009_postgresql_system_of_record"
     },
@@ -9042,7 +9098,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 20,
+      "community": 21,
       "norm_label": "kafka delivery and database-broker atomicity limit",
       "id": "adr009_delivery_atomicity_limit"
     },
@@ -9051,7 +9107,7 @@
       "file_type": "code",
       "source_file": "app.py",
       "source_location": "L1",
-      "community": 51,
+      "community": 53,
       "norm_label": "app.py",
       "id": "app_py"
     },
@@ -9060,7 +9116,7 @@
       "file_type": "rationale",
       "source_file": "app.py",
       "source_location": "L1",
-      "community": 51,
+      "community": 53,
       "norm_label": "bankflow welcome and authentication screen.",
       "id": "app_rationale_1"
     },
@@ -9069,7 +9125,7 @@
       "file_type": "code",
       "source_file": "pages\\1_Dashboard.py",
       "source_location": "L1",
-      "community": 52,
+      "community": 54,
       "norm_label": "1_dashboard.py",
       "id": "pages_1_dashboard_py"
     },
@@ -9078,7 +9134,7 @@
       "file_type": "rationale",
       "source_file": "pages\\1_Dashboard.py",
       "source_location": "L1",
-      "community": 52,
+      "community": 54,
       "norm_label": "authenticated bankflow account dashboard.",
       "id": "1_dashboard_rationale_1"
     },
@@ -9087,7 +9143,7 @@
       "file_type": "code",
       "source_file": "pages\\2_Withdraw.py",
       "source_location": "L1",
-      "community": 46,
+      "community": 48,
       "norm_label": "2_withdraw.py",
       "id": "pages_2_withdraw_py"
     },
@@ -9096,7 +9152,7 @@
       "file_type": "code",
       "source_file": "pages\\2_Withdraw.py",
       "source_location": "L25",
-      "community": 46,
+      "community": 48,
       "norm_label": "choose_amount()",
       "id": "2_withdraw_choose_amount"
     },
@@ -9105,7 +9161,7 @@
       "file_type": "rationale",
       "source_file": "pages\\2_Withdraw.py",
       "source_location": "L1",
-      "community": 46,
+      "community": 48,
       "norm_label": "authenticated withdrawal form.",
       "id": "2_withdraw_rationale_1"
     },
@@ -9114,7 +9170,7 @@
       "file_type": "code",
       "source_file": "pages\\3_Deposit.py",
       "source_location": "L1",
-      "community": 47,
+      "community": 49,
       "norm_label": "3_deposit.py",
       "id": "pages_3_deposit_py"
     },
@@ -9123,7 +9179,7 @@
       "file_type": "code",
       "source_file": "pages\\3_Deposit.py",
       "source_location": "L25",
-      "community": 47,
+      "community": 49,
       "norm_label": "choose_amount()",
       "id": "3_deposit_choose_amount"
     },
@@ -9132,7 +9188,7 @@
       "file_type": "rationale",
       "source_file": "pages\\3_Deposit.py",
       "source_location": "L1",
-      "community": 47,
+      "community": 49,
       "norm_label": "authenticated deposit form.",
       "id": "3_deposit_rationale_1"
     },
@@ -9141,7 +9197,7 @@
       "file_type": "code",
       "source_file": "pages\\4_Transaction_History.py",
       "source_location": "L1",
-      "community": 53,
+      "community": 55,
       "norm_label": "4_transaction_history.py",
       "id": "pages_4_transaction_history_py"
     },
@@ -9150,7 +9206,7 @@
       "file_type": "rationale",
       "source_file": "pages\\4_Transaction_History.py",
       "source_location": "L1",
-      "community": 53,
+      "community": 55,
       "norm_label": "authenticated transaction-history page.",
       "id": "4_transaction_history_rationale_1"
     },
@@ -9731,7 +9787,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 54,
+      "community": 56,
       "norm_label": "stable kafka transport exceptions",
       "id": "day9_transport_exceptions"
     },
@@ -9744,7 +9800,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 55,
+      "community": 57,
       "norm_label": "host.docker.internal broker advertisement fix",
       "id": "day9_broker_advertisement_fix"
     },
@@ -9757,7 +9813,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 55,
+      "community": 57,
       "norm_label": "live produce and consume round trip",
       "id": "day9_live_produce_consume_round_trip"
     },
@@ -9770,7 +9826,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 54,
+      "community": 56,
       "norm_label": "broker outage commit preservation",
       "id": "day9_broker_outage_commit_preservation"
     },
@@ -9835,7 +9891,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 56,
+      "community": 58,
       "norm_label": "idempotent all-acknowledgement producer configuration",
       "id": "adr010_idempotent_all_ack_configuration"
     },
@@ -9848,7 +9904,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 70,
+      "community": 72,
       "norm_label": "deterministic aggregate ordering",
       "id": "adr010_deterministic_aggregate_ordering"
     },
@@ -9861,7 +9917,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 56,
+      "community": 58,
       "norm_label": "bounded delivery callback",
       "id": "adr010_bounded_delivery_callback"
     },
@@ -9945,7 +10001,7 @@
       "file_type": "code",
       "source_file": "migrations\\versions\\0003_create_consumed_event_store.py",
       "source_location": "L1",
-      "community": 13,
+      "community": 12,
       "norm_label": "0003_create_consumed_event_store.py",
       "id": "migrations_versions_0003_create_consumed_event_store_py"
     },
@@ -9954,7 +10010,7 @@
       "file_type": "code",
       "source_file": "migrations\\versions\\0003_create_consumed_event_store.py",
       "source_location": "L17",
-      "community": 13,
+      "community": 12,
       "norm_label": "upgrade()",
       "id": "0003_create_consumed_event_store_upgrade"
     },
@@ -9963,7 +10019,7 @@
       "file_type": "code",
       "source_file": "migrations\\versions\\0003_create_consumed_event_store.py",
       "source_location": "L61",
-      "community": 13,
+      "community": 12,
       "norm_label": "downgrade()",
       "id": "0003_create_consumed_event_store_downgrade"
     },
@@ -9972,7 +10028,7 @@
       "file_type": "rationale",
       "source_file": "migrations\\versions\\0003_create_consumed_event_store.py",
       "source_location": "L1",
-      "community": 13,
+      "community": 12,
       "norm_label": "create consumed event store  revision id: 0003 revises: 0002",
       "id": "0003_create_consumed_event_store_rationale_1"
     },
@@ -10305,7 +10361,7 @@
       "file_type": "code",
       "source_file": "tests\\integration\\test_database.py",
       "source_location": "L1",
-      "community": 13,
+      "community": 12,
       "norm_label": "test_database.py",
       "id": "tests_integration_test_database_py"
     },
@@ -10314,7 +10370,7 @@
       "file_type": "code",
       "source_file": "tests\\integration\\test_database.py",
       "source_location": "L24",
-      "community": 13,
+      "community": 12,
       "norm_label": "test_real_postgres_health_and_role_privileges()",
       "id": "test_database_test_real_postgres_health_and_role_privileges"
     },
@@ -10323,7 +10379,7 @@
       "file_type": "code",
       "source_file": "tests\\integration\\test_database.py",
       "source_location": "L35",
-      "community": 13,
+      "community": 12,
       "norm_label": "test_bad_credentials_are_reported_without_driver_details()",
       "id": "test_database_test_bad_credentials_are_reported_without_driver_details"
     },
@@ -10332,7 +10388,7 @@
       "file_type": "code",
       "source_file": "tests\\integration\\test_database.py",
       "source_location": "L49",
-      "community": 13,
+      "community": 12,
       "norm_label": "test_session_commits_success_and_rolls_back_failed_work()",
       "id": "test_database_test_session_commits_success_and_rolls_back_failed_work"
     },
@@ -10341,7 +10397,7 @@
       "file_type": "code",
       "source_file": "tests\\integration\\test_database.py",
       "source_location": "L70",
-      "community": 13,
+      "community": 12,
       "norm_label": "test_migration_upgrade_downgrade_and_reupgrade()",
       "id": "test_database_test_migration_upgrade_downgrade_and_reupgrade"
     },
@@ -10350,7 +10406,7 @@
       "file_type": "code",
       "source_file": "tests\\integration\\test_database.py",
       "source_location": "L90",
-      "community": 13,
+      "community": 12,
       "norm_label": "test_test_role_cannot_connect_to_application_database()",
       "id": "test_database_test_test_role_cannot_connect_to_application_database"
     },
@@ -10359,7 +10415,7 @@
       "file_type": "rationale",
       "source_file": "tests\\integration\\test_database.py",
       "source_location": "L1",
-      "community": 13,
+      "community": 12,
       "norm_label": "opt in with bankflow_run_db_tests=1; never run migrations against the app databa",
       "id": "test_database_rationale_1"
     },
@@ -10485,7 +10541,7 @@
       "file_type": "code",
       "source_file": "tests\\integration\\test_models.py",
       "source_location": "L1",
-      "community": 33,
+      "community": 35,
       "norm_label": "test_models.py",
       "id": "tests_integration_test_models_py"
     },
@@ -10494,7 +10550,7 @@
       "file_type": "code",
       "source_file": "tests\\integration\\test_models.py",
       "source_location": "L38",
-      "community": 33,
+      "community": 35,
       "norm_label": "_delete_graph()",
       "id": "test_models_delete_graph"
     },
@@ -10503,7 +10559,7 @@
       "file_type": "code",
       "source_file": "tests\\integration\\test_models.py",
       "source_location": "L60",
-      "community": 33,
+      "community": 35,
       "norm_label": "test_tables_relationships_timestamps_and_decimal_round_trip()",
       "id": "test_models_test_tables_relationships_timestamps_and_decimal_round_trip"
     },
@@ -10512,7 +10568,7 @@
       "file_type": "code",
       "source_file": "tests\\integration\\test_models.py",
       "source_location": "L146",
-      "community": 33,
+      "community": 35,
       "norm_label": "test_database_rejects_negative_balance_and_zero_withdrawal()",
       "id": "test_models_test_database_rejects_negative_balance_and_zero_withdrawal"
     },
@@ -10521,7 +10577,7 @@
       "file_type": "code",
       "source_file": "tests\\integration\\test_models.py",
       "source_location": "L207",
-      "community": 33,
+      "community": 35,
       "norm_label": "test_demo_seed_is_complete_idempotent_and_never_stores_plain_pin()",
       "id": "test_models_test_demo_seed_is_complete_idempotent_and_never_stores_plain_pin"
     },
@@ -10530,7 +10586,7 @@
       "file_type": "rationale",
       "source_file": "tests\\integration\\test_models.py",
       "source_location": "L1",
-      "community": 33,
+      "community": 35,
       "norm_label": "live day 3 persistence checks, gated by bankflow_run_db_tests=1.",
       "id": "test_models_rationale_1"
     },
@@ -10782,7 +10838,7 @@
       "file_type": "code",
       "source_file": "tests\\unit\\test_model_metadata.py",
       "source_location": "L1",
-      "community": 37,
+      "community": 39,
       "norm_label": "test_model_metadata.py",
       "id": "tests_unit_test_model_metadata_py"
     },
@@ -10791,7 +10847,7 @@
       "file_type": "code",
       "source_file": "tests\\unit\\test_model_metadata.py",
       "source_location": "L9",
-      "community": 37,
+      "community": 39,
       "norm_label": "test_day3_tables_are_registered_in_application_schema()",
       "id": "test_model_metadata_test_day3_tables_are_registered_in_application_schema"
     },
@@ -10800,7 +10856,7 @@
       "file_type": "code",
       "source_file": "tests\\unit\\test_model_metadata.py",
       "source_location": "L20",
-      "community": 37,
+      "community": 39,
       "norm_label": "test_consumed_event_store_has_event_and_kafka_position_uniqueness()",
       "id": "test_model_metadata_test_consumed_event_store_has_event_and_kafka_position_uniqueness"
     },
@@ -10809,7 +10865,7 @@
       "file_type": "code",
       "source_file": "tests\\unit\\test_model_metadata.py",
       "source_location": "L30",
-      "community": 37,
+      "community": 39,
       "norm_label": "test_money_columns_are_fixed_precision_decimal()",
       "id": "test_model_metadata_test_money_columns_are_fixed_precision_decimal"
     },
@@ -10818,7 +10874,7 @@
       "file_type": "code",
       "source_file": "tests\\unit\\test_model_metadata.py",
       "source_location": "L42",
-      "community": 37,
+      "community": 39,
       "norm_label": "test_status_enums_use_named_varchar_constraints()",
       "id": "test_model_metadata_test_status_enums_use_named_varchar_constraints"
     },
@@ -10831,7 +10887,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 34,
+      "community": 36,
       "norm_label": "bankflow.transaction.events topic",
       "id": "architecture_kafka_topic"
     },
@@ -10844,7 +10900,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 34,
+      "community": 36,
       "norm_label": "python kafka consumer",
       "id": "architecture_python_consumer"
     },
@@ -10857,7 +10913,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 34,
+      "community": 36,
       "norm_label": "operational event store",
       "id": "architecture_event_store"
     },
@@ -10870,7 +10926,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 34,
+      "community": 36,
       "norm_label": "airflow and dbt analytics path",
       "id": "architecture_analytics_path"
     },
@@ -10883,7 +10939,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 34,
+      "community": 36,
       "norm_label": "transaction analytics decoupling rationale",
       "id": "architecture_decoupling_rationale"
     },
@@ -10987,7 +11043,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 16,
+      "community": 17,
       "norm_label": "invalid message commit policy",
       "id": "validation_invalid_policy"
     },
@@ -11078,7 +11134,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 16,
+      "community": 17,
       "norm_label": "adr-011 consumer event store decision",
       "id": "adr011_decision"
     },
@@ -11091,7 +11147,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 16,
+      "community": 17,
       "norm_label": "kafka at least once delivery",
       "id": "adr011_at_least_once"
     },
@@ -11104,7 +11160,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 16,
+      "community": 17,
       "norm_label": "independent consumed event store",
       "id": "adr011_independent_store"
     },
@@ -11117,7 +11173,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 16,
+      "community": 17,
       "norm_label": "separate event store rationale",
       "id": "adr011_store_rationale"
     },
@@ -11130,7 +11186,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 16,
+      "community": 17,
       "norm_label": "full envelope validation policy",
       "id": "adr011_validation_policy"
     },
@@ -11143,7 +11199,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 16,
+      "community": 17,
       "norm_label": "atomic replay deduplication",
       "id": "adr011_deduplication"
     },
@@ -11156,7 +11212,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 16,
+      "community": 17,
       "norm_label": "terminal outcome offset policy",
       "id": "adr011_commit_policy"
     },
@@ -11169,7 +11225,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 16,
+      "community": 17,
       "norm_label": "offset ordering rationale",
       "id": "adr011_order_rationale"
     },
@@ -11182,7 +11238,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 16,
+      "community": 17,
       "norm_label": "safe replay after offset failure",
       "id": "adr011_safe_replay"
     },
@@ -11195,7 +11251,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 16,
+      "community": 17,
       "norm_label": "invalid message rejection",
       "id": "adr011_invalid_handling"
     },
@@ -11208,7 +11264,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 16,
+      "community": 17,
       "norm_label": "poison message progress rationale",
       "id": "adr011_poison_rationale"
     },
@@ -11221,7 +11277,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 16,
+      "community": 17,
       "norm_label": "secret free position logging",
       "id": "adr011_structured_logging"
     },
@@ -11234,7 +11290,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 16,
+      "community": 17,
       "norm_label": "bounded poll signal shutdown",
       "id": "adr011_shutdown_policy"
     },
@@ -11247,7 +11303,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 16,
+      "community": 17,
       "norm_label": "effectively once persistence",
       "id": "adr011_effectively_once"
     },
@@ -11260,7 +11316,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 16,
+      "community": 17,
       "norm_label": "no day 10 dead letter topic",
       "id": "adr011_no_dlt"
     },
@@ -11273,7 +11329,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 16,
+      "community": 17,
       "norm_label": "schema version 1 contract",
       "id": "event_contract_v1"
     },
@@ -11286,7 +11342,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 16,
+      "community": 17,
       "norm_label": "closed canonical envelope",
       "id": "event_envelope"
     },
@@ -11299,7 +11355,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 16,
+      "community": 17,
       "norm_label": "uuidv4 event identity",
       "id": "event_identity"
     },
@@ -11312,7 +11368,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 16,
+      "community": 17,
       "norm_label": "transaction event payload",
       "id": "event_transaction_payload"
     },
@@ -11325,7 +11381,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 16,
+      "community": 17,
       "norm_label": "prohibited sensitive fields",
       "id": "event_prohibited_fields"
     },
@@ -11338,7 +11394,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 16,
+      "community": 17,
       "norm_label": "deserialize_event api",
       "id": "event_deserialize_api"
     },
@@ -11351,7 +11407,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 34,
+      "community": 36,
       "norm_label": "version 1 kafka transport",
       "id": "event_transport"
     },
@@ -11377,7 +11433,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 16,
+      "community": 17,
       "norm_label": "future transactional outbox",
       "id": "event_outbox_upgrade"
     },
@@ -11559,7 +11615,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 42,
+      "community": 44,
       "norm_label": "materialized staging snapshot tables",
       "id": "adr012_staging_table_materialization"
     },
@@ -11572,7 +11628,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 42,
+      "community": 44,
       "norm_label": "avoid persistent view dependencies that block alembic rollback",
       "id": "adr012_alembic_rollback_compatibility"
     },
@@ -11585,7 +11641,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 42,
+      "community": 44,
       "norm_label": "intermediate transaction metrics view",
       "id": "adr012_intermediate_view_materialization"
     },
@@ -11598,7 +11654,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 42,
+      "community": 44,
       "norm_label": "materialized analytics mart tables",
       "id": "adr012_table_mart_materialization"
     },
@@ -11607,7 +11663,7 @@
       "file_type": "code",
       "source_file": "pages\\5_Analytics.py",
       "source_location": "L1",
-      "community": 18,
+      "community": 19,
       "norm_label": "5_analytics.py",
       "id": "pages_5_analytics_py"
     },
@@ -11616,7 +11672,7 @@
       "file_type": "rationale",
       "source_file": "pages\\5_Analytics.py",
       "source_location": "L1",
-      "community": 18,
+      "community": 19,
       "norm_label": "authenticated operational analytics backed by the version 1 dbt marts.",
       "id": "5_analytics_rationale_1"
     },
@@ -11652,7 +11708,7 @@
       "file_type": "code",
       "source_file": "src\\bankflow\\analytics.py",
       "source_location": "L1",
-      "community": 18,
+      "community": 19,
       "norm_label": "analytics.py",
       "id": "src_bankflow_analytics_py"
     },
@@ -11661,7 +11717,7 @@
       "file_type": "code",
       "source_file": "src\\bankflow\\analytics.py",
       "source_location": "L11",
-      "community": 18,
+      "community": 19,
       "norm_label": "analyticsunavailableerror",
       "id": "analytics_analyticsunavailableerror"
     },
@@ -11670,7 +11726,7 @@
       "file_type": "code",
       "source_file": "src\\bankflow\\analytics.py",
       "source_location": "L16",
-      "community": 18,
+      "community": 19,
       "norm_label": "analyticsoverview",
       "id": "analytics_analyticsoverview"
     },
@@ -11679,7 +11735,7 @@
       "file_type": "code",
       "source_file": "src\\bankflow\\analytics.py",
       "source_location": "L29",
-      "community": 18,
+      "community": 19,
       "norm_label": "success_rate()",
       "id": "analytics_success_rate"
     },
@@ -11688,7 +11744,7 @@
       "file_type": "code",
       "source_file": "src\\bankflow\\analytics.py",
       "source_location": "L38",
-      "community": 18,
+      "community": 19,
       "norm_label": "dailytransactionmetric",
       "id": "analytics_dailytransactionmetric"
     },
@@ -11697,7 +11753,7 @@
       "file_type": "code",
       "source_file": "src\\bankflow\\analytics.py",
       "source_location": "L47",
-      "community": 18,
+      "community": 19,
       "norm_label": "transactiontypemetric",
       "id": "analytics_transactiontypemetric"
     },
@@ -11715,7 +11771,7 @@
       "file_type": "code",
       "source_file": "src\\bankflow\\analytics.py",
       "source_location": "L61",
-      "community": 18,
+      "community": 19,
       "norm_label": "has_activity()",
       "id": "analytics_has_activity"
     },
@@ -11724,7 +11780,7 @@
       "file_type": "code",
       "source_file": "src\\bankflow\\analytics.py",
       "source_location": "L130",
-      "community": 18,
+      "community": 19,
       "norm_label": "_decimal()",
       "id": "analytics_decimal"
     },
@@ -11733,7 +11789,7 @@
       "file_type": "code",
       "source_file": "src\\bankflow\\analytics.py",
       "source_location": "L134",
-      "community": 18,
+      "community": 19,
       "norm_label": "load_analytics_snapshot()",
       "id": "analytics_load_analytics_snapshot"
     },
@@ -11742,7 +11798,7 @@
       "file_type": "rationale",
       "source_file": "src\\bankflow\\analytics.py",
       "source_location": "L1",
-      "community": 18,
+      "community": 19,
       "norm_label": "read-only access to the version 1 dbt analytics marts.",
       "id": "analytics_rationale_1"
     },
@@ -11751,7 +11807,7 @@
       "file_type": "rationale",
       "source_file": "src\\bankflow\\analytics.py",
       "source_location": "L12",
-      "community": 18,
+      "community": 19,
       "norm_label": "the analytics schema is missing, stale, or temporarily unavailable.",
       "id": "analytics_rationale_12"
     },
@@ -11760,7 +11816,7 @@
       "file_type": "rationale",
       "source_file": "src\\bankflow\\analytics.py",
       "source_location": "L140",
-      "community": 18,
+      "community": 19,
       "norm_label": "load one internally consistent dashboard snapshot from materialized dbt marts.",
       "id": "analytics_rationale_140"
     },
@@ -12039,7 +12095,7 @@
       "file_type": "rationale",
       "source_file": "src\\bankflow\\config\\settings.py",
       "source_location": "L71",
-      "community": 71,
+      "community": 73,
       "norm_label": "build a url without interpolating or manually escaping credentials.",
       "id": "settings_rationale_71"
     },
@@ -12228,7 +12284,7 @@
       "file_type": "code",
       "source_file": "src\\bankflow\\ui\\runtime.py",
       "source_location": "L295",
-      "community": 18,
+      "community": 19,
       "norm_label": ".analytics_snapshot()",
       "id": "runtime_bankflowruntime_analytics_snapshot"
     },
@@ -12606,7 +12662,7 @@
       "file_type": "code",
       "source_file": "tests\\unit\\test_analytics.py",
       "source_location": "L1",
-      "community": 18,
+      "community": 19,
       "norm_label": "test_analytics.py",
       "id": "tests_unit_test_analytics_py"
     },
@@ -12615,7 +12671,7 @@
       "file_type": "code",
       "source_file": "tests\\unit\\test_analytics.py",
       "source_location": "L12",
-      "community": 18,
+      "community": 19,
       "norm_label": "analytics_engine()",
       "id": "test_analytics_analytics_engine"
     },
@@ -12624,7 +12680,7 @@
       "file_type": "code",
       "source_file": "tests\\unit\\test_analytics.py",
       "source_location": "L69",
-      "community": 18,
+      "community": 19,
       "norm_label": "test_snapshot_aggregates_exact_mart_metrics()",
       "id": "test_analytics_test_snapshot_aggregates_exact_mart_metrics"
     },
@@ -12633,7 +12689,7 @@
       "file_type": "code",
       "source_file": "tests\\unit\\test_analytics.py",
       "source_location": "L89",
-      "community": 18,
+      "community": 19,
       "norm_label": "test_snapshot_applies_one_date_boundary_to_transaction_and_authentication_marts()",
       "id": "test_analytics_test_snapshot_applies_one_date_boundary_to_transaction_and_authentication_marts"
     },
@@ -12642,7 +12698,7 @@
       "file_type": "code",
       "source_file": "tests\\unit\\test_analytics.py",
       "source_location": "L101",
-      "community": 18,
+      "community": 19,
       "norm_label": "test_missing_analytics_schema_returns_safe_actionable_error()",
       "id": "test_analytics_test_missing_analytics_schema_returns_safe_actionable_error"
     },
@@ -12755,58 +12811,6 @@
       "id": "test_monitoring_test_missing_analytics_dag_keeps_platform_summary_honestly_degraded"
     },
     {
-      "label": "Day 13 Analytics and Platform Status",
-      "file_type": "document",
-      "source_file": "docs/DAY13_VALIDATION.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 14,
-      "norm_label": "day 13 analytics and platform status",
-      "id": "day13_analytics_and_platform_status"
-    },
-    {
-      "label": "Authenticated Streamlit Analytics Page",
-      "file_type": "document",
-      "source_file": "docs/DAY13_VALIDATION.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 14,
-      "norm_label": "authenticated streamlit analytics page",
-      "id": "streamlit_analytics_page"
-    },
-    {
-      "label": "Session-Independent Platform Status Page",
-      "file_type": "document",
-      "source_file": "docs/architecture/ADR-013-analytics-and-status-ui.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 14,
-      "norm_label": "session-independent platform status page",
-      "id": "streamlit_platform_status_page"
-    },
-    {
-      "label": "Read-Only Mart Query Boundary",
-      "file_type": "document",
-      "source_file": "docs/architecture/ADR-013-analytics-and-status-ui.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 14,
-      "norm_label": "read-only mart query boundary",
-      "id": "read_only_mart_query_boundary"
-    },
-    {
       "label": "PostgreSQL Consumed Events Source",
       "file_type": "document",
       "source_file": "docs/DAY11_VALIDATION.md",
@@ -12815,7 +12819,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 14,
+      "community": 29,
       "norm_label": "postgresql consumed events source",
       "id": "consumed_events_source"
     },
@@ -12828,7 +12832,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 14,
+      "community": 29,
       "norm_label": "transaction event staging snapshot",
       "id": "transaction_event_staging_snapshot"
     },
@@ -12841,7 +12845,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 14,
+      "community": 29,
       "norm_label": "authentication event staging snapshot",
       "id": "authentication_event_staging_snapshot"
     },
@@ -12854,7 +12858,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 14,
+      "community": 29,
       "norm_label": "one terminal fact per transaction",
       "id": "terminal_transaction_metrics"
     },
@@ -12867,7 +12871,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 14,
+      "community": 29,
       "norm_label": "daily transaction mart",
       "id": "daily_transaction_mart"
     },
@@ -12880,7 +12884,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 14,
+      "community": 29,
       "norm_label": "authentication metrics mart",
       "id": "authentication_metrics_mart"
     },
@@ -12893,22 +12897,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 14,
+      "community": 29,
       "norm_label": "account activity mart",
       "id": "account_activity_mart"
-    },
-    {
-      "label": "Shared 7/30/90-Day or All-History Filter",
-      "file_type": "document",
-      "source_file": "docs/DAY13_VALIDATION.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 14,
-      "norm_label": "shared 7/30/90-day or all-history filter",
-      "id": "shared_analytics_date_filter"
     },
     {
       "label": "Decimal and NUMERIC(18,2) Exact Money",
@@ -12919,191 +12910,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 14,
+      "community": 29,
       "norm_label": "decimal and numeric(18,2) exact money",
       "id": "exact_decimal_money"
-    },
-    {
-      "label": "V1 Transaction and Authentication Metrics",
-      "file_type": "document",
-      "source_file": "docs/DAY13_VALIDATION.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 14,
-      "norm_label": "v1 transaction and authentication metrics",
-      "id": "v1_dashboard_metrics"
-    },
-    {
-      "label": "Persisted Transaction Volume and Type Charts",
-      "file_type": "document",
-      "source_file": "docs/DAY13_VALIDATION.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 14,
-      "norm_label": "persisted transaction volume and type charts",
-      "id": "persisted_transaction_charts"
-    },
-    {
-      "label": "Guided Missing-Mart and Zero-Metric Empty State",
-      "file_type": "document",
-      "source_file": "docs/DAY13_VALIDATION.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 14,
-      "norm_label": "guided missing-mart and zero-metric empty state",
-      "id": "guided_analytics_empty_state"
-    },
-    {
-      "label": "Concurrent Bounded Read-Only Service Probes",
-      "file_type": "document",
-      "source_file": "docs/architecture/ADR-013-analytics-and-status-ui.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 14,
-      "norm_label": "concurrent bounded read-only service probes",
-      "id": "concurrent_bounded_service_probes"
-    },
-    {
-      "label": "PostgreSQL Health Probe",
-      "file_type": "document",
-      "source_file": "docs/DAY13_VALIDATION.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 14,
-      "norm_label": "postgresql health probe",
-      "id": "postgresql_health_probe"
-    },
-    {
-      "label": "Redis Health Probe",
-      "file_type": "document",
-      "source_file": "docs/DAY13_VALIDATION.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 14,
-      "norm_label": "redis health probe",
-      "id": "redis_health_probe"
-    },
-    {
-      "label": "Kafka Broker Health Probe",
-      "file_type": "document",
-      "source_file": "docs/DAY13_VALIDATION.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 14,
-      "norm_label": "kafka broker health probe",
-      "id": "kafka_health_probe"
-    },
-    {
-      "label": "Airflow Scheduler Health Probe",
-      "file_type": "document",
-      "source_file": "docs/DAY13_VALIDATION.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 14,
-      "norm_label": "airflow scheduler health probe",
-      "id": "airflow_scheduler_health_probe"
-    },
-    {
-      "label": "Healthy Degraded Unavailable or Pending Statuses",
-      "file_type": "document",
-      "source_file": "docs/architecture/ADR-013-analytics-and-status-ui.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 14,
-      "norm_label": "healthy degraded unavailable or pending statuses",
-      "id": "normalized_service_statuses"
-    },
-    {
-      "label": "Local dbt Manifest and Run Results Summary",
-      "file_type": "document",
-      "source_file": "docs/architecture/ADR-013-analytics-and-status-ui.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 14,
-      "norm_label": "local dbt manifest and run results summary",
-      "id": "dbt_local_artifact_summary"
-    },
-    {
-      "label": "Pending Day 12 bankflow_daily_analytics DAG",
-      "file_type": "document",
-      "source_file": "docs/TASK.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 14,
-      "norm_label": "pending day 12 bankflow_daily_analytics dag",
-      "id": "day12_bankflow_daily_analytics_dag"
-    },
-    {
-      "label": "Scheduler Health Separate from DAG Availability",
-      "file_type": "document",
-      "source_file": "docs/architecture/ADR-013-analytics-and-status-ui.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 14,
-      "norm_label": "scheduler health separate from dag availability",
-      "id": "airflow_scheduler_dag_separation"
-    },
-    {
-      "label": "Kafka Consumer and dbt Build Freshness Boundary",
-      "file_type": "document",
-      "source_file": "docs/DAY13_VALIDATION.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 14,
-      "norm_label": "kafka consumer and dbt build freshness boundary",
-      "id": "analytics_freshness_boundary"
-    },
-    {
-      "label": "Point-in-Time Reachability without Recovery Actions",
-      "file_type": "document",
-      "source_file": "docs/architecture/ADR-013-analytics-and-status-ui.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 14,
-      "norm_label": "point-in-time reachability without recovery actions",
-      "id": "point_in_time_probe_boundary"
     },
     {
       "label": "Analytics and Platform Status UI Reference Alignment",
@@ -13114,22 +12923,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 14,
+      "community": 74,
       "norm_label": "analytics and platform status ui reference alignment",
       "id": "ui_reference_alignment"
-    },
-    {
-      "label": "Only Service Mart Pipeline Record or Artifact Values",
-      "file_type": "document",
-      "source_file": "docs/architecture/ADR-013-analytics-and-status-ui.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 14,
-      "norm_label": "only service mart pipeline record or artifact values",
-      "id": "real_bankflow_values_only"
     },
     {
       "label": "Six Models 67 Tests and Nine-Event Reconciliation",
@@ -13140,51 +12936,366 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 14,
+      "community": 29,
       "norm_label": "six models 67 tests and nine-event reconciliation",
       "id": "day11_dbt_validation_evidence"
     },
     {
-      "label": "91 Service-Free and 120 Service-Enabled Tests",
+      "label": "bankflow_daily_analytics.py",
+      "file_type": "code",
+      "source_file": "airflow\\dags\\bankflow_daily_analytics.py",
+      "source_location": "L1",
+      "id": "airflow_dags_bankflow_daily_analytics_py",
+      "community": 30,
+      "norm_label": "bankflow_daily_analytics.py"
+    },
+    {
+      "label": "BankFlowBashOperator",
+      "file_type": "code",
+      "source_file": "airflow\\dags\\bankflow_daily_analytics.py",
+      "source_location": "L17",
+      "id": "bankflow_daily_analytics_bankflowbashoperator",
+      "community": 30,
+      "norm_label": "bankflowbashoperator"
+    },
+    {
+      "label": "BashOperator",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "id": "bashoperator",
+      "community": 30,
+      "norm_label": "bashoperator"
+    },
+    {
+      "label": "_script()",
+      "file_type": "code",
+      "source_file": "airflow\\dags\\bankflow_daily_analytics.py",
+      "source_location": "L23",
+      "id": "bankflow_daily_analytics_script",
+      "community": 30,
+      "norm_label": "_script()"
+    },
+    {
+      "label": "_failure_callback()",
+      "file_type": "code",
+      "source_file": "airflow\\dags\\bankflow_daily_analytics.py",
+      "source_location": "L27",
+      "id": "bankflow_daily_analytics_failure_callback",
+      "community": 30,
+      "norm_label": "_failure_callback()"
+    },
+    {
+      "label": "_bash_task()",
+      "file_type": "code",
+      "source_file": "airflow\\dags\\bankflow_daily_analytics.py",
+      "source_location": "L88",
+      "id": "bankflow_daily_analytics_bash_task",
+      "community": 30,
+      "norm_label": "_bash_task()"
+    },
+    {
+      "label": "Daily orchestration for the BankFlow Version 1 analytics layer.",
+      "file_type": "rationale",
+      "source_file": "airflow\\dags\\bankflow_daily_analytics.py",
+      "source_location": "L1",
+      "id": "bankflow_daily_analytics_rationale_1",
+      "community": 30,
+      "norm_label": "daily orchestration for the bankflow version 1 analytics layer."
+    },
+    {
+      "label": "Keep inline shell commands from being treated as template filenames.",
+      "file_type": "rationale",
+      "source_file": "airflow\\dags\\bankflow_daily_analytics.py",
+      "source_location": "L18",
+      "id": "bankflow_daily_analytics_rationale_18",
+      "community": 30,
+      "norm_label": "keep inline shell commands from being treated as template filenames."
+    },
+    {
+      "label": "Record useful task identity without logging commands or credentials.",
+      "file_type": "rationale",
+      "source_file": "airflow\\dags\\bankflow_daily_analytics.py",
+      "source_location": "L28",
+      "id": "bankflow_daily_analytics_rationale_28",
+      "community": 30,
+      "norm_label": "record useful task identity without logging commands or credentials."
+    },
+    {
+      "label": "Day 12 Airflow Analytics Orchestration",
       "file_type": "document",
-      "source_file": "docs/DAY13_VALIDATION.md",
+      "source_file": "docs/DAY12_VALIDATION.md",
       "source_location": null,
       "source_url": null,
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 14,
-      "norm_label": "91 service-free and 120 service-enabled tests",
-      "id": "day13_automated_validation_evidence"
+      "id": "day12_airflow_orchestration",
+      "community": 15,
+      "norm_label": "day 12 airflow analytics orchestration"
     },
     {
-      "label": "Healthy PostgreSQL Redis Kafka Airflow and dbt Evidence",
+      "label": "bankflow_daily_analytics DAG",
       "file_type": "document",
-      "source_file": "docs/DAY13_VALIDATION.md",
+      "source_file": "airflow/README.md",
       "source_location": null,
       "source_url": null,
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 14,
-      "norm_label": "healthy postgresql redis kafka airflow and dbt evidence",
-      "id": "day13_live_probe_evidence"
+      "id": "bankflow_daily_analytics_dag",
+      "community": 15,
+      "norm_label": "bankflow_daily_analytics dag"
     },
     {
-      "label": "Complete Day 12 Analytics Orchestration Next",
+      "label": "Daily 02:00 UTC Schedule",
       "file_type": "document",
-      "source_file": "docs/MEMORY.md",
+      "source_file": "airflow/README.md",
       "source_location": null,
       "source_url": null,
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 14,
-      "norm_label": "complete day 12 analytics orchestration next",
-      "id": "day12_orchestration_next_step"
+      "id": "daily_0200_utc_schedule",
+      "community": 15,
+      "norm_label": "daily 02:00 utc schedule"
     },
     {
-      "label": "Day 14 Testing CI Documentation and v1.0.0 Release",
+      "label": "PostgreSQL Health Gate",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-014-airflow-analytics-orchestration.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "postgresql_health_gate",
+      "community": 15,
+      "norm_label": "postgresql health gate"
+    },
+    {
+      "label": "Persisted Consumed Event Store",
+      "file_type": "document",
+      "source_file": "docs/DAY12_VALIDATION.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "consumed_event_store",
+      "community": 15,
+      "norm_label": "persisted consumed event store"
+    },
+    {
+      "label": "Consumed Event Freshness Gate",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-014-airflow-analytics-orchestration.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "event_freshness_gate",
+      "community": 15,
+      "norm_label": "consumed event freshness gate"
+    },
+    {
+      "label": "Configurable 48-Hour Freshness Threshold",
+      "file_type": "document",
+      "source_file": "airflow/README.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "freshness_48_hour_threshold",
+      "community": 15,
+      "norm_label": "configurable 48-hour freshness threshold"
+    },
+    {
+      "label": "Empty Source First-Run Acceptance",
+      "file_type": "document",
+      "source_file": "docs/DAY12_VALIDATION.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "empty_source_first_run",
+      "community": 15,
+      "norm_label": "empty source first-run acceptance"
+    },
+    {
+      "label": "Stale Non-Empty Source Failure",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-014-airflow-analytics-orchestration.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "stale_nonempty_source_failure",
+      "community": 15,
+      "norm_label": "stale non-empty source failure"
+    },
+    {
+      "label": "dbt Staging Build Stage",
+      "file_type": "document",
+      "source_file": "docs/DAY12_VALIDATION.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "dbt_staging_stage",
+      "community": 15,
+      "norm_label": "dbt staging build stage"
+    },
+    {
+      "label": "dbt Intermediate and Marts Build Stage",
+      "file_type": "document",
+      "source_file": "docs/DAY12_VALIDATION.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "dbt_marts_stage",
+      "community": 15,
+      "norm_label": "dbt intermediate and marts build stage"
+    },
+    {
+      "label": "dbt Data Quality Stage",
+      "file_type": "document",
+      "source_file": "docs/DAY12_VALIDATION.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "dbt_quality_stage",
+      "community": 15,
+      "norm_label": "dbt data quality stage"
+    },
+    {
+      "label": "dbt Documentation Generation",
+      "file_type": "document",
+      "source_file": "docs/DAY12_VALIDATION.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "dbt_docs_generation",
+      "community": 15,
+      "norm_label": "dbt documentation generation"
+    },
+    {
+      "label": "Sequential Five-Task Dependency Chain",
+      "file_type": "document",
+      "source_file": "airflow/README.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "sequential_task_chain",
+      "community": 15,
+      "norm_label": "sequential five-task dependency chain"
+    },
+    {
+      "label": "Two Retries with Exponential Backoff",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-014-airflow-analytics-orchestration.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "airflow_retry_policy",
+      "community": 15,
+      "norm_label": "two retries with exponential backoff"
+    },
+    {
+      "label": "Twenty-Minute Task Timeout",
+      "file_type": "document",
+      "source_file": "docs/DAY12_VALIDATION.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "bounded_task_execution",
+      "community": 15,
+      "norm_label": "twenty-minute task timeout"
+    },
+    {
+      "label": "Credential-Safe Failure Logging",
+      "file_type": "document",
+      "source_file": "airflow/README.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "credential_safe_failure_logging",
+      "community": 15,
+      "norm_label": "credential-safe failure logging"
+    },
+    {
+      "label": "Separate Airflow DAG Directory Deployment",
+      "file_type": "document",
+      "source_file": "airflow/README.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "container_dag_deployment",
+      "community": 15,
+      "norm_label": "separate airflow dag directory deployment"
+    },
+    {
+      "label": "Container-Local PostgreSQL Port Mapping",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-014-airflow-analytics-orchestration.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "container_local_postgresql_mapping",
+      "community": 15,
+      "norm_label": "container-local postgresql port mapping"
+    },
+    {
+      "label": "Airflow UI and CLI Manual Operations",
+      "file_type": "document",
+      "source_file": "airflow/README.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "airflow_manual_operations",
+      "community": 15,
+      "norm_label": "airflow ui and cli manual operations"
+    },
+    {
+      "label": "Day 12 Runtime Validation Evidence",
+      "file_type": "document",
+      "source_file": "docs/DAY12_VALIDATION.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "day12_runtime_validation",
+      "community": 15,
+      "norm_label": "day 12 runtime validation evidence"
+    },
+    {
+      "label": "Zero Airflow Import Errors",
       "file_type": "document",
       "source_file": "docs/TASK.md",
       "source_location": null,
@@ -13192,9 +13303,139 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 14,
-      "norm_label": "day 14 testing ci documentation and v1.0.0 release",
-      "id": "day14_testing_ci_v1_release"
+      "id": "zero_airflow_import_errors",
+      "community": 15,
+      "norm_label": "zero airflow import errors"
+    },
+    {
+      "label": "Five Successful Airflow Tasks",
+      "file_type": "document",
+      "source_file": "docs/DAY12_VALIDATION.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "five_successful_airflow_tasks",
+      "community": 15,
+      "norm_label": "five successful airflow tasks"
+    },
+    {
+      "label": "67 Passing dbt Data Tests",
+      "file_type": "document",
+      "source_file": "docs/DAY12_VALIDATION.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "sixty_seven_passing_dbt_tests",
+      "community": 15,
+      "norm_label": "67 passing dbt data tests"
+    },
+    {
+      "label": "Version 1 PostgreSQL Analytics Marts",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "version1_analytics_marts",
+      "community": 15,
+      "norm_label": "version 1 postgresql analytics marts"
+    },
+    {
+      "label": "Mart-Backed Streamlit Analytics Dashboard",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-013-analytics-and-status-ui.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "streamlit_analytics_dashboard",
+      "community": 15,
+      "norm_label": "mart-backed streamlit analytics dashboard"
+    },
+    {
+      "label": "Failure-Tolerant Platform Status Page",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-013-analytics-and-status-ui.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "platform_status_page",
+      "community": 15,
+      "norm_label": "failure-tolerant platform status page"
+    },
+    {
+      "label": "Airflow Scheduler Health",
+      "file_type": "document",
+      "source_file": "docs/DAY13_VALIDATION.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "airflow_scheduler_health",
+      "community": 15,
+      "norm_label": "airflow scheduler health"
+    },
+    {
+      "label": "Analytics DAG Availability",
+      "file_type": "document",
+      "source_file": "docs/DAY13_VALIDATION.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "analytics_dag_availability",
+      "community": 15,
+      "norm_label": "analytics dag availability"
+    },
+    {
+      "label": "Local dbt Artifact Status",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-013-analytics-and-status-ui.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "dbt_artifact_status",
+      "community": 15,
+      "norm_label": "local dbt artifact status"
+    },
+    {
+      "label": "Kafka Consumer Lifecycle Boundary",
+      "file_type": "document",
+      "source_file": "docs/architecture/ADR-014-airflow-analytics-orchestration.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "kafka_consumer_boundary",
+      "community": 15,
+      "norm_label": "kafka consumer lifecycle boundary"
+    },
+    {
+      "label": "Day 13 Scheduler and DAG Status Boundary",
+      "file_type": "document",
+      "source_file": "docs/DAY13_VALIDATION.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "day13_status_boundary",
+      "community": 15,
+      "norm_label": "day 13 scheduler and dag status boundary"
     }
   ],
   "links": [
@@ -35521,234 +35762,6 @@
       "target": "test_monitoring_test_kafka_health_reports_reachable_broker_count"
     },
     {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1,
-      "source_file": "docs/DAY13_VALIDATION.md",
-      "source_location": null,
-      "weight": 1,
-      "_src": "day13_analytics_and_platform_status",
-      "_tgt": "streamlit_analytics_page",
-      "source": "day13_analytics_and_platform_status",
-      "target": "streamlit_analytics_page"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1,
-      "source_file": "docs/DAY13_VALIDATION.md",
-      "source_location": null,
-      "weight": 1,
-      "_src": "day13_analytics_and_platform_status",
-      "_tgt": "streamlit_platform_status_page",
-      "source": "day13_analytics_and_platform_status",
-      "target": "streamlit_platform_status_page"
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1,
-      "source_file": "docs/architecture/ADR-013-analytics-and-status-ui.md",
-      "source_location": null,
-      "weight": 1,
-      "_src": "streamlit_analytics_page",
-      "_tgt": "read_only_mart_query_boundary",
-      "source": "streamlit_analytics_page",
-      "target": "read_only_mart_query_boundary"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1,
-      "source_file": "docs/DAY13_VALIDATION.md",
-      "source_location": null,
-      "weight": 1,
-      "_src": "streamlit_analytics_page",
-      "_tgt": "shared_analytics_date_filter",
-      "source": "streamlit_analytics_page",
-      "target": "shared_analytics_date_filter"
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1,
-      "source_file": "docs/architecture/ADR-013-analytics-and-status-ui.md",
-      "source_location": null,
-      "weight": 1,
-      "_src": "streamlit_analytics_page",
-      "_tgt": "exact_decimal_money",
-      "source": "streamlit_analytics_page",
-      "target": "exact_decimal_money"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1,
-      "source_file": "docs/DAY13_VALIDATION.md",
-      "source_location": null,
-      "weight": 1,
-      "_src": "streamlit_analytics_page",
-      "_tgt": "v1_dashboard_metrics",
-      "source": "streamlit_analytics_page",
-      "target": "v1_dashboard_metrics"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1,
-      "source_file": "docs/DAY13_VALIDATION.md",
-      "source_location": null,
-      "weight": 1,
-      "_src": "streamlit_analytics_page",
-      "_tgt": "persisted_transaction_charts",
-      "source": "streamlit_analytics_page",
-      "target": "persisted_transaction_charts"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1,
-      "source_file": "docs/DAY13_VALIDATION.md",
-      "source_location": null,
-      "weight": 1,
-      "_src": "streamlit_analytics_page",
-      "_tgt": "guided_analytics_empty_state",
-      "source": "streamlit_analytics_page",
-      "target": "guided_analytics_empty_state"
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1,
-      "source_file": "docs/DAY13_VALIDATION.md",
-      "source_location": null,
-      "weight": 1,
-      "_src": "streamlit_analytics_page",
-      "_tgt": "analytics_freshness_boundary",
-      "source": "streamlit_analytics_page",
-      "target": "analytics_freshness_boundary"
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1,
-      "source_file": "docs/UI_REFERENCE_MAP.md",
-      "source_location": null,
-      "weight": 1,
-      "_src": "streamlit_analytics_page",
-      "_tgt": "ui_reference_alignment",
-      "source": "streamlit_analytics_page",
-      "target": "ui_reference_alignment"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1,
-      "source_file": "docs/DAY13_VALIDATION.md",
-      "source_location": null,
-      "weight": 1,
-      "_src": "day13_automated_validation_evidence",
-      "_tgt": "streamlit_analytics_page",
-      "source": "streamlit_analytics_page",
-      "target": "day13_automated_validation_evidence"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1,
-      "source_file": "docs/architecture/ADR-013-analytics-and-status-ui.md",
-      "source_location": null,
-      "weight": 1,
-      "_src": "streamlit_platform_status_page",
-      "_tgt": "concurrent_bounded_service_probes",
-      "source": "streamlit_platform_status_page",
-      "target": "concurrent_bounded_service_probes"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1,
-      "source_file": "docs/architecture/ADR-013-analytics-and-status-ui.md",
-      "source_location": null,
-      "weight": 1,
-      "_src": "streamlit_platform_status_page",
-      "_tgt": "dbt_local_artifact_summary",
-      "source": "streamlit_platform_status_page",
-      "target": "dbt_local_artifact_summary"
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1,
-      "source_file": "docs/architecture/ADR-013-analytics-and-status-ui.md",
-      "source_location": null,
-      "weight": 1,
-      "_src": "streamlit_platform_status_page",
-      "_tgt": "point_in_time_probe_boundary",
-      "source": "streamlit_platform_status_page",
-      "target": "point_in_time_probe_boundary"
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1,
-      "source_file": "docs/UI_REFERENCE_MAP.md",
-      "source_location": null,
-      "weight": 1,
-      "_src": "streamlit_platform_status_page",
-      "_tgt": "ui_reference_alignment",
-      "source": "streamlit_platform_status_page",
-      "target": "ui_reference_alignment"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1,
-      "source_file": "docs/DAY13_VALIDATION.md",
-      "source_location": null,
-      "weight": 1,
-      "_src": "day13_automated_validation_evidence",
-      "_tgt": "streamlit_platform_status_page",
-      "source": "streamlit_platform_status_page",
-      "target": "day13_automated_validation_evidence"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1,
-      "source_file": "docs/architecture/ADR-013-analytics-and-status-ui.md",
-      "source_location": null,
-      "weight": 1,
-      "_src": "read_only_mart_query_boundary",
-      "_tgt": "daily_transaction_mart",
-      "source": "read_only_mart_query_boundary",
-      "target": "daily_transaction_mart"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1,
-      "source_file": "docs/architecture/ADR-013-analytics-and-status-ui.md",
-      "source_location": null,
-      "weight": 1,
-      "_src": "read_only_mart_query_boundary",
-      "_tgt": "authentication_metrics_mart",
-      "source": "read_only_mart_query_boundary",
-      "target": "authentication_metrics_mart"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1,
-      "source_file": "docs/architecture/ADR-013-analytics-and-status-ui.md",
-      "source_location": null,
-      "weight": 1,
-      "_src": "read_only_mart_query_boundary",
-      "_tgt": "account_activity_mart",
-      "source": "read_only_mart_query_boundary",
-      "target": "account_activity_mart"
-    },
-    {
       "relation": "shares_data_with",
       "confidence": "EXTRACTED",
       "confidence_score": 1,
@@ -35771,18 +35784,6 @@
       "_tgt": "authentication_event_staging_snapshot",
       "source": "consumed_events_source",
       "target": "authentication_event_staging_snapshot"
-    },
-    {
-      "relation": "rationale_for",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1,
-      "source_file": "docs/DAY11_VALIDATION.md",
-      "source_location": null,
-      "weight": 1,
-      "_src": "consumed_events_source",
-      "_tgt": "analytics_freshness_boundary",
-      "source": "consumed_events_source",
-      "target": "analytics_freshness_boundary"
     },
     {
       "relation": "shares_data_with",
@@ -35857,18 +35858,6 @@
       "target": "exact_decimal_money"
     },
     {
-      "relation": "shares_data_with",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1,
-      "source_file": "docs/DAY13_VALIDATION.md",
-      "source_location": null,
-      "weight": 1,
-      "_src": "persisted_transaction_charts",
-      "_tgt": "daily_transaction_mart",
-      "source": "daily_transaction_mart",
-      "target": "persisted_transaction_charts"
-    },
-    {
       "relation": "references",
       "confidence": "EXTRACTED",
       "confidence_score": 1,
@@ -35905,160 +35894,568 @@
       "target": "day11_dbt_validation_evidence"
     },
     {
-      "relation": "rationale_for",
+      "relation": "contains",
       "confidence": "EXTRACTED",
-      "confidence_score": 1,
-      "source_file": "docs/architecture/ADR-013-analytics-and-status-ui.md",
-      "source_location": null,
-      "weight": 1,
-      "_src": "guided_analytics_empty_state",
-      "_tgt": "real_bankflow_values_only",
-      "source": "guided_analytics_empty_state",
-      "target": "real_bankflow_values_only"
+      "source_file": "airflow\\dags\\bankflow_daily_analytics.py",
+      "source_location": "L17",
+      "weight": 1.0,
+      "_src": "airflow_dags_bankflow_daily_analytics_py",
+      "_tgt": "bankflow_daily_analytics_bankflowbashoperator",
+      "source": "airflow_dags_bankflow_daily_analytics_py",
+      "target": "bankflow_daily_analytics_bankflowbashoperator",
+      "confidence_score": 1.0
     },
     {
-      "relation": "conceptually_related_to",
+      "relation": "contains",
       "confidence": "EXTRACTED",
-      "confidence_score": 1,
-      "source_file": "docs/architecture/ADR-013-analytics-and-status-ui.md",
-      "source_location": null,
-      "weight": 1,
-      "_src": "concurrent_bounded_service_probes",
-      "_tgt": "normalized_service_statuses",
-      "source": "concurrent_bounded_service_probes",
-      "target": "normalized_service_statuses"
+      "source_file": "airflow\\dags\\bankflow_daily_analytics.py",
+      "source_location": "L23",
+      "weight": 1.0,
+      "_src": "airflow_dags_bankflow_daily_analytics_py",
+      "_tgt": "bankflow_daily_analytics_script",
+      "source": "airflow_dags_bankflow_daily_analytics_py",
+      "target": "bankflow_daily_analytics_script",
+      "confidence_score": 1.0
     },
     {
-      "relation": "references",
+      "relation": "contains",
       "confidence": "EXTRACTED",
-      "confidence_score": 1,
-      "source_file": "docs/DAY13_VALIDATION.md",
-      "source_location": null,
-      "weight": 1,
-      "_src": "concurrent_bounded_service_probes",
-      "_tgt": "postgresql_health_probe",
-      "source": "concurrent_bounded_service_probes",
-      "target": "postgresql_health_probe"
+      "source_file": "airflow\\dags\\bankflow_daily_analytics.py",
+      "source_location": "L27",
+      "weight": 1.0,
+      "_src": "airflow_dags_bankflow_daily_analytics_py",
+      "_tgt": "bankflow_daily_analytics_failure_callback",
+      "source": "airflow_dags_bankflow_daily_analytics_py",
+      "target": "bankflow_daily_analytics_failure_callback",
+      "confidence_score": 1.0
     },
     {
-      "relation": "references",
+      "relation": "contains",
       "confidence": "EXTRACTED",
-      "confidence_score": 1,
-      "source_file": "docs/DAY13_VALIDATION.md",
-      "source_location": null,
-      "weight": 1,
-      "_src": "concurrent_bounded_service_probes",
-      "_tgt": "redis_health_probe",
-      "source": "concurrent_bounded_service_probes",
-      "target": "redis_health_probe"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1,
-      "source_file": "docs/DAY13_VALIDATION.md",
-      "source_location": null,
-      "weight": 1,
-      "_src": "concurrent_bounded_service_probes",
-      "_tgt": "kafka_health_probe",
-      "source": "concurrent_bounded_service_probes",
-      "target": "kafka_health_probe"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1,
-      "source_file": "docs/DAY13_VALIDATION.md",
-      "source_location": null,
-      "weight": 1,
-      "_src": "concurrent_bounded_service_probes",
-      "_tgt": "airflow_scheduler_health_probe",
-      "source": "concurrent_bounded_service_probes",
-      "target": "airflow_scheduler_health_probe"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1,
-      "source_file": "docs/DAY13_VALIDATION.md",
-      "source_location": null,
-      "weight": 1,
-      "_src": "day13_live_probe_evidence",
-      "_tgt": "concurrent_bounded_service_probes",
-      "source": "concurrent_bounded_service_probes",
-      "target": "day13_live_probe_evidence"
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1,
-      "source_file": "docs/architecture/ADR-013-analytics-and-status-ui.md",
-      "source_location": null,
-      "weight": 1,
-      "_src": "airflow_scheduler_health_probe",
-      "_tgt": "airflow_scheduler_dag_separation",
-      "source": "airflow_scheduler_health_probe",
-      "target": "airflow_scheduler_dag_separation"
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1,
-      "source_file": "docs/DAY13_VALIDATION.md",
-      "source_location": null,
-      "weight": 1,
-      "_src": "day12_bankflow_daily_analytics_dag",
-      "_tgt": "normalized_service_statuses",
-      "source": "normalized_service_statuses",
-      "target": "day12_bankflow_daily_analytics_dag"
+      "source_file": "airflow\\dags\\bankflow_daily_analytics.py",
+      "source_location": "L88",
+      "weight": 1.0,
+      "_src": "airflow_dags_bankflow_daily_analytics_py",
+      "_tgt": "bankflow_daily_analytics_bash_task",
+      "source": "airflow_dags_bankflow_daily_analytics_py",
+      "target": "bankflow_daily_analytics_bash_task",
+      "confidence_score": 1.0
     },
     {
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
-      "confidence_score": 1,
-      "source_file": "docs/architecture/ADR-013-analytics-and-status-ui.md",
-      "source_location": null,
-      "weight": 1,
-      "_src": "airflow_scheduler_dag_separation",
-      "_tgt": "day12_bankflow_daily_analytics_dag",
-      "source": "day12_bankflow_daily_analytics_dag",
-      "target": "airflow_scheduler_dag_separation"
+      "source_file": "airflow\\dags\\bankflow_daily_analytics.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_src": "bankflow_daily_analytics_rationale_1",
+      "_tgt": "airflow_dags_bankflow_daily_analytics_py",
+      "source": "airflow_dags_bankflow_daily_analytics_py",
+      "target": "bankflow_daily_analytics_rationale_1",
+      "confidence_score": 1.0
     },
     {
-      "relation": "conceptually_related_to",
+      "relation": "inherits",
       "confidence": "EXTRACTED",
-      "confidence_score": 1,
-      "source_file": "docs/MEMORY.md",
-      "source_location": null,
-      "weight": 1,
-      "_src": "day12_bankflow_daily_analytics_dag",
-      "_tgt": "day12_orchestration_next_step",
-      "source": "day12_bankflow_daily_analytics_dag",
-      "target": "day12_orchestration_next_step"
+      "source_file": "airflow\\dags\\bankflow_daily_analytics.py",
+      "source_location": "L17",
+      "weight": 1.0,
+      "_src": "bankflow_daily_analytics_bankflowbashoperator",
+      "_tgt": "bashoperator",
+      "source": "bankflow_daily_analytics_bankflowbashoperator",
+      "target": "bashoperator",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "airflow\\dags\\bankflow_daily_analytics.py",
+      "source_location": "L89",
+      "weight": 1.0,
+      "_src": "bankflow_daily_analytics_bash_task",
+      "_tgt": "bankflow_daily_analytics_bankflowbashoperator",
+      "source": "bankflow_daily_analytics_bankflowbashoperator",
+      "target": "bankflow_daily_analytics_bash_task",
+      "confidence_score": 1.0
     },
     {
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
-      "confidence_score": 1,
-      "source_file": "docs/UI_REFERENCE_MAP.md",
+      "source_file": "airflow\\dags\\bankflow_daily_analytics.py",
+      "source_location": "L18",
+      "weight": 1.0,
+      "_src": "bankflow_daily_analytics_rationale_18",
+      "_tgt": "bankflow_daily_analytics_bankflowbashoperator",
+      "source": "bankflow_daily_analytics_bankflowbashoperator",
+      "target": "bankflow_daily_analytics_rationale_18",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "airflow\\dags\\bankflow_daily_analytics.py",
+      "source_location": "L91",
+      "weight": 1.0,
+      "_src": "bankflow_daily_analytics_bash_task",
+      "_tgt": "bankflow_daily_analytics_script",
+      "source": "bankflow_daily_analytics_script",
+      "target": "bankflow_daily_analytics_bash_task",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "airflow\\dags\\bankflow_daily_analytics.py",
+      "source_location": "L28",
+      "weight": 1.0,
+      "_src": "bankflow_daily_analytics_rationale_28",
+      "_tgt": "bankflow_daily_analytics_failure_callback",
+      "source": "bankflow_daily_analytics_failure_callback",
+      "target": "bankflow_daily_analytics_rationale_28",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DAY12_VALIDATION.md",
       "source_location": null,
-      "weight": 1,
-      "_src": "ui_reference_alignment",
-      "_tgt": "real_bankflow_values_only",
-      "source": "ui_reference_alignment",
-      "target": "real_bankflow_values_only"
+      "weight": 1.0,
+      "_src": "day12_airflow_orchestration",
+      "_tgt": "bankflow_daily_analytics_dag",
+      "source": "day12_airflow_orchestration",
+      "target": "bankflow_daily_analytics_dag"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "airflow/README.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "bankflow_daily_analytics_dag",
+      "_tgt": "daily_0200_utc_schedule",
+      "source": "bankflow_daily_analytics_dag",
+      "target": "daily_0200_utc_schedule"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "airflow/README.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "bankflow_daily_analytics_dag",
+      "_tgt": "sequential_task_chain",
+      "source": "bankflow_daily_analytics_dag",
+      "target": "sequential_task_chain"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/architecture/ADR-014-airflow-analytics-orchestration.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "bankflow_daily_analytics_dag",
+      "_tgt": "airflow_retry_policy",
+      "source": "bankflow_daily_analytics_dag",
+      "target": "airflow_retry_policy"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DAY12_VALIDATION.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "bankflow_daily_analytics_dag",
+      "_tgt": "bounded_task_execution",
+      "source": "bankflow_daily_analytics_dag",
+      "target": "bounded_task_execution"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "airflow/README.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "bankflow_daily_analytics_dag",
+      "_tgt": "credential_safe_failure_logging",
+      "source": "bankflow_daily_analytics_dag",
+      "target": "credential_safe_failure_logging"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "airflow/README.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "container_dag_deployment",
+      "_tgt": "bankflow_daily_analytics_dag",
+      "source": "bankflow_daily_analytics_dag",
+      "target": "container_dag_deployment"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/architecture/ADR-014-airflow-analytics-orchestration.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "bankflow_daily_analytics_dag",
+      "_tgt": "container_local_postgresql_mapping",
+      "source": "bankflow_daily_analytics_dag",
+      "target": "container_local_postgresql_mapping"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "airflow/README.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "airflow_manual_operations",
+      "_tgt": "bankflow_daily_analytics_dag",
+      "source": "bankflow_daily_analytics_dag",
+      "target": "airflow_manual_operations"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.92,
+      "source_file": "docs/architecture/ADR-013-analytics-and-status-ui.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "streamlit_analytics_dashboard",
+      "_tgt": "bankflow_daily_analytics_dag",
+      "source": "bankflow_daily_analytics_dag",
+      "target": "streamlit_analytics_dashboard"
     },
     {
       "relation": "conceptually_related_to",
       "confidence": "EXTRACTED",
-      "confidence_score": 1,
+      "confidence_score": 0.99,
+      "source_file": "docs/architecture/ADR-014-airflow-analytics-orchestration.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "bankflow_daily_analytics_dag",
+      "_tgt": "kafka_consumer_boundary",
+      "source": "bankflow_daily_analytics_dag",
+      "target": "kafka_consumer_boundary"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "airflow/README.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "sequential_task_chain",
+      "_tgt": "postgresql_health_gate",
+      "source": "postgresql_health_gate",
+      "target": "sequential_task_chain"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DAY12_VALIDATION.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "postgresql_health_gate",
+      "_tgt": "consumed_event_store",
+      "source": "postgresql_health_gate",
+      "target": "consumed_event_store"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DAY12_VALIDATION.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "event_freshness_gate",
+      "_tgt": "consumed_event_store",
+      "source": "consumed_event_store",
+      "target": "event_freshness_gate"
+    },
+    {
+      "relation": "shares_data_with",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.99,
+      "source_file": "docs/DAY12_VALIDATION.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "kafka_consumer_boundary",
+      "_tgt": "consumed_event_store",
+      "source": "consumed_event_store",
+      "target": "kafka_consumer_boundary"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "airflow/README.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "sequential_task_chain",
+      "_tgt": "event_freshness_gate",
+      "source": "event_freshness_gate",
+      "target": "sequential_task_chain"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "airflow/README.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "event_freshness_gate",
+      "_tgt": "freshness_48_hour_threshold",
+      "source": "event_freshness_gate",
+      "target": "freshness_48_hour_threshold"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DAY12_VALIDATION.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "event_freshness_gate",
+      "_tgt": "empty_source_first_run",
+      "source": "event_freshness_gate",
+      "target": "empty_source_first_run"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/architecture/ADR-014-airflow-analytics-orchestration.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "event_freshness_gate",
+      "_tgt": "stale_nonempty_source_failure",
+      "source": "event_freshness_gate",
+      "target": "stale_nonempty_source_failure"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.99,
+      "source_file": "docs/DAY12_VALIDATION.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "empty_source_first_run",
+      "_tgt": "version1_analytics_marts",
+      "source": "empty_source_first_run",
+      "target": "version1_analytics_marts"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DAY12_VALIDATION.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "sequential_task_chain",
+      "_tgt": "dbt_staging_stage",
+      "source": "dbt_staging_stage",
+      "target": "sequential_task_chain"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "airflow/README.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "dbt_staging_stage",
+      "_tgt": "dbt_marts_stage",
+      "source": "dbt_staging_stage",
+      "target": "dbt_marts_stage"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "airflow/README.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "dbt_marts_stage",
+      "_tgt": "dbt_quality_stage",
+      "source": "dbt_marts_stage",
+      "target": "dbt_quality_stage"
+    },
+    {
+      "relation": "shares_data_with",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.98,
+      "source_file": "docs/DAY12_VALIDATION.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "dbt_marts_stage",
+      "_tgt": "version1_analytics_marts",
+      "source": "dbt_marts_stage",
+      "target": "version1_analytics_marts"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.98,
+      "source_file": "docs/architecture/ADR-014-airflow-analytics-orchestration.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "dbt_quality_stage",
+      "_tgt": "dbt_docs_generation",
+      "source": "dbt_quality_stage",
+      "target": "dbt_docs_generation"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.99,
+      "source_file": "docs/DAY12_VALIDATION.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "sixty_seven_passing_dbt_tests",
+      "_tgt": "dbt_quality_stage",
+      "source": "dbt_quality_stage",
+      "target": "sixty_seven_passing_dbt_tests"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "docs/DAY12_VALIDATION.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "five_successful_airflow_tasks",
+      "_tgt": "sequential_task_chain",
+      "source": "sequential_task_chain",
+      "target": "five_successful_airflow_tasks"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.96,
+      "source_file": "docs/DAY13_VALIDATION.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "analytics_dag_availability",
+      "_tgt": "container_dag_deployment",
+      "source": "container_dag_deployment",
+      "target": "analytics_dag_availability"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
       "source_file": "docs/TASK.md",
       "source_location": null,
-      "weight": 1,
-      "_src": "day12_orchestration_next_step",
-      "_tgt": "day14_testing_ci_v1_release",
-      "source": "day12_orchestration_next_step",
-      "target": "day14_testing_ci_v1_release"
+      "weight": 1.0,
+      "_src": "day12_runtime_validation",
+      "_tgt": "zero_airflow_import_errors",
+      "source": "day12_runtime_validation",
+      "target": "zero_airflow_import_errors"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DAY12_VALIDATION.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "day12_runtime_validation",
+      "_tgt": "five_successful_airflow_tasks",
+      "source": "day12_runtime_validation",
+      "target": "five_successful_airflow_tasks"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DAY12_VALIDATION.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "day12_runtime_validation",
+      "_tgt": "sixty_seven_passing_dbt_tests",
+      "source": "day12_runtime_validation",
+      "target": "sixty_seven_passing_dbt_tests"
+    },
+    {
+      "relation": "shares_data_with",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/architecture/ADR-013-analytics-and-status-ui.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "streamlit_analytics_dashboard",
+      "_tgt": "version1_analytics_marts",
+      "source": "version1_analytics_marts",
+      "target": "streamlit_analytics_dashboard"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DAY13_VALIDATION.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "platform_status_page",
+      "_tgt": "airflow_scheduler_health",
+      "source": "platform_status_page",
+      "target": "airflow_scheduler_health"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DAY13_VALIDATION.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "platform_status_page",
+      "_tgt": "analytics_dag_availability",
+      "source": "platform_status_page",
+      "target": "analytics_dag_availability"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/architecture/ADR-013-analytics-and-status-ui.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "platform_status_page",
+      "_tgt": "dbt_artifact_status",
+      "source": "platform_status_page",
+      "target": "dbt_artifact_status"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DAY13_VALIDATION.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "day13_status_boundary",
+      "_tgt": "airflow_scheduler_health",
+      "source": "airflow_scheduler_health",
+      "target": "day13_status_boundary"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DAY13_VALIDATION.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "day13_status_boundary",
+      "_tgt": "analytics_dag_availability",
+      "source": "analytics_dag_availability",
+      "target": "day13_status_boundary"
     }
   ],
   "hyperedges": [
@@ -36348,6 +36745,62 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1,
       "source_file": "docs/architecture/ADR-013-analytics-and-status-ui.md"
+    },
+    {
+      "id": "day12_orchestration_components",
+      "label": "Day 12 Orchestration Components",
+      "nodes": [
+        "bankflow_daily_analytics_dag",
+        "postgresql_health_gate",
+        "event_freshness_gate",
+        "dbt_staging_stage",
+        "dbt_marts_stage",
+        "dbt_quality_stage"
+      ],
+      "relation": "implement",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/architecture/ADR-014-airflow-analytics-orchestration.md"
+    },
+    {
+      "id": "airflow_reliability_controls",
+      "label": "Airflow Reliability Controls",
+      "nodes": [
+        "airflow_retry_policy",
+        "bounded_task_execution",
+        "credential_safe_failure_logging"
+      ],
+      "relation": "form",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DAY12_VALIDATION.md"
+    },
+    {
+      "id": "day12_validation_evidence",
+      "label": "Day 12 Validation Evidence",
+      "nodes": [
+        "zero_airflow_import_errors",
+        "five_successful_airflow_tasks",
+        "sixty_seven_passing_dbt_tests"
+      ],
+      "relation": "form",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DAY12_VALIDATION.md"
+    },
+    {
+      "id": "day13_operational_status_boundary",
+      "label": "Day 13 Operational Status Boundary",
+      "nodes": [
+        "platform_status_page",
+        "airflow_scheduler_health",
+        "analytics_dag_availability",
+        "dbt_artifact_status"
+      ],
+      "relation": "implement",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DAY13_VALIDATION.md"
     }
   ]
 }
