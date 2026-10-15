@@ -2,7 +2,7 @@
 
 **An educational ATM transaction and analytics platform using fictional data.**
 
-BankFlow is evolving from a command-line college assignment into a Python application and event-driven data platform. The implemented milestones provide the package foundation, PostgreSQL domain model, fictional seed data, repository boundary, Redis-backed authentication, an exact-money transaction engine, a complete Streamlit ATM demo, a versioned event contract, acknowledged post-commit Kafka publication, an idempotent validating consumer, tested dbt analytics marts, and live analytics/platform-status pages.
+BankFlow is evolving from a command-line college assignment into a Python application and event-driven data platform. The implemented milestones provide the package foundation, PostgreSQL domain model, fictional seed data, repository boundary, Redis-backed authentication, an exact-money transaction engine, a complete Streamlit ATM demo, a versioned event contract, acknowledged post-commit Kafka publication, an idempotent validating consumer, tested dbt analytics marts, daily Airflow orchestration, and live analytics/platform-status pages.
 
 ## Quick start — Windows PowerShell
 
@@ -87,7 +87,7 @@ BankFlow/
 ├── migrations/              # Alembic environment and versioned schema revisions
 ├── scripts/                 # environment, provisioning, and idempotent demo seed tools
 ├── tests/                   # unit tests and opt-in PostgreSQL tests
-├── airflow/, dbt/           # V1 dbt analytics and planned orchestration
+├── airflow/, dbt/           # V1 Airflow orchestration and dbt analytics
 ├── streaming/, spark/       # future V2 streaming and lakehouse jobs
 ├── docs/                    # canonical planning and handoff documents
 │   ├── analysis/            # dated pre-implementation review
@@ -124,6 +124,9 @@ BankFlow/
 - [Day 11 validation](docs/DAY11_VALIDATION.md)
 - [Day 11 dbt analytics decision](docs/architecture/ADR-012-dbt-analytics-layer.md)
 - [dbt analytics runbook](dbt/README.md)
+- [Day 12 validation](docs/DAY12_VALIDATION.md)
+- [Day 12 Airflow runbook](airflow/README.md)
+- [Day 12 orchestration decision](docs/architecture/ADR-014-airflow-analytics-orchestration.md)
 - [Day 13 validation](docs/DAY13_VALIDATION.md)
 - [Day 13 analytics/status decision](docs/architecture/ADR-013-analytics-and-status-ui.md)
 - [Baseline analysis](docs/analysis/PROJECT_ANALYSIS.md)
@@ -136,8 +139,8 @@ Delivery order: foundation → PostgreSQL persistence → authentication/Redis �
 ```powershell
 .\.venv\Scripts\python.exe -m pip check
 .\.venv\Scripts\python.exe scripts/check_environment.py
-.\.venv\Scripts\python.exe -m ruff check src consumers scripts tests migrations
-.\.venv\Scripts\python.exe -m ruff format --check src consumers scripts tests migrations
+.\.venv\Scripts\python.exe -m ruff check airflow src pages consumers scripts tests migrations
+.\.venv\Scripts\python.exe -m ruff format --check airflow src pages consumers scripts tests migrations
 ```
 
 Run unit tests without services, or opt into the dedicated test database:

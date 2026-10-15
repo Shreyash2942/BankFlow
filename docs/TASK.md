@@ -686,17 +686,17 @@ Orchestrate Version 1 analytics processing.
 
 ### Tasks
 
-- [ ] Create `bankflow_daily_analytics` DAG
-- [ ] Add PostgreSQL health check
-- [ ] Add event freshness check
-- [ ] Run dbt staging models
-- [ ] Run dbt marts
-- [ ] Run dbt tests
-- [ ] Add task dependencies
-- [ ] Add retries
-- [ ] Add failure logging
-- [ ] Validate DAG from Airflow UI
-- [ ] Document manual trigger process
+- [x] Create `bankflow_daily_analytics` DAG
+- [x] Add PostgreSQL health check
+- [x] Add event freshness check
+- [x] Run dbt staging models
+- [x] Run dbt marts
+- [x] Run dbt tests
+- [x] Add task dependencies
+- [x] Add retries
+- [x] Add failure logging
+- [x] Validate DAG from Airflow UI
+- [x] Document manual trigger process
 
 ### Deliverables
 
@@ -712,6 +712,10 @@ feat: add data freshness and quality checks
 feat: orchestrate dbt models through Airflow
 docs: document analytics DAG execution
 ```
+
+Completed 2026-10-14. Evidence: `docs/DAY12_VALIDATION.md`, ADR-014, zero
+Airflow import errors, a successful five-task Airflow DAG run, and 67 passing
+dbt data tests.
 
 ---
 
@@ -754,8 +758,8 @@ style: align analytics components with design system
 
 Completed 2026-10-14. Evidence: `docs/DAY13_VALIDATION.md`, ADR-013, 91
 service-free tests, all 120 tests with service opt-ins, and live health probes
-against the dedicated container. Day 12 orchestration remains pending and is
-reported honestly by the status page.
+against the dedicated container. The later Day 12 completion added the DAG
+definition that the status page detects independently from scheduler health.
 
 ---
 

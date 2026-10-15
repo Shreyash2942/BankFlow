@@ -17,8 +17,8 @@ Validated on 2026-10-14 from Windows Python 3.14 against the dedicated
   probes for PostgreSQL, Redis, Kafka, and Airflow.
 - The status page summarizes dbt models, tests, build results, and artifact time.
   It remains reachable without an ATM session so outages do not hide diagnostics.
-- Day 12 is still pending, so the Airflow analytics DAG is explicitly shown as
-  pending even when the Airflow scheduler itself is healthy.
+- Airflow scheduler health and analytics-DAG availability are reported
+  independently, so either failure remains visible.
 - Both pages use the existing BankFlow design system and the supplied analytics
   and platform-status reference images.
 
@@ -32,7 +32,7 @@ Redis: healthy
 Kafka: healthy (1 broker reachable)
 Airflow: healthy (scheduler healthy)
 dbt: healthy (6 models, 67 tests, 73 successful build results)
-bankflow_daily_analytics DAG: pending
+bankflow_daily_analytics DAG: available after Day 12 deployment
 ```
 
 The application analytics schema was queried successfully. It currently contains

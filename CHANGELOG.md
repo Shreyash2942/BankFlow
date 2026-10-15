@@ -1,10 +1,17 @@
 # Changelog
 
+## Unreleased — Day 12 Airflow analytics orchestration (2026-10-14)
+
+- Added the daily `bankflow_daily_analytics` DAG with PostgreSQL availability and configurable consumed-event freshness gates.
+- Orchestrated dbt staging, intermediate/mart, test, and documentation stages with explicit dependencies, bounded execution, retries, and secret-free failure logging.
+- Deployed and parsed the DAG in Airflow 2.9.3, then completed a five-task test run with all 67 dbt tests passing.
+- Documented deployment, Airflow UI and CLI triggers, container-local database settings, and first-run empty-source behavior.
+
 ## Unreleased — Day 13 analytics and platform status (2026-10-14)
 
 - Added an authenticated Streamlit analytics dashboard backed exclusively by the Version 1 dbt marts, with shared date filtering, exact transaction amounts, authentication outcomes, and two focused charts.
 - Added a session-independent platform-status page with concurrent bounded probes for PostgreSQL, Redis, Kafka, and Airflow plus local dbt artifact summaries.
-- Kept the deferred Day 12 analytics DAG explicitly pending while reporting the healthy Airflow scheduler separately.
+- Reported the Airflow scheduler separately from DAG availability; the status page now recognizes the completed Day 12 DAG definition.
 - Aligned both pages with the supplied UI references and expanded validation to 91 service-free tests and all 120 tests with service opt-ins.
 
 ## Unreleased — Day 11 dbt analytics (2026-10-12)

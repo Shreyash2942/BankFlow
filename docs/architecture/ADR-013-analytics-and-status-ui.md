@@ -23,7 +23,7 @@ Airflow probes run concurrently with short configured timeouts and return a
 small `healthy`, `degraded`, `unavailable`, or `pending` vocabulary. dbt status
 comes from local `manifest.json` and `run_results.json` artifacts. The Airflow
 scheduler and the BankFlow analytics DAG are reported separately, so a healthy
-scheduler cannot imply that the still-pending Day 12 DAG exists.
+scheduler cannot imply that the separately deployed DAG exists.
 
 The supplied UI images define layout, hierarchy, palette, and status treatment.
 Every displayed value must come from a BankFlow service, mart, or build artifact.
@@ -33,5 +33,5 @@ Every displayed value must come from a BankFlow service, mart, or build artifact
 Analytics freshness depends on Kafka consumption and a successful dbt rebuild.
 The status page remains available during ATM-session failures and never performs
 recovery actions. Local dbt artifacts are rebuildable and ignored by Git, so a
-new checkout reports `pending` until dbt runs. Airflow orchestration remains the
-separate Day 12 milestone.
+new checkout reports `pending` until dbt runs. Airflow orchestration remains a
+separate deployable component described by ADR-014.
