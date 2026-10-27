@@ -443,7 +443,7 @@ def render_sidebar(runtime: BankFlowRuntime, summary: AccountSummary) -> None:
                 type="secondary",
             ):
                 reset_demo_from_ui(runtime)
-        st.caption("BankFlow v0.1.0 · Phase 2 in progress")
+        st.caption("BankFlow v1.0.0 · Application Platform")
 
 
 def render_platform_sidebar() -> None:
@@ -471,7 +471,7 @@ def render_platform_sidebar() -> None:
             """,
             unsafe_allow_html=True,
         )
-        st.caption("BankFlow v0.1.0 · Phase 2 in progress")
+        st.caption("BankFlow v1.0.0 · Application Platform")
 
 
 def render_status_card(

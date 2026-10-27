@@ -771,19 +771,19 @@ Validate, document, and release BankFlow Version 1.
 
 ### Tasks
 
-- [ ] Complete unit-test suite
-- [ ] Complete repository integration tests
-- [ ] Complete Kafka integration tests
-- [ ] Add test fixtures
-- [ ] Add GitHub Actions workflow
-- [ ] Run lint/format checks
-- [ ] Validate environment setup
-- [ ] Update README
-- [ ] Add architecture screenshots
-- [ ] Add demo screenshots
-- [ ] Add changelog
-- [ ] Create V1 release notes
-- [ ] Tag release
+- [x] Complete unit-test suite
+- [x] Complete repository integration tests
+- [x] Complete Kafka integration tests
+- [x] Add test fixtures
+- [x] Add GitHub Actions workflow
+- [x] Run lint/format checks
+- [x] Validate environment setup
+- [x] Update README
+- [x] Add architecture screenshots
+- [x] Add demo screenshots
+- [x] Add changelog
+- [x] Create V1 release notes
+- [x] Tag release
 
 ### Validation
 
@@ -824,6 +824,9 @@ Release name:
 ```text
 BankFlow Application Platform
 ```
+
+Completion evidence: `docs/DAY14_VALIDATION.md`, `docs/RELEASE_NOTES_v1.0.0.md`,
+`docs/V1_PORTFOLIO.md`, and `.github/workflows/quality.yml`.
 
 ---
 

@@ -4,7 +4,7 @@
 **Repository Name:** `BankFlow`  
 **Document Type:** Living Project Memory / Handoff File  
 **Purpose:** Preserve project context, implementation state, decisions, issues, and next actions across developers, sessions, and AI agents.  
-**Last Updated:** 2026-10-14  
+**Last Updated:** 2026-10-26  
 
 ---
 
@@ -103,10 +103,10 @@ Version 2 extends BankFlow with:
 
 # 4. Current Project Status
 
-- Overall status: Implementation - Days 1–13 complete, including Airflow analytics orchestration.
-- Release: v0.1.0 package foundation; no release tag or published application.
-- Phase: Phase 2, event platform and V1 release.
-- Week/day: Week 2, Days 1–13 complete; Day 14 next.
+- Overall status: Version 1 complete — Days 1–14 delivered and release validation passed.
+- Release: BankFlow Application Platform v1.0.0.
+- Phase: Phase 2 complete; Phase 3 streaming lakehouse work is next.
+- Week/day: Week 2 complete; Day 15 next.
 
 | Area | Status |
 |---|---|
@@ -121,7 +121,7 @@ Version 2 extends BankFlow with:
 | Transaction services | Exact balance inquiry, withdrawal, deposit, decline, closure, and history workflows verified |
 | Streamlit UI | ATM flows plus mart-backed analytics and failure-tolerant platform status verified against supplied designs |
 | Airflow / dbt / Spark / Iceberg | Version 1 Airflow and dbt analytics complete; Version 2 Spark/Iceberg remain planned |
-| Automated application tests / CI | 91 service-free cases and 29 live PostgreSQL/Redis/Streamlit/Kafka cases pass; all 120 pass with service opt-ins; CI remains planned |
+| Automated application tests / CI | 92 service-free cases and all 121 cases pass with PostgreSQL/Redis/Streamlit/Kafka opt-ins; three-job GitHub Actions workflow added |
 | Graph and analysis | Days 1–13 graph: 1,187 nodes, 1,918 edges, 23 hyperedges, and 75 communities; Airflow orchestration, analytics, platform health, and validation provenance included; 97.4x benchmark reduction |
 
 ---
@@ -820,15 +820,15 @@ Airflow runs one daily, sequential Version 1 workflow: PostgreSQL health, consum
 
 # 21. Active Work
 
-Days 12 and 13 are complete. Airflow now orchestrates the daily Version 1 dbt build, while Streamlit exposes mart-backed transaction/authentication analytics plus live PostgreSQL, Redis, Kafka, Airflow, and dbt status.
+Day 14 and Phase 2 are complete. BankFlow v1.0.0 has passed the application, event-platform, dbt, and Airflow regression gates and includes CI, release notes, architecture evidence, and live demo screenshots.
 
 ---
 
 # 22. Next Actions
 
-1. Begin Day 14 automated testing and CI work.
-2. Add the planned GitHub Actions quality workflow.
-3. Run the complete V1 acceptance suite before release preparation.
+1. Begin Day 15's deterministic synthetic transaction generator.
+2. Preserve version-1 event-schema compatibility while increasing event volume.
+3. Keep Phase 3 Spark/Iceberg resources isolated from the released V1 operational path.
 
 Keep TD-001 visible in analytics freshness expectations; consumer idempotence cannot recover events never published by the application.
 
@@ -890,6 +890,8 @@ Day 12: Airflow reports zero DAG import errors. All five tasks in `bankflow_dail
 
 Day 13: 91 service-free tests and all 120 tests with PostgreSQL/Redis/Streamlit/Kafka opt-ins pass. Coverage verifies exact mart aggregation, date filtering, safe missing-data behavior, live service health probes, dbt artifact summaries, missing-DAG behavior, and navigation through both new Streamlit pages. See `docs/DAY13_VALIDATION.md`.
 
+Day 14: 92 service-free tests and all 121 tests with PostgreSQL/Redis/Streamlit/Kafka opt-ins pass. Ruff, dependency, and Python 3.14 environment checks pass. A clean dbt build completes six models and 67 tests, Airflow reports zero import errors and completes all five DAG tasks, and live status reports all five monitored systems healthy. See `docs/DAY14_VALIDATION.md`.
+
 ---
 
 # 25. Failed Experiments / Rejected Approaches
@@ -935,25 +937,25 @@ When resolved, move the answer into the appropriate permanent section and remove
 
 ## Last Session Summary
 
-Completed Days 12 and 13. The daily Airflow DAG checks PostgreSQL and event freshness, rebuilds dbt staging and marts, runs all data tests, and generates documentation with retries and safe failure logs. The authenticated analytics page reads only Version 1 dbt marts, while the public status page probes PostgreSQL, Redis, Kafka, Airflow, DAG availability, and dbt artifacts. See `docs/DAY12_VALIDATION.md`, `docs/DAY13_VALIDATION.md`, ADR-013, and ADR-014.
+Completed Day 14 and the Version 1 release. The repository now includes reusable Kafka integration fixtures, a service-free Airflow DAG contract test, a three-job GitHub Actions pipeline, full regression evidence, release documentation, a polished architecture image, and four live Streamlit screenshots. See `docs/DAY14_VALIDATION.md`, `docs/RELEASE_NOTES_v1.0.0.md`, and `docs/V1_PORTFOLIO.md`.
 
 Populated `BankFlow` using `docs/` as the canonical documentation root and `src/bankflow/` as the application package. Preserved 18 academic assets unchanged, normalized the architecture filename, and retained dated baseline reviews. Added environment template, pinned dependencies, Windows dependency snapshot, Python setup guide, import checker, and package/linter configuration.
 
 ## Last Known Working State
 
-The editable package and application dependencies import on Python 3.14.4. Application/test databases are at revision 0003, and Version 1 dbt marts are materialized in `bankflow_analytics`. Repository, authentication, transaction services, Streamlit ATM UI, Kafka producer/consumer, Airflow/dbt analytics, analytics dashboard, and platform status are implemented. The app runs at `http://localhost:8501`; the consumer runs with `python consumers/transaction_consumer.py`; Airflow exposes `bankflow_daily_analytics` on the daily 02:00 UTC schedule.
+The `bankflow-atm==1.0.0` editable package and application dependencies import on Python 3.14.4. Application/test databases are at revision 0003, and Version 1 dbt marts are materialized in `bankflow_analytics`. All 121 application tests, 67 dbt tests, and the five-task Airflow DAG pass. The app runs at `http://localhost:8501`; the consumer runs with `python consumers/transaction_consumer.py`; Airflow exposes `bankflow_daily_analytics` on the daily 02:00 UTC schedule.
 
 ## Last Completed Task
 
-Day 12 Airflow analytics orchestration. See `docs/DAY12_VALIDATION.md` for runtime evidence and `airflow/README.md` for operation.
+Day 14 testing, CI, documentation, and BankFlow v1.0.0 release preparation. See `docs/DAY14_VALIDATION.md`.
 
 ## Next Task
 
-Day 14: add automated testing and CI for the completed Version 1 application and event platform.
+Day 15: implement the deterministic, schema-compatible synthetic event generator for Phase 3.
 
 ## Blockers
 
-The dedicated container must be running for live PostgreSQL/Redis/Kafka/Airflow/dbt validation. No Day 14 implementation blocker is currently known.
+The dedicated container must be running for live PostgreSQL/Redis/Kafka/Airflow/dbt validation. No Day 15 implementation blocker is currently known.
 
 ---
 
@@ -1046,4 +1048,4 @@ Before committing this file, verify:
 
 If only one section can be read before starting work, read this:
 
-> BankFlow is a fictional ATM portfolio project. Days 1–13 are complete: the repository includes exact-money ATM workflows, Redis authentication, versioned Kafka events, an idempotent event store, tested dbt marts, daily Airflow orchestration, an analytics dashboard, and failure-tolerant platform status. All 91 service-free tests and all 120 tests with service opt-ins pass; the full Airflow DAG and all 67 dbt tests also pass. Continue with Day 14 automated testing and CI using `docs/TASK.md`, ADR-014, and `docs/DAY12_VALIDATION.md`.
+> BankFlow is a fictional ATM portfolio project. Days 1–14 and Phase 2 are complete at v1.0.0: the repository includes exact-money ATM workflows, Redis authentication, versioned Kafka events, an idempotent event store, tested dbt marts, daily Airflow orchestration, analytics/platform-status UI, CI, and release evidence. All 92 service-free tests and all 121 tests with service opt-ins pass; the full five-task Airflow DAG and all 67 dbt tests also pass. Continue with Day 15 using the released version-1 event contract as the compatibility boundary.
