@@ -1,4 +1,5 @@
 from pathlib import Path
+from uuid import uuid4
 
 import pytest
 from alembic import command
@@ -34,3 +35,17 @@ def migrated_database(database_settings):
     config = Config(str(ROOT / "alembic.ini"))
     config.attributes["settings"] = database_settings
     command.upgrade(config, "head")
+
+
+@pytest.fixture
+def kafka_test_settings(database_settings):
+    """Return isolated topic, group, and client names for each live Kafka test."""
+    suffix = uuid4().hex
+    return database_settings.model_copy(
+        update={
+            "kafka_transaction_topic": f"bankflow.integration.{suffix}",
+            "kafka_consumer_group": f"bankflow-integration-{suffix}",
+            "kafka_client_id": f"bankflow-producer-{suffix}",
+            "kafka_consumer_client_id": f"bankflow-consumer-{suffix}",
+        }
+    )

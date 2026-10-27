@@ -63,16 +63,9 @@ def _next_result(consumer: KafkaEventConsumer):
 
 
 def test_live_consumer_persists_deduplicates_and_skips_invalid_message(
-    migrated_database, database_engine, database_settings
+    migrated_database, database_engine, kafka_test_settings
 ):
-    suffix = uuid4().hex
-    settings = database_settings.model_copy(
-        update={
-            "kafka_transaction_topic": f"bankflow.day10.test.{suffix}",
-            "kafka_consumer_group": f"bankflow-day10-test-{suffix}",
-            "kafka_consumer_client_id": f"bankflow-day10-consumer-{suffix}",
-        }
-    )
+    settings = kafka_test_settings
     event = _event()
     producer = KafkaEventProducer.from_settings(settings)
     consumer = KafkaEventConsumer.from_settings(settings, create_session_factory(database_engine))

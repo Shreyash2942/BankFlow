@@ -8,7 +8,6 @@ from uuid import uuid4
 import pytest
 from confluent_kafka import Consumer
 
-from bankflow.config.settings import load_settings
 from bankflow.messaging import KafkaEventProducer, deserialize_event
 from bankflow.models import AccountStatus, TransactionStatus, TransactionType
 from bankflow.schemas.events import BankFlowEvent, EventType, TransactionEventPayload
@@ -22,10 +21,8 @@ pytestmark = [
 ]
 
 
-def test_live_producer_receives_ack_and_event_round_trips():
-    settings = load_settings(".env.test").model_copy(
-        update={"kafka_transaction_topic": f"bankflow.day9.test.{uuid4().hex}"}
-    )
+def test_live_producer_receives_ack_and_event_round_trips(kafka_test_settings):
+    settings = kafka_test_settings
     producer = KafkaEventProducer.from_settings(settings)
     event = BankFlowEvent(
         event_id=uuid4(),
@@ -50,7 +47,7 @@ def test_live_producer_receives_ack_and_event_round_trips():
     consumer = Consumer(
         {
             "bootstrap.servers": settings.kafka_bootstrap_servers,
-            "group.id": f"bankflow-day9-test-{uuid4()}",
+            "group.id": settings.kafka_consumer_group,
             "auto.offset.reset": "earliest",
             "enable.auto.commit": False,
         }
