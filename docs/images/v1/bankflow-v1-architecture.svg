@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title description">
+  <title id="title">BankFlow Version 1 architecture</title>
+  <desc id="description">Streamlit ATM workflows use Python services, PostgreSQL, Redis, Kafka, an idempotent event consumer, dbt marts, and Airflow orchestration.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#061b33"/>
+      <stop offset="1" stop-color="#123c69"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#1f74f2"/>
+      <stop offset="1" stop-color="#3ba3ff"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#020b17" flood-opacity="0.35"/>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#77baff"/>
+    </marker>
+    <style>
+      .title{font:700 42px system-ui,-apple-system,"Segoe UI",sans-serif;fill:#fff}
+      .subtitle{font:400 20px system-ui,-apple-system,"Segoe UI",sans-serif;fill:#a9c8e9}
+      .lane{fill:#0b2948;stroke:#27547d;stroke-width:2}
+      .lane-title{font:700 18px system-ui,-apple-system,"Segoe UI",sans-serif;fill:#86bce9;letter-spacing:2px}
+      .box{fill:#f8fbff;stroke:#b9d9f5;stroke-width:2;filter:url(#shadow)}
+      .box-blue{fill:url(#accent);stroke:#70b4ff;stroke-width:2;filter:url(#shadow)}
+      .label{font:700 22px system-ui,-apple-system,"Segoe UI",sans-serif;fill:#09233f}
+      .label-white{font:700 22px system-ui,-apple-system,"Segoe UI",sans-serif;fill:#fff}
+      .detail{font:400 15px system-ui,-apple-system,"Segoe UI",sans-serif;fill:#46657f}
+      .detail-white{font:400 15px system-ui,-apple-system,"Segoe UI",sans-serif;fill:#eaf5ff}
+      .arrow{fill:none;stroke:#77baff;stroke-width:4;marker-end:url(#arrow)}
+      .event{fill:none;stroke:#43d5b0;stroke-width:4;marker-end:url(#arrow)}
+      .caption{font:600 15px system-ui,-apple-system,"Segoe UI",sans-serif;fill:#94c8f4}
+      .pill{fill:#0e745e;stroke:#43d5b0;stroke-width:1.5}
+      .pill-text{font:700 14px system-ui,-apple-system,"Segoe UI",sans-serif;fill:#d8fff5;letter-spacing:1px}
+    </style>
+  </defs>
+
+  <rect width="1600" height="1000" fill="url(#background)"/>
+  <circle cx="1490" cy="-20" r="270" fill="#1f74f2" opacity="0.12"/>
+  <circle cx="40" cy="1020" r="300" fill="#2bcaa5" opacity="0.08"/>
+
+  <text x="80" y="82" class="title">BankFlow Version 1 Architecture</text>
+  <text x="80" y="116" class="subtitle">Transactional ATM workflows · durable events · operational analytics</text>
+  <rect x="1260" y="58" width="250" height="48" rx="24" class="pill"/>
+  <text x="1385" y="88" text-anchor="middle" class="pill-text">v1.0.0 RELEASE</text>
+
+  <rect x="60" y="160" width="1480" height="190" rx="26" class="lane"/>
+  <text x="88" y="194" class="lane-title">EXPERIENCE + TRANSACTION CORE</text>
+  <rect x="100" y="220" width="270" height="90" rx="18" class="box-blue"/>
+  <text x="235" y="257" text-anchor="middle" class="label-white">Streamlit ATM</text>
+  <text x="235" y="284" text-anchor="middle" class="detail-white">Login · banking · analytics · status</text>
+  <rect x="505" y="220" width="315" height="90" rx="18" class="box"/>
+  <text x="662" y="257" text-anchor="middle" class="label">Python Services</text>
+  <text x="662" y="284" text-anchor="middle" class="detail">Authentication · accounts · transactions</text>
+  <rect x="955" y="220" width="220" height="90" rx="18" class="box"/>
+  <text x="1065" y="257" text-anchor="middle" class="label">PostgreSQL</text>
+  <text x="1065" y="284" text-anchor="middle" class="detail">System of record</text>
+  <rect x="1280" y="220" width="210" height="90" rx="18" class="box"/>
+  <text x="1385" y="257" text-anchor="middle" class="label">Redis</text>
+  <text x="1385" y="284" text-anchor="middle" class="detail">Sessions · lockout state</text>
+  <path d="M370 265 H495" class="arrow"/>
+  <path d="M820 250 H945" class="arrow"/>
+  <path d="M820 284 C980 338 1120 338 1270 284" class="arrow"/>
+
+  <rect x="60" y="385" width="1480" height="220" rx="26" class="lane"/>
+  <text x="88" y="419" class="lane-title">EVENT PLATFORM + AUDIT STORE</text>
+  <rect x="220" y="465" width="270" height="96" rx="18" class="box"/>
+  <text x="355" y="503" text-anchor="middle" class="label">Kafka Producer</text>
+  <text x="355" y="530" text-anchor="middle" class="detail">Post-commit delivery · safe headers</text>
+  <rect x="665" y="465" width="270" height="96" rx="18" class="box-blue"/>
+  <text x="800" y="503" text-anchor="middle" class="label-white">Kafka Topic</text>
+  <text x="800" y="530" text-anchor="middle" class="detail-white">Versioned BankFlow envelopes</text>
+  <rect x="1110" y="465" width="300" height="96" rx="18" class="box"/>
+  <text x="1260" y="503" text-anchor="middle" class="label">Validating Consumer</text>
+  <text x="1260" y="530" text-anchor="middle" class="detail">Manual commit · deduplication</text>
+  <path d="M355 455 C430 385 590 385 662 455" class="event"/>
+  <text x="510" y="407" text-anchor="middle" class="caption">business operation committed</text>
+  <path d="M490 513 H655" class="event"/>
+  <path d="M935 513 H1100" class="event"/>
+  <path d="M1260 561 V650 H1065 V700" class="event"/>
+  <text x="1185" y="641" class="caption">consumed_events</text>
+
+  <rect x="60" y="640" width="1480" height="290" rx="26" class="lane"/>
+  <text x="88" y="674" class="lane-title">ANALYTICS + ORCHESTRATION</text>
+  <rect x="150" y="735" width="280" height="105" rx="18" class="box"/>
+  <text x="290" y="776" text-anchor="middle" class="label">Airflow</text>
+  <text x="290" y="803" text-anchor="middle" class="detail">Daily 02:00 UTC quality pipeline</text>
+  <rect x="590" y="735" width="280" height="105" rx="18" class="box-blue"/>
+  <text x="730" y="776" text-anchor="middle" class="label-white">dbt</text>
+  <text x="730" y="803" text-anchor="middle" class="detail-white">Staging · metrics · tested marts</text>
+  <rect x="1030" y="735" width="310" height="105" rx="18" class="box"/>
+  <text x="1185" y="776" text-anchor="middle" class="label">Analytics Dashboard</text>
+  <text x="1185" y="803" text-anchor="middle" class="detail">Transactions · authentication · activity</text>
+  <path d="M430 787 H580" class="arrow"/>
+  <path d="M870 787 H1020" class="arrow"/>
+  <path d="M1065 700 C960 675 820 675 730 725" class="arrow"/>
+  <text x="923" y="688" text-anchor="middle" class="caption">source rows</text>
+  <path d="M1185 725 C1185 650 1010 635 920 605" class="arrow"/>
+  <text x="1270" y="663" class="caption">mart-backed insights</text>
+
+  <text x="80" y="972" class="subtitle">Exact Decimal money · UUID identities · UTC timestamps · secret-safe logs · isolated test infrastructure</text>
+</svg>

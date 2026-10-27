@@ -34,3 +34,9 @@ warning states, responsive stacking, and persistent demo-environment labeling.
 These later screens should only display values backed by real BankFlow services, topics, pipelines,
 or persisted records. Their supplied images define layout and visual treatment, while the Phase 2
 milestones provide the data required to implement them honestly.
+
+## Version 1 release captures
+
+The implementation evidence captured from the running application is published in
+[`V1_PORTFOLIO.md`](V1_PORTFOLIO.md). The four PNGs under `docs/images/v1/` cover login,
+account dashboard, analytics, and all-healthy platform status states using fictional demo data.

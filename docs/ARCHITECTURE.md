@@ -34,6 +34,10 @@ This separation keeps the project understandable, testable, and extensible.
 
 ## 2.1 Version 1.0 — Application and Event Platform
 
+![BankFlow Version 1 architecture](images/v1/bankflow-v1-architecture.png)
+
+The release portfolio keeps the editable SVG source and live application screenshots in [`docs/images/v1/`](images/v1/).
+
 ```mermaid
 flowchart TD
     U[Demo User] --> UI[Streamlit UI]
