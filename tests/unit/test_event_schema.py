@@ -79,6 +79,18 @@ def test_transaction_event_round_trip_preserves_exact_money_and_utc_timestamp():
     assert document["payload"]["balance_after"] == "75.00"
 
 
+def test_atm_identifier_is_an_optional_backward_compatible_field():
+    legacy_event = _event()
+    assert legacy_event.payload.atm_id is None
+    assert "atm_id" not in json.loads(legacy_event.model_dump_json(exclude_none=True))["payload"]
+
+    synthetic_event = _event(payload=_transaction_payload(atm_id="ATM-0007"))
+    assert synthetic_event.payload.atm_id == "ATM-0007"
+
+    with pytest.raises(ValidationError, match="string_pattern_mismatch"):
+        _transaction_payload(atm_id="terminal-7")
+
+
 def test_event_timestamp_must_be_aware_and_event_id_must_be_uuid4():
     with pytest.raises(ValidationError, match="timezone"):
         _event(occurred_at=datetime(2026, 10, 5, 12, 30))
