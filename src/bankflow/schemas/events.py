@@ -44,6 +44,10 @@ NonNegativeMoney = Annotated[
 DeclineReason = Annotated[
     str, StringConstraints(strip_whitespace=True, min_length=1, max_length=64)
 ]
+AtmIdentifier = Annotated[
+    str,
+    StringConstraints(strip_whitespace=True, pattern=r"^ATM-[A-Z0-9]{4,12}$"),
+]
 
 
 class EventType(StrEnum):
@@ -85,6 +89,7 @@ class TransactionEventPayload(BaseModel):
     currency: CurrencyCode
     account_status: AccountStatus
     decline_reason: DeclineReason | None = None
+    atm_id: AtmIdentifier | None = None
 
     @model_validator(mode="after")
     def validate_financial_shape(self) -> Self:
@@ -113,6 +118,7 @@ class AuthenticationEventPayload(BaseModel):
     card_id: UUID | None = None
     outcome: AuthenticationEventOutcome
     remaining_attempts: int | None = Field(default=None, ge=0, le=10)
+    atm_id: AtmIdentifier | None = None
 
     @model_validator(mode="after")
     def keep_subject_identifiers_complete(self) -> Self:
