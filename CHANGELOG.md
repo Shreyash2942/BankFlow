@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased — Day 15 Synthetic Event Generator (2026-10-27)
+
+- Added lazy, deterministic generation of fictional transaction, authentication, decline, lock, and session events with exact evolving balances.
+- Added configurable event count, maximum publication rate, customer/ATM population, seed, dry-run validation, and acknowledged Kafka publication.
+- Added optional validated ATM provenance to both version-1 payload variants without invalidating existing events.
+- Added generator, schema-compatibility, rate-pacing, identity, balance, CLI, and 10,000-event stress coverage; all 105 service-free and 134 opt-in tests pass.
+- Verified an isolated 40-event live Kafka publish/consume round trip with matching counts, unique event IDs, and complete ATM attribution.
+
 ## v1.0.0 — BankFlow Application Platform (2026-10-26)
 
 - Completed 92 service-free and 121 full application tests, plus all 67 dbt data tests and a successful five-task Airflow DAG run.

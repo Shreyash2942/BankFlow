@@ -54,6 +54,22 @@ Run the operational event consumer in a second terminal after migrations:
 
 It joins `bankflow-operational-v1`, validates version-1 envelopes, and writes deduplicated rows to `bankflow.consumed_events`. Press Ctrl+C for bounded graceful shutdown.
 
+## Generate synthetic streaming events
+
+Day 15 adds fictional, schema-valid transaction and authentication traffic for the Version 2 streaming pipeline. Validate a deterministic batch without Kafka:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\transaction_generator.py --count 10000 --rate 0 --seed 15 --customers 1000 --atms 100 --dry-run
+```
+
+Publish a paced stream to the configured Kafka topic:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\transaction_generator.py --count 1000 --rate 100 --seed 15
+```
+
+`--count` controls the exact event total, `--rate` sets the maximum event-start rate (`0` disables pacing), and `--seed` reproduces identifiers, event order, timestamps, amounts, and outcomes. Generated events use only fictional UUID subjects and include an `ATM-####` identifier. The tool validates every event through the released version-1 serializer before publishing.
+
 ## Configuration and infrastructure
 
 The Windows application connects to the dedicated `bankflow` container: PostgreSQL 5433, Redis 6380, and Kafka 9093. PostgreSQL, authenticated Redis, Kafka 3.7.1 metadata, and acknowledged Kafka delivery are verified. The dedicated broker advertises `host.docker.internal:9093` so host clients do not get redirected to its internal port.
@@ -134,6 +150,7 @@ BankFlow/
 - [Day 13 validation](docs/DAY13_VALIDATION.md)
 - [Day 13 analytics/status decision](docs/architecture/ADR-013-analytics-and-status-ui.md)
 - [Day 14 validation](docs/DAY14_VALIDATION.md)
+- [Day 15 validation](docs/DAY15_VALIDATION.md)
 - [Version 1 release notes](docs/RELEASE_NOTES_v1.0.0.md)
 - [Version 1 portfolio and screenshots](docs/V1_PORTFOLIO.md)
 - [Baseline analysis](docs/analysis/PROJECT_ANALYSIS.md)
@@ -169,4 +186,4 @@ Remove-Item Env:BANKFLOW_RUN_DB_TESTS
 Remove-Item Env:BANKFLOW_RUN_KAFKA_TESTS
 ```
 
-The live tests require `.env.test` with isolated PostgreSQL and Redis test resources. Kafka smoke tests use unique temporary topics, groups, and clients. The application suite has 92 service-free tests and all 121 pass with service opt-ins; the dbt project adds 67 source, model, and reconciliation tests. See [Day 14 validation](docs/DAY14_VALIDATION.md) for the complete Version 1 acceptance evidence.
+The live tests require `.env.test` with isolated PostgreSQL and Redis test resources. Kafka smoke tests use unique temporary topics, groups, and clients. The application suite has 105 service-free tests and all 134 pass with service opt-ins; the dbt project adds 67 source, model, and reconciliation tests. See [Day 14 validation](docs/DAY14_VALIDATION.md) for Version 1 acceptance and [Day 15 validation](docs/DAY15_VALIDATION.md) for synthetic-stream evidence.

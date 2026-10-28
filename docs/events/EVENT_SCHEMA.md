@@ -36,7 +36,8 @@ Example:
     "balance_before": "100.00",
     "balance_after": "75.00",
     "currency": "USD",
-    "account_status": "active"
+    "account_status": "active",
+    "atm_id": "ATM-0007"
   }
 }
 ```
@@ -62,13 +63,13 @@ The schema rejects a payload whose transaction type, status, authentication outc
 
 ## Transaction payload
 
-The transaction payload contains UUID subjects, exact financial snapshots, ISO-style currency, account status, and an optional decline reason. A decline reason is required only for a declined event. Balance inquiries require a zero amount; every balance-changing event requires a positive amount.
+The transaction payload contains UUID subjects, exact financial snapshots, ISO-style currency, account status, an optional decline reason, and optional ATM provenance. `atm_id` uses the form `ATM-` followed by 4–12 uppercase letters or digits. A decline reason is required only for a declined event. Balance inquiries require a zero amount; every balance-changing event requires a positive amount.
 
 `transaction_id` identifies the financial operation. `event_id` identifies one emitted fact about it. A zero-balance withdrawal can therefore produce both `withdrawal.completed` and `account.closed` using the same transaction ID and different event IDs.
 
 ## Authentication payload
 
-The authentication payload contains an outcome, optional remaining-attempt count, and either all three subject UUIDs or none. Unknown-card failures omit the identifiers so the event does not reveal whether submitted card material exists. Known-card success, lock, and session-end events require customer, account, and card UUIDs.
+The authentication payload contains an outcome, optional remaining-attempt count, optional ATM provenance, and either all three subject UUIDs or none. Unknown-card failures omit the identifiers so the event does not reveal whether submitted card material exists. Known-card success, lock, and session-end events require customer, account, and card UUIDs.
 
 Authentication events never copy an `AuthenticationResult.session_token` into the payload.
 
@@ -91,6 +92,8 @@ The schemas use `extra="forbid"`, hide rejected input values in validation error
 Schema version `1` is immutable once a producer publishes it.
 
 Compatible changes may add a new event type or an optional field with a safe default. Removing or renaming fields, changing meanings or types, tightening an already published value domain, or changing money/timestamp encoding requires a new integer schema version. Consumers must validate the full envelope and route unsupported versions to invalid-message handling rather than guessing.
+
+Day 15 added optional `atm_id` to both payload variants under this compatibility rule. Existing version-1 events that omit it remain valid; synthetic streaming events populate it.
 
 Event-type behavior is part of the contract. Reusing an existing event name for a different fact is a breaking change even if the JSON shape remains valid.
 
