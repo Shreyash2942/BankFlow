@@ -434,6 +434,8 @@ The canonical version-1 envelope and its closed transaction/authentication paylo
 
 The Day 10 operational consumer joins `bankflow-operational-v1`, validates the complete envelope, and persists it to `consumed_events` before committing the Kafka offset. Event-ID and Kafka-position uniqueness make replay idempotent. Invalid values are logged without message contents and committed so they do not block the partition. See ADR-011.
 
+The Day 16 Spark consumer is a separate Version 2 path. It uses the Spark 3.5.1/Scala 2.12 Kafka connector, explicit version-1 schemas, HDFS checkpoints, bounded micro-batches, structured metrics, and secret-safe invalid-record metadata. The standalone driver runs as `datalab` so driver/worker HDFS ownership is consistent. Day 17 adds the Iceberg Bronze sink; Day 16 intentionally stops at validated streaming ingestion. See ADR-015.
+
 ---
 
 # 6. Version 2 Lakehouse Architecture

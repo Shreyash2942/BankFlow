@@ -16,7 +16,7 @@ Updated 2026-10-09. The user-created **bankflow** container replaces the origina
 |---|---|---|---|
 | PostgreSQL | `127.0.0.1:5433` | 5432 | Application authentication and SELECT 1 verified |
 | Redis | `127.0.0.1:6380` | 6379 | Authenticated PING, counters, and expiring sessions verified |
-| Kafka | `127.0.0.1:9093` | 9092 | Kafka 3.7.1 producer and validating consumer round trips verified |
+| Kafka | `127.0.0.1:9093` | 9092 | Kafka 3.7.1 producer, Python consumer, and Spark consumer round trips verified |
 
 The lab PostgreSQL database/user are `datalab` / `admin`; `admin` can create databases but cannot create roles. The existing `datalab` database superuser is accessible through the local Unix socket as container OS user `datalab`. Day 2 provisioned separate application resources `bankflow` / `bankflow_user` and test resources `bankflow_test` / `bankflow_test_user`, with generated credentials only in ignored local files. Both owner roles are non-superusers; PUBLIC access to these databases is revoked.
 
@@ -38,8 +38,10 @@ Day 9 found that the copied broker listened on internal port 9092 but advertised
 
 Day 10 verified a manual-commit consumer against isolated test topics. Valid events persist to PostgreSQL, duplicate delivery is idempotent, invalid schema versions are skipped without recording payload values, and Kafka offsets advance only after a terminal database or validation outcome.
 
+Day 16 verified Spark 3.5.1/Scala 2.12 submission to `spark://localhost:7077` inside the container. The base distribution requires `spark-sql-kafka-0-10_2.12:3.5.1` through `spark-submit --packages`. Run the driver as container user `datalab`; checkpoints and invalid-record metadata use shared HDFS paths under `/bankflow`, not `file:///` paths. See `streaming/README.md`.
+
 ## Dependency boundaries
 
-The application uses Streamlit, Pydantic/settings, SQLAlchemy, Alembic, Psycopg, Redis, and the Kafka Python client. Airflow, dbt, Spark, and Graphify remain separate runtimes. Other available lab tools do not expand the PRD.
+The application uses Streamlit, Pydantic/settings, SQLAlchemy, Alembic, Psycopg, Redis, and the Kafka Python client. Airflow, dbt, Spark, and Graphify remain separate runtimes; PySpark is intentionally not installed into the Windows application environment. Other available lab tools do not expand the PRD.
 
 Day 1 dependency references: [Streamlit installation](https://docs.streamlit.io/get-started/installation), [Psycopg binary installation](https://www.psycopg.org/psycopg3/docs/basic/install.html), and [Confluent Python client installation](https://github.com/confluentinc/confluent-kafka-python/blob/master/INSTALL.md).

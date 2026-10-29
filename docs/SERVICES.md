@@ -8,17 +8,19 @@ Recorded from the user-provided connection guide and updated through 2026-10-09.
 |---|---|---|---|
 | PostgreSQL | `localhost:5433` | `localhost:5432` | Application health query verified on 2026-09-24 |
 | Redis | `localhost:6380` | `localhost:6379` | Authenticated application and isolated test access verified |
-| Kafka bootstrap | `localhost:9093` | `localhost:9092` | Kafka 3.7.1 producer, validating consumer, replay deduplication, and invalid-message handling verified |
+| Kafka bootstrap | `localhost:9093` | `localhost:9092` | Kafka 3.7.1 producer, Python consumer, and Spark Structured Streaming consumption verified |
 | HiveServer2 JDBC | `jdbc:hive2://localhost:10002` | `localhost:10000` | Mapping inspected, query untested |
 | HiveServer2 Thrift | `thrift://localhost:10002` | `localhost:10000` | Mapping inspected, request untested |
 | Hive Metastore | `thrift://localhost:9084` | `localhost:9083` | Mapping inspected, request untested |
 | MongoDB | `localhost:27018` | `localhost:27017` | Mapping inspected; outside BankFlow scope |
-| HDFS filesystem | Port 9000 not published | `hdfs://localhost:9000` | User-reported internal URI; storage untested |
-| Spark RPC | Port 7077 not published | `spark://localhost:7077` | User-reported internal URI; submission untested |
+| HDFS filesystem | Port 9000 not published | `hdfs://localhost:9000` | Day 16 checkpoint and invalid-metadata writes verified under `/bankflow` |
+| Spark RPC | Port 7077 not published | `spark://localhost:7077` | Spark 3.5.1 standalone submission and Kafka streaming verified |
 
 Kafka clients use `host:port` without the helper's `kafka://` display prefix. The dedicated broker advertises `host.docker.internal:9093`, which is reachable from both Windows and container-side clients through Docker Desktop. The primary topic is `bankflow.transaction.events`; its local development configuration has one partition and replication factor one.
 
 The operational consumer uses group `bankflow-operational-v1`. Run `python consumers/transaction_consumer.py` from the repository root after `alembic upgrade head`; SIGINT/SIGTERM stops it after the current bounded poll.
+
+The Spark consumer runs inside the container as `datalab` and resolves `spark-sql-kafka-0-10_2.12:3.5.1` at submission. See `streaming/README.md` for the exact command, HDFS checkpoint paths, metrics, and replay rules.
 
 The reported PostgreSQL lab database/user are `datalab` / `admin`, distinct from the provisioned application resources `bankflow` / `bankflow_user` and isolated test resources `bankflow_test` / `bankflow_test_user`. Redis uses the reported ACL user `default`. Do not assume UI login passwords authenticate database services.
 
