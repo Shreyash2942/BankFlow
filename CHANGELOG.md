@@ -1,6 +1,15 @@
 # Changelog
 
-## Unreleased — Day 15 Synthetic Event Generator (2026-10-27)
+## Unreleased — Phase 3 Streaming Platform
+
+### Day 16 — Spark streaming foundation (2026-10-28)
+
+- Added a Spark 3.5.1 Structured Streaming consumer with a pinned Scala 2.12 Kafka connector, bounded Kafka batches, and explicit fail-on-data-loss behavior.
+- Added the full version-1 Spark schema, envelope/payload validation, exact decimal parsing, and retained Kafka replay metadata.
+- Added HDFS checkpoints, restart-safe offset progress, structured batch metrics, and secret-safe invalid-record quarantine metadata.
+- Verified three live batches through the standalone Spark master: 50 valid events, one malformed JSON record, and two structurally invalid records, including checkpoint resume without replay.
+
+### Day 15 — Synthetic event generator (2026-10-27)
 
 - Added lazy, deterministic generation of fictional transaction, authentication, decline, lock, and session events with exact evolving balances.
 - Added configurable event count, maximum publication rate, customer/ATM population, seed, dry-run validation, and acknowledged Kafka publication.

@@ -70,6 +70,16 @@ Publish a paced stream to the configured Kafka topic:
 
 `--count` controls the exact event total, `--rate` sets the maximum event-start rate (`0` disables pacing), and `--seed` reproduces identifiers, event order, timestamps, amounts, and outcomes. Generated events use only fictional UUID subjects and include an `ATM-####` identifier. The tool validates every event through the released version-1 serializer before publishing.
 
+## Run Spark Structured Streaming
+
+Day 16 consumes the version-1 Kafka stream through the dedicated container's Spark 3.5.1 standalone cluster. The Kafka connector is supplied at submission time, checkpoints live in HDFS, and rejected records retain only safe transport metadata plus a value fingerprint.
+
+```powershell
+docker exec --user datalab bankflow bash -lc "cd /home/datalab/bankflow && /opt/spark/bin/spark-submit --master spark://localhost:7077 --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.1 streaming/bankflow_stream.py"
+```
+
+The default query starts at latest offsets only when creating its checkpoint. Restarting with the same HDFS checkpoint resumes from committed offsets. See the [streaming runbook](streaming/README.md) for replay, available-now validation, metrics, and invalid-record handling.
+
 ## Configuration and infrastructure
 
 The Windows application connects to the dedicated `bankflow` container: PostgreSQL 5433, Redis 6380, and Kafka 9093. PostgreSQL, authenticated Redis, Kafka 3.7.1 metadata, and acknowledged Kafka delivery are verified. The dedicated broker advertises `host.docker.internal:9093` so host clients do not get redirected to its internal port.
@@ -108,7 +118,7 @@ BankFlow/
 ├── scripts/                 # environment, provisioning, and idempotent demo seed tools
 ├── tests/                   # unit tests and opt-in PostgreSQL tests
 ├── airflow/, dbt/           # V1 Airflow orchestration and dbt analytics
-├── streaming/, spark/       # future V2 streaming and lakehouse jobs
+├── streaming/, spark/       # Spark ingestion plus planned Iceberg layer jobs
 ├── docs/                    # canonical planning and handoff documents
 │   ├── analysis/            # dated pre-implementation review
 │   └── original-college-project/ # unchanged source assets and checksums
@@ -151,6 +161,9 @@ BankFlow/
 - [Day 13 analytics/status decision](docs/architecture/ADR-013-analytics-and-status-ui.md)
 - [Day 14 validation](docs/DAY14_VALIDATION.md)
 - [Day 15 validation](docs/DAY15_VALIDATION.md)
+- [Day 16 validation](docs/DAY16_VALIDATION.md)
+- [Spark streaming runbook](streaming/README.md)
+- [Day 16 Spark streaming decision](docs/architecture/ADR-015-spark-streaming-foundation.md)
 - [Version 1 release notes](docs/RELEASE_NOTES_v1.0.0.md)
 - [Version 1 portfolio and screenshots](docs/V1_PORTFOLIO.md)
 - [Baseline analysis](docs/analysis/PROJECT_ANALYSIS.md)
@@ -186,4 +199,4 @@ Remove-Item Env:BANKFLOW_RUN_DB_TESTS
 Remove-Item Env:BANKFLOW_RUN_KAFKA_TESTS
 ```
 
-The live tests require `.env.test` with isolated PostgreSQL and Redis test resources. Kafka smoke tests use unique temporary topics, groups, and clients. The application suite has 105 service-free tests and all 134 pass with service opt-ins; the dbt project adds 67 source, model, and reconciliation tests. See [Day 14 validation](docs/DAY14_VALIDATION.md) for Version 1 acceptance and [Day 15 validation](docs/DAY15_VALIDATION.md) for synthetic-stream evidence.
+The live tests require `.env.test` with isolated PostgreSQL and Redis test resources. Kafka smoke tests use unique temporary topics, groups, and clients. The application suite has 117 service-free tests and all 146 pass with service opt-ins; the dbt project adds 67 source, model, and reconciliation tests. Spark runtime validation remains container-based because PySpark is intentionally not a Windows application dependency. See [Day 14 validation](docs/DAY14_VALIDATION.md) for Version 1 acceptance, [Day 15 validation](docs/DAY15_VALIDATION.md) for synthetic-stream evidence, and [Day 16 validation](docs/DAY16_VALIDATION.md) for Spark/Kafka/HDFS evidence.

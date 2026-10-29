@@ -891,16 +891,18 @@ Connect Spark Structured Streaming to BankFlow Kafka events.
 
 ### Tasks
 
-- [ ] Configure Spark Kafka connector
-- [ ] Create streaming Spark session
-- [ ] Subscribe to BankFlow topic
-- [ ] Parse JSON events
-- [ ] Define Spark schema
-- [ ] Add malformed-event handling
-- [ ] Add checkpoint configuration
-- [ ] Add streaming metrics
-- [ ] Validate local Docker connectivity
-- [ ] Document startup process
+- [x] Configure Spark Kafka connector
+- [x] Create streaming Spark session
+- [x] Subscribe to BankFlow topic
+- [x] Parse JSON events
+- [x] Define Spark schema
+- [x] Add malformed-event handling
+- [x] Add checkpoint configuration
+- [x] Add streaming metrics
+- [x] Validate local Docker connectivity
+- [x] Document startup process
+
+Completed 2026-10-28. Spark 3.5.1 consumed the isolated Day 16 Kafka topic through the standalone master, parsed all version-1 event variants, checkpointed three batches in HDFS, resumed without replay, and safely classified/quarantined three invalid records. See `streaming/README.md` and `docs/DAY16_VALIDATION.md`.
 
 ### Deliverables
 

@@ -4,7 +4,7 @@
 **Repository Name:** `BankFlow`  
 **Document Type:** Living Project Memory / Handoff File  
 **Purpose:** Preserve project context, implementation state, decisions, issues, and next actions across developers, sessions, and AI agents.  
-**Last Updated:** 2026-10-27  
+**Last Updated:** 2026-10-28  
 
 ---
 
@@ -103,10 +103,10 @@ Version 2 extends BankFlow with:
 
 # 4. Current Project Status
 
-- Overall status: Version 1 released; Day 15 synthetic streaming foundation complete.
+- Overall status: Version 1 released; Days 15–16 streaming source and Spark ingestion foundation complete.
 - Release: BankFlow Application Platform v1.0.0.
-- Phase: Phase 3 active; synthetic event generation complete and Spark streaming is next.
-- Week/day: Week 3, Day 15 complete; Day 16 next.
+- Phase: Phase 3 active; Kafka-to-Spark ingestion complete and Iceberg Bronze is next.
+- Week/day: Week 3, Day 16 complete; Day 17 next.
 
 | Area | Status |
 |---|---|
@@ -117,11 +117,11 @@ Version 2 extends BankFlow with:
 | PostgreSQL | Six operational/event-store models, exact money, demo seed, and Alembic revision 0003 verified |
 | Repository layer | Customer, account, card, and transaction access verified against PostgreSQL |
 | Authentication / Redis | Authenticated client, expiring counters/sessions, audit events, and durable card lock verified |
-| Kafka events | Versioned producer, validating consumer, and deterministic synthetic publisher verified against Kafka 3.7.1 |
+| Kafka events | Versioned producer, Python consumer, synthetic publisher, and Spark consumer verified against Kafka 3.7.1 |
 | Transaction services | Exact balance inquiry, withdrawal, deposit, decline, closure, and history workflows verified |
 | Streamlit UI | ATM flows plus mart-backed analytics and failure-tolerant platform status verified against supplied designs |
-| Airflow / dbt / Spark / Iceberg | Version 1 Airflow and dbt analytics complete; Day 15 event source complete; Spark/Iceberg remain planned |
-| Automated application tests / CI | 105 service-free cases and all 134 cases pass with PostgreSQL/Redis/Streamlit/Kafka opt-ins; three-job GitHub Actions workflow added |
+| Airflow / dbt / Spark / Iceberg | Version 1 Airflow/dbt complete; Spark 3.5.1 streaming foundation complete; Iceberg layers remain planned |
+| Automated application tests / CI | 117 service-free cases and all 146 cases pass with PostgreSQL/Redis/Streamlit/Kafka opt-ins; Spark live evidence is documented separately |
 | Graph and analysis | Days 1–13 graph: 1,187 nodes, 1,918 edges, 23 hyperedges, and 75 communities; Airflow orchestration, analytics, platform health, and validation provenance included; 97.4x benchmark reduction |
 
 ---
@@ -820,15 +820,15 @@ Airflow runs one daily, sequential Version 1 workflow: PostgreSQL health, consum
 
 # 21. Active Work
 
-Day 15 is complete. BankFlow now has a bounded-memory synthetic generator for deterministic, schema-valid transaction and authentication traffic, configurable count/rate/population/ATM settings, dry-run validation, and acknowledged Kafka publication. The existing version-1 contract remains compatible through an optional `atm_id` field.
+Day 16 is complete. BankFlow now consumes the synthetic/application Kafka stream through Spark 3.5.1, parses the version-1 contract with exact decimal fields, classifies invalid records, emits structured batch metrics, and resumes from HDFS checkpoints. Invalid quarantine stores transport metadata and a SHA-256 fingerprint, never the raw value.
 
 ---
 
 # 22. Next Actions
 
-1. Begin Day 16's Spark Structured Streaming foundation.
-2. Consume the synthetic version-1 topic using an explicit checkpoint and schema boundary.
-3. Keep Phase 3 Spark/Iceberg resources isolated from the released V1 operational path.
+1. Begin Day 17's Iceberg Bronze layer using the validated Day 16 stream.
+2. Inspect and approve the existing Hive Metastore/Iceberg catalog configuration before creating tables.
+3. Preserve raw Kafka metadata and version-1 event values in Bronze while keeping invalid-record policy explicit.
 
 Keep TD-001 visible in analytics freshness expectations; consumer idempotence cannot recover events never published by the application.
 
@@ -854,6 +854,7 @@ Environment inventory from 2026-09-22; PostgreSQL, Redis, and Kafka updated and 
 - dbt Core 1.8.7 with dbt-postgres 1.8.2 runs inside the container. Test and application targets build into their own `bankflow_analytics` schemas; generated docs live in ignored `dbt/target/`.
 - Day 12 deploys `bankflow_daily_analytics` to Airflow 2.9.3. A full five-task run succeeded, rebuilding six dbt models, passing all 67 data tests, and generating documentation.
 - Day 13 live probes verify PostgreSQL, Redis, one Kafka broker, the Airflow scheduler, the analytics DAG definition, and current dbt artifacts.
+- Day 16 verifies Spark 3.5.1/Scala 2.12 through `spark://localhost:7077`, resolves `spark-sql-kafka-0-10_2.12:3.5.1`, consumes Kafka through `localhost:9092`, and stores checkpoints/quarantine metadata under HDFS `/bankflow` paths as the `datalab` user.
 - Other service versions and V2 resource limits remain unverified.
 
 See `docs/ENVIRONMENT.md` for setup and `docs/architecture/ADR-003-database-foundation.md` for database decisions. Never record credentials here.
@@ -893,6 +894,8 @@ Day 13: 91 service-free tests and all 120 tests with PostgreSQL/Redis/Streamlit/
 Day 14: 92 service-free tests and all 121 tests with PostgreSQL/Redis/Streamlit/Kafka opt-ins pass. Ruff, dependency, and Python 3.14 environment checks pass. A clean dbt build completes six models and 67 tests, Airflow reports zero import errors and completes all five DAG tasks, and live status reports all five monitored systems healthy. See `docs/DAY14_VALIDATION.md`.
 
 Day 15: 105 service-free tests and all 134 tests with PostgreSQL/Redis/Streamlit/Kafka opt-ins pass. A deterministic 10,000-event dry run round-tripped through the version-1 schema, and a paced 40-event stream was acknowledged by Kafka and independently consumed with matching type counts, unique event IDs, and ATM provenance. See `docs/DAY15_VALIDATION.md`.
+
+Day 16: 117 service-free tests and all 146 tests with PostgreSQL/Redis/Streamlit/Kafka opt-ins pass. Three live Spark batches consumed 50 valid events plus one malformed and two structurally invalid records, checkpointed offsets in HDFS, resumed without replay, and wrote only safe invalid metadata. See `docs/DAY16_VALIDATION.md`.
 
 ---
 
@@ -939,25 +942,25 @@ When resolved, move the answer into the appropriate permanent section and remove
 
 ## Last Session Summary
 
-Completed Day 15. The repository now includes a lazy deterministic synthetic event generator, configurable throughput/count/population/ATM inputs, dry-run validation, Kafka publication, optional version-1 ATM provenance, and regression coverage through a 10,000-event stream. See `docs/DAY15_VALIDATION.md`.
+Completed Day 16. The repository now includes a Spark Structured Streaming Kafka consumer, explicit version-1 Spark schema/validation, HDFS checkpoints, bounded triggers, structured metrics, safe invalid-record quarantine, and a container runbook. See `docs/DAY16_VALIDATION.md` and `streaming/README.md`.
 
 Populated `BankFlow` using `docs/` as the canonical documentation root and `src/bankflow/` as the application package. Preserved 18 academic assets unchanged, normalized the architecture filename, and retained dated baseline reviews. Added environment template, pinned dependencies, Windows dependency snapshot, Python setup guide, import checker, and package/linter configuration.
 
 ## Last Known Working State
 
-The `bankflow-atm==1.0.0` editable package and application dependencies import on Python 3.14.4. Application/test databases are at revision 0003, and Version 1 dbt marts are materialized in `bankflow_analytics`. All 134 application tests pass with service opt-ins; the existing 67 dbt tests and five-task Airflow DAG remain the Version 1 analytics baseline. The generator runs with `python scripts/transaction_generator.py`; Kafka is reachable at `localhost:9093`.
+The `bankflow-atm==1.0.0` editable package and application dependencies import on Python 3.14.4. All 146 application tests pass with service opt-ins. Spark 3.5.1 consumed the Day 16 validation topic through the standalone master; HDFS checkpoint commits 0–2 prove restart progress, and the quarantine contains three safe invalid metadata records. The existing 67 dbt tests and five-task Airflow DAG remain the Version 1 analytics baseline.
 
 ## Last Completed Task
 
-Day 15 synthetic transaction generator and live Kafka validation. See `docs/DAY15_VALIDATION.md`.
+Day 16 Spark Structured Streaming foundation and live Kafka/HDFS validation. See `docs/DAY16_VALIDATION.md`.
 
 ## Next Task
 
-Day 16: implement the Spark Structured Streaming foundation using the synthetic version-1 event stream.
+Day 17: create the Iceberg Bronze layer from the validated Spark stream.
 
 ## Blockers
 
-The dedicated container must be running for live PostgreSQL/Redis/Kafka/Airflow/dbt/Spark validation. No Day 16 implementation blocker is currently known; inspect the container's Spark-to-Kafka connector availability before implementation.
+The dedicated container must be running for live PostgreSQL/Redis/Kafka/Airflow/dbt/Spark/HDFS validation. Before Day 17 writes data, inspect the Hive Metastore and Iceberg catalog configuration and confirm the intended `/bankflow/bronze` HDFS namespace.
 
 ---
 
@@ -1050,4 +1053,4 @@ Before committing this file, verify:
 
 If only one section can be read before starting work, read this:
 
-> BankFlow is a fictional ATM portfolio project. Days 1–15 are complete: v1.0.0 provides the application/event platform, and Day 15 adds deterministic high-volume transaction/authentication generation with optional ATM provenance and Kafka publication. All 105 service-free tests and all 134 tests with service opt-ins pass; a 10,000-event schema run and isolated 40-event Kafka round trip are verified. Continue with Day 16 Spark Structured Streaming while treating the released version-1 event contract as the compatibility boundary.
+> BankFlow is a fictional ATM portfolio project. Days 1–16 are complete: v1.0.0 provides the application/event platform, Day 15 adds deterministic high-volume events, and Day 16 adds checkpointed Spark 3.5.1 Kafka ingestion with explicit schemas, metrics, and secret-safe invalid quarantine in HDFS. All 117 service-free tests and all 146 tests with service opt-ins pass. Continue with Day 17 Iceberg Bronze using the released version-1 event contract and the Day 16 Spark stream as boundaries.
