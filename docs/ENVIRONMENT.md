@@ -42,6 +42,8 @@ Day 16 verified Spark 3.5.1/Scala 2.12 submission to `spark://localhost:7077` in
 
 Day 17 verified the installed Iceberg Spark runtime, Hive Metastore at `thrift://localhost:9083`, and HDFS storage. The `bankflow` catalog contains namespace `bronze` at `/bankflow/bronze` and table `bankflow.bronze.bronze_bankflow_events`; its default checkpoint is `/bankflow/checkpoints/day17-bronze`. See `spark/bronze/README.md`.
 
+Day 18 created the `silver` namespace at `hdfs://localhost:9000/bankflow/silver` and verified `silver_transactions` plus the pointer-only `silver_transaction_rejects` table. The batch job uses the installed Iceberg runtime and does not require the Spark Kafka package. See `spark/silver/README.md`.
+
 ## Dependency boundaries
 
 The application uses Streamlit, Pydantic/settings, SQLAlchemy, Alembic, Psycopg, Redis, and the Kafka Python client. Airflow, dbt, Spark, and Graphify remain separate runtimes; PySpark is intentionally not installed into the Windows application environment. Other available lab tools do not expand the PRD.

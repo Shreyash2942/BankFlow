@@ -2,6 +2,14 @@
 
 ## Unreleased — Phase 3 Streaming Platform
 
+### Day 18 — Silver transaction pipeline (2026-11-02)
+
+- Added a rerunnable Spark Bronze-to-Silver transformation with UTC timestamps, normalized controlled values, exact `DECIMAL(18,2)` money, and complete Kafka/Bronze lineage.
+- Added required-field, identifier, event-shape, domain, cent-precision, and financial-balance validation for five transaction event types.
+- Added event-ID deduplication, idempotent Iceberg merges, pointer-only invalid/duplicate quarantine, and structured quality metrics.
+- Verified 19 canonical Silver rows with zero rejects and zero inserts on rerun; an isolated fixture produced exactly one valid, one duplicate, and one metadata-invalid result.
+- Expanded validation to 159 service-free and 188 service-opt-in tests, all passing.
+
 ### Day 17 — Iceberg Bronze layer (2026-11-02)
 
 - Added a Hive-backed Iceberg v2 Bronze table in HDFS with exact raw valid payloads, source-envelope fields, Kafka provenance, fingerprints, and ingestion timestamps.

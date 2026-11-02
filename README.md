@@ -90,6 +90,16 @@ docker exec --user datalab bankflow bash -lc "cd /home/datalab/bankflow && /opt/
 
 See the [Bronze runbook](spark/bronze/README.md) for catalog settings, table creation, bounded validation, reads, checkpoints, and replay rules.
 
+## Build Silver transactions
+
+Day 18 converts raw Bronze transaction events into typed, validated Iceberg rows with exact decimals, UTC timestamps, normalized controlled values, and Kafka/Bronze lineage. It deduplicates by event ID and keeps invalid records in a separate pointer-only reject table.
+
+```powershell
+docker exec --user datalab bankflow bash -lc "cd /home/datalab/bankflow && /opt/spark/bin/spark-submit --master spark://localhost:7077 spark/silver/transactions.py"
+```
+
+The batch is safe to rerun: valid rows merge by event ID and rejects merge by Kafka position. See the [Silver transaction runbook](spark/silver/README.md) for rules, metrics, table contracts, and queries.
+
 ## Configuration and infrastructure
 
 The Windows application connects to the dedicated `bankflow` container: PostgreSQL 5433, Redis 6380, and Kafka 9093. PostgreSQL, authenticated Redis, Kafka 3.7.1 metadata, and acknowledged Kafka delivery are verified. The dedicated broker advertises `host.docker.internal:9093` so host clients do not get redirected to its internal port.
@@ -128,7 +138,7 @@ BankFlow/
 ├── scripts/                 # environment, provisioning, and idempotent demo seed tools
 ├── tests/                   # unit tests and opt-in PostgreSQL tests
 ├── airflow/, dbt/           # V1 Airflow orchestration and dbt analytics
-├── streaming/, spark/       # Spark ingestion and Iceberg Bronze jobs
+├── streaming/, spark/       # Spark ingestion and Iceberg Bronze/Silver jobs
 ├── docs/                    # canonical planning and handoff documents
 │   ├── analysis/            # dated pre-implementation review
 │   └── original-college-project/ # unchanged source assets and checksums
@@ -177,6 +187,9 @@ BankFlow/
 - [Day 17 validation](docs/DAY17_VALIDATION.md)
 - [Iceberg Bronze runbook](spark/bronze/README.md)
 - [Day 17 Iceberg Bronze decision](docs/architecture/ADR-016-iceberg-bronze-layer.md)
+- [Day 18 validation](docs/DAY18_VALIDATION.md)
+- [Silver transaction runbook](spark/silver/README.md)
+- [Day 18 Silver transaction decision](docs/architecture/ADR-017-silver-transaction-pipeline.md)
 - [Version 1 release notes](docs/RELEASE_NOTES_v1.0.0.md)
 - [Version 1 portfolio and screenshots](docs/V1_PORTFOLIO.md)
 - [Baseline analysis](docs/analysis/PROJECT_ANALYSIS.md)
@@ -212,4 +225,4 @@ Remove-Item Env:BANKFLOW_RUN_DB_TESTS
 Remove-Item Env:BANKFLOW_RUN_KAFKA_TESTS
 ```
 
-The live tests require `.env.test` with isolated PostgreSQL and Redis test resources. Kafka smoke tests use unique temporary topics, groups, and clients. The application suite has 136 service-free tests and all 165 pass with service opt-ins; the dbt project adds 67 source, model, and reconciliation tests. Spark/Iceberg runtime validation remains container-based because PySpark is intentionally not a Windows application dependency. See [Day 14 validation](docs/DAY14_VALIDATION.md) for Version 1 acceptance and the Day 15–17 validation documents for streaming/lakehouse evidence.
+The live tests require `.env.test` with isolated PostgreSQL and Redis test resources. Kafka smoke tests use unique temporary topics, groups, and clients. The application suite has 159 service-free tests and all 188 pass with service opt-ins; the dbt project adds 67 source, model, and reconciliation tests. Spark/Iceberg runtime validation remains container-based because PySpark is intentionally not a Windows application dependency. See [Day 14 validation](docs/DAY14_VALIDATION.md) for Version 1 acceptance and the Day 15–18 validation documents for streaming/lakehouse evidence.

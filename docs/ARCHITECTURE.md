@@ -489,7 +489,8 @@ ingested_at
 Expected tables:
 
 ```text
-silver_transactions
+bankflow.silver.silver_transactions
+bankflow.silver.silver_transaction_rejects
 silver_authentication_events
 silver_account_events
 ```
@@ -504,6 +505,8 @@ Transformations include:
 - invalid-record handling
 - transaction reconciliation
 - event classification
+
+Day 18 implements the transaction path as a rerunnable Spark batch transformation. It owns balance, withdrawal lifecycle/decline, and deposit events; Day 19 owns authentication and `account.closed` facts. The pipeline reparses Bronze raw JSON, cross-checks Bronze metadata, normalizes UUIDs and controlled values, standardizes UTC event time, casts strict cent-precision strings to `DECIMAL(18,2)`, and validates balance arithmetic. Valid output merges by event ID. Duplicates and invalid records merge into a pointer-only reject table by Kafka position, without copying raw JSON. Structured per-run metrics report source, accepted, rejected, duplicate, inserted, and target counts. See ADR-017.
 
 ---
 

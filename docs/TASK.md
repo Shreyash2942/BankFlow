@@ -968,17 +968,19 @@ Transform raw events into validated transaction datasets.
 
 ### Tasks
 
-- [ ] Create Silver namespace
-- [ ] Read Bronze events
-- [ ] Validate required fields
-- [ ] Standardize timestamps
-- [ ] Standardize transaction types
-- [ ] Cast numeric values
-- [ ] Remove duplicates
-- [ ] Separate invalid records
-- [ ] Create `silver_transactions`
-- [ ] Add quality metrics
-- [ ] Add transformation tests
+- [x] Create Silver namespace
+- [x] Read Bronze events
+- [x] Validate required fields
+- [x] Standardize timestamps
+- [x] Standardize transaction types
+- [x] Cast numeric values
+- [x] Remove duplicates
+- [x] Separate invalid records
+- [x] Create `silver_transactions`
+- [x] Add quality metrics
+- [x] Add transformation tests
+
+Completed 2026-11-02. The live Spark job transformed 19 canonical Bronze transaction events into exact, typed Silver rows, inserted zero rows on rerun, and used an isolated fixture to separate one duplicate and one metadata-invalid record. See `spark/silver/README.md` and `docs/DAY18_VALIDATION.md`.
 
 ### Deliverables
 

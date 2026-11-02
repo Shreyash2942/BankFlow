@@ -24,6 +24,8 @@ The Spark consumer runs inside the container as `datalab` and resolves `spark-sq
 
 The Day 17 Bronze writer reuses the installed Iceberg Spark runtime, connects to the internal Hive Metastore, and stores `bankflow.bronze.bronze_bankflow_events` beneath `/bankflow/bronze`. See `spark/bronze/README.md` for startup, query, checkpoint, and replay guidance.
 
+The Day 18 Silver batch job uses the same catalog and stores typed transactions plus pointer-only rejects beneath `/bankflow/silver`. It requires Spark, Hive Metastore, HDFS, and the installed Iceberg runtime but no live Kafka connection. See `spark/silver/README.md`.
+
 The reported PostgreSQL lab database/user are `datalab` / `admin`, distinct from the provisioned application resources `bankflow` / `bankflow_user` and isolated test resources `bankflow_test` / `bankflow_test_user`. Redis uses the reported ACL user `default`. Do not assume UI login passwords authenticate database services.
 
 ## HTTP interfaces
@@ -63,7 +65,7 @@ Trino JDBC: `jdbc:trino://localhost:8096/hive/default`, reported user `trino`, c
 - Repository mount: `/home/datalab/bankflow`. Edits there change the host repository.
 - Reported Hive config: `/opt/hive/conf/hive-site.xml`.
 - Reported Hive warehouse: `hdfs://localhost:9000/hive/warehouse`, from inside the container.
-- The copied helper lists `/medilake/bronze` and `/medilake/silver`; BankFlow does not adopt or modify them. Day 17 created the separate `/bankflow/bronze` namespace. `/bankflow/silver` remains planned.
+- The copied helper lists `/medilake/bronze` and `/medilake/silver`; BankFlow does not adopt or modify them. Days 17–18 created separate `/bankflow/bronze` and `/bankflow/silver` namespaces.
 - Use in-container jobs for later HDFS/Spark work unless host RPC connectivity is deliberately configured and validated.
 
 Recheck with `docker port bankflow` after recreation. A published port, browser UI, or TCP connection alone does not prove backend readiness.
