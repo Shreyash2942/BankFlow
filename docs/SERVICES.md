@@ -24,7 +24,7 @@ The Spark consumer runs inside the container as `datalab` and resolves `spark-sq
 
 The Day 17 Bronze writer reuses the installed Iceberg Spark runtime, connects to the internal Hive Metastore, and stores `bankflow.bronze.bronze_bankflow_events` beneath `/bankflow/bronze`. See `spark/bronze/README.md` for startup, query, checkpoint, and replay guidance.
 
-The Day 18 Silver batch job uses the same catalog and stores typed transactions plus pointer-only rejects beneath `/bankflow/silver`. It requires Spark, Hive Metastore, HDFS, and the installed Iceberg runtime but no live Kafka connection. See `spark/silver/README.md`.
+The Day 18–19 Silver batch jobs use the same catalog and store typed transactions, authentication facts, account events, and pointer-only rejects beneath `/bankflow/silver`. They require Spark, Hive Metastore, HDFS, and the installed Iceberg runtime but no live Kafka connection. See `spark/silver/README.md`.
 
 The reported PostgreSQL lab database/user are `datalab` / `admin`, distinct from the provisioned application resources `bankflow` / `bankflow_user` and isolated test resources `bankflow_test` / `bankflow_test_user`. Redis uses the reported ACL user `default`. Do not assume UI login passwords authenticate database services.
 

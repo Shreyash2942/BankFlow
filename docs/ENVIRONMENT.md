@@ -44,6 +44,8 @@ Day 17 verified the installed Iceberg Spark runtime, Hive Metastore at `thrift:/
 
 Day 18 created the `silver` namespace at `hdfs://localhost:9000/bankflow/silver` and verified `silver_transactions` plus the pointer-only `silver_transaction_rejects` table. The batch job uses the installed Iceberg runtime and does not require the Spark Kafka package. See `spark/silver/README.md`.
 
+Day 19 added and verified authentication/account Silver tables and their pointer-only reject tables in the same namespace. Canonical authentication processing produced six rows; the canonical account source was empty by design, and isolated Iceberg fixtures verified closure, lockout, duplicate, and invalid-identifier paths.
+
 ## Dependency boundaries
 
 The application uses Streamlit, Pydantic/settings, SQLAlchemy, Alembic, Psycopg, Redis, and the Kafka Python client. Airflow, dbt, Spark, and Graphify remain separate runtimes; PySpark is intentionally not installed into the Windows application environment. Other available lab tools do not expand the PRD.

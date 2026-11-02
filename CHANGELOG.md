@@ -2,6 +2,14 @@
 
 ## Unreleased — Phase 3 Streaming Platform
 
+### Day 19 — Silver authentication and account events (2026-11-02)
+
+- Added typed Iceberg Silver authentication and account-event datasets with independent pointer-only reject tables.
+- Normalized four authentication event names, classified successes/failures/lockouts/sessions, and labeled valid card lockouts as PIN-attempt-limit events.
+- Added complete-or-absent authentication subject rules and exact zero-balance account-closure validation with event-ID deduplication and idempotent merges.
+- Verified six canonical authentication rows and zero inserts on rerun; isolated fixtures proved duplicate, invalid-subject, valid-closure, and invalid-account paths.
+- Expanded validation to 189 service-free and 218 service-opt-in tests, all passing.
+
 ### Day 18 — Silver transaction pipeline (2026-11-02)
 
 - Added a rerunnable Spark Bronze-to-Silver transformation with UTC timestamps, normalized controlled values, exact `DECIMAL(18,2)` money, and complete Kafka/Bronze lineage.

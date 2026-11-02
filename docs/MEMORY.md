@@ -103,10 +103,10 @@ Version 2 extends BankFlow with:
 
 # 4. Current Project Status
 
-- Overall status: Version 1 released; Days 15–18 streaming source, Spark ingestion, Bronze, and Silver transactions complete.
+- Overall status: Version 1 released; Days 15–19 streaming source, Spark ingestion, Bronze, and all planned Silver datasets complete.
 - Release: BankFlow Application Platform v1.0.0.
-- Phase: Phase 3 active; Kafka-to-Iceberg Bronze and Silver transaction transformation complete.
-- Week/day: Week 3, Day 18 complete; Day 19 next.
+- Phase: Phase 3 active; Kafka-to-Iceberg Bronze and transaction/authentication/account Silver transformations complete.
+- Week/day: Week 3, Day 19 complete; Day 20 next.
 
 | Area | Status |
 |---|---|
@@ -120,8 +120,8 @@ Version 2 extends BankFlow with:
 | Kafka events | Versioned producer, Python consumer, synthetic publisher, and Spark consumer verified against Kafka 3.7.1 |
 | Transaction services | Exact balance inquiry, withdrawal, deposit, decline, closure, and history workflows verified |
 | Streamlit UI | ATM flows plus mart-backed analytics and failure-tolerant platform status verified against supplied designs |
-| Airflow / dbt / Spark / Iceberg | Version 1 Airflow/dbt complete; Spark streaming, Iceberg Bronze, and typed Silver transactions verified; authentication/account Silver and Gold remain planned |
-| Automated application tests / CI | 159 service-free cases and all 188 cases with PostgreSQL/Redis/Streamlit/Kafka opt-ins pass; Spark/Iceberg live evidence is documented separately |
+| Airflow / dbt / Spark / Iceberg | Version 1 Airflow/dbt complete; Spark streaming, Iceberg Bronze, and transaction/authentication/account Silver verified; Gold remains planned |
+| Automated application tests / CI | 189 service-free cases and all 218 cases with PostgreSQL/Redis/Streamlit/Kafka opt-ins pass; Spark/Iceberg live evidence is documented separately |
 | Graph and analysis | Days 1–13 graph: 1,187 nodes, 1,918 edges, 23 hyperedges, and 75 communities; Airflow orchestration, analytics, platform health, and validation provenance included; 97.4x benchmark reduction |
 
 ---
@@ -820,15 +820,15 @@ Airflow runs one daily, sequential Version 1 workflow: PostgreSQL health, consum
 
 # 21. Active Work
 
-Day 18 is complete. BankFlow now transforms immutable Bronze values into `bankflow.silver.silver_transactions` with normalized UUIDs/controlled values, UTC timestamps, exact decimals, reconciled balances, and source lineage. Valid rows merge by event ID; duplicates and invalid rows merge into a pointer-only reject table by Kafka position. Structured quality metrics make rerun behavior explicit.
+Day 19 is complete. BankFlow now materializes normalized authentication and account lifecycle facts alongside Silver transactions. Authentication rows expose success/failure/lockout/session classes, known-subject state, remaining attempts, and PIN-attempt-limit lockouts. Account rows treat `account.closed` as a reconciled zero-balance lifecycle fact. Both paths preserve lineage, deduplicate event IDs, and use pointer-only rejects.
 
 ---
 
 # 22. Next Actions
 
-1. Begin Day 19's Silver authentication and account-event pipelines.
-2. Route authentication event types and `account.closed` without duplicating Day 18 transaction facts.
-3. Reuse Day 18's normalization, safe rejection, idempotent merge, and quality-metric conventions.
+1. Begin Day 20's Gold analytics layer from the completed Silver tables.
+2. Define daily/hourly transaction grains and authentication/account aggregations without counting lifecycle events twice.
+3. Preserve Silver-to-Gold reconciliation tests and exact decimal aggregation.
 
 Keep TD-001 visible in analytics freshness expectations; consumer idempotence cannot recover events never published by the application.
 
@@ -857,6 +857,7 @@ Environment inventory from 2026-09-22; PostgreSQL, Redis, and Kafka updated and 
 - Day 16 verifies Spark 3.5.1/Scala 2.12 through `spark://localhost:7077`, resolves `spark-sql-kafka-0-10_2.12:3.5.1`, consumes Kafka through `localhost:9092`, and stores checkpoints/quarantine metadata under HDFS `/bankflow` paths as the `datalab` user.
 - Day 17 verifies the installed Iceberg runtime, Hive Metastore at `thrift://localhost:9083`, catalog `bankflow`, HDFS namespace `/bankflow/bronze`, table reads, checkpoint restart, and replay idempotence.
 - Day 18 verifies namespace `/bankflow/silver`, exact typed transaction rows, pointer-only rejects, idempotent reruns, and isolated invalid/duplicate handling.
+- Day 19 verifies six canonical authentication rows, one lockout classification, expected empty canonical account input, and isolated valid/invalid account/authentication paths.
 - Other service versions and V2 resource limits remain unverified.
 
 See `docs/ENVIRONMENT.md` for setup and `docs/architecture/ADR-003-database-foundation.md` for database decisions. Never record credentials here.
@@ -903,6 +904,8 @@ Day 17: all 19 focused contracts, 136 service-free tests, and 165 service-opt-in
 
 Day 18: all 23 focused contracts, 159 service-free tests, and 188 service-opt-in tests pass. The canonical job transformed 19 Bronze transaction events into 19 unique typed rows with no rejects and inserted zero rows on rerun. An isolated fixture produced one valid row, one duplicate reject, and one metadata-mismatch reject; temporary validation namespaces were then removed. See `docs/DAY18_VALIDATION.md`.
 
+Day 19: all 30 focused contracts, 189 service-free tests, and 218 service-opt-in tests pass. The canonical authentication job produced six unique normalized rows including one PIN-attempt-limit lockout and inserted zero rows on rerun. Canonical account input was empty as expected. Isolated fixtures produced one valid lockout, one duplicate reject, one invalid-subject reject, one valid zero-balance closure, and one invalid-account reject; temporary namespaces were then removed. See `docs/DAY19_VALIDATION.md`.
+
 ---
 
 # 25. Failed Experiments / Rejected Approaches
@@ -947,25 +950,25 @@ When resolved, move the answer into the appropriate permanent section and remove
 
 ## Last Session Summary
 
-Completed Day 18. The repository now includes a typed Bronze-to-Silver transaction transformation, strict schema/domain/financial validation, event-ID deduplication, pointer-only rejects, idempotent Iceberg merges, structured quality metrics, a runbook, and live canonical/invalid-path evidence. See `docs/DAY18_VALIDATION.md` and `spark/silver/README.md`.
+Completed Day 19. The repository now includes normalized Silver authentication/account transformations, complete-or-absent subject validation, lockout classification, zero-balance account-closure rules, event-ID deduplication, pointer-only rejects, idempotent merges, and live canonical/isolated evidence. See `docs/DAY19_VALIDATION.md` and `spark/silver/README.md`.
 
 Populated `BankFlow` using `docs/` as the canonical documentation root and `src/bankflow/` as the application package. Preserved 18 academic assets unchanged, normalized the architecture filename, and retained dated baseline reviews. Added environment template, pinned dependencies, Windows dependency snapshot, Python setup guide, import checker, and package/linter configuration.
 
 ## Last Known Working State
 
-The `bankflow-atm==1.0.0` editable package and application dependencies import on Python 3.14.4. All 159 service-free tests and all 188 service-opt-in tests pass. Spark 3.5.1 reads 25 Bronze rows and materializes 19 Day 18 transaction events; the rerun inserts zero rows, and isolated invalid/duplicate routing is verified. The existing 67 dbt tests and five-task Airflow DAG remain the Version 1 analytics baseline.
+The `bankflow-atm==1.0.0` editable package and application dependencies import on Python 3.14.4. All 189 service-free tests and all 218 service-opt-in tests pass. Spark 3.5.1 reads the 25-row Bronze table into 19 transaction and six authentication Silver facts; the account table is empty until an `account.closed` event arrives. The existing 67 dbt tests and five-task Airflow DAG remain the Version 1 analytics baseline.
 
 ## Last Completed Task
 
-Day 18 Silver transaction transformation and live typing/deduplication/rejection validation. See `docs/DAY18_VALIDATION.md`.
+Day 19 Silver authentication/account transformations and live classification/quality validation. See `docs/DAY19_VALIDATION.md`.
 
 ## Next Task
 
-Day 19: build Silver authentication and account-event datasets from Iceberg Bronze.
+Day 20: build Gold daily/hourly transaction, authentication, account-activity, and decline analytics from Silver.
 
 ## Blockers
 
-The dedicated container must be running for live PostgreSQL/Redis/Kafka/Airflow/dbt/Spark/Hive/HDFS validation. Day 19 should reuse the accepted `bankflow` catalog, immutable Bronze source, and Day 18 Silver quality conventions.
+The dedicated container must be running for live PostgreSQL/Redis/Kafka/Airflow/dbt/Spark/Hive/HDFS validation. Day 20 should use the typed Silver tables as its only lakehouse source and reconcile Gold totals back to them.
 
 ---
 
@@ -1058,4 +1061,4 @@ Before committing this file, verify:
 
 If only one section can be read before starting work, read this:
 
-> BankFlow is a fictional ATM portfolio project. Days 1–18 are complete: v1.0.0 provides the application/event platform, Days 15–17 add synthetic events, checkpointed Spark ingestion, and immutable Iceberg Bronze, and Day 18 adds typed, deduplicated Silver transactions with safe rejects and quality metrics. All 159 service-free tests and all 188 service-opt-in tests pass. Continue with Day 19 authentication/account Silver datasets using the same immutable Bronze source and idempotent quality boundaries.
+> BankFlow is a fictional ATM portfolio project. Days 1–19 are complete: v1.0.0 provides the application/event platform, Days 15–17 add synthetic events, checkpointed Spark ingestion, and immutable Iceberg Bronze, and Days 18–19 add typed transaction/authentication/account Silver datasets with safe rejects and quality metrics. All 189 service-free tests and all 218 service-opt-in tests pass. Continue with Day 20 Gold analytics using only typed Silver sources and explicit reconciliation.

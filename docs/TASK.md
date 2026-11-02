@@ -1007,14 +1007,16 @@ Build clean authentication and account-event datasets.
 
 ### Tasks
 
-- [ ] Create `silver_authentication_events`
-- [ ] Create `silver_account_events`
-- [ ] Normalize event types
-- [ ] Validate account identifiers
-- [ ] Add lockout-event classification
-- [ ] Remove duplicate events
-- [ ] Add data-quality rules
-- [ ] Add transformation tests
+- [x] Create `silver_authentication_events`
+- [x] Create `silver_account_events`
+- [x] Normalize event types
+- [x] Validate account identifiers
+- [x] Add lockout-event classification
+- [x] Remove duplicate events
+- [x] Add data-quality rules
+- [x] Add transformation tests
+
+Completed 2026-11-02. The canonical authentication job produced six normalized rows including one classified lockout and inserted zero rows on rerun. The canonical account path validated expected empty input, while isolated fixtures proved zero-balance closure, duplicate removal, and invalid-identifier rejection. See `spark/silver/README.md` and `docs/DAY19_VALIDATION.md`.
 
 ### Deliverables
 

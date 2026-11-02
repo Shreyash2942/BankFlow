@@ -100,6 +100,15 @@ docker exec --user datalab bankflow bash -lc "cd /home/datalab/bankflow && /opt/
 
 The batch is safe to rerun: valid rows merge by event ID and rejects merge by Kafka position. See the [Silver transaction runbook](spark/silver/README.md) for rules, metrics, table contracts, and queries.
 
+Day 19 extends the same Silver boundary with normalized authentication and account lifecycle datasets. Run the authentication and account jobs independently:
+
+```powershell
+docker exec --user datalab bankflow bash -lc "cd /home/datalab/bankflow && /opt/spark/bin/spark-submit --master spark://localhost:7077 spark/silver/authentication.py"
+docker exec --user datalab bankflow bash -lc "cd /home/datalab/bankflow && /opt/spark/bin/spark-submit --master spark://localhost:7077 spark/silver/accounts.py"
+```
+
+Authentication output includes explicit success/failure/lockout/session classes and PIN-attempt-limit lockout classification. Account output owns `account.closed` and validates zero-balance closure semantics.
+
 ## Configuration and infrastructure
 
 The Windows application connects to the dedicated `bankflow` container: PostgreSQL 5433, Redis 6380, and Kafka 9093. PostgreSQL, authenticated Redis, Kafka 3.7.1 metadata, and acknowledged Kafka delivery are verified. The dedicated broker advertises `host.docker.internal:9093` so host clients do not get redirected to its internal port.
@@ -190,6 +199,8 @@ BankFlow/
 - [Day 18 validation](docs/DAY18_VALIDATION.md)
 - [Silver transaction runbook](spark/silver/README.md)
 - [Day 18 Silver transaction decision](docs/architecture/ADR-017-silver-transaction-pipeline.md)
+- [Day 19 validation](docs/DAY19_VALIDATION.md)
+- [Day 19 authentication/account decision](docs/architecture/ADR-018-silver-authentication-account-events.md)
 - [Version 1 release notes](docs/RELEASE_NOTES_v1.0.0.md)
 - [Version 1 portfolio and screenshots](docs/V1_PORTFOLIO.md)
 - [Baseline analysis](docs/analysis/PROJECT_ANALYSIS.md)
@@ -225,4 +236,4 @@ Remove-Item Env:BANKFLOW_RUN_DB_TESTS
 Remove-Item Env:BANKFLOW_RUN_KAFKA_TESTS
 ```
 
-The live tests require `.env.test` with isolated PostgreSQL and Redis test resources. Kafka smoke tests use unique temporary topics, groups, and clients. The application suite has 159 service-free tests and all 188 pass with service opt-ins; the dbt project adds 67 source, model, and reconciliation tests. Spark/Iceberg runtime validation remains container-based because PySpark is intentionally not a Windows application dependency. See [Day 14 validation](docs/DAY14_VALIDATION.md) for Version 1 acceptance and the Day 15–18 validation documents for streaming/lakehouse evidence.
+The live tests require `.env.test` with isolated PostgreSQL and Redis test resources. Kafka smoke tests use unique temporary topics, groups, and clients. The application suite has 189 service-free tests and all 218 pass with service opt-ins; the dbt project adds 67 source, model, and reconciliation tests. Spark/Iceberg runtime validation remains container-based because PySpark is intentionally not a Windows application dependency. See [Day 14 validation](docs/DAY14_VALIDATION.md) for Version 1 acceptance and the Day 15–19 validation documents for streaming/lakehouse evidence.

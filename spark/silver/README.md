@@ -71,3 +71,43 @@ GROUP BY rejection_reason
 ORDER BY rejection_reason;
 ```
 
+## Day 19 authentication and account events
+
+Day 19 adds two rerunnable jobs using the same catalog, immutable Bronze source, event-ID merge key, Kafka-position reject key, and pointer-only rejection policy.
+
+Create/validate the tables and then process the current Bronze state:
+
+```powershell
+docker exec --user datalab bankflow bash -lc "cd /home/datalab/bankflow && /opt/spark/bin/spark-submit --master spark://localhost:7077 spark/silver/authentication.py --create-only"
+docker exec --user datalab bankflow bash -lc "cd /home/datalab/bankflow && /opt/spark/bin/spark-submit --master spark://localhost:7077 spark/silver/authentication.py"
+
+docker exec --user datalab bankflow bash -lc "cd /home/datalab/bankflow && /opt/spark/bin/spark-submit --master spark://localhost:7077 spark/silver/accounts.py --create-only"
+docker exec --user datalab bankflow bash -lc "cd /home/datalab/bankflow && /opt/spark/bin/spark-submit --master spark://localhost:7077 spark/silver/accounts.py"
+```
+
+### Authentication contract
+
+`silver_authentication_events` normalizes source event names as follows:
+
+| Source event | Normalized event | Class |
+|---|---|---|
+| `authentication.succeeded` | `authentication_success` | `success` |
+| `authentication.failed` | `authentication_failure` | `failure` |
+| `card.locked` | `card_lockout` | `lockout` |
+| `session.ended` | `session_end` | `session` |
+
+Known subjects require valid customer, account, and card UUIDs together. Unknown-card failures require all three to be absent. A lockout requires `card_locked`, zero remaining attempts, known subjects, `is_lockout=true`, and `lockout_classification=pin_attempt_limit`.
+
+### Account-event contract
+
+`silver_account_events` currently owns `account.closed`. The normalized row is `account_closed` / `closure` / `zero_balance_withdrawal`. It requires valid transaction/customer/account identifiers, completed withdrawal state, closed account state, exact decimal money, zero ending balance, and `balance_before - balance_after = amount`.
+
+Each job has its own pointer-only reject table:
+
+```text
+bankflow.silver.silver_authentication_event_rejects
+bankflow.silver.silver_account_event_rejects
+```
+
+The canonical Day 17 Bronze sample contains authentication events but no `account.closed` event. An empty account run is therefore a valid successful result, not a pipeline failure.
+

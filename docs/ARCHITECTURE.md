@@ -491,8 +491,10 @@ Expected tables:
 ```text
 bankflow.silver.silver_transactions
 bankflow.silver.silver_transaction_rejects
-silver_authentication_events
-silver_account_events
+bankflow.silver.silver_authentication_events
+bankflow.silver.silver_authentication_event_rejects
+bankflow.silver.silver_account_events
+bankflow.silver.silver_account_event_rejects
 ```
 
 Transformations include:
@@ -507,6 +509,8 @@ Transformations include:
 - event classification
 
 Day 18 implements the transaction path as a rerunnable Spark batch transformation. It owns balance, withdrawal lifecycle/decline, and deposit events; Day 19 owns authentication and `account.closed` facts. The pipeline reparses Bronze raw JSON, cross-checks Bronze metadata, normalizes UUIDs and controlled values, standardizes UTC event time, casts strict cent-precision strings to `DECIMAL(18,2)`, and validates balance arithmetic. Valid output merges by event ID. Duplicates and invalid records merge into a pointer-only reject table by Kafka position, without copying raw JSON. Structured per-run metrics report source, accepted, rejected, duplicate, inserted, and target counts. See ADR-017.
+
+Day 19 implements authentication and account lifecycle paths. Authentication names normalize into success, failure, lockout, and session classes; known subjects require a complete valid customer/account/card tuple, unknown-card failures require all subjects absent, and `card.locked` becomes a `pin_attempt_limit` lockout. `account.closed` is normalized as a zero-balance closure and requires exact withdrawal reconciliation. Both jobs preserve source event names and lineage, merge valid rows by event ID, and keep pointer-only rejects by Kafka position. See ADR-018.
 
 ---
 
