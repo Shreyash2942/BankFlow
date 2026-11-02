@@ -11,9 +11,9 @@ Recorded from the user-provided connection guide and updated through 2026-10-09.
 | Kafka bootstrap | `localhost:9093` | `localhost:9092` | Kafka 3.7.1 producer, Python consumer, and Spark Structured Streaming consumption verified |
 | HiveServer2 JDBC | `jdbc:hive2://localhost:10002` | `localhost:10000` | Mapping inspected, query untested |
 | HiveServer2 Thrift | `thrift://localhost:10002` | `localhost:10000` | Mapping inspected, request untested |
-| Hive Metastore | `thrift://localhost:9084` | `localhost:9083` | Mapping inspected, request untested |
+| Hive Metastore | `thrift://localhost:9084` | `localhost:9083` | Day 17 Iceberg catalog namespace/table creation and reads verified |
 | MongoDB | `localhost:27018` | `localhost:27017` | Mapping inspected; outside BankFlow scope |
-| HDFS filesystem | Port 9000 not published | `hdfs://localhost:9000` | Day 16 checkpoint and invalid-metadata writes verified under `/bankflow` |
+| HDFS filesystem | Port 9000 not published | `hdfs://localhost:9000` | Day 17 Iceberg data/metadata, checkpoint, and quarantine writes verified under `/bankflow` |
 | Spark RPC | Port 7077 not published | `spark://localhost:7077` | Spark 3.5.1 standalone submission and Kafka streaming verified |
 
 Kafka clients use `host:port` without the helper's `kafka://` display prefix. The dedicated broker advertises `host.docker.internal:9093`, which is reachable from both Windows and container-side clients through Docker Desktop. The primary topic is `bankflow.transaction.events`; its local development configuration has one partition and replication factor one.
@@ -21,6 +21,8 @@ Kafka clients use `host:port` without the helper's `kafka://` display prefix. Th
 The operational consumer uses group `bankflow-operational-v1`. Run `python consumers/transaction_consumer.py` from the repository root after `alembic upgrade head`; SIGINT/SIGTERM stops it after the current bounded poll.
 
 The Spark consumer runs inside the container as `datalab` and resolves `spark-sql-kafka-0-10_2.12:3.5.1` at submission. See `streaming/README.md` for the exact command, HDFS checkpoint paths, metrics, and replay rules.
+
+The Day 17 Bronze writer reuses the installed Iceberg Spark runtime, connects to the internal Hive Metastore, and stores `bankflow.bronze.bronze_bankflow_events` beneath `/bankflow/bronze`. See `spark/bronze/README.md` for startup, query, checkpoint, and replay guidance.
 
 The reported PostgreSQL lab database/user are `datalab` / `admin`, distinct from the provisioned application resources `bankflow` / `bankflow_user` and isolated test resources `bankflow_test` / `bankflow_test_user`. Redis uses the reported ACL user `default`. Do not assume UI login passwords authenticate database services.
 
@@ -61,7 +63,7 @@ Trino JDBC: `jdbc:trino://localhost:8096/hive/default`, reported user `trino`, c
 - Repository mount: `/home/datalab/bankflow`. Edits there change the host repository.
 - Reported Hive config: `/opt/hive/conf/hive-site.xml`.
 - Reported Hive warehouse: `hdfs://localhost:9000/hive/warehouse`, from inside the container.
-- The copied helper lists `/medilake/bronze` and `/medilake/silver`. Proposed BankFlow paths are `/bankflow/bronze` and `/bankflow/silver`; they have not been created. Do not rename/delete copied data as part of adopting this container.
+- The copied helper lists `/medilake/bronze` and `/medilake/silver`; BankFlow does not adopt or modify them. Day 17 created the separate `/bankflow/bronze` namespace. `/bankflow/silver` remains planned.
 - Use in-container jobs for later HDFS/Spark work unless host RPC connectivity is deliberately configured and validated.
 
 Recheck with `docker port bankflow` after recreation. A published port, browser UI, or TCP connection alone does not prove backend readiness.

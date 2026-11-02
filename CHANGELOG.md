@@ -2,6 +2,13 @@
 
 ## Unreleased — Phase 3 Streaming Platform
 
+### Day 17 — Iceberg Bronze layer (2026-11-02)
+
+- Added a Hive-backed Iceberg v2 Bronze table in HDFS with exact raw valid payloads, source-envelope fields, Kafka provenance, fingerprints, and ingestion timestamps.
+- Added HDFS stream checkpointing, secret-safe invalid-value quarantine, ingestion-day partitioning, and Kafka-position `MERGE` idempotence.
+- Verified table creation and reads, checkpoint restart with five new events, and a full-topic replay that retained exactly 25 unique source positions.
+- Added 19 focused Bronze contracts; all 136 service-free and 165 service-opt-in tests pass.
+
 ### Day 16 — Spark streaming foundation (2026-10-28)
 
 - Added a Spark 3.5.1 Structured Streaming consumer with a pinned Scala 2.12 Kafka connector, bounded Kafka batches, and explicit fail-on-data-loss behavior.

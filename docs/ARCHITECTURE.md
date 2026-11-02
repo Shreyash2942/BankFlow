@@ -434,7 +434,9 @@ The canonical version-1 envelope and its closed transaction/authentication paylo
 
 The Day 10 operational consumer joins `bankflow-operational-v1`, validates the complete envelope, and persists it to `consumed_events` before committing the Kafka offset. Event-ID and Kafka-position uniqueness make replay idempotent. Invalid values are logged without message contents and committed so they do not block the partition. See ADR-011.
 
-The Day 16 Spark consumer is a separate Version 2 path. It uses the Spark 3.5.1/Scala 2.12 Kafka connector, explicit version-1 schemas, HDFS checkpoints, bounded micro-batches, structured metrics, and secret-safe invalid-record metadata. The standalone driver runs as `datalab` so driver/worker HDFS ownership is consistent. Day 17 adds the Iceberg Bronze sink; Day 16 intentionally stops at validated streaming ingestion. See ADR-015.
+The Day 16 Spark consumer is a separate Version 2 path. It uses the Spark 3.5.1/Scala 2.12 Kafka connector, explicit version-1 schemas, HDFS checkpoints, bounded micro-batches, structured metrics, and secret-safe invalid-record metadata. The standalone driver runs as `datalab` so driver/worker HDFS ownership is consistent. See ADR-015.
+
+Day 17 lands the valid stream in `bankflow.bronze.bronze_bankflow_events`, an Iceberg v2 table registered through Hive Metastore and stored under HDFS `/bankflow/bronze`. Bronze retains the exact raw JSON, its fingerprint, parsed envelope identity, payload kind, Kafka provenance, and ingestion time. HDFS checkpoints provide normal restart recovery, while a `MERGE` on topic/partition/offset makes intentional replay idempotent. Invalid raw values remain outside Bronze and follow the Day 16 safe-metadata quarantine policy. See ADR-016.
 
 ---
 
@@ -445,7 +447,16 @@ The Day 16 Spark consumer is a separate Version 2 path. It uses the Spark 3.5.1/
 Table:
 
 ```text
-bronze_bankflow_events
+bankflow.bronze.bronze_bankflow_events
+```
+
+Runtime locations:
+
+```text
+Hive Metastore: thrift://localhost:9083
+Warehouse:      hdfs://localhost:9000/bankflow/lakehouse
+Namespace:      hdfs://localhost:9000/bankflow/bronze
+Checkpoint:     hdfs://localhost:9000/bankflow/checkpoints/day17-bronze
 ```
 
 Purpose:
@@ -460,13 +471,15 @@ Typical fields:
 ```text
 event_id
 event_type
-event_timestamp
-account_id
-transaction_id
-amount
-status
-payload
-ingestion_timestamp
+schema_version
+occurred_at
+source
+payload_kind
+raw_payload
+raw_payload_sha256
+kafka_topic / kafka_partition / kafka_offset
+kafka_key / kafka_timestamp
+ingested_at
 ```
 
 ---

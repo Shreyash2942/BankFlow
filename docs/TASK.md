@@ -929,17 +929,19 @@ Persist raw streaming events into the lakehouse.
 
 ### Tasks
 
-- [ ] Configure Iceberg catalog
-- [ ] Configure Hive Metastore
-- [ ] Configure HDFS storage path
-- [ ] Create Bronze namespace/database
-- [ ] Create `bronze_bankflow_events`
-- [ ] Write streaming events to Bronze
-- [ ] Add ingestion timestamp
-- [ ] Preserve raw payload
-- [ ] Add checkpointing
-- [ ] Validate table reads
-- [ ] Validate restart behavior
+- [x] Configure Iceberg catalog
+- [x] Configure Hive Metastore
+- [x] Configure HDFS storage path
+- [x] Create Bronze namespace/database
+- [x] Create `bronze_bankflow_events`
+- [x] Write streaming events to Bronze
+- [x] Add ingestion timestamp
+- [x] Preserve raw payload
+- [x] Add checkpointing
+- [x] Validate table reads
+- [x] Validate restart behavior
+
+Completed 2026-11-02. The live Spark job created the Hive-backed Iceberg v2 table in HDFS, ingested 25 valid events while safely quarantining one malformed value, resumed from the same checkpoint, and kept 25 unique Kafka positions after a deliberate full replay. See `spark/bronze/README.md` and `docs/DAY17_VALIDATION.md`.
 
 ### Deliverables
 

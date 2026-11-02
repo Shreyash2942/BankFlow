@@ -80,6 +80,16 @@ docker exec --user datalab bankflow bash -lc "cd /home/datalab/bankflow && /opt/
 
 The default query starts at latest offsets only when creating its checkpoint. Restarting with the same HDFS checkpoint resumes from committed offsets. See the [streaming runbook](streaming/README.md) for replay, available-now validation, metrics, and invalid-record handling.
 
+## Persist the Iceberg Bronze layer
+
+Day 17 writes validated events into `bankflow.bronze.bronze_bankflow_events` through the existing Hive Metastore and HDFS services. The table retains the exact valid raw JSON, Kafka provenance, payload fingerprint, and ingestion time. Checkpoints support normal restart, and a Kafka-position merge makes deliberate replay idempotent.
+
+```powershell
+docker exec --user datalab bankflow bash -lc "cd /home/datalab/bankflow && /opt/spark/bin/spark-submit --master spark://localhost:7077 --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.1 spark/bronze/ingest_events.py"
+```
+
+See the [Bronze runbook](spark/bronze/README.md) for catalog settings, table creation, bounded validation, reads, checkpoints, and replay rules.
+
 ## Configuration and infrastructure
 
 The Windows application connects to the dedicated `bankflow` container: PostgreSQL 5433, Redis 6380, and Kafka 9093. PostgreSQL, authenticated Redis, Kafka 3.7.1 metadata, and acknowledged Kafka delivery are verified. The dedicated broker advertises `host.docker.internal:9093` so host clients do not get redirected to its internal port.
@@ -118,7 +128,7 @@ BankFlow/
 ├── scripts/                 # environment, provisioning, and idempotent demo seed tools
 ├── tests/                   # unit tests and opt-in PostgreSQL tests
 ├── airflow/, dbt/           # V1 Airflow orchestration and dbt analytics
-├── streaming/, spark/       # Spark ingestion plus planned Iceberg layer jobs
+├── streaming/, spark/       # Spark ingestion and Iceberg Bronze jobs
 ├── docs/                    # canonical planning and handoff documents
 │   ├── analysis/            # dated pre-implementation review
 │   └── original-college-project/ # unchanged source assets and checksums
@@ -164,6 +174,9 @@ BankFlow/
 - [Day 16 validation](docs/DAY16_VALIDATION.md)
 - [Spark streaming runbook](streaming/README.md)
 - [Day 16 Spark streaming decision](docs/architecture/ADR-015-spark-streaming-foundation.md)
+- [Day 17 validation](docs/DAY17_VALIDATION.md)
+- [Iceberg Bronze runbook](spark/bronze/README.md)
+- [Day 17 Iceberg Bronze decision](docs/architecture/ADR-016-iceberg-bronze-layer.md)
 - [Version 1 release notes](docs/RELEASE_NOTES_v1.0.0.md)
 - [Version 1 portfolio and screenshots](docs/V1_PORTFOLIO.md)
 - [Baseline analysis](docs/analysis/PROJECT_ANALYSIS.md)
@@ -176,8 +189,8 @@ Delivery order: foundation → PostgreSQL persistence → authentication/Redis �
 ```powershell
 .\.venv\Scripts\python.exe -m pip check
 .\.venv\Scripts\python.exe scripts/check_environment.py
-.\.venv\Scripts\python.exe -m ruff check airflow src pages consumers scripts tests migrations
-.\.venv\Scripts\python.exe -m ruff format --check airflow src pages consumers scripts tests migrations
+.\.venv\Scripts\python.exe -m ruff check airflow src pages consumers scripts streaming spark tests migrations
+.\.venv\Scripts\python.exe -m ruff format --check airflow src pages consumers scripts streaming spark tests migrations
 ```
 
 Run unit tests without services, or opt into the dedicated test database:
@@ -199,4 +212,4 @@ Remove-Item Env:BANKFLOW_RUN_DB_TESTS
 Remove-Item Env:BANKFLOW_RUN_KAFKA_TESTS
 ```
 
-The live tests require `.env.test` with isolated PostgreSQL and Redis test resources. Kafka smoke tests use unique temporary topics, groups, and clients. The application suite has 117 service-free tests and all 146 pass with service opt-ins; the dbt project adds 67 source, model, and reconciliation tests. Spark runtime validation remains container-based because PySpark is intentionally not a Windows application dependency. See [Day 14 validation](docs/DAY14_VALIDATION.md) for Version 1 acceptance, [Day 15 validation](docs/DAY15_VALIDATION.md) for synthetic-stream evidence, and [Day 16 validation](docs/DAY16_VALIDATION.md) for Spark/Kafka/HDFS evidence.
+The live tests require `.env.test` with isolated PostgreSQL and Redis test resources. Kafka smoke tests use unique temporary topics, groups, and clients. The application suite has 136 service-free tests and all 165 pass with service opt-ins; the dbt project adds 67 source, model, and reconciliation tests. Spark/Iceberg runtime validation remains container-based because PySpark is intentionally not a Windows application dependency. See [Day 14 validation](docs/DAY14_VALIDATION.md) for Version 1 acceptance and the Day 15–17 validation documents for streaming/lakehouse evidence.

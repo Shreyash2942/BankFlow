@@ -40,6 +40,8 @@ Day 10 verified a manual-commit consumer against isolated test topics. Valid eve
 
 Day 16 verified Spark 3.5.1/Scala 2.12 submission to `spark://localhost:7077` inside the container. The base distribution requires `spark-sql-kafka-0-10_2.12:3.5.1` through `spark-submit --packages`. Run the driver as container user `datalab`; checkpoints and invalid-record metadata use shared HDFS paths under `/bankflow`, not `file:///` paths. See `streaming/README.md`.
 
+Day 17 verified the installed Iceberg Spark runtime, Hive Metastore at `thrift://localhost:9083`, and HDFS storage. The `bankflow` catalog contains namespace `bronze` at `/bankflow/bronze` and table `bankflow.bronze.bronze_bankflow_events`; its default checkpoint is `/bankflow/checkpoints/day17-bronze`. See `spark/bronze/README.md`.
+
 ## Dependency boundaries
 
 The application uses Streamlit, Pydantic/settings, SQLAlchemy, Alembic, Psycopg, Redis, and the Kafka Python client. Airflow, dbt, Spark, and Graphify remain separate runtimes; PySpark is intentionally not installed into the Windows application environment. Other available lab tools do not expand the PRD.
