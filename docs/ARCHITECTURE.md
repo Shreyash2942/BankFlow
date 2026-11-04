@@ -540,6 +540,8 @@ Example business metrics:
 - success rate
 - decline rate
 
+Day 20 implements all five tables as rerunnable Iceberg v2 aggregates sourced only from typed Silver facts. Daily transaction rates count completed deposits/withdrawals and declines as terminal monetary attempts; requests and balance inquiries remain available in hourly/event metrics but do not inflate business outcomes. Authentication attempts include successes, ordinary failures, and lockouts while excluding session ends from the denominator. Account activity combines transaction and account lifecycle facts without counting closure as another monetary outcome. Exact decimal aggregates, UTC grains, deterministic update-or-insert merges, and pre-merge reconciliation/rate/nonnegative quality gates keep Gold business-ready. See ADR-019.
+
 ---
 
 # 7. Repository / Folder Structure

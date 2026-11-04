@@ -1043,16 +1043,16 @@ Create business-ready lakehouse datasets.
 
 ### Tasks
 
-- [ ] Create Gold namespace
-- [ ] Build daily transaction metrics
-- [ ] Build hourly transaction metrics
-- [ ] Build account activity metrics
-- [ ] Build authentication metrics
-- [ ] Build declined-transaction metrics
-- [ ] Calculate success rate
-- [ ] Calculate decline rate
-- [ ] Calculate average transaction value
-- [ ] Add Gold quality checks
+- [x] Create Gold namespace
+- [x] Build daily transaction metrics
+- [x] Build hourly transaction metrics
+- [x] Build account activity metrics
+- [x] Build authentication metrics
+- [x] Build declined-transaction metrics
+- [x] Calculate success rate
+- [x] Calculate decline rate
+- [x] Calculate average transaction value
+- [x] Add Gold quality checks
 
 ### Deliverables
 

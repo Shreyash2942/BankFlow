@@ -2,6 +2,14 @@
 
 ## Unreleased — Phase 3 Streaming Platform
 
+### Day 20 — Gold analytics layer (2026-11-03)
+
+- Added five typed Iceberg Gold datasets for daily/hourly transactions, account activity, authentication, and declines.
+- Defined terminal monetary-attempt and authentication-attempt semantics that prevent request, inquiry, session, and closure lifecycle events from distorting business rates.
+- Added exact decimal amounts and balances, six-place success/decline rates, full-state aggregate upserts, and fail-fast quality reconciliation.
+- Verified all five tables through Spark and Trino, reconciled 19 transaction, six authentication, and two decline facts to Gold, and proved stable reruns.
+- Expanded validation to 226 service-free and 255 service-opt-in tests, all passing.
+
 ### Day 19 — Silver authentication and account events (2026-11-02)
 
 - Added typed Iceberg Silver authentication and account-event datasets with independent pointer-only reject tables.
