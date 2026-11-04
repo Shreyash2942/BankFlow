@@ -36,8 +36,8 @@ jobs:
         run: python scripts/check_environment.py
       - name: Lint and format
         run: |
-          python -m ruff check airflow src pages consumers scripts tests migrations
-          python -m ruff format --check airflow src pages consumers scripts tests migrations
+          python -m ruff check airflow src pages consumers scripts streaming spark tests migrations
+          python -m ruff format --check airflow src pages consumers scripts streaming spark tests migrations
       - name: Run service-free regression suite
         run: python -m pytest -q
 
