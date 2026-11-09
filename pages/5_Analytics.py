@@ -1,4 +1,4 @@
-"""Authenticated operational analytics backed by the Version 1 dbt marts."""
+"""Authenticated analytics backed by Iceberg Gold, PostgreSQL serving, and dbt."""
 
 from datetime import date, timedelta
 
@@ -33,8 +33,8 @@ render_sidebar(runtime, account)
 render_brand_header()
 render_page_heading(
     "📊",
-    "Analytics dashboard",
-    "Explore transaction volume, outcomes, and authentication activity from the dbt marts.",
+    "Lakehouse analytics",
+    "Explore Gold transaction, account, hourly, and authentication metrics served through dbt.",
 )
 
 range_label = st.selectbox(
@@ -55,7 +55,7 @@ try:
 except AnalyticsUnavailableError as exc:
     st.warning(str(exc))
     st.info(
-        "The ATM remains available. Start the Kafka consumer and rebuild dbt to restore analytics."
+        "The ATM remains available. Load the Gold serving tables and rebuild dbt to restore analytics."
     )
     st.stop()
 
@@ -63,9 +63,9 @@ overview = snapshot.overview
 total, volume, success, declined = st.columns(4, gap="medium")
 with total:
     render_metric_card(
-        "Total transactions",
+        "Monetary attempts",
         f"{overview.total_transactions:,}",
-        range_label,
+        f"{overview.transaction_events:,} lifecycle events",
         "▤",
     )
 with volume:
@@ -88,7 +88,7 @@ with declined:
     render_metric_card(
         "Declined",
         f"{overview.declined_transactions:,}",
-        "Terminal declined transactions",
+        f"{overview.decline_rate:.2f}% decline rate",
         "!",
         "negative",
     )
@@ -129,10 +129,41 @@ with locked:
     )
 
 st.write("")
+events, average, accounts, peak = st.columns(4, gap="medium")
+with events:
+    render_metric_card(
+        "Lakehouse events",
+        f"{overview.transaction_events:,}",
+        "Validated transaction lifecycle events",
+        "E",
+    )
+with average:
+    render_metric_card(
+        "Average transaction",
+        format_money(overview.average_transaction_value),
+        "Successful monetary outcomes",
+        "A",
+    )
+with accounts:
+    render_metric_card(
+        "Active accounts",
+        f"{overview.active_accounts:,}",
+        "Distinct accounts in range",
+        "#",
+    )
+with peak:
+    render_metric_card(
+        "Peak hourly events",
+        f"{overview.peak_hourly_events:,}",
+        "Highest Gold hourly volume",
+        "H",
+    )
+
+st.write("")
 if not snapshot.has_activity:
     st.info(
-        "No consumed events are represented in this date range yet. Complete a demo operation, "
-        "run the consumer, and rebuild dbt to populate these charts."
+        "No Gold events are represented in this date range yet. Run the lakehouse pipeline, "
+        "load PostgreSQL serving tables, and rebuild dbt to populate these charts."
     )
 else:
     volume_chart, type_chart = st.columns([1.7, 1], gap="medium")
@@ -173,17 +204,42 @@ else:
             height=340,
         )
 
+    if snapshot.hourly_volume:
+        st.subheader("Hourly lakehouse volume")
+        st.caption("Validated transaction lifecycle events by UTC hour")
+        hourly_rows = [
+            {
+                "Hour": metric.event_hour,
+                "Events": metric.transaction_events,
+            }
+            for metric in snapshot.hourly_volume
+        ]
+        st.line_chart(
+            hourly_rows,
+            x="Hour",
+            y="Events",
+            color="#7C3AED",
+            height=280,
+        )
+
+freshness = (
+    snapshot.serving_loaded_at.strftime("%b %d, %Y %I:%M:%S %p %Z")
+    if snapshot.serving_loaded_at
+    else "not available"
+)
 st.caption(
-    "Snapshot loaded "
+    "Dashboard snapshot "
     + snapshot.generated_at.strftime("%b %d, %Y %I:%M:%S %p %Z")
-    + " · Source: bankflow_analytics dbt marts"
+    + " · Serving load "
+    + freshness
+    + " · Source: Iceberg Gold → PostgreSQL serving → dbt"
 )
 st.markdown(
     """
     <div class="notice-card info" style="margin-top: 1rem;">
       <strong>Data-driven banking</strong>
-      <p>Metrics are generated from validated, deduplicated Kafka events persisted by the
-      operational consumer. Dashboard freshness follows the latest successful dbt build.</p>
+      <p>Metrics flow from validated Kafka events through Iceberg Bronze, Silver, and Gold,
+      then through an idempotent PostgreSQL serving load and tested dbt marts.</p>
     </div>
     """,
     unsafe_allow_html=True,
