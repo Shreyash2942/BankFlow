@@ -173,14 +173,68 @@ jobs:
             schema_version integer NOT NULL,
             occurred_at timestamptz NOT NULL,
             source varchar(100) NOT NULL,
-            aggregate_id uuid NOT NULL,
             payload jsonb NOT NULL,
             topic varchar(255) NOT NULL,
             partition integer NOT NULL,
-            kafka_offset bigint NOT NULL,
+            "offset" bigint NOT NULL,
             consumer_group varchar(255) NOT NULL,
             consumed_at timestamptz NOT NULL DEFAULT now(),
-            CONSTRAINT uq_ci_position UNIQUE (topic, partition, kafka_offset)
+            CONSTRAINT uq_ci_position UNIQUE (topic, partition, "offset")
+          );
+          CREATE SCHEMA bankflow_serving AUTHORIZATION bankflow_test_user;
+          CREATE TABLE bankflow_serving.analytics_daily_transactions (
+            metric_date date NOT NULL, currency varchar(3) NOT NULL,
+            transaction_event_count bigint NOT NULL, monetary_attempt_count bigint NOT NULL,
+            successful_transaction_count bigint NOT NULL, declined_transaction_count bigint NOT NULL,
+            balance_inquiry_count bigint NOT NULL, deposit_count bigint NOT NULL,
+            successful_withdrawal_count bigint NOT NULL, declined_withdrawal_count bigint NOT NULL,
+            total_deposit_amount numeric(38,2) NOT NULL,
+            total_withdrawal_amount numeric(38,2) NOT NULL,
+            total_declined_amount numeric(38,2) NOT NULL,
+            average_transaction_value numeric(38,2) NOT NULL,
+            success_rate numeric(9,6) NOT NULL, decline_rate numeric(9,6) NOT NULL,
+            unique_account_count bigint NOT NULL, first_event_at timestamptz NOT NULL,
+            last_event_at timestamptz NOT NULL, source_gold_processed_at timestamptz NOT NULL,
+            loaded_at timestamptz NOT NULL DEFAULT now(), PRIMARY KEY (metric_date, currency)
+          );
+          CREATE TABLE bankflow_serving.analytics_authentication_metrics (
+            metric_date date PRIMARY KEY, authentication_event_count bigint NOT NULL,
+            authentication_attempt_count bigint NOT NULL,
+            successful_authentication_count bigint NOT NULL,
+            failed_authentication_count bigint NOT NULL, card_lockout_count bigint NOT NULL,
+            session_end_count bigint NOT NULL, known_subject_event_count bigint NOT NULL,
+            unknown_subject_event_count bigint NOT NULL, unique_account_count bigint NOT NULL,
+            unique_card_count bigint NOT NULL, success_rate numeric(9,6) NOT NULL,
+            failure_rate numeric(9,6) NOT NULL, first_event_at timestamptz NOT NULL,
+            last_event_at timestamptz NOT NULL, source_gold_processed_at timestamptz NOT NULL,
+            loaded_at timestamptz NOT NULL DEFAULT now()
+          );
+          CREATE TABLE bankflow_serving.analytics_account_activity (
+            metric_date date NOT NULL, account_id uuid NOT NULL, currency varchar(3) NOT NULL,
+            activity_event_count bigint NOT NULL, transaction_event_count bigint NOT NULL,
+            distinct_transaction_count bigint NOT NULL,
+            completed_monetary_transaction_count bigint NOT NULL,
+            declined_transaction_count bigint NOT NULL, balance_inquiry_count bigint NOT NULL,
+            deposit_count bigint NOT NULL, successful_withdrawal_count bigint NOT NULL,
+            closure_event_count bigint NOT NULL, total_deposit_amount numeric(38,2) NOT NULL,
+            total_withdrawal_amount numeric(38,2) NOT NULL,
+            total_declined_amount numeric(38,2) NOT NULL, opening_balance numeric(18,2) NOT NULL,
+            closing_balance numeric(18,2) NOT NULL, account_status varchar(32) NOT NULL,
+            account_closed boolean NOT NULL, first_activity_at timestamptz NOT NULL,
+            last_activity_at timestamptz NOT NULL, source_gold_processed_at timestamptz NOT NULL,
+            loaded_at timestamptz NOT NULL DEFAULT now(),
+            PRIMARY KEY (metric_date, account_id, currency)
+          );
+          CREATE TABLE bankflow_serving.analytics_hourly_volume (
+            event_hour timestamptz NOT NULL, currency varchar(3) NOT NULL,
+            transaction_type varchar(32) NOT NULL, transaction_status varchar(32) NOT NULL,
+            transaction_event_count bigint NOT NULL,
+            total_transaction_amount numeric(38,2) NOT NULL,
+            average_transaction_amount numeric(38,2) NOT NULL,
+            unique_account_count bigint NOT NULL, first_event_at timestamptz NOT NULL,
+            last_event_at timestamptz NOT NULL, source_gold_processed_at timestamptz NOT NULL,
+            loaded_at timestamptz NOT NULL DEFAULT now(),
+            PRIMARY KEY (event_hour, currency, transaction_type, transaction_status)
           );
           SQL
       - name: Build, test, and document dbt models
