@@ -2,6 +2,14 @@
 
 ## Unreleased — Phase 3 Streaming Platform
 
+### Day 21 — Analytics serving layer (2026-11-08)
+
+- Added Alembic revision 0004 with four typed, constrained PostgreSQL serving tables in a separate `bankflow_serving` schema.
+- Added a transactional Trino-to-PostgreSQL full-state mirror with advisory locking, deterministic upserts, stale-key pruning, load timestamps, and exact reconciliation.
+- Added four tested dbt lakehouse marts and updated the Streamlit analytics page with Gold event, average-value, account, hourly-volume, freshness, and lineage metrics.
+- Verified stable 1/1/7/5 serving row counts on rerun, 146 passing dbt build nodes, and an exact 19-event/12-attempt/10-success/2-decline application snapshot.
+- Expanded validation to 238 service-free and 268 service-opt-in tests, all passing.
+
 ### Day 20 — Gold analytics layer (2026-11-03)
 
 - Added five typed Iceberg Gold datasets for daily/hourly transactions, account activity, authentication, and declines.

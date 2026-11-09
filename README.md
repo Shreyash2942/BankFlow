@@ -121,6 +121,17 @@ docker exec --user datalab bankflow bash -lc "cd /home/datalab/bankflow && /opt/
 
 The jobs use exact decimal measures, terminal-event success/decline rules, deterministic aggregate upserts, and fail-fast quality reconciliation. See the [Gold analytics runbook](spark/gold/README.md) for grains, formulas, quality gates, and query examples.
 
+## Serve Gold analytics
+
+Day 21 mirrors the four selected Gold datasets into the separate `bankflow_serving` PostgreSQL schema, then builds V2 dbt marts and exposes them through the Streamlit lakehouse dashboard.
+
+```powershell
+.\.venv\Scripts\python.exe -m alembic upgrade head
+.\.venv\Scripts\python.exe scripts\load_gold_serving.py
+```
+
+The loader is a transactional full-state mirror: it stages each dataset, upserts its deterministic Gold grain, removes stale serving keys, records Gold and load timestamps, and reconciles exact counts and totals before commit. Rebuild dbt after a successful load; see the [dbt runbook](dbt/README.md) and [Day 21 validation](docs/DAY21_VALIDATION.md).
+
 ## Configuration and infrastructure
 
 The Windows application connects to the dedicated `bankflow` container: PostgreSQL 5433, Redis 6380, and Kafka 9093. PostgreSQL, authenticated Redis, Kafka 3.7.1 metadata, and acknowledged Kafka delivery are verified. The dedicated broker advertises `host.docker.internal:9093` so host clients do not get redirected to its internal port.
@@ -216,6 +227,8 @@ BankFlow/
 - [Day 20 validation](docs/DAY20_VALIDATION.md)
 - [Gold analytics runbook](spark/gold/README.md)
 - [Day 20 Gold analytics decision](docs/architecture/ADR-019-gold-analytics-layer.md)
+- [Day 21 validation](docs/DAY21_VALIDATION.md)
+- [Day 21 analytics-serving decision](docs/architecture/ADR-020-analytics-serving-layer.md)
 - [Version 1 release notes](docs/RELEASE_NOTES_v1.0.0.md)
 - [Version 1 portfolio and screenshots](docs/V1_PORTFOLIO.md)
 - [Baseline analysis](docs/analysis/PROJECT_ANALYSIS.md)
@@ -251,4 +264,4 @@ Remove-Item Env:BANKFLOW_RUN_DB_TESTS
 Remove-Item Env:BANKFLOW_RUN_KAFKA_TESTS
 ```
 
-The live tests require `.env.test` with isolated PostgreSQL and Redis test resources. Kafka smoke tests use unique temporary topics, groups, and clients. The application suite has 226 service-free tests and all 255 pass with service opt-ins; the dbt project adds 67 source, model, and reconciliation tests. Spark/Iceberg runtime validation remains container-based because PySpark is intentionally not a Windows application dependency. See [Day 14 validation](docs/DAY14_VALIDATION.md) for Version 1 acceptance and the Day 15–20 validation documents for streaming/lakehouse evidence.
+The live tests require `.env.test` with isolated PostgreSQL and Redis test resources. Kafka smoke tests use unique temporary topics, groups, and clients. The application suite has 238 service-free tests and all 268 pass with service opt-ins; the dbt project now runs 136 source, model, and reconciliation tests across V1 and V2. Spark/Iceberg runtime validation remains container-based because PySpark is intentionally not a Windows application dependency. See [Day 14 validation](docs/DAY14_VALIDATION.md) for Version 1 acceptance and the Day 15–21 validation documents for streaming/lakehouse evidence.

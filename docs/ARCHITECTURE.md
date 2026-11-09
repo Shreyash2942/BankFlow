@@ -384,6 +384,8 @@ analytics_account_activity
 analytics_hourly_volume
 ```
 
+Day 21 owns these tables in the separate `bankflow_serving` schema so the Version 2 lakehouse path cannot overwrite the Version 1 `bankflow_analytics` marts. A bounded Trino client reads the four selected Gold datasets. Each load acquires a PostgreSQL advisory transaction lock, stages the complete source state in temporary tables, upserts deterministic business keys, removes stale target keys, records both Gold processing and serving load timestamps, and reconciles row counts plus exact numeric totals before commit. dbt materializes four `analytics_lakehouse_*` marts from this serving boundary, and Streamlit reads only those V2 marts for lakehouse metrics. See ADR-020.
+
 ---
 
 ## 5.7 Redis

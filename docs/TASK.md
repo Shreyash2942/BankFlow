@@ -1081,15 +1081,15 @@ Serve Gold data to the application analytics layer.
 
 ### Tasks
 
-- [ ] Create PostgreSQL analytics-serving schema
-- [ ] Export selected Gold datasets
-- [ ] Add idempotent load logic
-- [ ] Add load timestamps
-- [ ] Add dbt sources for serving tables
-- [ ] Extend dbt marts
-- [ ] Update Streamlit analytics queries
-- [ ] Add lakehouse metrics to dashboard
-- [ ] Validate end-to-end data consistency
+- [x] Create PostgreSQL analytics-serving schema
+- [x] Export selected Gold datasets
+- [x] Add idempotent load logic
+- [x] Add load timestamps
+- [x] Add dbt sources for serving tables
+- [x] Extend dbt marts
+- [x] Update Streamlit analytics queries
+- [x] Add lakehouse metrics to dashboard
+- [x] Validate end-to-end data consistency
 
 ### Suggested Commits
 

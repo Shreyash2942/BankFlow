@@ -24,7 +24,7 @@ The supplied connection guide mixes host-mapped ports with internal HDFS/Spark a
 
 ## Application database setup
 
-The application and test databases are both at Alembic revision `0003`. Revision `0001` creates schema `bankflow`; revision `0002` creates customers, accounts, cards, transactions, and audit events; revision `0003` creates the consumed-event store. The application database contains the single idempotent fictional demo graph described in [Day 3 validation](DAY3_VALIDATION.md).
+The application and test databases are both at Alembic revision `0004`. Revision `0001` creates schema `bankflow`; revision `0002` creates customers, accounts, cards, transactions, and audit events; revision `0003` creates the consumed-event store; revision `0004` creates the separate `bankflow_serving` analytics schema and four Gold mirror tables. The application database contains the single idempotent fictional demo graph described in [Day 3 validation](DAY3_VALIDATION.md).
 
 On a fresh instance of this lab, run `scripts/provision_local_database.py` once from the repository root with the Windows virtual environment. It requires Docker access and the lab's local database superuser. It refuses existing environment files or database resources and checks privileges before writing credentials. A partial failure retains local credential files for deliberate recovery; do not delete or overwrite them to retry blindly.
 
@@ -45,6 +45,8 @@ Day 17 verified the installed Iceberg Spark runtime, Hive Metastore at `thrift:/
 Day 18 created the `silver` namespace at `hdfs://localhost:9000/bankflow/silver` and verified `silver_transactions` plus the pointer-only `silver_transaction_rejects` table. The batch job uses the installed Iceberg runtime and does not require the Spark Kafka package. See `spark/silver/README.md`.
 
 Day 19 added and verified authentication/account Silver tables and their pointer-only reject tables in the same namespace. Canonical authentication processing produced six rows; the canonical account source was empty by design, and isolated Iceberg fixtures verified closure, lockout, duplicate, and invalid-identifier paths.
+
+Day 20 created five Iceberg Gold aggregates under `/bankflow/gold` and verified Spark writes plus Trino reads. Day 21 uses Trino's host HTTP endpoint at `http://127.0.0.1:8096` to mirror the selected daily, authentication, account, and hourly datasets into `bankflow_serving`. The loader runs on Windows with the application virtual environment; dbt continues inside the container against internal PostgreSQL port 5432.
 
 ## Dependency boundaries
 

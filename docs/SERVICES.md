@@ -52,12 +52,12 @@ All entries use `http://localhost` on Windows. These are inspected mappings, not
 | Mongo Express | `8087/` | Web UI |
 | Redis Commander | `8092/` | Web UI |
 | pgAdmin | `8182/` | Web UI |
-| Trino | `8096/` | HTTP endpoint |
+| Trino | `8096/` | Gold queries and Day 21 serving export verified |
 | Superset | `8095/` | Web UI |
 | MinIO | `9006/` | Object storage API |
 | MinIO Console | `9007/` | Web UI |
 
-Trino JDBC: `jdbc:trino://localhost:8096/hive/default`, reported user `trino`, catalog/schema `hive.default`. Hive defaults are reported as authentication NONE, user `datalab`, database `default`; these have not been tested. Available tools do not automatically become BankFlow dependencies.
+Trino JDBC: `jdbc:trino://localhost:8096/hive/default`, user `trino`, catalog/schema `hive.default`. Day 20 verified reads from `hive.gold`; Day 21 uses the bounded HTTP statement API at `http://localhost:8096/v1/statement` to mirror selected Gold tables into PostgreSQL. Hive defaults remain authentication NONE, user `datalab`, database `default`.
 
 ## Storage and runtime boundaries
 
