@@ -1,6 +1,7 @@
 """Day 23 cross-layer data-quality framework coverage."""
 
 from datetime import UTC, datetime
+from pathlib import Path
 
 from bankflow.quality import (
     QUALITY_RULES,
@@ -119,3 +120,15 @@ def test_quality_run_persistence_writes_summary_and_each_rule_result():
     assert "bankflow_quality.quality_results" in results_sql
     assert results[0]["rule_id"] == rule.rule_id
     assert results[0]["violation_count"] == 2
+
+
+def test_quality_migration_defines_run_and_result_contracts():
+    migration = Path("migrations/versions/0005_create_data_quality_schema.py").read_text(
+        encoding="utf-8"
+    )
+
+    assert 'revision = "0005"' in migration
+    assert 'down_revision = "0004"' in migration
+    assert "quality_runs" in migration
+    assert "quality_results" in migration
+    assert 'ondelete="CASCADE"' in migration
