@@ -5,6 +5,7 @@ from datetime import date, timedelta
 import streamlit as st
 
 from bankflow.analytics import AnalyticsUnavailableError
+from bankflow.quality import QualityUnavailableError
 from bankflow.ui.streamlit_support import (
     apply_design_system,
     configure_page,
@@ -36,6 +37,52 @@ render_page_heading(
     "Lakehouse analytics",
     "Explore Gold transaction, account, hourly, and authentication metrics served through dbt.",
 )
+
+try:
+    quality_run = runtime.latest_quality_run()
+except QualityUnavailableError:
+    quality_run = None
+
+st.subheader("Data quality")
+if quality_run is None:
+    st.info(
+        "No data-quality run is available yet. Run the Day 23 quality framework to publish indicators."
+    )
+else:
+    quality_status, quality_checks, quality_violations, quality_time = st.columns(4, gap="medium")
+    with quality_status:
+        render_metric_card(
+            "Latest status",
+            quality_run.status.upper(),
+            "Cross-layer validation",
+            "Q",
+            "positive" if quality_run.status == "passed" else "negative",
+        )
+    with quality_checks:
+        render_metric_card(
+            "Checks passed",
+            f"{quality_run.passed_rules}/{len(quality_run.results)}",
+            f"{quality_run.error_rules} query errors",
+            "✓",
+            "positive" if quality_run.status == "passed" else "",
+        )
+    with quality_violations:
+        render_metric_card(
+            "Violations",
+            f"{quality_run.total_violations:,}",
+            f"{quality_run.failed_rules} failed rules",
+            "!",
+            "negative" if quality_run.total_violations else "positive",
+        )
+    with quality_time:
+        render_metric_card(
+            "Last checked",
+            quality_run.completed_at.strftime("%b %d"),
+            quality_run.completed_at.strftime("%I:%M %p %Z"),
+            "T",
+        )
+
+st.write("")
 
 range_label = st.selectbox(
     "Date range",

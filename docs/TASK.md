@@ -1168,17 +1168,17 @@ Add explicit quality controls across the entire platform.
 
 ### Tasks
 
-- [ ] Define data-quality rules
-- [ ] Add null checks
-- [ ] Add duplicate checks
-- [ ] Add transaction-status checks
-- [ ] Add amount-range checks
-- [ ] Add balance-consistency checks
-- [ ] Add event-count reconciliation
-- [ ] Add Bronze-to-Silver reconciliation
-- [ ] Add Silver-to-Gold reconciliation
-- [ ] Store quality results
-- [ ] Add dashboard quality indicators
+- [x] Define data-quality rules
+- [x] Add null checks
+- [x] Add duplicate checks
+- [x] Add transaction-status checks
+- [x] Add amount-range checks
+- [x] Add balance-consistency checks
+- [x] Add event-count reconciliation
+- [x] Add Bronze-to-Silver reconciliation
+- [x] Add Silver-to-Gold reconciliation
+- [x] Store quality results
+- [x] Add dashboard quality indicators
 
 ### Suggested Commits
 

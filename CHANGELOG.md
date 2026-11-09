@@ -2,6 +2,14 @@
 
 ## Unreleased — Phase 3 Streaming Platform
 
+### Day 23 — Data quality framework (2026-11-09)
+
+- Added 17 explicit Bronze, Silver, Gold, and cross-layer rules for nulls, duplicates, transaction domains, amount bounds, balance semantics, and count reconciliation.
+- Added Alembic revision 0005 with immutable run summaries and per-rule results in a separate `bankflow_quality` schema.
+- Added a fail-safe Trino quality runner with structured summaries, nonzero enforcement mode, and an Airflow-ready `--triggered-by` interface.
+- Added latest-run quality status, passed checks, violations, and freshness indicators to the Streamlit analytics dashboard.
+- Verified all 17 rules against the live lakehouse with zero violations; all 244 service-free and 274 service-opt-in tests pass.
+
 ### Day 21 — Analytics serving layer (2026-11-08)
 
 - Added Alembic revision 0004 with four typed, constrained PostgreSQL serving tables in a separate `bankflow_serving` schema.

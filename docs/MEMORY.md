@@ -4,7 +4,7 @@
 **Repository Name:** `BankFlow`  
 **Document Type:** Living Project Memory / Handoff File  
 **Purpose:** Preserve project context, implementation state, decisions, issues, and next actions across developers, sessions, and AI agents.  
-**Last Updated:** 2026-10-28  
+**Last Updated:** 2026-11-09  
 
 ---
 
@@ -103,10 +103,10 @@ Version 2 extends BankFlow with:
 
 # 4. Current Project Status
 
-- Overall status: Version 1 released; Days 15–21 streaming lakehouse and PostgreSQL analytics serving complete.
+- Overall status: Version 1 released; Days 15–21 and standalone Day 23 data quality complete; Day 22 remains pending.
 - Release: BankFlow Application Platform v1.0.0.
-- Phase: Phase 3 complete through Gold-to-PostgreSQL serving, dbt lakehouse marts, and Streamlit analytics.
-- Week/day: Week 3, Day 21 complete; Day 22 next.
+- Phase: Phase 3 lakehouse serving and cross-layer quality complete; orchestration remains pending.
+- Week/day: Week 4, Day 23 complete independently; Day 22 next.
 
 | Area | Status |
 |---|---|
@@ -114,14 +114,14 @@ Version 2 extends BankFlow with:
 | Repository and package foundation | Complete |
 | Academic baseline | 18 assets preserved with hashes |
 | Python environment | Python 3.14.4, Windows x64; dependencies installed |
-| PostgreSQL | Six operational/event-store tables plus four analytics-serving tables, exact money, demo seed, and Alembic revision 0004 verified |
+| PostgreSQL | Operational/event-store tables, four analytics-serving tables, quality-run storage, exact money, demo seed, and Alembic revision 0005 verified |
 | Repository layer | Customer, account, card, and transaction access verified against PostgreSQL |
 | Authentication / Redis | Authenticated client, expiring counters/sessions, audit events, and durable card lock verified |
 | Kafka events | Versioned producer, Python consumer, synthetic publisher, and Spark consumer verified against Kafka 3.7.1 |
 | Transaction services | Exact balance inquiry, withdrawal, deposit, decline, closure, and history workflows verified |
-| Streamlit UI | ATM flows plus mart-backed analytics and failure-tolerant platform status verified against supplied designs |
+| Streamlit UI | ATM flows plus mart-backed analytics, data-quality indicators, and failure-tolerant platform status verified against supplied designs |
 | Airflow / dbt / Spark / Iceberg | Version 1 Airflow/dbt plus Spark Bronze/Silver/Gold, PostgreSQL serving, four V2 dbt marts, and Streamlit lakehouse analytics verified |
-| Automated application tests / CI | 238 service-free cases and all 268 cases with PostgreSQL/Redis/Streamlit/Kafka opt-ins pass; Spark/Iceberg live evidence is documented separately |
+| Automated application tests / CI | 244 service-free cases and all 274 cases with PostgreSQL/Redis/Streamlit/Kafka opt-ins pass; Spark/Iceberg live evidence is documented separately |
 | Graph and analysis | Days 1–13 graph: 1,187 nodes, 1,918 edges, 23 hyperedges, and 75 communities; Airflow orchestration, analytics, platform health, and validation provenance included; 97.4x benchmark reduction |
 
 ---
@@ -820,15 +820,15 @@ Airflow runs one daily, sequential Version 1 workflow: PostgreSQL health, consum
 
 # 21. Active Work
 
-Day 21 is complete. Four selected Gold datasets are mirrored transactionally into the separate `bankflow_serving` PostgreSQL schema, transformed into tested `analytics_lakehouse_*` dbt marts, and served by the Streamlit analytics page. Full-state staging, deterministic upserts, stale-key pruning, timestamps, and cross-layer reconciliation make reruns exact and idempotent.
+Day 23 is complete independently of the still-pending Day 22. Seventeen explicit Trino rules validate Bronze, Silver, Gold, and cross-layer counts; Alembic `0005` stores durable run/results metadata; and Streamlit exposes the latest quality status. The first complete live run passed all rules with zero violations, while a later transient query failure was correctly stored as an error.
 
 ---
 
 # 22. Next Actions
 
-1. Begin Day 22's Airflow orchestration for the complete lakehouse pipeline.
-2. Reuse the validated Silver, Gold, serving-load, and dbt commands without changing their grains.
-3. Add readiness, retries, quality gates, and failure handling around the proven steps.
+1. Complete Day 22 Airflow orchestration for the full lakehouse pipeline.
+2. Invoke `scripts/run_data_quality.py --triggered-by airflow` as a strict gate after Gold.
+3. Reuse the validated serving-load and dbt commands with readiness, retries, and failure handling.
 
 Keep TD-001 visible in analytics freshness expectations; consumer idempotence cannot recover events never published by the application.
 
@@ -849,7 +849,7 @@ Environment inventory from 2026-09-22; PostgreSQL, Redis, and Kafka updated and 
 - Copied `/medilake` storage paths are not adopted. BankFlow uses separate `/bankflow/bronze`, `/bankflow/silver`, and `/bankflow/gold` HDFS namespaces.
 - Selected connection strategy: application on Windows -> `127.0.0.1` published ports.
 - User created and started the dedicated container/services. Day 2 provisioned only BankFlow database resources without resetting data or reconfiguring services.
-- Application database/owner: `bankflow` / `bankflow_user`; test database/owner: `bankflow_test` / `bankflow_test_user`. Both are at migration 0004 with five banking/audit tables, `consumed_events`, and four `bankflow_serving` Gold mirrors. The application database has one fictional demo graph; generated credentials stay in ignored local files.
+- Application database/owner: `bankflow` / `bankflow_user`; test database/owner: `bankflow_test` / `bankflow_test_user`. Both are at migration 0005 with banking/audit tables, `consumed_events`, four `bankflow_serving` Gold mirrors, and the `bankflow_quality` result store. The application database has one fictional demo graph; generated credentials stay in ignored local files.
 - Kafka advertises `host.docker.internal:9093`; its application topic has one partition and replication factor one.
 - dbt Core 1.8.7 with dbt-postgres 1.8.2 runs inside the container. Test and application targets build into their own `bankflow_analytics` schemas; generated docs live in ignored `dbt/target/`.
 - Day 12 deploys `bankflow_daily_analytics` to Airflow 2.9.3. A full five-task run succeeded, rebuilding six dbt models, passing all 67 data tests, and generating documentation.
@@ -860,6 +860,7 @@ Environment inventory from 2026-09-22; PostgreSQL, Redis, and Kafka updated and 
 - Day 19 verifies six canonical authentication rows, one lockout classification, expected empty canonical account input, and isolated valid/invalid account/authentication paths.
 - Day 20 verifies `/bankflow/gold`, all five planned Iceberg tables, zero quality-rule violations, stable reruns, and exact Silver-to-Gold reconciliation through Trino.
 - Day 21 verifies Alembic `0004`, a stable 1/1/7/5 Gold serving mirror, four V2 dbt marts, 146 passing dbt nodes, and an exact dashboard snapshot.
+- Day 23 verifies Alembic `0005`, 17 cross-layer rules, zero violations in a complete live run, persisted error distinction, dashboard indicators, 244 service-free tests, and 274 service-opt-in tests.
 - Other service versions and V2 resource limits remain unverified.
 
 See `docs/ENVIRONMENT.md` for setup and `docs/architecture/ADR-003-database-foundation.md` for database decisions. Never record credentials here.
@@ -956,21 +957,21 @@ When resolved, move the answer into the appropriate permanent section and remove
 
 ## Last Session Summary
 
-Completed Day 21. The repository now includes the `bankflow_serving` schema, transactional Gold mirror, four V2 dbt marts, lakehouse dashboard queries, CI source contracts, and live Gold-to-dashboard evidence. See `docs/DAY21_VALIDATION.md` and `docs/architecture/ADR-020-analytics-serving-layer.md`.
+Completed Day 23 without claiming Day 22. The repository now includes 17 explicit quality rules, durable `bankflow_quality` run/results storage, an executable quality gate, Streamlit indicators, and live zero-violation evidence. See `docs/DAY23_VALIDATION.md` and `docs/architecture/ADR-021-cross-layer-data-quality.md`.
 
 Populated `BankFlow` using `docs/` as the canonical documentation root and `src/bankflow/` as the application package. Preserved 18 academic assets unchanged, normalized the architecture filename, and retained dated baseline reviews. Added environment template, pinned dependencies, Windows dependency snapshot, Python setup guide, import checker, and package/linter configuration.
 
 ## Last Known Working State
 
-The `bankflow-atm==1.0.0` editable package and application dependencies import on Python 3.14.4. All 238 service-free tests and all 268 service-opt-in tests pass. Gold produces 1 daily, 5 hourly, 7 account, 1 authentication, and 1 decline groups; the selected daily/authentication/account/hourly datasets mirror into PostgreSQL as 1/1/7/5 rows and build into four V2 marts. All 146 dbt build nodes pass.
+The `bankflow-atm==1.0.0` editable package and application dependencies import on Python 3.14.4. All 244 service-free tests and all 274 service-opt-in tests pass. Gold produces 1 daily, 5 hourly, 7 account, 1 authentication, and 1 decline groups; all 17 Day 23 rules passed with zero violations in the complete live validation. All 146 dbt build nodes pass.
 
 ## Last Completed Task
 
-Day 21 Gold-to-PostgreSQL serving, V2 dbt marts, Streamlit lakehouse metrics, and end-to-end reconciliation. See `docs/DAY21_VALIDATION.md`.
+Day 23 cross-layer quality rules, persistence, dashboard indicators, and live reconciliation. Day 22 remains pending. See `docs/DAY23_VALIDATION.md`.
 
 ## Next Task
 
-Day 22: orchestrate Kafka/HDFS/Hive readiness, Silver/Gold jobs, serving load, dbt build/tests, retries, and failures in Airflow.
+Day 22: orchestrate Kafka/HDFS/Hive readiness, Silver/Gold jobs, the strict Day 23 quality gate, serving load, dbt build/tests, retries, and failures in Airflow.
 
 ## Blockers
 
@@ -1067,4 +1068,4 @@ Before committing this file, verify:
 
 If only one section can be read before starting work, read this:
 
-> BankFlow is a fictional ATM portfolio project. Days 1–21 are complete: v1.0.0 provides the application/event platform, Days 15–20 build the Kafka-to-Iceberg Bronze/Silver/Gold lakehouse, and Day 21 adds an idempotent PostgreSQL serving mirror, four tested V2 dbt marts, and Streamlit lakehouse metrics. All 238 service-free tests, all 268 service-opt-in tests, and all 146 dbt nodes pass. Continue with Day 22 orchestration.
+> BankFlow is a fictional ATM portfolio project. Days 1–21 and standalone Day 23 are complete; Day 22 remains pending. Day 23 adds 17 explicit Bronze/Silver/Gold quality rules, persisted results, and Streamlit indicators. All 244 service-free tests, all 274 service-opt-in tests, and all 146 dbt nodes pass. Continue with Day 22 orchestration and invoke the Day 23 runner as its strict quality gate.

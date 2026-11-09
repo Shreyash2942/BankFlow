@@ -35,6 +35,7 @@ from bankflow.models import (
     CardStatus,
     TransactionStatus,
 )
+from bankflow.quality import QualityRun, load_latest_quality_run
 from bankflow.repositories import CardRepository
 from bankflow.schemas.account import AccountBalance
 from bankflow.schemas.authentication import (
@@ -294,6 +295,9 @@ class BankFlowRuntime:
 
     def analytics_snapshot(self, *, start_date: date | None = None) -> AnalyticsSnapshot:
         return load_analytics_snapshot(self._engine, start_date=start_date)
+
+    def latest_quality_run(self) -> QualityRun | None:
+        return load_latest_quality_run(self._engine)
 
     def reset_demo(self, *, session_token: str | None = None) -> DemoResetResult:
         with session_scope(self._sessions) as session:

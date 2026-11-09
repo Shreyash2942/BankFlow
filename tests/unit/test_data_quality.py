@@ -132,3 +132,12 @@ def test_quality_migration_defines_run_and_result_contracts():
     assert "quality_runs" in migration
     assert "quality_results" in migration
     assert 'ondelete="CASCADE"' in migration
+
+
+def test_analytics_dashboard_exposes_latest_quality_indicators():
+    page = Path("pages/5_Analytics.py").read_text(encoding="utf-8")
+
+    assert "latest_quality_run" in page
+    assert "Data quality" in page
+    assert "Checks passed" in page
+    assert "Violations" in page

@@ -229,6 +229,8 @@ BankFlow/
 - [Day 20 Gold analytics decision](docs/architecture/ADR-019-gold-analytics-layer.md)
 - [Day 21 validation](docs/DAY21_VALIDATION.md)
 - [Day 21 analytics-serving decision](docs/architecture/ADR-020-analytics-serving-layer.md)
+- [Day 23 validation](docs/DAY23_VALIDATION.md)
+- [Day 23 cross-layer quality decision](docs/architecture/ADR-021-cross-layer-data-quality.md)
 - [Version 1 release notes](docs/RELEASE_NOTES_v1.0.0.md)
 - [Version 1 portfolio and screenshots](docs/V1_PORTFOLIO.md)
 - [Baseline analysis](docs/analysis/PROJECT_ANALYSIS.md)
@@ -244,6 +246,15 @@ Delivery order: foundation → PostgreSQL persistence → authentication/Redis �
 .\.venv\Scripts\python.exe -m ruff check airflow src pages consumers scripts streaming spark tests migrations
 .\.venv\Scripts\python.exe -m ruff format --check airflow src pages consumers scripts streaming spark tests migrations
 ```
+
+Run the cross-layer data-quality gate after Bronze, Silver, and Gold are current:
+
+```powershell
+.\.venv\Scripts\python.exe -m alembic upgrade head
+.\.venv\Scripts\python.exe scripts/run_data_quality.py --triggered-by manual
+```
+
+The command stores a summary and each rule result in `bankflow_quality`, prints a secret-safe JSON summary, and returns a nonzero exit code when a rule fails or cannot be evaluated. Use `--report-only` only for diagnostics.
 
 Run unit tests without services, or opt into the dedicated test database:
 
@@ -264,4 +275,4 @@ Remove-Item Env:BANKFLOW_RUN_DB_TESTS
 Remove-Item Env:BANKFLOW_RUN_KAFKA_TESTS
 ```
 
-The live tests require `.env.test` with isolated PostgreSQL and Redis test resources. Kafka smoke tests use unique temporary topics, groups, and clients. The application suite has 238 service-free tests and all 268 pass with service opt-ins; the dbt project now runs 136 source, model, and reconciliation tests across V1 and V2. Spark/Iceberg runtime validation remains container-based because PySpark is intentionally not a Windows application dependency. See [Day 14 validation](docs/DAY14_VALIDATION.md) for Version 1 acceptance and the Day 15–21 validation documents for streaming/lakehouse evidence.
+The live tests require `.env.test` with isolated PostgreSQL and Redis test resources. Kafka smoke tests use unique temporary topics, groups, and clients. The application suite has 244 service-free tests and all 274 pass with service opt-ins; the dbt project now runs 146 source, model, and reconciliation nodes across V1 and V2. Spark/Iceberg runtime validation remains container-based because PySpark is intentionally not a Windows application dependency. See [Day 14 validation](docs/DAY14_VALIDATION.md) for Version 1 acceptance and the Day 15–23 validation documents for streaming/lakehouse evidence.
