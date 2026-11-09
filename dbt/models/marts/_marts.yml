@@ -56,3 +56,89 @@ models:
         data_tests: [not_null]
       - name: authentication_event_count
         data_tests: [not_null]
+
+  - name: lakehouse_daily_transactions
+    description: Business-ready daily transaction metrics mirrored from Iceberg Gold.
+    columns:
+      - name: lakehouse_daily_key
+        data_tests: [not_null, unique]
+      - name: metric_date
+        data_tests: [not_null]
+      - name: currency
+        data_tests: [not_null]
+      - name: transaction_event_count
+        data_tests: [not_null]
+      - name: monetary_attempt_count
+        data_tests: [not_null]
+      - name: successful_transaction_count
+        data_tests: [not_null]
+      - name: declined_transaction_count
+        data_tests: [not_null]
+      - name: success_rate
+        data_tests: [not_null]
+      - name: decline_rate
+        data_tests: [not_null]
+      - name: serving_loaded_at
+        data_tests: [not_null]
+
+  - name: lakehouse_authentication_metrics
+    description: Daily authentication attempts, failures, lockouts, sessions, and rates from Gold.
+    columns:
+      - name: lakehouse_authentication_key
+        data_tests: [not_null, unique]
+      - name: metric_date
+        data_tests: [not_null, unique]
+      - name: authentication_event_count
+        data_tests: [not_null]
+      - name: authentication_attempt_count
+        data_tests: [not_null]
+      - name: card_lockout_count
+        data_tests: [not_null]
+      - name: success_rate
+        data_tests: [not_null]
+      - name: failure_rate
+        data_tests: [not_null]
+      - name: serving_loaded_at
+        data_tests: [not_null]
+
+  - name: lakehouse_account_activity
+    description: Account-day activity, balances, and lifecycle state from Gold.
+    columns:
+      - name: lakehouse_account_activity_key
+        data_tests: [not_null, unique]
+      - name: metric_date
+        data_tests: [not_null]
+      - name: account_id
+        data_tests: [not_null]
+      - name: currency
+        data_tests: [not_null]
+      - name: activity_event_count
+        data_tests: [not_null]
+      - name: account_closed
+        data_tests: [not_null]
+      - name: serving_loaded_at
+        data_tests: [not_null]
+
+  - name: lakehouse_hourly_volume
+    description: Hourly transaction-event volume by currency, type, and lifecycle status.
+    columns:
+      - name: lakehouse_hourly_key
+        data_tests: [not_null, unique]
+      - name: event_hour
+        data_tests: [not_null]
+      - name: currency
+        data_tests: [not_null]
+      - name: transaction_type
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: [balance_inquiry, withdrawal, deposit]
+      - name: transaction_status
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: [pending, completed, declined]
+      - name: transaction_event_count
+        data_tests: [not_null]
+      - name: serving_loaded_at
+        data_tests: [not_null]

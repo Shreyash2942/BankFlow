@@ -53,3 +53,75 @@ sources:
             data_tests: [not_null]
           - name: consumed_at
             data_tests: [not_null]
+
+  - name: bankflow_serving
+    description: Idempotent PostgreSQL mirror of selected Iceberg Gold aggregates.
+    schema: bankflow_serving
+    tables:
+      - name: analytics_daily_transactions
+        description: Gold daily transaction metrics at date and currency grain.
+        loaded_at_field: loaded_at
+        columns:
+          - name: metric_date
+            data_tests: [not_null]
+          - name: currency
+            data_tests: [not_null]
+          - name: monetary_attempt_count
+            data_tests: [not_null]
+          - name: success_rate
+            data_tests: [not_null]
+          - name: decline_rate
+            data_tests: [not_null]
+          - name: source_gold_processed_at
+            data_tests: [not_null]
+          - name: loaded_at
+            data_tests: [not_null]
+
+      - name: analytics_authentication_metrics
+        description: Gold daily authentication and lockout metrics.
+        loaded_at_field: loaded_at
+        columns:
+          - name: metric_date
+            data_tests: [not_null, unique]
+          - name: authentication_event_count
+            data_tests: [not_null]
+          - name: source_gold_processed_at
+            data_tests: [not_null]
+          - name: loaded_at
+            data_tests: [not_null]
+
+      - name: analytics_account_activity
+        description: Gold account-day activity, balances, and closure state.
+        loaded_at_field: loaded_at
+        columns:
+          - name: metric_date
+            data_tests: [not_null]
+          - name: account_id
+            data_tests: [not_null]
+          - name: currency
+            data_tests: [not_null]
+          - name: activity_event_count
+            data_tests: [not_null]
+          - name: source_gold_processed_at
+            data_tests: [not_null]
+          - name: loaded_at
+            data_tests: [not_null]
+
+      - name: analytics_hourly_volume
+        description: Gold hourly transaction-event volume by type and status.
+        loaded_at_field: loaded_at
+        columns:
+          - name: event_hour
+            data_tests: [not_null]
+          - name: currency
+            data_tests: [not_null]
+          - name: transaction_type
+            data_tests: [not_null]
+          - name: transaction_status
+            data_tests: [not_null]
+          - name: transaction_event_count
+            data_tests: [not_null]
+          - name: source_gold_processed_at
+            data_tests: [not_null]
+          - name: loaded_at
+            data_tests: [not_null]
