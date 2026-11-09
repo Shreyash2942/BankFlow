@@ -121,7 +121,7 @@ def test_user_can_authenticate_transact_review_reset_and_end_session(streamlit_d
 
     app.switch_page("pages/5_Analytics.py").run(timeout=10)
     assert not app.exception
-    assert _has_markdown(app, "Analytics dashboard")
+    assert _has_markdown(app, "Lakehouse analytics")
 
     app.switch_page("pages/6_Platform_Status.py").run(timeout=10)
     assert not app.exception
